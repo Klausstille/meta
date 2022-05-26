@@ -10,27 +10,19 @@ import Residences from "./components/Residences";
 import "./App.css";
 
 function App() {
-    // const [page, setPage] = useState([]);
-    // const { getNav } = useContenful();
     const { x, y } = useMouse();
     const { width, height } = getWindowDimensions();
-
-    // useEffect(() => {
-    //     getNav().then((response) => {
-    //         setPage(response);
-    //     });
-    // });
 
     return (
         <>
             <BrowserRouter>
-                <Navbar />
-
                 <svg className="canvas">
                     <line class="hand" x1={x} y1={y} x2={x} y2="0" />
                     <line class="hand" x1={x} y1={y} x2="0" y2={height} />
                     <line class="hand" x1={x} y1={y} x2={width} y2={y} />
                 </svg>
+                <Navbar />
+
                 <Residences />
                 <HomePage />
             </BrowserRouter>

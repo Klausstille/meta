@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
 import useMouse from "../components/mouseEvent/MouseMove";
 import getWindowDimensions from "../components/mouseEvent/DocumentSize";
-
 import "./Residences.css";
-// import PicDrag from "./components/mouseEvent/PicDrag";
 
 const { SPACE_ID, ACCESS_TOKEN } = require("../secrets.json");
 
@@ -25,10 +23,8 @@ const query = `
 function Residences() {
     const [page, setPage] = useState(null);
     const [isShown, setIsShown] = useState(false);
-    const [drag, setDrag] = useState(false);
     const { x, y } = useMouse();
     const { width } = getWindowDimensions();
-
     // console.log(x, y);
 
     useEffect(() => {
@@ -70,23 +66,31 @@ function Residences() {
                             src={data.residencesPhotos.url}
                             onClick={() => setIsShown(true)}
                         />
+                        <h6>{data.residencesPhotos.title}</h6>
+
                         {isShown && (
-                            <div
-                                className="image-container"
-                                ref={ref}
-                                style={{
-                                    width: `${width - x}px`,
-                                    height: `${y}px`,
-                                }}
-                            >
-                                <img
-                                    alt=""
-                                    src={data.residencesPhotos.url}
-                                    // onClick={() => setIsShown(false)}
-                                />
+                            <div className="img-module">
+                                <div
+                                    className="image-container"
+                                    style={{
+                                        width: `${width - x - 1.4}px`,
+                                        height: `${y - 1.5}px`,
+                                    }}
+                                >
+                                    <img
+                                        alt=""
+                                        src={data.residencesPhotos.url}
+                                    />
+
+                                    <div
+                                        className="close-imgcontainer"
+                                        onClick={() => setIsShown(false)}
+                                    >
+                                        x
+                                    </div>
+                                </div>
                             </div>
                         )}
-                        <h6>{data.residencesPhotos.title}</h6>
                     </div>
                 );
             })}
