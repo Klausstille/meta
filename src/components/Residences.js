@@ -1,4 +1,7 @@
 import { useState, useEffect } from "react";
+import useMouse from "../components/mouseEvent/MouseMove";
+import getWindowDimensions from "../components/mouseEvent/DocumentSize";
+
 import "./Residences.css";
 // import PicDrag from "./components/mouseEvent/PicDrag";
 
@@ -22,6 +25,11 @@ const query = `
 function Residences() {
     const [page, setPage] = useState(null);
     const [isShown, setIsShown] = useState(false);
+    const [drag, setDrag] = useState(false);
+    const { x, y } = useMouse();
+    const { width } = getWindowDimensions();
+
+    // console.log(x, y);
 
     useEffect(() => {
         window
@@ -55,22 +63,26 @@ function Residences() {
         <div className="home">
             {page.map((data) => {
                 return (
-                    <div key={data} className="residences-pic">
+                    <div key={data}>
                         <img
                             alt={data}
+                            className="residences-pic"
                             src={data.residencesPhotos.url}
                             onClick={() => setIsShown(true)}
                         />
                         {isShown && (
                             <div
-                                className="bigPick"
-                                // onMouseMove={() => PicDrag()}
+                                className="image-container"
+                                ref={ref}
+                                style={{
+                                    width: `${width - x}px`,
+                                    height: `${y}px`,
+                                }}
                             >
-                                {/* <PicDrag imageurl={data.residencesPhotos.url} /> */}
                                 <img
                                     alt=""
-                                    onClick={() => setIsShown(false)}
                                     src={data.residencesPhotos.url}
+                                    // onClick={() => setIsShown(false)}
                                 />
                             </div>
                         )}

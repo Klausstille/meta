@@ -2,13 +2,12 @@
 // import useContenful from "./useContenful";
 // import Eventpage from "./components/Eventpage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-
-import "./App.css";
 import useMouse from "./components/mouseEvent/MouseMove";
 import getWindowDimensions from "./components/mouseEvent/DocumentSize";
 import Navbar from "./components/Navbar";
 import HomePage from "./components/HomePage";
 import Residences from "./components/Residences";
+import "./App.css";
 
 function App() {
     // const [page, setPage] = useState([]);
