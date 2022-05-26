@@ -7,7 +7,7 @@
     top: 0;
     z-index: 999;
     width: 100vw;
-    /* background-color: white; */
+    background-color: rgba(255, 255, 255, 0.9);
     border-bottom: 3px solid #006eff;
 }
 
@@ -28,15 +28,13 @@
 }
 
 .navbar-logo img {
+    left: 40px;
     color: #006eff;
-    justify-self: start;
-    margin-left: 20px;
     cursor: pointer;
-    text-decoration: none;
-    font-size: 2.5rem;
     /* display: flex; */
     height: 1.6rem;
-    align-items: center;
+    position: fixed;
+    top: 24px;
 }
 
 .nav-menu {

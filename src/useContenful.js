@@ -9,24 +9,24 @@ const useContenful = () => {
 
     const getNav = async () => {
         try {
-            const entries = await client.getEntries({
-                content_type: "page",
-            });
-            const filteredEntries = entries.items.map((item) => {
-                const logo = item.fields.logo.fields;
-                // console.log("entries", entries);
-                return {
-                    ...item.fields,
-                    logo,
-                };
-            });
-
-            return filteredEntries;
+            // const entries = await client.getEntries({
+            //     content_type: "page",
+            // });
+            // const filteredEntries = entries.items.map((item) => {
+            //     const logo = item.fields.logo.fields;
+            //     // console.log("entries", entries);
+            //     return {
+            //         ...item.fields,
+            //         logo,
+            //     };
+            // });
+            // return filteredEntries;
         } catch (error) {
             console.log("error in useContentful", error);
         }
     };
+
     return { getNav };
 };
 
-export default useContenful;
+// export default useContenful;

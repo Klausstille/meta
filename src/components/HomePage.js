@@ -1,18 +1,25 @@
 import { useState, useEffect } from "react";
+import "./HomePage.css";
+
 const { SPACE_ID, ACCESS_TOKEN } = require("../secrets.json");
 
 const query = `
 {
-  pageCollection {
+  homeCollection {
     items {
-      value
+        textTitle
+        homeText{
+            json
+      }
     }
+    
   }
 }
 `;
 
 function HomePage() {
     const [page, setPage] = useState(null);
+    const [title, setTitle] = useState("");
 
     useEffect(() => {
         window
@@ -32,22 +39,31 @@ function HomePage() {
                 if (errors) {
                     console.error(errors);
                 }
+                // console.log("HALLO");
+                console.log(data.homeCollection.items);
 
-                setPage(data.pageCollection.items[0]);
+                setTitle(data.homeCollection.items);
+                setPage(data.homeCollection.items);
             });
     }, []);
 
-    if (!page) {
+    if (!title) {
         return "Loading...";
     }
 
     // render the fetched Contentful data
     return (
-        <div className="App">
-            <header className="App-header">
-                <img src={page.logo.url} className="App-logo" alt="logo" />
-                <p>{page.title}</p>
-            </header>
+        <div className="home">
+            {title.map((data) => {
+                return (
+                    <div key={data.textTitle}>
+                        <h1>{data.textTitle}</h1>
+                        <h1>
+                            {data.homeText.json.content[0].content[0].value}
+                        </h1>
+                    </div>
+                );
+            })}
         </div>
     );
 }

@@ -1,0 +1,17 @@
+h6 {
+    color: #006eff;
+    opacity: 0.8;
+    font-size: 1rem;
+    font-weight: 100;
+}
+
+.residences-pic {
+    width: 500px;
+    height: 350px;
+}
+
+.residences-pic img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
