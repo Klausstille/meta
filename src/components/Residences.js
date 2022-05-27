@@ -60,7 +60,7 @@ function Residences() {
         <div className="home">
             {page.map((data) => {
                 return (
-                    <div key={data}>
+                    <div key={data.residencesPhotos.url}>
                         <img
                             alt={data}
                             className="residences-pic"
@@ -81,6 +81,7 @@ function Residences() {
                     const isActive = index === activeIndex;
                     return (
                         <div
+                            key={index.residencesPhotos.url}
                             className="img-module"
                             onClick={() => {
                                 setIsShown(false);
@@ -99,7 +100,9 @@ function Residences() {
                                     active={isActive}
                                     src={activeIndex.residencesPhotos.url}
                                 />
-
+                                <h6 className="sticky-text">
+                                    {activeIndex.residencesPhotos.title}
+                                </h6>
                                 {/* <div
                                         className="close-imgcontainer"
                                         onClick={() => setIsShown(false)}
