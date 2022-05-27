@@ -23,6 +23,7 @@ const query = `
 function Residences() {
     const [page, setPage] = useState(null);
     const [isShown, setIsShown] = useState(false);
+    const [activeIndex, setActiveIndex] = useState(-1);
     const { x, y } = useMouse();
     const { width } = getWindowDimensions();
     // console.log(x, y);
@@ -64,36 +65,51 @@ function Residences() {
                             alt={data}
                             className="residences-pic"
                             src={data.residencesPhotos.url}
-                            onClick={() => setIsShown(true)}
+                            // onClick={() => setIsShown(true)}
+                            onClick={() => {
+                                setIsShown(true);
+                                setActiveIndex(data);
+                            }}
                         />
                         <h6>{data.residencesPhotos.title}</h6>
+                    </div>
+                );
+            })}
 
-                        {isShown && (
-                            <div className="img-module">
-                                <div
-                                    className="image-container"
-                                    style={{
-                                        width: `${width - x - 1.4}px`,
-                                        height: `${y - 1.5}px`,
-                                    }}
-                                >
-                                    <img
-                                        alt=""
-                                        src={data.residencesPhotos.url}
-                                    />
+            {isShown &&
+                page.map((index) => {
+                    const isActive = index === activeIndex;
+                    return (
+                        <div
+                            className="img-module"
+                            onClick={() => {
+                                setIsShown(false);
+                                setActiveIndex(-1);
+                            }}
+                        >
+                            <div
+                                className="image-container"
+                                style={{
+                                    width: `${width - x}px`,
+                                    height: `${y - 81.5}px`,
+                                }}
+                            >
+                                <img
+                                    alt={index}
+                                    active={isActive}
+                                    src={activeIndex.residencesPhotos.url}
+                                />
 
-                                    <div
+                                {/* <div
                                         className="close-imgcontainer"
                                         onClick={() => setIsShown(false)}
                                     >
                                         x
-                                    </div>
-                                </div>
+                                    </div> */}
                             </div>
-                        )}
-                    </div>
-                );
-            })}
+                        </div>
+                    );
+                })}
         </div>
     );
 }

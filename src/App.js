@@ -12,15 +12,18 @@ import "./App.css";
 function App() {
     const { x, y } = useMouse();
     const { width, height } = getWindowDimensions();
+    console.log(x, y);
 
     return (
         <>
-            <BrowserRouter>
-                <svg className="canvas">
-                    <line class="hand" x1={x} y1={y} x2={x} y2="0" />
-                    <line class="hand" x1={x} y1={y} x2="0" y2={height} />
-                    <line class="hand" x1={x} y1={y} x2={width} y2={y} />
+            <section>
+                <svg id="canvas">
+                    <line className="hand" x1={x} y1={y} x2={x} y2="0" />
+                    <line className="hand" x1={x} y1={y} x2="0" y2={height} />
+                    <line className="hand" x1={x} y1={y} x2={width} y2={y} />
                 </svg>
+            </section>
+            <BrowserRouter>
                 <Navbar />
 
                 <Residences />

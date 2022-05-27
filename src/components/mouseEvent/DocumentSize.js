@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+// var canvas = document.getElementById("canvas");
 
 function getWindowDimensions() {
     const { innerWidth: width, innerHeight: height } = window;
@@ -18,8 +19,8 @@ export default function useWindowDimensions() {
             setWindowDimensions(getWindowDimensions());
         }
 
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
+        document.addEventListener("resize", handleResize);
+        return () => document.removeEventListener("resize", handleResize);
     }, []);
 
     return windowDimensions;
