@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import useMouse from "./components/mouseEvent/MouseMove";
 import getWindowDimensions from "./components/mouseEvent/DocumentSize";
 import Navbar from "./components/Navbar";
+import Atelier from "./components/Atelier";
 import HomePage from "./components/HomePage";
 import Residences from "./components/Residences";
 import "./App.css";
@@ -25,8 +26,8 @@ function App() {
                 <Routes>
                     <Route exact path="/" element={<HomePage />} />
                     <Route path="/residences" element={<Residences />} />
-                    {/* <Route path="/atelier" element={<Atelier />} />
-                    <Route path="/recherche" element={<Recherche />} />
+                    <Route path="/atelier" element={<Atelier />} />
+                    {/* <Route path="/recherche" element={<Recherche />} />
                     <Route path="/contact" element={<Contact />} /> */}
                 </Routes>
             </BrowserRouter>

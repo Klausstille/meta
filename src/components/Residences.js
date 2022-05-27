@@ -91,7 +91,7 @@ function Residences() {
                                 className="image-container"
                                 style={{
                                     width: `${width - x}px`,
-                                    height: `${y - 1.5}px`,
+                                    height: `${y - 1}px`,
                                 }}
                             >
                                 <img

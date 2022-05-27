@@ -1,15 +1,25 @@
-.home {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 2rem;
-    align-content: flex-start;
-    align-items: flex-start;
+.logo-container {
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 
-h1 {
-    /* text-align: center; */
-    color: #006eff;
-    opacity: 0.8;
-    font-size: 4rem;
-    font-weight: 100;
+.logo-container img {
+    object-fit: fill;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+}
+
+.img-module {
+    /* top: 80px; */
+    margin-top: 80px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.8);
+    position: fixed;
+    z-index: 0;
 }

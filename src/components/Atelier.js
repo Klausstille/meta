@@ -1,15 +1,14 @@
 import { useState, useEffect } from "react";
-import useMouse from "../components/mouseEvent/MouseMove";
-import getWindowDimensions from "../components/mouseEvent/DocumentSize";
-import "./HomePage.css";
+import "./Atelier.css";
 
 const { SPACE_ID, ACCESS_TOKEN } = require("../secrets.json");
 
 const query = `
 {
-  introCollection {
+  homeCollection {
     items {
-        intro{
+        textTitle
+        homeText{
             json
       }
     }
@@ -18,10 +17,9 @@ const query = `
 }
 `;
 
-export default function HomePage() {
-    const { x, y } = useMouse();
-    const { width } = getWindowDimensions();
+export default function Atelier() {
     const [page, setPage] = useState(null);
+    const [title, setTitle] = useState("");
 
     useEffect(() => {
         window
@@ -41,35 +39,31 @@ export default function HomePage() {
                 if (errors) {
                     console.error(errors);
                 }
-                console.log(data.introCollection.items);
-                setPage(data.introCollection.items);
+                // console.log("HALLO");
+                console.log(data.homeCollection.items);
+
+                setTitle(data.homeCollection.items);
+                setPage(data.homeCollection.items);
             });
     }, []);
 
-    if (!page) {
+    if (!title) {
         return "Loading...";
     }
 
+    // render the fetched Contentful data
     return (
         <div className="home">
-            <div className="img-module">
-                <div
-                    className="logo-container"
-                    style={{
-                        width: `${width - x}px`,
-                        height: `${y}px`,
-                    }}
-                >
-                    <img src="./logo_meta.png" alt="Meta" />
-                </div>
-            </div>
-            {/* {page.map((data) => {
+            {title.map((data) => {
                 return (
-                    <div key={data.intro}>
-                        <h1>{data.intro.json.content[0].content[0].value}</h1>
+                    <div key={data.textTitle}>
+                        <h1>{data.textTitle}</h1>
+                        <h1>
+                            {data.homeText.json.content[0].content[0].value}
+                        </h1>
                     </div>
                 );
-            })} */}
+            })}
         </div>
     );
 }

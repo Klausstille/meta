@@ -1,0 +1,15 @@
+.home {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2rem;
+    align-content: flex-start;
+    align-items: flex-start;
+}
+
+h1 {
+    /* text-align: center; */
+    color: #006eff;
+    opacity: 0.8;
+    font-size: 4rem;
+    font-weight: 100;
+}

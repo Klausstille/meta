@@ -16,7 +16,7 @@ export default function GetWindowDimensions() {
             width: width,
             height: height,
         });
-    }, [params]);
+    }, []);
 
     return params;
 }
