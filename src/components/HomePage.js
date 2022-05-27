@@ -17,7 +17,7 @@ const query = `
 }
 `;
 
-function HomePage() {
+export default function HomePage() {
     const [page, setPage] = useState(null);
     const [title, setTitle] = useState("");
 
@@ -67,5 +67,3 @@ function HomePage() {
         </div>
     );
 }
-
-export default HomePage;

@@ -8,6 +8,13 @@ h6 {
 .residences-pic {
     width: 500px;
     height: 350px;
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+}
+
+.residences-pic img {
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
 }
 
 .image-container {
@@ -30,13 +37,14 @@ h6 {
 }
 
 .img-module {
-    top: 80px;
+    /* top: 80px; */
+    margin-top: 80px;
     right: 0;
     bottom: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.8);
     position: fixed;
     z-index: 0;
 }
@@ -47,6 +55,6 @@ h6.sticky-text {
     background-color: white;
     padding: 10px;
     margin-top: -50px;
-    border-top: solid 3px;
+    border-top: solid 2px;
     opacity: 1;
 }

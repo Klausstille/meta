@@ -26,7 +26,6 @@ function Residences() {
     const [activeIndex, setActiveIndex] = useState(-1);
     const { x, y } = useMouse();
     const { width } = getWindowDimensions();
-    // console.log(x, y);
 
     useEffect(() => {
         window
@@ -92,7 +91,7 @@ function Residences() {
                                 className="image-container"
                                 style={{
                                     width: `${width - x}px`,
-                                    height: `${y - 81.5}px`,
+                                    height: `${y - 1.5}px`,
                                 }}
                             >
                                 <img

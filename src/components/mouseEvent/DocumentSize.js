@@ -1,27 +1,22 @@
 import { useState, useEffect } from "react";
-// var canvas = document.getElementById("canvas");
 
-function getWindowDimensions() {
-    const { innerWidth: width, innerHeight: height } = window;
-    return {
-        width,
-        height,
-    };
-}
-
-export default function useWindowDimensions() {
-    const [windowDimensions, setWindowDimensions] = useState(
-        getWindowDimensions()
-    );
+export default function GetWindowDimensions() {
+    const [params, setParams] = useState({
+        width: window.innerWidth,
+        height: window.innerHeight,
+    });
+    const [resize, setResize] = useState(false);
 
     useEffect(() => {
-        function handleResize() {
-            setWindowDimensions(getWindowDimensions());
-        }
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        document.addEventListener("resize", () => setResize(true));
+        setParams({
+            ...params,
+            width: width,
+            height: height,
+        });
+    }, [params]);
 
-        document.addEventListener("resize", handleResize);
-        return () => document.removeEventListener("resize", handleResize);
-    }, []);
-
-    return windowDimensions;
+    return params;
 }

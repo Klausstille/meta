@@ -1,9 +1,4 @@
-// import { useState, useEffect } from "react";
-// import useContenful from "./useContenful";
-// import Eventpage from "./components/Eventpage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import React, { useEffect, useState } from "react";
-
 import useMouse from "./components/mouseEvent/MouseMove";
 import getWindowDimensions from "./components/mouseEvent/DocumentSize";
 import Navbar from "./components/Navbar";
@@ -14,29 +9,6 @@ import "./App.css";
 function App() {
     const { x, y } = useMouse();
     const { width, height } = getWindowDimensions();
-    console.log(x, y);
-
-    // const [params, setParams] = useState({
-    //     width: window.innerWidth,
-    //     height: window.innerHeight,
-    //     x: 0,
-    //     y: 0,
-    // });
-    // const [resize, setResize] = useState(false);
-
-    // useEffect(() => {
-    //     const width = window.innerWidth;
-    //     const height = window.innerHeight;
-    //     document.addEventListener("resize", () => setResize(true));
-    //     setParams({
-    //         ...params,
-    //         width: width,
-    //         height: height,
-    //     });
-
-    //     // canvas.addEventListener("mousemove", handleMouseMove);
-    //     // console.log(params);
-    // }, []);
 
     return (
         <>
@@ -47,12 +19,6 @@ function App() {
                     <line className="hand" x1={x} y1={y} x2={width} y2={y} />
                 </svg>
             </section>
-            {/* <BrowserRouter>
-                <Navbar />
-
-                <Residences />
-                <HomePage />
-            </BrowserRouter> */}
 
             <BrowserRouter>
                 <Navbar />
