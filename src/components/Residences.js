@@ -1,17 +1,20 @@
 import { useState, useEffect } from "react";
-import useMouse from "../components/mouseEvent/MouseMove";
-import getWindowDimensions from "../components/mouseEvent/DocumentSize";
+import useMouse from "./mouseEvent/MouseMove";
+import GetWindowDimensions from "./mouseEvent/DocumentSize";
+// import CheckLanguage from "./helpers/LanguageQuery";
 import "./Residences.css";
 
 const { SPACE_ID, ACCESS_TOKEN } = require("../secrets.json");
+
+// const { queries } = CheckLanguage();
 
 const query = `
 {
   residencesCollection {
     items {
       residencesPhotos {
-        title
-        description
+        title(locale: "fr")
+        description(locale: "fr")
         url
       }
     }
@@ -25,7 +28,7 @@ function Residences() {
     const [isShown, setIsShown] = useState(false);
     const [activeIndex, setActiveIndex] = useState(-1);
     const { x, y } = useMouse();
-    const { width } = getWindowDimensions();
+    const { width } = GetWindowDimensions();
 
     useEffect(() => {
         window
@@ -56,7 +59,7 @@ function Residences() {
 
     // render the fetched Contentful data
     return (
-        <div className="home">
+        <div className="projects-grid">
             {page.map((data) => {
                 return (
                     <div key={data.residencesPhotos.url}>
@@ -71,6 +74,7 @@ function Residences() {
                             }}
                         />
                         <h6>{data.residencesPhotos.title}</h6>
+                        <h6>{data.residencesPhotos.description}</h6>
                     </div>
                 );
             })}

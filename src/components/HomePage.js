@@ -57,7 +57,7 @@ export default function HomePage() {
                     className="logo-container"
                     style={{
                         width: `${width - x}px`,
-                        height: `${y}px`,
+                        height: `${y + 6}px`,
                     }}
                 >
                     <img src="./logo_meta.png" alt="Meta" />

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "./Button";
+import CheckLanguage from "./helpers/LanguageQuery";
 import "./Navbar.css";
 
 function Navbar() {
@@ -84,9 +85,7 @@ function Navbar() {
                                 Contact
                             </Link>
                         </li>
-                        <div className="nav-lan">
-                            EN <br /> FR
-                        </div>
+                        <CheckLanguage />
                     </ul>
                     {button && <Button>Sign up</Button>}
                 </div>

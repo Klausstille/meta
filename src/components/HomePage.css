@@ -5,10 +5,13 @@
 }
 
 .logo-container img {
-    object-fit: fill;
+    object-fit: contain;
+    object-position: bottom left;
     width: 100%;
     height: 100%;
     opacity: 1;
+    bottom: 2px;
+    position: absolute;
 }
 
 .img-module {
