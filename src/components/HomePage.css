@@ -14,7 +14,7 @@
     position: absolute;
 }
 
-.img-module {
+.home-module {
     /* top: 80px; */
     margin-top: 80px;
     right: 0;
@@ -22,7 +22,8 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: transparent;
     position: fixed;
     z-index: 0;
+    pointer-events: none;
 }

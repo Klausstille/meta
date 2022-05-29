@@ -53,7 +53,7 @@ export default function Atelier() {
 
     // render the fetched Contentful data
     return (
-        <div className="home">
+        <div className="atelier">
             {title.map((data) => {
                 return (
                     <div key={data.textTitle}>

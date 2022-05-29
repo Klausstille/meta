@@ -1,11 +1,3 @@
-.home {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 2rem;
-    align-content: flex-start;
-    align-items: flex-start;
-}
-
 h1 {
     /* text-align: center; */
     color: #006eff;

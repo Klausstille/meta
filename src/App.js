@@ -5,6 +5,8 @@ import Navbar from "./components/Navbar";
 import Atelier from "./components/Atelier";
 import HomePage from "./components/HomePage";
 import Residences from "./components/Residences";
+import Footer from "./components/Footer";
+
 import "./App.css";
 
 function App() {
@@ -30,6 +32,7 @@ function App() {
                     {/* <Route path="/recherche" element={<Recherche />} />
                     <Route path="/contact" element={<Contact />} /> */}
                 </Routes>
+                <Footer />
             </BrowserRouter>
         </>
     );

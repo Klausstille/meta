@@ -52,7 +52,7 @@ export default function HomePage() {
 
     return (
         <div className="home">
-            <div className="img-module">
+            <div className="home-module">
                 <div
                     className="logo-container"
                     style={{

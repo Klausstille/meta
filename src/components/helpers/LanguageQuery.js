@@ -46,6 +46,7 @@ const CheckLanguage = () => {
             <button onClick={handleclick} name="english">
                 EN
             </button>
+            <br />
             <button onClick={handleclick} name="french">
                 FR
             </button>

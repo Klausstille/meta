@@ -87,7 +87,7 @@ function Navbar() {
                         </li>
                         <CheckLanguage />
                     </ul>
-                    {button && <Button>Sign up</Button>}
+                    {button && <Button>Souscrire</Button>}
                 </div>
             </nav>
         </>

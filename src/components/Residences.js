@@ -59,64 +59,69 @@ function Residences() {
 
     // render the fetched Contentful data
     return (
-        <div className="projects-grid">
-            {page.map((data) => {
-                return (
-                    <div key={data.residencesPhotos.url}>
-                        <img
-                            alt={data}
-                            className="residences-pic"
-                            src={data.residencesPhotos.url}
-                            // onClick={() => setIsShown(true)}
-                            onClick={() => {
-                                setIsShown(true);
-                                setActiveIndex(data);
-                            }}
-                        />
-                        <h6>{data.residencesPhotos.title}</h6>
-                        <h6>{data.residencesPhotos.description}</h6>
-                    </div>
-                );
-            })}
-
-            {isShown &&
-                page.map((index) => {
-                    const isActive = index === activeIndex;
+        <>
+            <div className="category-title">
+                <h2>What's up</h2>
+            </div>
+            <div className="projects-grid">
+                {page.map((data) => {
                     return (
-                        <div
-                            key={index.residencesPhotos.url}
-                            className="img-module"
-                            onClick={() => {
-                                setIsShown(false);
-                                setActiveIndex(-1);
-                            }}
-                        >
+                        <div key={data.residencesPhotos.url}>
+                            <img
+                                alt={data}
+                                className="residences-pic"
+                                src={data.residencesPhotos.url}
+                                // onClick={() => setIsShown(true)}
+                                onClick={() => {
+                                    setIsShown(true);
+                                    setActiveIndex(data);
+                                }}
+                            />
+                            <h6>{data.residencesPhotos.title}</h6>
+                            <h6>{data.residencesPhotos.description}</h6>
+                        </div>
+                    );
+                })}
+
+                {isShown &&
+                    page.map((index) => {
+                        const isActive = index === activeIndex;
+                        return (
                             <div
-                                className="image-container"
-                                style={{
-                                    width: `${width - x}px`,
-                                    height: `${y - 1}px`,
+                                key={index.residencesPhotos.url}
+                                className="img-module"
+                                onClick={() => {
+                                    setIsShown(false);
+                                    setActiveIndex(-1);
                                 }}
                             >
-                                <img
-                                    alt={index}
-                                    active={isActive}
-                                    src={activeIndex.residencesPhotos.url}
-                                />
-                                <h6 className="sticky-text">
-                                    {activeIndex.residencesPhotos.title}
-                                </h6>
-                                {/* <div
+                                <div
+                                    className="image-container"
+                                    style={{
+                                        width: `${width - x}px`,
+                                        height: `${y - 1}px`,
+                                    }}
+                                >
+                                    <img
+                                        alt={index}
+                                        active={isActive}
+                                        src={activeIndex.residencesPhotos.url}
+                                    />
+                                    <h6 className="sticky-text">
+                                        {activeIndex.residencesPhotos.title}
+                                    </h6>
+                                    {/* <div
                                         className="close-imgcontainer"
                                         onClick={() => setIsShown(false)}
                                     >
                                         x
                                     </div> */}
+                                </div>
                             </div>
-                        </div>
-                    );
-                })}
-        </div>
+                        );
+                    })}
+            </div>
+        </>
     );
 }
 

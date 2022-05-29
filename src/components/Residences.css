@@ -1,3 +1,9 @@
+h2 {
+    font-size: 2.2rem;
+    color: #006eff;
+    font-weight: 100;
+}
+
 h6 {
     color: #006eff;
     opacity: 0.8;
@@ -52,14 +58,18 @@ h6.sticky-text {
     width: 100%;
     background-color: white;
     padding: 10px;
-    margin-top: -48px;
-    border-top: solid 5px;
+    margin-top: -45px;
+    border-top: solid 3px;
     opacity: 1;
 }
 
 .projects-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    padding: 40px;
+    padding: 0 40px 80px 40px;
     gap: 10px;
+}
+
+.category-title {
+    padding: 40px;
 }
