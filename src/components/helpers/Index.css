@@ -1,7 +1,21 @@
+.index-params {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 10px 0 0 40px;
+    grid-gap: 40px;
+    margin-top: 50px;
+}
+
+.index-container {
+    margin-top: -10px;
+}
+
 .index-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 40px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 40px;
+    padding: 0 0 0 40px;
+    border-bottom: solid 3px #006eff;
 }
 
 ul.index-items {
@@ -26,7 +40,7 @@ ul.index-items {
 .text-image-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    padding: 0 40px 80px 40px;
+    padding: 20px 40px 40px 40px;
     grid-gap: 40px;
 }
 .image-grid {

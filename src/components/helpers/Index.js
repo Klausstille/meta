@@ -27,6 +27,7 @@ const query = `
 
 export default function Index() {
     const [page, setPage] = useState(null);
+    const [isShown, setIsShown] = useState(false);
 
     useEffect(() => {
         window
@@ -54,26 +55,42 @@ export default function Index() {
     if (!page) {
         return "Loading...";
     }
-    return page.map((data) => {
-        return (
-            <div className="index" key={data.projectName}>
-                <div className="index-container">
-                    <div className="index-wrapper">
-                        <ul className="index-items">
-                            <IndexItem
-                                des={
-                                    data.description.json.content[0].content[0]
-                                        .value
-                                }
-                                src={data.galleryCollection.items}
-                                name={data.artistName}
-                                project={data.projectName}
-                                year={data.year}
-                            />
-                        </ul>
-                    </div>
+    return (
+        <>
+            <li className="index-params">
+                <div className="index-item-info">
+                    <p className="index-item-name">Artiste</p>
                 </div>
-            </div>
-        );
-    });
+                <div className="index-item-info">
+                    <p className="index-item-project">Project</p>
+                </div>
+                <div className="index-item-info">
+                    <p className="index-item-year">Année</p>
+                </div>
+            </li>
+            {page.map((data) => {
+                return (
+                    <div className="index" key={data.projectName}>
+                        <div className="index-container">
+                            <div className="index-wrapper">
+                                <ul className="index-items">
+                                    <IndexItem
+                                        name={data.artistName}
+                                        project={data.projectName}
+                                        year={data.year}
+                                        des={
+                                            data.description.json.content[0]
+                                                .content[0].value
+                                        }
+                                        src={data.galleryCollection.items}
+                                    />
+                                </ul>
+                            </div>
+                        </div>
+                        <br />
+                    </div>
+                );
+            })}
+        </>
+    );
 }
