@@ -37,7 +37,7 @@ export default function IndexItem(props) {
             </li>
 
             {isShown && (
-                <section className="text-image-grid">
+                <section className="text-image-grid" onClick={onIndexClick}>
                     <div className="text-grid">
                         <p>{props.des}</p>
                     </div>

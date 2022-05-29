@@ -59,7 +59,7 @@ export default function Index() {
         <>
             <li className="index-params">
                 <div className="index-item-info">
-                    <p className="index-item-name">Artiste</p>
+                    <p className="index-item-name">Artistes</p>
                 </div>
                 <div className="index-item-info">
                     <p className="index-item-project">Project</p>
