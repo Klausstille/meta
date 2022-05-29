@@ -9,7 +9,8 @@ function Footer() {
             <div className="footer-links">
                 <div className="footer-link-wrapper">
                     <div className="footer-link-items">
-                        <h3>Atelier</h3>
+                        <p>Atelier</p>
+                        <br />
                         <Link to="/sign-up">Workshop</Link>
                         <Link to="/">Artists</Link>
                         <Link to="/">Résidences</Link>
@@ -17,21 +18,21 @@ function Footer() {
                         <Link to="/">Termes de service</Link>
                     </div>
                     <div className="footer-link-items">
-                        <h3>Contact</h3>
+                        <p>Contact</p>
+                        <br />
                         <Link to="/">Contact</Link>
                         <Link to="/">Support</Link>
                         <Link to="/">Collaborations</Link>
                         <Link to="/">Sponsorships</Link>
                     </div>
                 </div>
-                <div className="footer-link-wrapper">
-                    <div className="footer-link-items">
-                        <h3>Social</h3>
-                        <Link to="/">Instagram</Link>
-                        <Link to="/">Facebook</Link>
-                        <Link to="/">Youtube</Link>
-                        <Link to="/">Twitter</Link>
-                    </div>
+                <div className="footer-link-items">
+                    <p>Social</p>
+                    <br />
+                    <Link to="/">Instagram</Link>
+                    <Link to="/">Facebook</Link>
+                    <Link to="/">Youtube</Link>
+                    <Link to="/">Twitter</Link>
                 </div>
             </div>
             <section className="footer-subscription">
@@ -52,7 +53,18 @@ function Footer() {
             </section>
             <section className="social-media">
                 <div className="social-media-wrap">
-                    <p className="website-rights">META © 2022</p>
+                    <p className="website-rights">
+                        Atelier Meta
+                        <br />
+                        Productions Plastiques Les Faures
+                        <br />
+                        24560 Ste Radegonde
+                        <br />
+                        inbox.meta(at)gmail.com
+                        <br />
+                        <br />
+                        META © 2022
+                    </p>
                 </div>
             </section>
         </div>

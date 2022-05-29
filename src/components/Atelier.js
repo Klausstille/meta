@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./Atelier.css";
+import ControlledCarousel from "../Caroussel";
 
 const { SPACE_ID, ACCESS_TOKEN } = require("../secrets.json");
 

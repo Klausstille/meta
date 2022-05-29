@@ -30,8 +30,8 @@ const CheckLanguage = () => {
 `;
 
     function handleclick(e) {
-        // e.preventDefault();
-        // console.log(e.target.name);
+        e.preventDefault();
+        console.log(e.target.name);
         if (e.target.name === "english") {
             console.log("EN triggered", { englishQueries });
             setQueries({ englishQueries });

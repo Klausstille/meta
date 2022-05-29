@@ -54,12 +54,9 @@
     box-sizing: border-box;
 }
 
-.footer-link-items h3 {
-    margin-bottom: 16px;
-}
-
-.footer-link-items > h3 {
+p {
     color: #006eff;
+    font-size: 1rem;
 }
 
 .footer-link-items a {
@@ -142,7 +139,7 @@
         align-items: center;
     }
     .footer-links {
-        padding-top: 2rem;
+        display: none;
     }
 
     .footer-input {
@@ -159,6 +156,9 @@
 
     .social-media-wrap {
         flex-direction: column;
+    }
+    .website-rights {
+        text-align: center;
     }
 }
 
