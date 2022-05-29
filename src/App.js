@@ -6,6 +6,7 @@ import Atelier from "./components/Atelier";
 import HomePage from "./components/HomePage";
 import Residences from "./components/Residences";
 import Footer from "./components/Footer";
+import Artistes from "./components/Artistes";
 
 import "./App.css";
 
@@ -29,8 +30,8 @@ function App() {
                     <Route exact path="/" element={<HomePage />} />
                     <Route path="/residences" element={<Residences />} />
                     <Route path="/atelier" element={<Atelier />} />
-                    {/* <Route path="/recherche" element={<Recherche />} />
-                    <Route path="/contact" element={<Contact />} /> */}
+                    <Route path="/artistes" element={<Artistes />} />
+                    {/* <Route path="/contact" element={<Contact />} /> */}
                 </Routes>
                 <Footer />
             </BrowserRouter>

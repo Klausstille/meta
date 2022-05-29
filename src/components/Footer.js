@@ -10,7 +10,6 @@ function Footer() {
                 <div className="footer-link-wrapper">
                     <div className="footer-link-items">
                         <p>Atelier</p>
-                        <br />
                         <Link to="/sign-up">Workshop</Link>
                         <Link to="/">Artists</Link>
                         <Link to="/">Résidences</Link>
@@ -19,7 +18,6 @@ function Footer() {
                     </div>
                     <div className="footer-link-items">
                         <p>Contact</p>
-                        <br />
                         <Link to="/">Contact</Link>
                         <Link to="/">Support</Link>
                         <Link to="/">Collaborations</Link>
@@ -28,7 +26,6 @@ function Footer() {
                 </div>
                 <div className="footer-link-items">
                     <p>Social</p>
-                    <br />
                     <Link to="/">Instagram</Link>
                     <Link to="/">Facebook</Link>
                     <Link to="/">Youtube</Link>
@@ -51,8 +48,8 @@ function Footer() {
                     </form>
                 </div>
             </section>
-            <section className="social-media">
-                <div className="social-media-wrap">
+            <section className="contact">
+                <div className="contact-wrap">
                     <p className="website-rights">
                         Atelier Meta
                         <br />

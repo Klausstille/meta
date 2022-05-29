@@ -12,15 +12,6 @@
     /* font-family: "PT Sans", sans-serif; */
 }
 
-.nav-lan button {
-    background: none;
-    color: inherit;
-    border: none;
-    padding: 0;
-    font: inherit;
-    outline: inherit;
-}
-
 .hand {
     stroke: #006eff;
     stroke-width: 3;

@@ -1,0 +1,38 @@
+h3 {
+    color: #006eff;
+}
+
+.carousel-container {
+    width: 1000px;
+    display: flex;
+    justify-content: center;
+}
+
+.carousel-inner {
+    position: relative;
+    width: 70%;
+    overflow: hidden;
+}
+
+.carousel-caption {
+    position: initial;
+    right: 15%;
+    bottom: 1.25rem;
+    left: 15%;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    color: #006eff;
+    text-align: center;
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+    right: 0;
+    height: 400px;
+    cursor: none;
+}
+
+.carousel-dark .carousel-indicators [data-bs-target] {
+    background-color: #006eff;
+    cursor: none;
+}

@@ -15,16 +15,26 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    height: 80px;
+    height: 65px;
     width: 90vw;
 }
 
 .nav-lan {
     color: #006eff;
-    font-size: 1rem;
+    font-size: 2.2rem;
     position: fixed;
-    right: 1.5rem;
-    top: 12px;
+    right: 40px;
+    top: 8px;
+}
+
+.nav-lan button {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    outline: inherit;
+    cursor: none !important;
 }
 
 .navbar-logo img {
@@ -32,7 +42,7 @@
     color: #006eff;
     height: 1.6rem;
     position: fixed;
-    top: 16px;
+    top: 20px;
 }
 
 .nav-menu {
@@ -42,20 +52,23 @@
     /* grid-gap: 10px; */
     list-style: none;
     text-align: center;
-    width: 70vw;
+    width: 85vw;
     justify-content: space-evenly;
+}
+ul.nav-menu {
+    padding: 0;
 }
 
 .nav-item {
-    height: 80px;
+    height: 65px;
 }
 
 .nav-links {
     color: #006eff;
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     text-decoration: none;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0;
     height: 100%;
     font-size: 2.2rem;
 }
@@ -68,7 +81,7 @@
 
 .fa-bars {
     color: #006eff;
-    margin-right: 1.5rem;
+    margin-right: 4rem;
 }
 
 .nav-links-mobile {
@@ -79,7 +92,7 @@
     display: none;
 }
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 1200px) {
     .NavbarItems {
         position: relative;
     }
@@ -87,13 +100,12 @@
     .nav-menu {
         display: flex;
         flex-direction: column;
-        width: 100%;
+        width: 100vw;
         height: 40vh;
         position: absolute;
-        top: 150px;
-        left: -100%;
+        right: 150%;
         opacity: 1;
-        /* transition: all 0.2s ease; */
+        transition: background-color 1s ease;
         justify-content: start;
         gap: 1rem;
     }
@@ -103,7 +115,6 @@
         color: #006eff;
         left: 0;
         top: 60px;
-        /* transition: all 0.2s ease; */
         z-index: 1;
         height: 100vh;
     }
@@ -111,8 +122,13 @@
     .nav-links {
         text-align: center;
         /* padding: 2rem; */
-        width: 100%;
+        width: 100vw;
         display: table;
+        /* border-bottom: solid 3px; */
+    }
+
+    ul.nav-menu.active {
+        padding: 0;
     }
 
     .nav-links:hover {
@@ -136,7 +152,7 @@
     .fa-times {
         color: #006eff;
         font-size: 1.5rem;
-        margin-right: 1.5rem;
+        margin-right: 4rem;
     }
 
     .nav-links-mobile {

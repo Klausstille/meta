@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./Atelier.css";
-import ControlledCarousel from "../Caroussel";
+import CarouselPage from "./helpers/Carousel";
 
 const { SPACE_ID, ACCESS_TOKEN } = require("../secrets.json");
 
@@ -54,17 +54,22 @@ export default function Atelier() {
 
     // render the fetched Contentful data
     return (
-        <div className="atelier">
-            {title.map((data) => {
-                return (
-                    <div key={data.textTitle}>
-                        <h1>{data.textTitle}</h1>
-                        <h1>
-                            {data.homeText.json.content[0].content[0].value}
-                        </h1>
-                    </div>
-                );
-            })}
-        </div>
+        <>
+            <section className="carousel-all-cont">
+                <CarouselPage />
+            </section>
+            <div className="atelier">
+                {title.map((data) => {
+                    return (
+                        <div key={data.textTitle}>
+                            <h1>{data.textTitle}</h1>
+                            <h1>
+                                {data.homeText.json.content[0].content[0].value}
+                            </h1>
+                        </div>
+                    );
+                })}
+            </div>
+        </>
     );
 }

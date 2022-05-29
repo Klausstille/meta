@@ -1,6 +1,6 @@
 .footer-container {
     border-top: 3px solid #006eff;
-    padding: 2rem 0 2rem 40px;
+    padding: 2rem 40px 2rem 40px;
     display: flex;
     flex-direction: row;
 }
@@ -84,18 +84,19 @@ p {
     font-size: 1rem;
 }
 
-.social-media {
+.contact {
     max-width: 1000px;
     width: 100%;
+    text-align: right;
 }
 
-.social-media-wrap {
+.contact-wrap {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     width: 90%;
     max-width: 1000px;
-    margin: 0px auto 0 auto;
+    margin: 0 0 0 auto;
 }
 
 .social-icons {

@@ -1,29 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Button } from "./Button";
 import CheckLanguage from "./helpers/LanguageQuery";
 import "./Navbar.css";
 
 function Navbar() {
     const [click, setClick] = useState(false);
-    const [button, setButton] = useState(true);
 
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
-
-    const showButton = () => {
-        if (window.innerWidth <= 1400) {
-            setButton(false);
-        } else {
-            setButton(true);
-        }
-    };
-
-    window.addEventListener("resize", showButton);
-
-    useEffect(() => {
-        showButton();
-    }, []);
 
     return (
         <>
@@ -60,20 +44,20 @@ function Navbar() {
                         </li>
                         <li className="nav-item">
                             <Link
-                                to="/recherche"
+                                to="/artistes"
                                 className="nav-links"
                                 onClick={closeMobileMenu}
                             >
-                                Recherche
+                                Artistes
                             </Link>
                         </li>
                         <li className="nav-item">
                             <Link
-                                to="/portfolio"
+                                to="/productions"
                                 className="nav-links"
                                 onClick={closeMobileMenu}
                             >
-                                Portfolio
+                                Productions
                             </Link>
                         </li>
                         <li className="nav-item">
@@ -87,7 +71,6 @@ function Navbar() {
                         </li>
                         <CheckLanguage />
                     </ul>
-                    {button && <Button>Souscrire</Button>}
                 </div>
             </nav>
         </>

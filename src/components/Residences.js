@@ -20,7 +20,6 @@ const query = `
     }
   }
 }
-
 `;
 
 function Residences() {

@@ -15,6 +15,7 @@ const CheckLanguage = () => {
   }
 }
 `;
+
     const englishQueries = `
 {
   residencesCollection {
@@ -44,11 +45,11 @@ const CheckLanguage = () => {
     return (
         <div className="nav-lan">
             <button onClick={handleclick} name="english">
-                EN
+                En
             </button>
-            <br />
+            &nbsp;
             <button onClick={handleclick} name="french">
-                FR
+                Fr
             </button>
         </div>
     );

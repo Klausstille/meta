@@ -4,6 +4,7 @@
     margin-right: 3rem;
     outline: none;
     border: none;
+    cursor: none !important;
 }
 
 .btn--outline {
@@ -29,4 +30,8 @@
     background-color: #006eff;
     color: white;
     transition: all 0.5s ease-out;
+}
+
+a.btn-mobile {
+    margin-top: -15px;
 }
