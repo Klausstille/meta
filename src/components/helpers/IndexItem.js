@@ -1,30 +1,23 @@
 import React from "react";
 import { useState } from "react";
-
+import { Transition } from "@headlessui/react";
+import useMouse from "../mouseEvent/MouseMove";
+import GetWindowDimensions from "../mouseEvent/DocumentSize";
 import "./Index.css";
-// import { Link } from "react-router-dom";
 
 export default function IndexItem(props) {
     const [isShown, setIsShown] = useState(false);
+    const [isClicked, setIsClicked] = useState(false);
+    const [activeIndex, setActiveIndex] = useState(-1);
+    const { x, y } = useMouse();
+    const { width } = GetWindowDimensions();
 
-    // if (setIsShown(true)) {
-    //     setIsShown(false);
-    // }
-
-    // onClick() {
-    //     this.setState({ showChat: !this.state.showChat });
-    // }
-    function onIndexClick() {
-        console.log("HELLOOOO");
-        if (isShown) {
-            setIsShown(false);
-        } else {
-            setIsShown(true);
-        }
-    }
     return (
         <>
-            <li className="index-item" onClick={onIndexClick}>
+            <li
+                className="index-item"
+                onClick={() => setIsShown((isShown) => !isShown)}
+            >
                 <div className="index-item-info">
                     <h2 className="index-item-name">{props.name}</h2>
                 </div>
@@ -36,24 +29,71 @@ export default function IndexItem(props) {
                 </div>
             </li>
 
-            {isShown && (
-                <section className="text-image-grid" onClick={onIndexClick}>
-                    <div className="text-grid">
-                        <p>{props.des}</p>
+            {/* {isShown && ( */}
+            <section
+            //    { click ? "text-image-grid active" : "text-image-grid"}
+            >
+                <Transition
+                    show={isShown}
+                    className="text-image-grid"
+                    enter="transition-opacity duration-75"
+                    enterFrom="opacity-0"
+                    enterTo="opacity-100"
+                    leave="transition-opacity duration-150"
+                    leaveFrom="opacity-100"
+                    leaveTo="opacity-0"
+                >
+                    <div className="text-image-grid active">
+                        <div className="text-grid">
+                            <p>{props.des}</p>
+                        </div>
+                        <div className="image-grid">
+                            {props.src.map((data) => {
+                                return (
+                                    <img
+                                        className="index-item-pics"
+                                        alt="Pic"
+                                        src={data.url}
+                                        onClick={() => {
+                                            setIsClicked(true);
+                                            setActiveIndex(data);
+                                        }}
+                                    />
+                                );
+                            })}
+                            {isClicked &&
+                                props.src.map((index) => {
+                                    const isActive = index === activeIndex;
+                                    return (
+                                        <div
+                                            key={index.url}
+                                            className="img-module"
+                                            onClick={() => {
+                                                setIsClicked(false);
+                                                setActiveIndex(-1);
+                                            }}
+                                        >
+                                            <div
+                                                className="image-container"
+                                                style={{
+                                                    width: `${width - x}px`,
+                                                    height: `${y - 1}px`,
+                                                }}
+                                            >
+                                                <img
+                                                    alt={index}
+                                                    active={isActive}
+                                                    src={activeIndex.url}
+                                                />
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                        </div>
                     </div>
-                    <div className="image-grid">
-                        {props.src.map((data) => {
-                            return (
-                                <img
-                                    className="index-item-pics"
-                                    alt="Pic"
-                                    src={data.url}
-                                />
-                            );
-                        })}
-                    </div>
-                </section>
-            )}
+                </Transition>
+            </section>
+            {/* )} */}
         </>
     );
 }

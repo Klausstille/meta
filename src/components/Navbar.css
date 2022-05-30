@@ -172,7 +172,7 @@ ul.nav-menu {
 
     .nav-links-mobile:hover {
         background: #fff;
-        color: #242424;
+        color: #006eff;
         transition: 250ms;
     }
 }
