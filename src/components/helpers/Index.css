@@ -41,7 +41,7 @@ ul.index-items {
 
 .text-image-grid {
     display: grid;
-    padding: 20px 40px 0 20px;
+    padding: 10px 40px 0 20px;
     grid-gap: 40px;
     transition: all 0.2s ease-in-out;
 }

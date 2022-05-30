@@ -42,6 +42,7 @@ function Residences({ lang }) {
     const [query, setQuery] = useState(freQuery);
 
     useEffect(() => {
+
         if (lang === "en-US") {
             setQuery(freQuery);
         } else {
