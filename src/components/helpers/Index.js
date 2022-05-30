@@ -5,7 +5,27 @@ import IndexItem from "./IndexItem";
 
 const { SPACE_ID, ACCESS_TOKEN } = require("../../secrets.json");
 
-const query = `
+const engQuery = `
+{
+  artistesCollection {
+    items {
+      artistName
+      projectName
+      year
+      description(locale:"en-US") {
+        json
+      }
+      galleryCollection {
+        items {
+          url
+        }
+      }
+    }
+  }
+}
+`;
+
+const freQuery = `
 {
   artistesCollection {
     items {
@@ -25,11 +45,18 @@ const query = `
 }
 `;
 
-export default function Index() {
+function Index({ lang }) {
     const [page, setPage] = useState(null);
-    const [isShown, setIsShown] = useState(false);
+    const [query, setQuery] = useState(freQuery);
 
     useEffect(() => {
+        if (lang === "en-US") {
+            setQuery(freQuery);
+        } else {
+            setQuery(engQuery);
+        }
+        console.log({ lang });
+
         window
             .fetch(
                 `https://graphql.contentful.com/content/v1/spaces/${SPACE_ID}/`,
@@ -50,7 +77,7 @@ export default function Index() {
                 console.log("HELLO", data.artistesCollection.items);
                 setPage(data.artistesCollection.items);
             });
-    }, []);
+    }, [lang]);
 
     if (!page) {
         return "Loading...";
@@ -94,3 +121,5 @@ export default function Index() {
         </>
     );
 }
+
+export default Index;

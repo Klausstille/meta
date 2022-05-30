@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import CheckLanguage from "./helpers/LanguageQuery";
 import "./Navbar.css";
 
-function Navbar() {
+function Navbar({ setLang }) {
     const [click, setClick] = useState(false);
 
     const handleClick = () => setClick(!click);
@@ -69,7 +69,7 @@ function Navbar() {
                                 Contact
                             </Link>
                         </li>
-                        <CheckLanguage />
+                        <CheckLanguage setLang={setLang} />
                     </ul>
                 </div>
             </nav>

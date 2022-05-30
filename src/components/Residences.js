@@ -1,19 +1,30 @@
 import { useState, useEffect } from "react";
 import useMouse from "./mouseEvent/MouseMove";
 import GetWindowDimensions from "./mouseEvent/DocumentSize";
-// import CheckLanguage from "./helpers/LanguageQuery";
 import "./Residences.css";
 
 const { SPACE_ID, ACCESS_TOKEN } = require("../secrets.json");
 
-// const { queries } = CheckLanguage();
-
-const query = `
+const engQuery = `
 {
   residencesCollection {
     items {
       residencesPhotos {
-        title(locale: "fr")
+        title(locale: "en-US")
+        description(locale: "en-US")
+        url
+      }
+    }
+  }
+}
+`;
+
+const freQuery = `
+{
+  residencesCollection {
+    items {
+      residencesPhotos {
+        title(locale: "fr") 
         description(locale: "fr")
         url
       }
@@ -22,14 +33,22 @@ const query = `
 }
 `;
 
-function Residences() {
+function Residences({ lang }) {
     const [page, setPage] = useState(null);
     const [isShown, setIsShown] = useState(false);
     const [activeIndex, setActiveIndex] = useState(-1);
     const { x, y } = useMouse();
     const { width } = GetWindowDimensions();
+    const [query, setQuery] = useState(freQuery);
 
     useEffect(() => {
+        if (lang === "en-US") {
+            setQuery(freQuery);
+        } else {
+            setQuery(engQuery);
+        }
+        console.log({ lang });
+
         window
             .fetch(
                 `https://graphql.contentful.com/content/v1/spaces/${SPACE_ID}/`,
@@ -50,7 +69,7 @@ function Residences() {
                 console.log(data.residencesCollection.items);
                 setPage(data.residencesCollection.items);
             });
-    }, []);
+    }, [lang]);
 
     if (!page) {
         return "Loading...";

@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { useState } from "react";
 import useMouse from "./components/mouseEvent/MouseMove";
 import getWindowDimensions from "./components/mouseEvent/DocumentSize";
 import Navbar from "./components/Navbar";
@@ -7,12 +8,17 @@ import HomePage from "./components/HomePage";
 import Residences from "./components/Residences";
 import Footer from "./components/Footer";
 import Artistes from "./components/Artistes";
-
 import "./App.css";
 
 function App() {
     const { x, y } = useMouse();
     const { width, height } = getWindowDimensions();
+    const [lang, setLang] = useState("fr");
+
+    function changeQuery(lang) {
+        // console.log("ChangeQuery");
+        setLang(lang);
+    }
 
     return (
         <>
@@ -25,12 +31,18 @@ function App() {
             </section>
 
             <BrowserRouter>
-                <Navbar />
+                <Navbar setLang={changeQuery} />
                 <Routes>
-                    <Route exact path="/" element={<HomePage />} />
-                    <Route path="/residences" element={<Residences />} />
-                    <Route path="/atelier" element={<Atelier />} />
-                    <Route path="/artistes" element={<Artistes />} />
+                    <Route exact path="/" element={<HomePage lang={lang} />} />
+                    <Route
+                        path="/residences"
+                        element={<Residences lang={lang} />}
+                    />
+                    <Route path="/atelier" element={<Atelier lang={lang} />} />
+                    <Route
+                        path="/artistes"
+                        element={<Artistes lang={lang} />}
+                    />
                     {/* <Route path="/contact" element={<Contact />} /> */}
                 </Routes>
                 <Footer />

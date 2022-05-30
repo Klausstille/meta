@@ -26,6 +26,7 @@ ul.index-items {
 .images {
     padding-left: 40px;
 }
+
 .index-item-pics {
     padding: 5px;
     width: 250px;
@@ -101,6 +102,9 @@ ul.index-items {
         }
         .index-params {
             display: none;
+        }
+        .index-item-pics {
+            padding: 5px 10px 5px 0;
         }
     }
 }

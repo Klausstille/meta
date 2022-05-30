@@ -1,9 +1,9 @@
 import Index from "./helpers/Index";
 
-export default function Artistes() {
+export default function Artistes({ lang }) {
     return (
         <>
-            <Index />
+            <Index lang={lang} />
         </>
     );
 }
