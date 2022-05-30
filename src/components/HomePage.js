@@ -19,6 +19,9 @@ export default function HomePage() {
                     <img src="./logo_meta.png" alt="Meta" />
                 </div>
             </div>
+            <div className="hero-container">
+                <video src="./amalia.mp4" autoPlay loop muted />
+            </div>
         </div>
     );
 }

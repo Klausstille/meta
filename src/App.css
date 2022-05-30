@@ -27,14 +27,14 @@
     z-index: 10;
 }
 
-.home {
+/* .home {
     min-height: 94vh;
     background-image: url("../public/site.jpg");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     color: #fff;
-}
+} */
 
 .atelier {
     min-height: 100vh;

@@ -3,6 +3,7 @@
     padding: 2rem 40px 2rem 40px;
     display: flex;
     flex-direction: row;
+    background-color: white;
 }
 
 .footer-subscription {
@@ -124,6 +125,15 @@ p {
 }
 
 @media screen and (max-width: 820px) {
+    .contact-wrap {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 0 0 auto;
+        align-items: center;
+    }
+
     .footer-container {
         padding: 2rem 0 2rem 0px;
         display: flex;
