@@ -27,6 +27,7 @@ ul.index-items {
     padding-left: 40px;
 }
 .index-item-pics {
+    padding: 5px;
     width: 250px;
     height: 150px;
     object-fit: cover;
