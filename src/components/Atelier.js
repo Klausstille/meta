@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
+import useMouse from "./mouseEvent/MouseMove";
+import GetWindowDimensions from "./mouseEvent/DocumentSize";
 import "./Atelier.css";
+
 // import CarouselPage from "./helpers/Carousel";
 
 const { SPACE_ID, ACCESS_TOKEN } = require("../secrets.json");
@@ -37,6 +40,8 @@ const q = {
 
 export default function Atelier({ lang = "fr" }) {
     const [page, setPage] = useState(null);
+    const { x, y } = useMouse();
+    const { width } = GetWindowDimensions();
 
     useEffect(() => {
         const query = q[lang];
@@ -76,13 +81,39 @@ export default function Atelier({ lang = "fr" }) {
             {/* <section className="carousel-all-cont">
                 <CarouselPage />
             </section> */}
-            <div className="atelier">
+            <div className="text-module">
                 {page.map((data) => {
                     return (
-                        <div key={data.homeText}>
-                            <h1>
-                                {data.homeText.json.content[0].content[0].value}
-                            </h1>
+                        <div>
+                            {x ? (
+                                <h1
+                                    key={data.homeText}
+                                    className="text-container"
+                                    style={{
+                                        width: `${width - x}px`,
+                                        height: `${y - 79}px`,
+                                    }}
+                                >
+                                    {
+                                        data.homeText.json.content[0].content[0]
+                                            .value
+                                    }
+                                </h1>
+                            ) : (
+                                <h1
+                                    key={data.homeText}
+                                    className="text-container"
+                                    style={{
+                                        width: `0px`,
+                                        height: `0px`,
+                                    }}
+                                >
+                                    {
+                                        data.homeText.json.content[0].content[0]
+                                            .value
+                                    }
+                                </h1>
+                            )}
                         </div>
                     );
                 })}

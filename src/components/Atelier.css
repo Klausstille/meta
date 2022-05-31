@@ -1,7 +1,26 @@
 h1 {
     /* text-align: center; */
     color: #006eff;
-    font-size: 4rem;
+    font-size: 2.2rem;
     font-weight: 100;
+    padding-top: 80px;
 }
 
+.text-module {
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 50vh;
+    z-index: 0;
+}
+
+.text-container {
+    background-color: white;
+    box-sizing: content-box;
+    overflow: scroll;
+    position: absolute;
+    padding: 70px 0 10px 0px;
+    right: 0;
+    top: 0;
+}

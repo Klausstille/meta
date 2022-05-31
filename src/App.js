@@ -10,6 +10,7 @@ import Footer from "./components/Footer";
 import Artistes from "./components/Artistes";
 import Productions from "./components/Productions";
 import Contact from "./components/Contact";
+import Cookies from "./components/helpers/Cookies";
 
 import "./App.css";
 
@@ -34,6 +35,7 @@ function App() {
             </section>
 
             <BrowserRouter>
+                <Cookies />
                 <Navbar setLang={changeQuery} lang={lang} />
                 <Routes>
                     <Route exact path="/" element={<HomePage lang={lang} />} />
