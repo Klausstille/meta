@@ -45,17 +45,18 @@ const freQuery = `
 }
 `;
 
-function Index({ lang }) {
+const q = {
+    fr: freQuery,
+    "en-US": engQuery,
+};
+
+function Index({ lang = "fr" }) {
     const [page, setPage] = useState(null);
-    const [query, setQuery] = useState(freQuery);
 
     useEffect(() => {
-        if (lang === "en-US") {
-            setQuery(freQuery);
-        } else {
-            setQuery(engQuery);
-        }
+        const query = q[lang];
         console.log({ lang });
+        console.log(query);
 
         window
             .fetch(

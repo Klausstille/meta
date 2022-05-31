@@ -33,22 +33,23 @@ const freQuery = `
 }
 `;
 
-function Residences({ lang }) {
+const q = {
+    fr: freQuery,
+    "en-US": engQuery,
+};
+
+function Residences({ lang = "fr" }) {
     const [page, setPage] = useState(null);
     const [isShown, setIsShown] = useState(false);
     const [activeIndex, setActiveIndex] = useState(-1);
     const { x, y } = useMouse();
     const { width } = GetWindowDimensions();
-    const [query, setQuery] = useState(freQuery);
 
     useEffect(() => {
+        const query = q[lang];
 
-        if (lang === "en-US") {
-            setQuery(freQuery);
-        } else {
-            setQuery(engQuery);
-        }
         console.log({ lang });
+        console.log(query);
 
         window
             .fetch(

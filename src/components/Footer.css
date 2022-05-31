@@ -122,9 +122,14 @@ p {
 .website-rights {
     color: #006eff;
     margin-bottom: 16px;
+    margin-right: 40px;
 }
 
-@media screen and (max-width: 820px) {
+.logo-2 {
+    width: 100px;
+}
+
+@media screen and (max-width: 1200px) {
     .contact-wrap {
         display: flex;
         justify-content: center;
@@ -170,6 +175,7 @@ p {
     }
     .website-rights {
         text-align: center;
+        margin-right: 0;
     }
 }
 

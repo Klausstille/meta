@@ -64,6 +64,9 @@ function Footer() {
                     </p>
                 </div>
             </section>
+            <div>
+                <img src="./logo_2.png" alt="" className="logo-2" />
+            </div>
         </div>
     );
 }

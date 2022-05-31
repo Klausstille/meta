@@ -1,15 +1,14 @@
 import { useState, useEffect } from "react";
 import "./Atelier.css";
-import CarouselPage from "./helpers/Carousel";
+// import CarouselPage from "./helpers/Carousel";
 
 const { SPACE_ID, ACCESS_TOKEN } = require("../secrets.json");
 
-const query = `
+const engQuery = `
 {
   homeCollection {
     items {
-        textTitle
-        homeText{
+        homeText(locale: "en-US") {
             json
       }
     }
@@ -18,11 +17,33 @@ const query = `
 }
 `;
 
-export default function Atelier() {
+const freQuery = `
+{
+  homeCollection {
+    items {
+        homeText(locale: "fr") {
+            json
+      }
+    }
+    
+  }
+}
+`;
+
+const q = {
+    fr: freQuery,
+    "en-US": engQuery,
+};
+
+export default function Atelier({ lang = "fr" }) {
     const [page, setPage] = useState(null);
-    const [title, setTitle] = useState("");
 
     useEffect(() => {
+        const query = q[lang];
+
+        console.log({ lang });
+        console.log(query);
+
         window
             .fetch(
                 `https://graphql.contentful.com/content/v1/spaces/${SPACE_ID}/`,
@@ -40,29 +61,25 @@ export default function Atelier() {
                 if (errors) {
                     console.error(errors);
                 }
-                // console.log("HALLO");
                 console.log(data.homeCollection.items);
 
-                setTitle(data.homeCollection.items);
                 setPage(data.homeCollection.items);
             });
-    }, []);
+    }, [lang]);
 
-    if (!title) {
+    if (!page) {
         return "Loading...";
     }
 
-    // render the fetched Contentful data
     return (
         <>
-            <section className="carousel-all-cont">
+            {/* <section className="carousel-all-cont">
                 <CarouselPage />
-            </section>
+            </section> */}
             <div className="atelier">
-                {title.map((data) => {
+                {page.map((data) => {
                     return (
-                        <div key={data.textTitle}>
-                            <h1>{data.textTitle}</h1>
+                        <div key={data.homeText}>
                             <h1>
                                 {data.homeText.json.content[0].content[0].value}
                             </h1>
