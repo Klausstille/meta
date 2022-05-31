@@ -8,6 +8,9 @@ import HomePage from "./components/HomePage";
 import Residences from "./components/Residences";
 import Footer from "./components/Footer";
 import Artistes from "./components/Artistes";
+import Productions from "./components/Productions";
+import Contact from "./components/Contact";
+
 import "./App.css";
 
 function App() {
@@ -43,7 +46,11 @@ function App() {
                         path="/artistes"
                         element={<Artistes lang={lang} />}
                     />
-                    {/* <Route path="/contact" element={<Contact />} /> */}
+                    <Route
+                        path="/productions"
+                        element={<Productions lang={lang} />}
+                    />
+                    <Route path="/contact" element={<Contact lang={lang} />} />
                 </Routes>
                 <Footer />
             </BrowserRouter>

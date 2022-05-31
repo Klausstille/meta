@@ -67,7 +67,7 @@ export default function IndexItem(props) {
                                     return (
                                         <div
                                             key={index.url}
-                                            className="img-module"
+                                            className="img-module-index"
                                             onClick={() => {
                                                 setIsClicked(false);
                                                 setActiveIndex(-1);

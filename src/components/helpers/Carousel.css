@@ -3,15 +3,26 @@ h3 {
 }
 
 .carousel-container {
-    width: 1000px;
     display: flex;
     justify-content: center;
+    padding-bottom: 50px;
+    width: 80vw;
 }
 
 .carousel-inner {
     position: relative;
     width: 70%;
     overflow: hidden;
+}
+
+.img-container img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.img-container {
+    height: 35vw;
 }
 
 .carousel-caption {
@@ -28,8 +39,12 @@ h3 {
 .carousel-control-next,
 .carousel-control-prev {
     right: 0;
-    height: 400px;
+    height: 35vw;
     cursor: none;
+}
+
+.carousel-item {
+    transition: transform 1s ease !important;
 }
 
 .carousel-dark .carousel-indicators [data-bs-target] {

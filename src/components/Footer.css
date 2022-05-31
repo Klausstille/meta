@@ -1,9 +1,16 @@
+.footer-foot {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 60vh);
+}
+
 .footer-container {
     border-top: 3px solid #006eff;
     padding: 2rem 40px 2rem 40px;
     display: flex;
     flex-direction: row;
     background-color: white;
+    margin-top: auto;
 }
 
 .footer-subscription {

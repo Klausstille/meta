@@ -109,7 +109,7 @@ function Residences({ lang = "fr" }) {
                         return (
                             <div
                                 key={index.residencesPhotos.url}
-                                className="img-module"
+                                className="img-module-res"
                                 onClick={() => {
                                     setIsShown(false);
                                     setActiveIndex(-1);

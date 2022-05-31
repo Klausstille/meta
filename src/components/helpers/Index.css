@@ -19,7 +19,7 @@
 }
 
 ul.index-items {
-    margin: 0;
+    margin: -10px 0 0 0;
     padding: 0;
 }
 
@@ -69,14 +69,14 @@ ul.index-items {
     height: 100%;
 }
 
-.img-module {
+.img-module-index {
     margin-top: 80px;
     right: 0;
     bottom: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.2);
     position: fixed;
     z-index: 0;
 }
