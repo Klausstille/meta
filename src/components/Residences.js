@@ -103,43 +103,48 @@ function Residences({ lang = "fr" }) {
                     );
                 })}
 
-                {isShown &&
-                    page.map((index) => {
-                        const isActive = index === activeIndex;
-                        return (
-                            <div
-                                key={index.residencesPhotos.url}
-                                className="img-module-res"
-                                onClick={() => {
-                                    setIsShown(false);
-                                    setActiveIndex(-1);
-                                }}
-                            >
+                {isShown && (
+                    <div className="backgrd">
+                        {page.map((index) => {
+                            const isActive = index === activeIndex;
+                            return (
                                 <div
-                                    className="image-container"
-                                    style={{
-                                        width: `${width - x}px`,
-                                        height: `${y - 1}px`,
+                                    key={index.residencesPhotos.url}
+                                    className="img-module"
+                                    onClick={() => {
+                                        setIsShown(false);
+                                        setActiveIndex(-1);
                                     }}
                                 >
-                                    <img
-                                        alt={index}
-                                        active={isActive}
-                                        src={activeIndex.residencesPhotos.url}
-                                    />
-                                    <h6 className="sticky-text">
-                                        {activeIndex.residencesPhotos.title}
-                                    </h6>
-                                    {/* <div
+                                    <div
+                                        className="image-container"
+                                        style={{
+                                            width: `${width - x}px`,
+                                            height: `${y - 1}px`,
+                                        }}
+                                    >
+                                        <img
+                                            alt={index}
+                                            active={isActive}
+                                            src={
+                                                activeIndex.residencesPhotos.url
+                                            }
+                                        />
+                                        <h6 className="sticky-text">
+                                            {activeIndex.residencesPhotos.title}
+                                        </h6>
+                                        {/* <div
                                         className="close-imgcontainer"
                                         onClick={() => setIsShown(false)}
                                     >
                                         x
                                     </div> */}
+                                    </div>
                                 </div>
-                            </div>
-                        );
-                    })}
+                            );
+                        })}
+                    </div>
+                )}
             </div>
         </>
     );

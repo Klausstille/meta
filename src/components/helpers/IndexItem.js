@@ -61,34 +61,46 @@ export default function IndexItem(props) {
                                     />
                                 );
                             })}
-                            {isClicked &&
-                                props.src.map((index) => {
-                                    const isActive = index === activeIndex;
-                                    return (
-                                        <div
-                                            key={index.url}
-                                            className="img-module-index"
-                                            onClick={() => {
-                                                setIsClicked(false);
-                                                setActiveIndex(-1);
-                                            }}
-                                        >
-                                            <div
-                                                className="image-container"
-                                                style={{
-                                                    width: `${width - x}px`,
-                                                    height: `${y - 1}px`,
-                                                }}
-                                            >
-                                                <img
-                                                    alt={index}
-                                                    active={isActive}
-                                                    src={activeIndex.url}
-                                                />
-                                            </div>
-                                        </div>
-                                    );
-                                })}
+                            {isClicked && (
+                                <div className="backgrd">
+                                    {props.src.map((index) => {
+                                        const isActive = index === activeIndex;
+                                        return (
+                                            <>
+                                                <div
+                                                    key={index.url}
+                                                    className="img-module"
+                                                    onClick={() => {
+                                                        setIsClicked(false);
+                                                        setActiveIndex(-1);
+                                                    }}
+                                                >
+                                                    <div
+                                                        className="image-container"
+                                                        style={{
+                                                            width: `${
+                                                                width - x
+                                                            }px`,
+                                                            height: `${
+                                                                y - 1
+                                                            }px`,
+                                                        }}
+                                                    >
+                                                        <img
+                                                            alt={index}
+                                                            active={isActive}
+                                                            src={
+                                                                activeIndex.url
+                                                            }
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </>
+                                        );
+                                    })}
+                                </div>
+                            )}
+                            ;
                         </div>
                     </div>
                 </Transition>

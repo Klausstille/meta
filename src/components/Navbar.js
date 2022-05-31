@@ -1,13 +1,75 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import CheckLanguage from "./helpers/LanguageQuery";
 import "./Navbar.css";
 
-function Navbar({ setLang }) {
+const { SPACE_ID, ACCESS_TOKEN } = require("../secrets.json");
+
+const engQuery = `
+{
+  navbarCollection {
+    items {
+      navbar(locale:"en-US")
+    }
+  }
+}
+`;
+
+const freQuery = `
+{
+  navbarCollection {
+    items {
+      navbar(locale: "fr")
+    }
+  }
+}
+`;
+
+const q = {
+    fr: freQuery,
+    "en-US": engQuery,
+};
+
+function Navbar({ setLang, lang = "fr" }) {
     const [click, setClick] = useState(false);
+    const [page, setPage] = useState(null);
 
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
+
+    useEffect(() => {
+        const query = q[lang];
+        console.log({ lang });
+        console.log(query);
+
+        window
+            .fetch(
+                `https://graphql.contentful.com/content/v1/spaces/${SPACE_ID}/`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${ACCESS_TOKEN}`,
+                    },
+                    body: JSON.stringify({ query }),
+                }
+            )
+            .then((response) => response.json())
+            .then(({ data, errors }) => {
+                if (errors) {
+                    console.error(errors);
+                }
+                console.log(
+                    "HELLO NAVBAR DATA",
+                    data.navbarCollection.items[0].navbar
+                );
+                setPage(data.navbarCollection.items[0].navbar);
+            });
+    }, [lang]);
+
+    if (!page) {
+        return "Loading...";
+    }
 
     return (
         <>
@@ -30,7 +92,8 @@ function Navbar({ setLang }) {
                                 className="nav-links"
                                 onClick={closeMobileMenu}
                             >
-                                Atelier
+                                {/* Atelier */}
+                                {page[0]}
                             </Link>
                         </li>
                         <li className="nav-item">
@@ -39,7 +102,8 @@ function Navbar({ setLang }) {
                                 className="nav-links"
                                 onClick={closeMobileMenu}
                             >
-                                Résidences
+                                {/* Résidences */}
+                                {page[1]}
                             </Link>
                         </li>
                         <li className="nav-item">
@@ -48,7 +112,8 @@ function Navbar({ setLang }) {
                                 className="nav-links"
                                 onClick={closeMobileMenu}
                             >
-                                Artistes
+                                {/* Artistes */}
+                                {page[2]}
                             </Link>
                         </li>
                         <li className="nav-item">
@@ -57,7 +122,8 @@ function Navbar({ setLang }) {
                                 className="nav-links"
                                 onClick={closeMobileMenu}
                             >
-                                Productions
+                                {/* Productions */}
+                                {page[3]}
                             </Link>
                         </li>
                         <li className="nav-item">
@@ -66,7 +132,8 @@ function Navbar({ setLang }) {
                                 className="nav-links"
                                 onClick={closeMobileMenu}
                             >
-                                Contact
+                                {/* Contact */}
+                                {page[4]}
                             </Link>
                         </li>
                         <CheckLanguage setLang={setLang} />

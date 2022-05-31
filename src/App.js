@@ -34,7 +34,7 @@ function App() {
             </section>
 
             <BrowserRouter>
-                <Navbar setLang={changeQuery} />
+                <Navbar setLang={changeQuery} lang={lang} />
                 <Routes>
                     <Route exact path="/" element={<HomePage lang={lang} />} />
                     <Route
