@@ -33,28 +33,41 @@ function App() {
                     <line className="hand" x1={x} y1={y} x2={width} y2={y} />
                 </svg>
             </section>
-
             <BrowserRouter>
-                <Cookies />
-                <Navbar setLang={changeQuery} lang={lang} />
-                <Routes>
-                    <Route exact path="/" element={<HomePage lang={lang} />} />
-                    <Route
-                        path="/residences"
-                        element={<Residences lang={lang} />}
-                    />
-                    <Route path="/atelier" element={<Atelier lang={lang} />} />
-                    <Route
-                        path="/artistes"
-                        element={<Artistes lang={lang} />}
-                    />
-                    <Route
-                        path="/productions"
-                        element={<Productions lang={lang} />}
-                    />
-                    <Route path="/contact" element={<Contact lang={lang} />} />
-                </Routes>
-                <Footer />
+                <main>
+                    <Cookies />
+                    <Navbar setLang={changeQuery} lang={lang} />
+                    <Routes>
+                        <Route
+                            exact
+                            path="/"
+                            element={<HomePage lang={lang} />}
+                        />
+                        <Route
+                            path="/residences"
+                            element={<Residences lang={lang} />}
+                        />
+                        <Route
+                            path="/atelier"
+                            element={<Atelier lang={lang} />}
+                        />
+                        <Route
+                            path="/artistes"
+                            element={<Artistes lang={lang} />}
+                        />
+                        <Route
+                            path="/productions"
+                            element={<Productions lang={lang} />}
+                        />
+                        <Route
+                            path="/contact"
+                            element={<Contact lang={lang} />}
+                        />
+                    </Routes>
+                    <footer>
+                        <Footer />
+                    </footer>
+                </main>
             </BrowserRouter>
         </>
     );
