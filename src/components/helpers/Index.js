@@ -119,6 +119,32 @@ function Index({ lang = "fr" }) {
                     </div>
                 );
             })}
+            <li className="index-params">
+                <div className="index-item-info">
+                    <p className="index-item-name">
+                        META aujourd’hui c’est deux collaborateurs, artistes,
+                        constructeurs et designers, Baptiste et Florent. C’est
+                        un espace de travail professionnel performant : atelier
+                        équipé, entièrement modulable en fonction des projets de
+                        tous volumes et tous matériaux.
+                    </p>
+                </div>
+                <div className="index-item-info">
+                    <p className="index-item-project">
+                        La volonté de ses membres est de s’inscrire dans une
+                        démarche d’économie sociale, solidaire et écologique où
+                        la création prime sur la rentabilité.
+                    </p>
+                </div>
+                <div className="index-item-info">
+                    <p className="index-item-year">
+                        Il s’agit avant tout de faire vivre ce lieu et le faire
+                        évoluer au fil des rencontres, au travers de résidences,
+                        événements, expos, workshops et autres collaborations
+                        artistiques.
+                    </p>
+                </div>
+            </li>
         </>
     );
 }

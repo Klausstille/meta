@@ -19,13 +19,13 @@ export default function IndexItem(props) {
                 onClick={() => setIsShown((isShown) => !isShown)}
             >
                 <div className="index-item-info">
-                    <h2 className="index-item-name">{props.name}</h2>
+                    <h3 className="index-item-name">{props.name}</h3>
                 </div>
                 <div className="index-item-info">
-                    <h2 className="index-item-project">{props.project}</h2>
+                    <h3 className="index-item-project">{props.project}</h3>
                 </div>
                 <div className="index-item-info">
-                    <h2 className="index-item-year">{props.year}</h2>
+                    <h3 className="index-item-year">{props.year}</h3>
                 </div>
             </li>
 
@@ -100,7 +100,6 @@ export default function IndexItem(props) {
                                     })}
                                 </div>
                             )}
-                            ;
                         </div>
                     </div>
                 </Transition>

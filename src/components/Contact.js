@@ -86,7 +86,7 @@ function Contact({ lang = "fr" }) {
                 {page.map((data) => {
                     return (
                         <div key={data.bioTitle}>
-                            <h2>{data.bioTitle}</h2>
+                            <h3>{data.bioTitle}</h3>
                             <h6>
                                 {data.bioText.json.content[0].content[0].value}
                             </h6>

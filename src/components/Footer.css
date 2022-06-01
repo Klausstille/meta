@@ -1,9 +1,9 @@
-.footer-foot {
+/* .footer-foot {
     display: flex;
     flex-direction: column;
     min-height: calc(100vh - 60vh);
     bottom: 0;
-}
+} */
 
 .footer-container {
     /* border-top: 3px solid #006eff; */

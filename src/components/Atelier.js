@@ -42,7 +42,7 @@ export default function Atelier({ lang = "fr" }) {
     const [page, setPage] = useState(null);
     const { x, y } = useMouse();
     const { width } = GetWindowDimensions();
-
+    // console.log("height, x, y", height, x, y);
     useEffect(() => {
         const query = q[lang];
 
@@ -78,45 +78,43 @@ export default function Atelier({ lang = "fr" }) {
 
     return (
         <>
-            {/* <section className="carousel-all-cont">
-                <CarouselPage />
-            </section> */}
-            <div className="text-module">
-                {page.map((data) => {
-                    return (
-                        <div>
-                            {x ? (
-                                <h1
-                                    key={data.homeText}
-                                    className="text-container"
-                                    style={{
-                                        width: `${width - x}px`,
-                                        height: `${y - 79}px`,
-                                    }}
-                                >
-                                    {
-                                        data.homeText.json.content[0].content[0]
-                                            .value
-                                    }
-                                </h1>
-                            ) : (
-                                <h1
-                                    key={data.homeText}
-                                    className="text-container"
-                                    style={{
-                                        width: `0px`,
-                                        height: `0px`,
-                                    }}
-                                >
-                                    {
-                                        data.homeText.json.content[0].content[0]
-                                            .value
-                                    }
-                                </h1>
-                            )}
-                        </div>
-                    );
-                })}
+            <div className="hero-container-atelier">
+                <video src="./amalia.mp4" autoPlay loop muted />
+
+                <div className="text-module">
+                    {page.map((data) => {
+                        return (
+                            <div>
+                                {y > 64 ? (
+                                    <h1
+                                        key={data.homeText}
+                                        className="text-container"
+                                        style={{
+                                            width: `${width - x}px`,
+                                            height: `${y - 63}px`,
+                                        }}
+                                    >
+                                        {
+                                            data.homeText.json.content[0]
+                                                .content[0].value
+                                        }
+                                    </h1>
+                                ) : (
+                                    <h3
+                                        key={data.homeText}
+                                        className="text-container"
+                                        style={{
+                                            width: `0px`,
+                                            height: `0px`,
+                                        }}
+                                    >
+                                        &nbsp;
+                                    </h3>
+                                )}
+                            </div>
+                        );
+                    })}
+                </div>
             </div>
         </>
     );
