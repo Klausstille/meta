@@ -11,7 +11,7 @@ h3 {
 
 .carousel-inner {
     position: relative;
-    width: 70%;
+    width: 65%;
     overflow: hidden;
 }
 
@@ -22,7 +22,7 @@ h3 {
 }
 
 .img-container {
-    height: 35vw;
+    height: 30vw;
 }
 
 .carousel-caption {
@@ -39,7 +39,7 @@ h3 {
 .carousel-control-next,
 .carousel-control-prev {
     right: 0;
-    height: 35vw;
+    height: 30vw;
     cursor: none;
 }
 
