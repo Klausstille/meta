@@ -92,18 +92,7 @@ function Navbar({ setLang, lang = "fr" }) {
                                 className="nav-links"
                                 onClick={closeMobileMenu}
                             >
-                                {/* Atelier */}
                                 {page[0]}
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link
-                                to="/residences"
-                                className="nav-links"
-                                onClick={closeMobileMenu}
-                            >
-                                {/* Résidences */}
-                                {page[1]}
                             </Link>
                         </li>
                         <li className="nav-item">
@@ -112,8 +101,7 @@ function Navbar({ setLang, lang = "fr" }) {
                                 className="nav-links"
                                 onClick={closeMobileMenu}
                             >
-                                {/* Artistes */}
-                                {page[2]}
+                                {page[1]}
                             </Link>
                         </li>
                         <li className="nav-item">
@@ -122,7 +110,15 @@ function Navbar({ setLang, lang = "fr" }) {
                                 className="nav-links"
                                 onClick={closeMobileMenu}
                             >
-                                {/* Productions */}
+                                {page[2]}
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link
+                                to="/events"
+                                className="nav-links"
+                                onClick={closeMobileMenu}
+                            >
                                 {page[3]}
                             </Link>
                         </li>
@@ -132,7 +128,6 @@ function Navbar({ setLang, lang = "fr" }) {
                                 className="nav-links"
                                 onClick={closeMobileMenu}
                             >
-                                {/* Contact */}
                                 {page[4]}
                             </Link>
                         </li>

@@ -44,10 +44,6 @@ function App() {
                             element={<HomePage lang={lang} />}
                         />
                         <Route
-                            path="/residences"
-                            element={<Residences lang={lang} />}
-                        />
-                        <Route
                             path="/atelier"
                             element={<Atelier lang={lang} />}
                         />
@@ -58,6 +54,10 @@ function App() {
                         <Route
                             path="/productions"
                             element={<Productions lang={lang} />}
+                        />
+                        <Route
+                            path="/events"
+                            element={<Residences lang={lang} />}
                         />
                         <Route
                             path="/contact"
