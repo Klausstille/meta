@@ -18,7 +18,6 @@ const engQuery = `
     }
   }
 }
-
 `;
 
 const freQuery = `
@@ -35,7 +34,6 @@ const freQuery = `
     }
   }
 }
-
 `;
 
 const q = {

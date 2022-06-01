@@ -105,7 +105,6 @@ function Residences({ lang = "fr" }) {
         return "Loading...";
     }
 
-    // render the fetched Contentful data
     return (
         <>
             <div className="events-container">
@@ -118,7 +117,6 @@ function Residences({ lang = "fr" }) {
                                         alt={data}
                                         className="residences-pic"
                                         src={data.residencesPhotos.url}
-                                        // onClick={() => setIsShown(true)}
                                         onClick={() => {
                                             setIsShown(true);
                                             setActiveIndex(data);
