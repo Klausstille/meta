@@ -9,6 +9,7 @@ const engQuery = `
 {
   residencesCollection {
     items {
+      description(locale:"en-US")
       residencesPhotos {
         title(locale:"en-US")
         url
@@ -25,6 +26,7 @@ const freQuery = `
 {
   residencesCollection {
     items {
+      description(locale:"fr")
       residencesPhotos {
         title(locale:"fr")
         url
@@ -35,7 +37,6 @@ const freQuery = `
     }
   }
 }
-
 `;
 
 const q = {
@@ -47,8 +48,30 @@ function Residences({ lang = "fr" }) {
     const [page, setPage] = useState(null);
     const [isShown, setIsShown] = useState(false);
     const [activeIndex, setActiveIndex] = useState(-1);
+    const [isReadMore, setIsReadMore] = useState(true);
+
     const { x, y } = useMouse();
     const { width } = GetWindowDimensions();
+
+    const ReadMore = ({ children }) => {
+        const text = children;
+
+        return (
+            <div className="text">
+                {isReadMore ? text[0] : text}
+                <div
+                    onClick={() => setIsReadMore((isReadMore) => !isReadMore)}
+                    className="read-or-hide"
+                >
+                    {isReadMore ? (
+                        <h6 className="readmore">...read more</h6>
+                    ) : (
+                        <h6 className="readmore">show less</h6>
+                    )}
+                </div>
+            </div>
+        );
+    };
 
     useEffect(() => {
         const query = q[lang];
@@ -86,10 +109,10 @@ function Residences({ lang = "fr" }) {
     return (
         <>
             <div className="events-container">
-                <div className="events-grid">
-                    {page.map((data) => {
-                        return (
-                            <>
+                {page.map((data) => {
+                    return (
+                        <>
+                            <div className="events-grid">
                                 <div key={data.residencesPhotos.url}>
                                     <img
                                         alt={data}
@@ -104,63 +127,64 @@ function Residences({ lang = "fr" }) {
                                     <h3 className="title-text">
                                         {data.residencesPhotos.title}
                                     </h3>
+                                    <h3 className="description-text">
+                                        {data.description}
+                                    </h3>
                                 </div>
                                 <div className="event-text">
-                                    {data.eventText.json.content.map(
-                                        (index) => {
-                                            return (
-                                                <h6>
-                                                    {index.content[0].value}
-                                                </h6>
-                                            );
-                                        }
-                                    )}
+                                    <ReadMore>
+                                        {data.eventText.json.content.map(
+                                            (index) => {
+                                                return (
+                                                    <h6>
+                                                        {index.content[0].value}
+                                                    </h6>
+                                                );
+                                            }
+                                        )}
+                                    </ReadMore>
                                 </div>
-                            </>
-                        );
-                    })}
+                            </div>
+                        </>
+                    );
+                })}
 
-                    {isShown && (
-                        <div className="backgrd">
-                            {page.map((index) => {
-                                const isActive = index === activeIndex;
-                                return (
+                {isShown && (
+                    <div className="backgrd">
+                        {page.map((index) => {
+                            const isActive = index === activeIndex;
+                            return (
+                                <div
+                                    key={index.residencesPhotos.url}
+                                    className="img-module"
+                                    onClick={() => {
+                                        setIsShown(false);
+                                        setActiveIndex(-1);
+                                    }}
+                                >
                                     <div
-                                        key={index.residencesPhotos.url}
-                                        className="img-module"
-                                        onClick={() => {
-                                            setIsShown(false);
-                                            setActiveIndex(-1);
+                                        className="image-container"
+                                        style={{
+                                            width: `${width - x}px`,
+                                            height: `${y - 1}px`,
                                         }}
                                     >
-                                        <div
-                                            className="image-container"
-                                            style={{
-                                                width: `${width - x}px`,
-                                                height: `${y - 1}px`,
-                                            }}
-                                        >
-                                            <img
-                                                alt={index}
-                                                active={isActive}
-                                                src={
-                                                    activeIndex.residencesPhotos
-                                                        .url
-                                                }
-                                            />
-                                            <h6 className="sticky-text">
-                                                {
-                                                    activeIndex.residencesPhotos
-                                                        .title
-                                                }
-                                            </h6>
-                                        </div>
+                                        <img
+                                            alt={index}
+                                            active={isActive}
+                                            src={
+                                                activeIndex.residencesPhotos.url
+                                            }
+                                        />
+                                        <h6 className="sticky-text">
+                                            {activeIndex.residencesPhotos.title}
+                                        </h6>
                                     </div>
-                                );
-                            })}
-                        </div>
-                    )}
-                </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                )}
             </div>
         </>
     );

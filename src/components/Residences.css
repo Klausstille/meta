@@ -69,13 +69,8 @@ h6.sticky-text {
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding: 40px 40px 80px 40px;
-    gap: 10px;
+    gap: 20px;
 }
-
-/* .events-grid {
-    display: flex;
-    flex-wrap: wrap;
-} */
 
 .event-text {
     margin-top: auto;
@@ -83,6 +78,9 @@ h6.sticky-text {
 
 .title-text {
     padding-top: 1.25rem;
+}
+.description-text {
+    padding-top: 0;
     padding-bottom: 1.25rem;
 }
 
