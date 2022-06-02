@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 // import useMouse from "../components/mouseEvent/MouseMove";
 // import getWindowDimensions from "../components/mouseEvent/DocumentSize";
 import "./Cookies.css";

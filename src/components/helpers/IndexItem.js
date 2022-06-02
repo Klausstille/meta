@@ -29,10 +29,7 @@ export default function IndexItem(props) {
                 </div>
             </li>
 
-            {/* {isShown && ( */}
-            <section
-            //    { click ? "text-image-grid active" : "text-image-grid"}
-            >
+            <section>
                 <Transition
                     show={isShown}
                     className="text-image-grid"
@@ -104,7 +101,6 @@ export default function IndexItem(props) {
                     </div>
                 </Transition>
             </section>
-            {/* )} */}
         </>
     );
 }
