@@ -2,7 +2,16 @@ import { useState, useEffect } from "react";
 import "./Productions.css";
 import ControlledCarousel from "./helpers/Carousel";
 
-const { SPACE_ID, ACCESS_TOKEN } = require("../secrets.json");
+let SPACE_ID, ACCESS_TOKEN;
+if (process.env.NODE_ENV === "production") {
+    SPACE_ID = process.env.SPACE_ID;
+    ACCESS_TOKEN = process.env.ACCESS_TOKEN;
+} else {
+    SPACE_ID = require("../secrets.json").SPACE_ID;
+    ACCESS_TOKEN = require("../secrets.json").ACCESS_TOKEN;
+}
+
+// const { SPACE_ID, ACCESS_TOKEN } = require("../secrets.json");
 
 const engQuery = `
 {
