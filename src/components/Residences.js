@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import useMouse from "./mouseEvent/MouseMove";
 import GetWindowDimensions from "./mouseEvent/DocumentSize";
+import Event from "./helpers/Events";
 import "./Residences.css";
 
 const { SPACE_ID, ACCESS_TOKEN } = require("../secrets.json");
@@ -48,30 +49,8 @@ function Residences({ lang = "fr" }) {
     const [page, setPage] = useState(null);
     const [isShown, setIsShown] = useState(false);
     const [activeIndex, setActiveIndex] = useState(-1);
-    const [isReadMore, setIsReadMore] = useState(true);
-
     const { x, y } = useMouse();
     const { width } = GetWindowDimensions();
-
-    const ReadMore = ({ children }) => {
-        const text = children;
-
-        return (
-            <div className="text">
-                {isReadMore ? text[0] : text}
-                <div
-                    onClick={() => setIsReadMore((isReadMore) => !isReadMore)}
-                    className="read-or-hide"
-                >
-                    {isReadMore ? (
-                        <h6 className="readmore">...read more</h6>
-                    ) : (
-                        <h6 className="readmore">show less</h6>
-                    )}
-                </div>
-            </div>
-        );
-    };
 
     useEffect(() => {
         const query = q[lang];
@@ -108,79 +87,44 @@ function Residences({ lang = "fr" }) {
     return (
         <>
             <div className="events-container">
-                {page.map((data) => {
+                {page.map((data, index) => {
                     return (
-                        <>
-                            <div className="events-grid">
-                                <div key={data.residencesPhotos.url}>
-                                    <img
-                                        alt={data}
-                                        className="residences-pic"
-                                        src={data.residencesPhotos.url}
-                                        onClick={() => {
-                                            setIsShown(true);
-                                            setActiveIndex(data);
-                                        }}
-                                    />
-                                    <h3 className="title-text">
-                                        {data.residencesPhotos.title}
-                                    </h3>
-                                    <h3 className="description-text">
-                                        {data.description}
-                                    </h3>
-                                </div>
-                                <div className="event-text">
-                                    <ReadMore>
-                                        {data.eventText.json.content.map(
-                                            (index) => {
-                                                return (
-                                                    <h6>
-                                                        {index.content[0].value}
-                                                    </h6>
-                                                );
-                                            }
-                                        )}
-                                    </ReadMore>
-                                </div>
-                            </div>
-                        </>
+                        <Event
+                            data={data}
+                            setIsShown={setIsShown}
+                            setActiveIndex={setActiveIndex}
+                            index={index}
+                        />
                     );
                 })}
 
                 {isShown && (
                     <div className="backgrd">
-                        {page.map((index) => {
-                            const isActive = index === activeIndex;
-                            return (
-                                <div
-                                    key={index.residencesPhotos.url}
-                                    className="img-module"
-                                    onClick={() => {
-                                        setIsShown(false);
-                                        setActiveIndex(-1);
-                                    }}
-                                >
-                                    <div
-                                        className="image-container"
-                                        style={{
-                                            width: `${width - x}px`,
-                                            height: `${y - 1}px`,
-                                        }}
-                                    >
-                                        <img
-                                            alt={index}
-                                            active={isActive}
-                                            src={
-                                                activeIndex.residencesPhotos.url
-                                            }
-                                        />
-                                        <h6 className="sticky-text">
-                                            {activeIndex.residencesPhotos.title}
-                                        </h6>
-                                    </div>
-                                </div>
-                            );
-                        })}
+                        <div
+                            className="img-module"
+                            onClick={() => {
+                                setIsShown(false);
+                                setActiveIndex(-1);
+                            }}
+                        >
+                            <div
+                                className="image-container"
+                                style={{
+                                    width: `${width - x}px`,
+                                    height: `${y - 1}px`,
+                                }}
+                            >
+                                <img
+                                    alt={
+                                        page[activeIndex].residencesPhotos.title
+                                    }
+                                    src={page[activeIndex].residencesPhotos.url}
+                                />
+                                <h6 className="sticky-text">
+                                    {page[activeIndex].residencesPhotos.title}
+                                </h6>
+                            </div>
+                        </div>
                     </div>
                 )}
             </div>
