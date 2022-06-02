@@ -14,7 +14,7 @@ export default function Events({ data, setIsShown, setActiveIndex, index }) {
                         setIsReadMore((isReadMore) => !isReadMore);
                     }}
                 >
-                    {isReadMore ? (
+                    {!isReadMore ? (
                         <h6 className="readmore">...read more</h6>
                     ) : (
                         <h6 className="readmore">show less</h6>

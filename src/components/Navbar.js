@@ -50,6 +50,8 @@ function Navbar({ setLang, lang = "fr" }) {
         const query = q[lang];
         console.log({ lang });
         console.log(query);
+        console.log("SPACE_ID", SPACE_ID);
+        console.log(process.env.NODE_ENV);
 
         window
             .fetch(
