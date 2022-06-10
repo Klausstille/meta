@@ -5,11 +5,11 @@ import IndexItem from "./IndexItem";
 
 let SPACE_ID, ACCESS_TOKEN;
 if (process.env.NODE_ENV === "production") {
-    SPACE_ID = process.env.SPACE_ID;
-    ACCESS_TOKEN = process.env.ACCESS_TOKEN;
+    SPACE_ID = process.env.REACT_APP_SPACE_ID;
+    ACCESS_TOKEN = process.env.REACT_APP_ACCESS_TOKEN;
 } else {
-    SPACE_ID = require("../../secrets.json").SPACE_ID;
-    ACCESS_TOKEN = require("../../secrets.json").ACCESS_TOKEN;
+    SPACE_ID = require("../../secrets.json").REACT_APP_SPACE_ID;
+    ACCESS_TOKEN = require("../../secrets.json").REACT_APP_ACCESS_TOKEN;
 }
 
 // const { SPACE_ID, ACCESS_TOKEN } = require("../../secrets.json");
