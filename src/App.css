@@ -1,6 +1,6 @@
 @font-face {
     font-family: Graphik;
-    src: url("./build/Graphik-Regular.otf") format("opentype");
+    src: url("../public/Graphik-Regular.otf") format("opentype");
 }
 
 * {
@@ -10,10 +10,6 @@
     font-family: Graphik;
     cursor: none;
 }
-
-/* html {
-    height: 100%;
-} */
 
 main {
     display: flex;
