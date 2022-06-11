@@ -6,7 +6,6 @@ import Navbar from "./components/Navbar";
 import Atelier from "./components/Atelier";
 import HomePage from "./components/HomePage";
 import Residences from "./components/Residences";
-import Footer from "./components/Footer";
 import Artistes from "./components/Artistes";
 import Productions from "./components/Productions";
 import Contact from "./components/Contact";
