@@ -86,7 +86,7 @@ ul.nav-menu {
 
 .fa-bars {
     color: #006eff;
-    margin-right: 2rem;
+    margin-left: 2rem;
 }
 
 .nav-links-mobile {
@@ -142,11 +142,6 @@ ul.nav-menu {
         padding: 0;
     }
 
-    .nav-links:hover {
-        color: #006effbd;
-        border-radius: 0;
-    }
-
     .navbar-logo img {
         margin-left: 0px;
     }
@@ -155,15 +150,15 @@ ul.nav-menu {
         display: block;
         position: absolute;
         top: 18px;
-        right: 0;
-        transform: translateX(-100%);
+        left: 0;
+        /* transform: translateX(-100%); */
         font-size: 1.5rem;
     }
 
     .fa-times {
         color: #006eff;
         font-size: 1.5rem;
-        margin-right: 2rem;
+        margin-left: 2rem;
     }
 
     .nav-links-mobile {
@@ -183,7 +178,6 @@ ul.nav-menu {
 
     .nav-links-mobile:hover {
         background: #fff;
-        color: #006eff;
         transition: 250ms;
     }
 }

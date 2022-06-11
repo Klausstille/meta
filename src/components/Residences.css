@@ -117,4 +117,7 @@ h6.sticky-text {
         height: 50vw !important;
         object-fit: cover;
     }
+    .events-grid img {
+        pointer-events: none;
+    }
 }

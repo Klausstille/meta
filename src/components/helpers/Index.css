@@ -114,12 +114,21 @@ ul.index-items {
         }
         .index-item {
             display: grid;
-            grid-template-columns: none;
+            grid-template-columns: 1fr 1fr 1fr;
             grid-gap: 0;
-            padding: 0 0 0 40px;
+            padding: 20px 40px 0 40px;
+        }
+        .index-item-year {
+            display: grid;
+            justify-items: end;
+        }
+        .index-item-project {
+            display: grid;
+            justify-items: center;
+            text-align: center;
         }
         .index-params {
-            display: block;
+            display: none;
             padding: 10px 40px 0 40px;
             margin-top: 10px;
         }
