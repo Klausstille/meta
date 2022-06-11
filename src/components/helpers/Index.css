@@ -14,10 +14,16 @@
 
 .index-item {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 40px;
     padding: 12px 40px 0 40px;
-    background-color: #f8f8f8;
+    /* background-color: #f8f8f8; */
+    border-top: solid 1px #006eff;
+}
+
+.index-item-year {
+    display: grid;
+    justify-items: end;
 }
 
 ul.index-items {

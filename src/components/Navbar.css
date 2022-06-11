@@ -20,10 +20,11 @@
 
 .nav-lan {
     color: #006eff;
-    font-size: 2.2rem;
+    font-size: 1.2rem;
     position: fixed;
     right: 40px;
-    top: 8px;
+    top: 15px;
+    line-height: 1;
 }
 
 .nav-lan button {
@@ -36,19 +37,23 @@
     cursor: none !important;
 }
 
-.navbar-logo img {
-    left: 40px;
-    color: #006eff;
-    height: 1.6rem;
+.nav-logo {
+    height: 65px;
+    list-style: none;
+    padding: 0;
     position: fixed;
-    top: 20px;
+    left: 40px;
+    top: 0px;
+    font-weight: bold;
+}
+.nav-logo .nav-links:hover {
+    transform: none;
 }
 
 .nav-menu {
     min-width: 850px;
     display: grid;
     grid-template-columns: repeat(5, auto);
-    /* grid-gap: 10px; */
     list-style: none;
     text-align: center;
     width: 85vw;
@@ -81,7 +86,7 @@ ul.nav-menu {
 
 .fa-bars {
     color: #006eff;
-    margin-right: 4rem;
+    margin-right: 2rem;
 }
 
 .nav-links-mobile {
@@ -93,6 +98,12 @@ ul.nav-menu {
 }
 
 @media screen and (max-width: 1200px) {
+    .nav-logo {
+        left: 0px;
+        position: fixed;
+        height: 65px;
+    }
+
     .NavbarItems {
         position: relative;
     }
@@ -152,7 +163,7 @@ ul.nav-menu {
     .fa-times {
         color: #006eff;
         font-size: 1.5rem;
-        margin-right: 4rem;
+        margin-right: 2rem;
     }
 
     .nav-links-mobile {

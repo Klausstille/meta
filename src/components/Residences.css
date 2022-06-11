@@ -84,6 +84,10 @@ h6.sticky-text {
     padding-bottom: 1.25rem;
 }
 
+.read-or-hide {
+    padding: 20px 0;
+}
+
 .category-title {
     padding: 30px 40px 0px 40px;
 }

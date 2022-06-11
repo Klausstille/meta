@@ -86,13 +86,25 @@ function Navbar({ setLang, lang = "fr" }) {
         <>
             <nav className="navbar">
                 <div className="navbar-container">
-                    <Link
+                    {/* <Link
                         to="/"
                         className="navbar-logo"
                         onClick={closeMobileMenu}
                     >
+                        <h1 className="nav-item">Meta</h1>
                         <img src="./logo_meta.png" alt="Meta" />
-                    </Link>
+                    </Link> */}
+                    <ul className="nav-logo">
+                        <li>
+                            <Link
+                                to="/"
+                                className="nav-links"
+                                onClick={closeMobileMenu}
+                            >
+                                Meta
+                            </Link>
+                        </li>
+                    </ul>
                     <div className="menu-icon" onClick={handleClick}>
                         <i className={click ? "fas fa-times" : "fas fa-bars"} />
                     </div>

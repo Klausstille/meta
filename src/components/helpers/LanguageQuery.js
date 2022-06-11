@@ -3,7 +3,6 @@ function CheckLanguage({ setLang }) {
         e.preventDefault();
         console.log(e.target.name);
 
-        
         if (e.target.name === "english") {
             // console.log("EN triggered", { englishQueries });
             setLang("en-US");
@@ -18,7 +17,7 @@ function CheckLanguage({ setLang }) {
             <button onClick={handleclick} name="english">
                 En
             </button>
-            &nbsp;
+            <br />
             <button onClick={handleclick} name="french">
                 Fr
             </button>
