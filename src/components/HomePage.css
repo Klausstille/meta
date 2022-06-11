@@ -14,6 +14,7 @@
     opacity: 1;
     bottom: 2px;
     position: absolute;
+    overflow: hidden;
 }
 
 .home-module {
@@ -50,7 +51,6 @@ video {
 
 @media screen and (max-width: 800px) {
     .hero-container {
-        justify-content: normal;
-        object-fit: cover;
+        overflow: hidden;
     }
 }
