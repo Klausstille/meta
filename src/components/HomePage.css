@@ -23,6 +23,7 @@
     height: 100vh;
     position: fixed;
     z-index: 0;
+    pointer-events: none;
 }
 
 video {
@@ -44,6 +45,9 @@ video {
 }
 
 @media screen and (max-width: 800px) {
+    video {
+        top: 0 !important;
+    }
     .home {
         top: 0;
         right: 0;
