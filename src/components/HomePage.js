@@ -29,7 +29,7 @@ export default function HomePage({ lang = "fr" }) {
                     <video src="./amalia.mp4" autoPlay loop muted />
                 </div>
             </div>
-            <footer>
+            <footer className="homeFooter">
                 <Footer lang={lang} />
             </footer>
         </>
