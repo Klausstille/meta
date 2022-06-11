@@ -62,9 +62,6 @@ function App() {
                             element={<Contact lang={lang} />}
                         />
                     </Routes>
-                    <footer>
-                        <Footer lang={lang} />
-                    </footer>
                 </main>
             </BrowserRouter>
         </>

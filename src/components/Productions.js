@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "./Productions.css";
 import ControlledCarousel from "./helpers/Carousel";
+import Footer from "./Footer";
 
 let SPACE_ID, ACCESS_TOKEN;
 if (process.env.NODE_ENV === "production") {
@@ -96,6 +97,9 @@ export default function Atelier({ lang = "fr" }) {
                     </section>
                 );
             })}
+            <footer>
+                <Footer lang={lang} />
+            </footer>
         </>
     );
 }

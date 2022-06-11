@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import useMouse from "./mouseEvent/MouseMove";
 import GetWindowDimensions from "./mouseEvent/DocumentSize";
+import Footer from "./Footer";
 import "./Atelier.css";
 
 let SPACE_ID, ACCESS_TOKEN;
@@ -135,6 +136,9 @@ export default function Atelier({ lang = "fr" }) {
                     })}
                 </div>
             </div>
+            <footer>
+                <Footer lang={lang} />
+            </footer>
         </>
     );
 }

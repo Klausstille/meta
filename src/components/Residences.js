@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import useMouse from "./mouseEvent/MouseMove";
 import GetWindowDimensions from "./mouseEvent/DocumentSize";
 import Event from "./helpers/Events";
+import Footer from "./Footer";
 import "./Residences.css";
 
 let SPACE_ID, ACCESS_TOKEN;
@@ -137,6 +138,9 @@ function Residences({ lang = "fr" }) {
                     </div>
                 )}
             </div>
+            <footer>
+                <Footer lang={lang} />
+            </footer>
         </>
     );
 }

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import React from "react";
 import "./Index.css";
 import IndexItem from "./IndexItem";
+import Footer from "../Footer";
 
 let SPACE_ID, ACCESS_TOKEN;
 if (process.env.NODE_ENV === "production") {
@@ -146,6 +147,9 @@ function Index({ lang = "fr" }) {
                     </p>
                 </div>
             </li>
+            <footer>
+                <Footer lang={lang} />
+            </footer>
         </>
     );
 }

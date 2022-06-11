@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import useMouse from "./mouseEvent/MouseMove";
 import GetWindowDimensions from "./mouseEvent/DocumentSize";
+import Footer from "./Footer";
 import "./Contact.css";
 
 let SPACE_ID, ACCESS_TOKEN;
@@ -130,6 +131,9 @@ function Contact({ lang = "fr" }) {
                     </div>
                 )}
             </div>
+            <footer>
+                <Footer lang={lang} />
+            </footer>
         </>
     );
 }
