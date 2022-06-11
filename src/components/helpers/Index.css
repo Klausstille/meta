@@ -24,6 +24,8 @@
 .index-item-year {
     display: grid;
     justify-items: end;
+    font-size: 1rem;
+    padding-top: 10px;
 }
 
 ul.index-items {
@@ -114,17 +116,20 @@ ul.index-items {
         }
         .index-item {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: 1fr;
             grid-gap: 0;
             padding: 20px 40px 0 40px;
+            background-color: #f8f8f8;
+            border-top: none;
         }
         .index-item-year {
             display: grid;
-            justify-items: end;
+            justify-items: start;
+            padding: 0;
         }
         .index-item-project {
             display: grid;
-            justify-items: center;
+            justify-items: start;
             text-align: center;
         }
         .index-params {

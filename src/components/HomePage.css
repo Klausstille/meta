@@ -49,10 +49,12 @@ video {
 
 @media screen and (max-width: 800px) {
     .hero-container {
-        position: fixed;
         height: 100%;
         width: 100%;
         justify-content: normal;
-        z-index: -1;
+        pointer-events: none;
+    }
+    .logo-container {
+        margin-top: 0px;
     }
 }

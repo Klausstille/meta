@@ -145,14 +145,6 @@ function Index({ lang = "fr" }) {
                         la création prime sur la rentabilité.
                     </p>
                 </div>
-                <div className="index-item-info">
-                    <p className="index-item-year">
-                        Il s'agit avant tout de faire vivre ce lieu et le faire
-                        évoluer au fil des rencontres, au travers de résidences,
-                        événements, expos, workshops et autres collaborations
-                        artistiques.
-                    </p>
-                </div>
             </li>
         </>
     );
