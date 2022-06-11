@@ -46,11 +46,10 @@ video {
 }
 
 @media screen and (max-width: 800px) {
-    .homeFooter footer {
+    .home-footer {
         display: none;
     }
-    .hero-container {
-        height: 100%;
-        object-fit: cover;
+    .home-module {
+        height: 96vh;
     }
 }
