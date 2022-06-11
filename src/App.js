@@ -65,7 +65,7 @@ function App() {
                         />
                     </Routes>
                     <footer>
-                        <Footer />
+                        <Footer lang={lang} />
                     </footer>
                 </main>
             </BrowserRouter>

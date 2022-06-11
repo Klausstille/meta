@@ -4,11 +4,8 @@
     padding: 10px 40px 0 40px;
     grid-gap: 40px;
     margin-top: 10px;
+    padding-bottom: 30px;
 }
-
-/* .index-container {
-    margin-top: -10px;
-} */
 
 .index-wrapper {
     margin-bottom: -12px;
@@ -20,8 +17,7 @@
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 40px;
     padding: 12px 40px 0 40px;
-    /* background-color: #f8f8f8; */
-    border-bottom: solid 1px #006eff;
+    background-color: #f8f8f8;
 }
 
 ul.index-items {
@@ -115,7 +111,6 @@ ul.index-items {
             grid-template-columns: none;
             grid-gap: 0;
             padding: 0 0 0 40px;
-            border-bottom: solid 1px #006eff;
         }
         .index-params {
             display: block;

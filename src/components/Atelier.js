@@ -18,6 +18,9 @@ const engQuery = `
 {
   homeCollection {
     items {
+        heromedia {
+        url
+      }
         homeText(locale: "en-US") {
             json
       }
@@ -31,6 +34,9 @@ const freQuery = `
 {
   homeCollection {
     items {
+        heromedia {
+        url
+      }
         homeText(locale: "fr") {
             json
       }
@@ -85,40 +91,46 @@ export default function Atelier({ lang = "fr" }) {
 
     return (
         <>
-            <div className="hero-container-atelier">
-                <video src="./amalia.mp4" autoPlay loop muted />
-
+            <div>
+                {/* <video src="./amalia.mp4" autoPlay loop muted /> */}
                 <div className="text-module">
                     {page.map((data) => {
                         return (
-                            <div>
-                                {y > 64 ? (
-                                    <h1
-                                        key={data.homeText}
-                                        className="text-container"
-                                        style={{
-                                            width: `${width - x}px`,
-                                            height: `${y - 63}px`,
-                                        }}
-                                    >
-                                        {
-                                            data.homeText.json.content[0]
-                                                .content[0].value
-                                        }
-                                    </h1>
-                                ) : (
-                                    <h3
-                                        key={data.homeText}
-                                        className="text-container"
-                                        style={{
-                                            width: `0px`,
-                                            height: `0px`,
-                                        }}
-                                    >
-                                        &nbsp;
-                                    </h3>
-                                )}
-                            </div>
+                            <>
+                                <div>
+                                    {y > 64 ? (
+                                        <h1
+                                            key={data.homeText}
+                                            className="text-container"
+                                            style={{
+                                                width: `${width - x}px`,
+                                                height: `${y - 63}px`,
+                                            }}
+                                        >
+                                            {
+                                                data.homeText.json.content[0]
+                                                    .content[0].value
+                                            }
+                                        </h1>
+                                    ) : (
+                                        <h3
+                                            key={data.homeText}
+                                            className="text-container"
+                                            style={{
+                                                width: `0px`,
+                                                height: `0px`,
+                                            }}
+                                        >
+                                            &nbsp;
+                                        </h3>
+                                    )}
+                                </div>
+                                <img
+                                    className="hero-container-atelier"
+                                    src={data.heromedia.url}
+                                    alt=""
+                                />
+                            </>
                         );
                     })}
                 </div>

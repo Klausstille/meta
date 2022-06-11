@@ -1,14 +1,10 @@
-/* .footer-foot {
-    display: flex;
-    flex-direction: column;
-    min-height: calc(100vh - 60vh);
-    bottom: 0;
-} */
-
+.contact a {
+    text-decoration: none;
+}
 .footer-container {
-    /* border-top: 3px solid #006eff; */
     padding: 2rem 40px 2rem 40px;
     display: flex;
+    /* justify-content: center; */
     flex-direction: row;
     background-color: #f8f8f8;
     margin-top: auto;
@@ -20,11 +16,16 @@
     text-align: left;
     margin-bottom: 24px;
     color: #006eff;
+    width: 320px;
 }
 
 .footer-subscription-heading {
-    margin-bottom: 24px;
+    margin-bottom: -20px;
     font-size: 1rem;
+}
+
+.input-areas form {
+    display: flex;
 }
 
 .footer-subscription-text {
@@ -33,7 +34,7 @@
 }
 
 .footer-input {
-    padding: 8px 20px;
+    padding: 5px 15px;
     border-radius: 2px;
     margin-right: 10px;
     outline: none;
@@ -45,7 +46,6 @@
 }
 
 .footer-links {
-    max-width: 1000px;
     display: flex;
     justify-content: center;
 }
@@ -67,6 +67,7 @@
 p {
     color: #006eff;
     font-size: 1rem;
+    margin-bottom: 0;
 }
 
 .footer-link-items a {
@@ -88,14 +89,7 @@ p {
     color: #006eff40;
 }
 
-/* Social Icons */
-.social-icon-link {
-    color: #006eff;
-    font-size: 1rem;
-}
-
 .contact {
-    max-width: 1000px;
     width: 100%;
     text-align: right;
 }
@@ -135,7 +129,8 @@ p {
 }
 
 .logo-2 {
-    width: 100px;
+    width: 105px;
+    margin-top: 5px;
 }
 
 @media screen and (max-width: 1200px) {
@@ -143,8 +138,8 @@ p {
         display: flex;
         justify-content: center;
         width: 100%;
-        max-width: 1000px;
-        margin: 0 0 0 auto;
+        max-width: 100%;
+        margin: 0 0 0 0;
         align-items: center;
     }
 
@@ -156,7 +151,7 @@ p {
     }
 
     .footer-subscription {
-        display: flex;
+        display: none;
         justify-content: center;
         flex-wrap: wrap;
         flex-direction: column;
@@ -186,7 +181,4 @@ p {
         text-align: center;
         margin-right: 0;
     }
-}
-
-@media screen and (max-width: 768px) {
 }
