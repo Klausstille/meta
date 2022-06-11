@@ -26,7 +26,7 @@ export default function HomePage({ lang = "fr" }) {
                     )}
                 </div>
                 <div className="hero-container">
-                    <video src="./amalia.mp4" autoPlay loop muted />
+                    <video src="./amalia.mp4" playsInline autoPlay loop muted />
                 </div>
             </div>
             <footer className="home-footer">
