@@ -3,7 +3,6 @@
     right: 0;
     top: 0;
     margin-top: 65px;
-    overflow: hidden;
 }
 
 .logo-container img {
@@ -14,7 +13,6 @@
     opacity: 1;
     bottom: 2px;
     position: absolute;
-    overflow: hidden;
 }
 
 .home-module {
@@ -48,8 +46,5 @@ video {
 @media screen and (max-width: 800px) {
     .home-footer {
         display: none;
-    }
-    .home-module {
-        height: 96vh;
     }
 }
