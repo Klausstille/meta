@@ -140,6 +140,8 @@ ul.nav-menu {
 
     ul.nav-menu.active {
         padding: 0;
+        padding: 20px 0;
+        position: fixed;
     }
 
     .navbar-logo img {
