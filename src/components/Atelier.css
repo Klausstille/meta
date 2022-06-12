@@ -25,11 +25,10 @@ h1 {
     line-height: 1;
     margin-top: -20px;
     z-index: -1;
-    opacity: 0.1;
 }
 
 .text-container {
-    background-color: #f8f8f8;
+    background-color: white;
     /* color: white; */
     box-sizing: content-box;
     overflow: scroll;
