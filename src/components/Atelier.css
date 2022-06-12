@@ -25,6 +25,7 @@ h1 {
     line-height: 1;
     margin-top: -20px;
     z-index: -1;
+    padding: 0 40px;
 }
 
 .text-container {
