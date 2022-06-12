@@ -13,8 +13,6 @@ if (process.env.NODE_ENV === "production") {
     ACCESS_TOKEN = require("../../secrets.json").REACT_APP_ACCESS_TOKEN;
 }
 
-// const { SPACE_ID, ACCESS_TOKEN } = require("../../secrets.json");
-
 const engQuery = `
 {
   artistesCollection {
