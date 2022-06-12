@@ -19,32 +19,38 @@ const engQuery = `
 {
   homeCollection {
     items {
-        heromedia {
+      heromedia {
         url
       }
-        homeText(locale: "en-US") {
-            json
+      infoText(locale: "en-US") {
+        json
+      }
+      homeText(locale: "en-US") {
+        json
       }
     }
-    
   }
 }
+
 `;
 
 const freQuery = `
 {
   homeCollection {
     items {
-        heromedia {
+      heromedia {
         url
       }
-        homeText(locale: "fr") {
-            json
+      infoText(locale: "fr") {
+        json
+      }
+      homeText(locale: "fr") {
+        json
       }
     }
-    
   }
 }
+
 `;
 
 const q = {
@@ -126,11 +132,19 @@ export default function Atelier({ lang = "fr" }) {
                                         </h3>
                                     )}
                                 </div>
-                                <img
+                                <div>
+                                    <h1 className="info-text">
+                                        {
+                                            data.infoText.json.content[0]
+                                                .content[0].value
+                                        }
+                                    </h1>
+                                </div>
+                                {/* <img
                                     className="hero-container-atelier"
                                     src={data.heromedia.url}
                                     alt=""
-                                />
+                                /> */}
                             </>
                         );
                     })}

@@ -86,7 +86,7 @@ ul.nav-menu {
 
 .fa-bars {
     color: #006eff;
-    margin-left: 2rem;
+    margin-left: 40px;
 }
 
 .nav-links-mobile {
@@ -158,7 +158,7 @@ ul.nav-menu {
     .fa-times {
         color: #006eff;
         font-size: 1.5rem;
-        margin-left: 2rem;
+        margin-left: 40px;
     }
 
     .nav-links-mobile {

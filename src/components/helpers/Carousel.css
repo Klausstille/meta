@@ -51,3 +51,20 @@ h3 {
     background-color: #006eff;
     cursor: none;
 }
+
+@media screen and (max-width: 1200px) {
+    .carousel-control-next,
+    .carousel-control-prev {
+        height: 50vw;
+    }
+
+    .img-container {
+        height: 50vw;
+    }
+    .carousel-container {
+        width: 100vw;
+    }
+    .carousel-inner {
+        width: 100%;
+    }
+}

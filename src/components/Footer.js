@@ -40,9 +40,15 @@ const q = {
 
 function Footer({ lang = "fr" }) {
     const [page, setPage] = useState(null);
+    const [en, setEn] = useState(false);
 
     useEffect(() => {
         const query = q[lang];
+
+        if (query === q["en-US"]) {
+            setEn(true);
+        } else setEn(false);
+
         window
             .fetch(
                 `https://graphql.contentful.com/content/v1/spaces/${SPACE_ID}/`,
@@ -107,7 +113,11 @@ function Footer({ lang = "fr" }) {
             </div>
             <section className="footer-subscription">
                 <p className="footer-subscription-heading">
-                    Faites partie de l'aventure META!
+                    {en ? (
+                        <p>Be part of our METAdventure!</p>
+                    ) : (
+                        <p>Faites partie de la METAventure!</p>
+                    )}
                 </p>
                 <div className="input-areas">
                     <form>
@@ -115,9 +125,11 @@ function Footer({ lang = "fr" }) {
                             className="footer-input"
                             name="email"
                             type="email"
-                            placeholder="Your Email"
+                            placeholder="Email"
                         />
-                        <Button buttonStyle="btn--outline">Souscrire</Button>
+                        <Button buttonStyle="btn--outline">
+                            {en ? <p>Subscribe</p> : <p>Souscrire</p>}
+                        </Button>
                     </form>
                 </div>
             </section>

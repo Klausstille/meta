@@ -14,6 +14,7 @@
 
 .index-item {
     display: grid;
+    align-items: end;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 40px;
     padding: 12px 40px 0 40px;
@@ -25,7 +26,6 @@
     display: grid;
     justify-items: end;
     font-size: 1rem;
-    padding-top: 10px;
 }
 
 ul.index-items {
@@ -125,7 +125,6 @@ ul.index-items {
         .index-item-year {
             display: grid;
             justify-items: start;
-            padding: 0;
         }
         .index-item-project {
             display: grid;
