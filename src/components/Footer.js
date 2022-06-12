@@ -89,26 +89,26 @@ function Footer({ lang = "fr" }) {
                         <Link to="/events">{page[3]}</Link>
                         <Link to="/contact">{page[4]}</Link>
                     </div>
-                </div>
-                <div className="footer-link-items">
-                    <a
-                        href="https://www.instagram.com/collectif.meta/"
-                        target="blank"
-                    >
-                        Instagram
-                    </a>
-                    <a
-                        href="https://www.instagram.com/collectif.meta/"
-                        target="blank"
-                    >
-                        Facebook
-                    </a>
-                    <a
-                        href="https://www.youtube.com/channel/UCHKIHfLxXXAa8LPYHAmzN8Q"
-                        target="blank"
-                    >
-                        Youtube
-                    </a>
+                    <div className="footer-link-items">
+                        <a
+                            href="https://www.instagram.com/collectif.meta/"
+                            target="blank"
+                        >
+                            Instagram
+                        </a>
+                        <a
+                            href="https://www.instagram.com/collectif.meta/"
+                            target="blank"
+                        >
+                            Facebook
+                        </a>
+                        <a
+                            href="https://www.youtube.com/channel/UCHKIHfLxXXAa8LPYHAmzN8Q"
+                            target="blank"
+                        >
+                            Youtube
+                        </a>
+                    </div>
                 </div>
             </div>
             <section className="footer-subscription">
