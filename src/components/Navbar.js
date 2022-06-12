@@ -106,7 +106,31 @@ function Navbar({ setLang, lang = "fr" }) {
                         </li>
                     </ul>
                     <div className="menu-icon" onClick={handleClick}>
-                        <i className={click ? "fas fa-times" : "fas fa-bars"} />
+                        <div className={click ? "is-opened" : "hamburger"}>
+                            <svg class="hamburger">
+                                <line
+                                    x1="0"
+                                    y1="50%"
+                                    x2="100%"
+                                    y2="50%"
+                                    class="hamburger__bar hamburger__bar--top"
+                                />
+                                <line
+                                    x1="0"
+                                    y1="50%"
+                                    x2="100%"
+                                    y2="50%"
+                                    class="hamburger__bar hamburger__bar--mid"
+                                />
+                                <line
+                                    x1="0"
+                                    y1="50%"
+                                    x2="100%"
+                                    y2="50%"
+                                    class="hamburger__bar hamburger__bar--bot"
+                                />
+                            </svg>
+                        </div>
                     </div>
                     <ul className={click ? "nav-menu active" : "nav-menu"}>
                         <li className="nav-item">

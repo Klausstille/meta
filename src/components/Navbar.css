@@ -84,9 +84,37 @@ ul.nav-menu {
     color: #006eff;
 }
 
-.fa-bars {
-    color: #006eff;
-    margin-left: 40px;
+.hamburger {
+    width: 30px;
+    height: 30px;
+}
+
+.hamburger__bar {
+    transition-property: transform;
+    transition-duration: 1s;
+    transform-origin: center;
+    stroke: #006eff;
+    stroke-width: 3px;
+}
+
+.hamburger__bar--top {
+    transform: translateY(-40%);
+}
+
+.hamburger__bar--bot {
+    transform: translateY(40%);
+}
+
+.is-opened .hamburger__bar--top {
+    transform: rotate(90deg) scaleX(0.5) translateX(-15px);
+}
+
+.is-opened .hamburger__bar--mid {
+    transform: scaleX(0.5) translateX(15px);
+}
+
+.is-opened .hamburger__bar--bot {
+    transform: rotate(-45deg) scaleX(0.5) translate(-15px);
 }
 
 .nav-links-mobile {
@@ -153,13 +181,6 @@ ul.nav-menu {
         position: absolute;
         top: 18px;
         left: 0;
-        /* transform: translateX(-100%); */
-        font-size: 1.5rem;
-    }
-
-    .fa-times {
-        color: #006eff;
-        font-size: 1.5rem;
         margin-left: 40px;
     }
 
