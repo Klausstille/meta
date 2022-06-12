@@ -119,9 +119,6 @@ h6.sticky-text {
     }
 
     @media screen and (max-width: 800px) {
-        h6.sticky-text {
-            display: none;
-        }
         .index {
             margin-top: 10px;
         }
