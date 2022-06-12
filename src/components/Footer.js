@@ -112,13 +112,13 @@ function Footer({ lang = "fr" }) {
                 </div>
             </div>
             <section className="footer-subscription">
-                <p className="footer-subscription-heading">
+                <div className="footer-subscription-heading">
                     {en ? (
                         <p>Be part of our METAdventure!</p>
                     ) : (
                         <p>Faites partie de la METAventure!</p>
                     )}
-                </p>
+                </div>
                 <div className="input-areas">
                     <form>
                         <input

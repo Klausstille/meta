@@ -107,27 +107,27 @@ function Navbar({ setLang, lang = "fr" }) {
                     </ul>
                     <div className="menu-icon" onClick={handleClick}>
                         <div className={click ? "is-opened" : "hamburger"}>
-                            <svg class="hamburger">
+                            <svg className="hamburger">
                                 <line
                                     x1="0"
                                     y1="50%"
                                     x2="100%"
                                     y2="50%"
-                                    class="hamburger__bar hamburger__bar--top"
+                                    className="hamburger__bar hamburger__bar--top"
                                 />
                                 <line
                                     x1="0"
                                     y1="50%"
                                     x2="100%"
                                     y2="50%"
-                                    class="hamburger__bar hamburger__bar--mid"
+                                    className="hamburger__bar hamburger__bar--mid"
                                 />
                                 <line
                                     x1="0"
                                     y1="50%"
                                     x2="100%"
                                     y2="50%"
-                                    class="hamburger__bar hamburger__bar--bot"
+                                    className="hamburger__bar hamburger__bar--bot"
                                 />
                             </svg>
                         </div>

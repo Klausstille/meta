@@ -48,6 +48,7 @@ export default function IndexItem(props) {
                             {props.src.map((data) => {
                                 return (
                                     <img
+                                        key={data.url}
                                         className="index-item-pics"
                                         alt="Pic"
                                         src={data.url}
@@ -90,6 +91,13 @@ export default function IndexItem(props) {
                                                                 activeIndex.url
                                                             }
                                                         />
+                                                        <h6 className="sticky-text">
+                                                            {props.name}
+                                                            {" | "}
+                                                            {props.project}
+                                                            {" | "}
+                                                            {props.year}
+                                                        </h6>
                                                     </div>
                                                 </div>
                                             </>
