@@ -148,6 +148,7 @@ ul.nav-menu {
         transition: background-color 1s ease;
         justify-content: flex-start;
         gap: 1rem;
+        margin-left: 0;
     }
 
     .nav-menu.active {
