@@ -57,6 +57,7 @@
     list-style: none;
     text-align: center;
     width: 85vw;
+    margin-left: 50px;
     justify-content: space-evenly;
 }
 
