@@ -80,14 +80,15 @@ ul.index-items {
 }
 
 h6.sticky-text {
-    position: fixed;
-    padding: 10px;
+    background-color: #ffffff;
+    border-top: solid 1px;
+    color: #006eff;
+    font-weight: bold;
     margin-top: -37px;
     opacity: 1;
+    padding: 10px;
+    position: fixed;
     width: 100%;
-    font-weight: bold;
-    background-color: #006eff;
-    color: white;
 }
 
 .img-module {
