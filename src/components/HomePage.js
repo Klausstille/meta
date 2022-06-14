@@ -11,12 +11,12 @@ export default function HomePage({ lang = "fr" }) {
         <>
             <div className="home">
                 <div className="home-module">
-                    {y > 80 ? (
+                    {y > 90 ? (
                         <div
                             className="logo-container"
                             style={{
                                 width: `${width - x}px`,
-                                height: `${y - 64}px`,
+                                height: `${y}px`,
                             }}
                         >
                             <img src="./logo_meta.png" alt="Meta" />
