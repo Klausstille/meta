@@ -22,9 +22,6 @@ const engQuery = `
       heromedia {
         url
       }
-      infoText(locale: "en-US") {
-        json
-      }
       homeText(locale: "en-US") {
         json
       }
@@ -40,9 +37,6 @@ const freQuery = `
     items {
       heromedia {
         url
-      }
-      infoText(locale: "fr") {
-        json
       }
       homeText(locale: "fr") {
         json
