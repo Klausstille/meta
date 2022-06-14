@@ -132,19 +132,21 @@ export default function Atelier({ lang = "fr" }) {
                                         </h3>
                                     )}
                                 </div>
-                                <div>
+                                {/* <div>
                                     <h1 className="info-text">
                                         {
                                             data.infoText.json.content[0]
                                                 .content[0].value
                                         }
                                     </h1>
-                                </div>
-                                {/* <img
-                                    className="hero-container-atelier"
-                                    src={data.heromedia.url}
-                                    alt=""
-                                /> */}
+                                </div> */}
+                                {/* <div className="hero-container">
+                                    <img
+                                        className="atelier-img"
+                                        src={data.heromedia.url}
+                                        alt=""
+                                    />
+                                </div> */}
                             </>
                         );
                     })}

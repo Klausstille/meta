@@ -6,8 +6,8 @@
     position: sticky;
     top: 0;
     width: 100vw;
-    background-color: #f8f8f8;
-    /* border-bottom: 3px solid #006eff; */
+    background-color: white;
+    border-bottom: 3px solid #006eff;
     z-index: 2;
 }
 

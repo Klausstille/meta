@@ -127,7 +127,7 @@ function Footer({ lang = "fr" }) {
                             type="email"
                             placeholder="Email"
                         />
-                        <Button buttonStyle="btn--outline">
+                        <Button>
                             {en ? <p>Subscribe</p> : <p>Souscrire</p>}
                         </Button>
                     </form>
