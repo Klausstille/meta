@@ -89,6 +89,7 @@ function Footer({ lang = "fr" }) {
                         <Link to="/events">{page[3]}</Link>
                         <Link to="/contact">{page[4]}</Link>
                     </div>
+
                     <div className="footer-link-items">
                         <a
                             href="https://www.instagram.com/collectif.meta/"
@@ -97,7 +98,7 @@ function Footer({ lang = "fr" }) {
                             Instagram
                         </a>
                         <a
-                            href="https://www.instagram.com/collectif.meta/"
+                            href="https://www.facebook.com/atelier.art.meta"
                             target="blank"
                         >
                             Facebook
@@ -108,6 +109,10 @@ function Footer({ lang = "fr" }) {
                         >
                             Youtube
                         </a>
+                        <br />
+                        <Link to="/imprint">
+                            <p>Imprint</p>
+                        </Link>
                     </div>
                 </div>
             </div>

@@ -74,6 +74,10 @@ h6.sticky-text {
     gap: 20px;
 }
 
+p.readmore {
+    margin-top: -15px;
+}
+
 .event-text {
     margin-top: auto;
 }
@@ -84,10 +88,6 @@ h6.sticky-text {
 .description-text {
     padding-top: 0;
     padding-bottom: 1.25rem;
-}
-
-.read-or-hide {
-    padding: 20px 0;
 }
 
 .category-title {

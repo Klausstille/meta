@@ -1,5 +1,6 @@
 .btn {
     cursor: none !important;
+    border-radius: 2px;
 }
 
 .btn--outline {

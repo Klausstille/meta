@@ -60,11 +60,15 @@ const q = {
 
 function Index({ lang = "fr" }) {
     const [page, setPage] = useState(null);
+    const [en, setEn] = useState(false);
 
     useEffect(() => {
         const query = q[lang];
-        console.log({ lang });
-        console.log(query);
+        // console.log({ lang });
+        // console.log(query);
+        if (query === q["en-US"]) {
+            setEn(true);
+        } else setEn(false);
 
         window
             .fetch(
@@ -95,13 +99,25 @@ function Index({ lang = "fr" }) {
         <>
             <li className="index-params">
                 <div className="index-item-info">
-                    <p className="index-item-name">Artistes</p>
+                    {en ? (
+                        <p className="index-item-name">Artists</p>
+                    ) : (
+                        <p className="index-item-name">Artistes</p>
+                    )}
                 </div>
                 <div className="index-item-info">
-                    <p className="index-item-project">Project</p>
+                    {en ? (
+                        <p className="index-item-project">Project</p>
+                    ) : (
+                        <p className="index-item-project">Projet</p>
+                    )}
                 </div>
                 <div className="index-item-info">
-                    <p className="index-item-year">Année</p>
+                    {en ? (
+                        <p className="index-item-year">Year</p>
+                    ) : (
+                        <p className="index-item-year">Année</p>
+                    )}
                 </div>
             </li>
             {page.map((data) => {
@@ -129,20 +145,39 @@ function Index({ lang = "fr" }) {
             })}
             <li className="index-params">
                 <div className="index-item-info">
-                    <p className="index-item-name">
-                        META aujourd'hui c'est deux collaborateurs, artistes,
-                        constructeurs et designers, Baptiste et Florent. C'est
-                        un espace de travail professionnel performant : atelier
-                        équipé, entièrement modulable en fonction des projets de
-                        tous volumes et tous matériaux.
-                    </p>
+                    {en ? (
+                        <p className="index-item-name">
+                            META today is two collaborators, artists, builders
+                            and designers, Baptiste and Florent. It's a
+                            professional workspace efficient: equipped workshop,
+                            fully modular depending on projects of all volumes
+                            and all materials.
+                        </p>
+                    ) : (
+                        <p className="index-item-name">
+                            META aujourd'hui c'est deux collaborateurs,
+                            artistes, constructeurs et designers, Baptiste et
+                            Florent. C'est un espace de travail professionnel
+                            performant : atelier équipé, entièrement modulable
+                            en fonction des projets de tous volumes et tous
+                            matériaux.
+                        </p>
+                    )}
                 </div>
                 <div className="index-item-info">
-                    <p className="index-item-project">
-                        La volonté de ses membres est de s'inscrire dans une
-                        démarche d'économie sociale, solidaire et écologique où
-                        la création prime sur la rentabilité.
-                    </p>
+                    {en ? (
+                        <p className="index-item-name">
+                            The desire of its members is to be part of a social,
+                            solidarity and ecological economy approach where
+                            creation takes precedence over profitability.
+                        </p>
+                    ) : (
+                        <p className="index-item-project">
+                            La volonté de ses membres est de s'inscrire dans une
+                            démarche d'économie sociale, solidaire et écologique
+                            où la création prime sur la rentabilité.
+                        </p>
+                    )}
                 </div>
             </li>
             <footer>

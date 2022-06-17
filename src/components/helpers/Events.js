@@ -1,6 +1,12 @@
 import { useState } from "react";
 
-export default function Events({ data, setIsShown, setActiveIndex, index }) {
+export default function Events({
+    data,
+    setIsShown,
+    setActiveIndex,
+    index,
+    en,
+}) {
     const [isReadMore, setIsReadMore] = useState(false);
 
     const ReadMore = ({ children }) => {
@@ -15,9 +21,21 @@ export default function Events({ data, setIsShown, setActiveIndex, index }) {
                     }}
                 >
                     {!isReadMore ? (
-                        <h6 className="readmore">...read more</h6>
+                        <p className="readmore">
+                            {en ? (
+                                <strong>...read more</strong>
+                            ) : (
+                                <strong>...en savoir plus</strong>
+                            )}
+                        </p>
                     ) : (
-                        <h6 className="readmore">show less</h6>
+                        <p className="readmore">
+                            {en ? (
+                                <strong>show less</strong>
+                            ) : (
+                                <strong>moins</strong>
+                            )}
+                        </p>
                     )}
                 </div>
             </div>

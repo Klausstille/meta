@@ -9,6 +9,7 @@ import Residences from "./components/Residences";
 import Artistes from "./components/Artistes";
 import Productions from "./components/Productions";
 import Contact from "./components/Contact";
+import Imprint from "./Imprint";
 
 import "./App.css";
 
@@ -59,6 +60,10 @@ function App() {
                         <Route
                             path="/contact"
                             element={<Contact lang={lang} />}
+                        />
+                        <Route
+                            path="/imprint"
+                            element={<Imprint lang={lang} />}
                         />
                     </Routes>
                 </main>

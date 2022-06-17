@@ -57,6 +57,7 @@ const q = {
 
 function Residences({ lang = "fr" }) {
     const [page, setPage] = useState(null);
+    const [en, setEn] = useState(false);
     const [isShown, setIsShown] = useState(false);
     const [activeIndex, setActiveIndex] = useState(-1);
     const { x, y } = useMouse();
@@ -64,9 +65,11 @@ function Residences({ lang = "fr" }) {
 
     useEffect(() => {
         const query = q[lang];
-
-        console.log({ lang });
-        console.log(query);
+        // console.log({ lang });
+        // console.log(query);
+        if (query === q["en-US"]) {
+            setEn(true);
+        } else setEn(false);
 
         window
             .fetch(
@@ -104,6 +107,7 @@ function Residences({ lang = "fr" }) {
                             setIsShown={setIsShown}
                             setActiveIndex={setActiveIndex}
                             index={index}
+                            en={en}
                         />
                     );
                 })}
@@ -131,7 +135,8 @@ function Residences({ lang = "fr" }) {
                                     src={page[activeIndex].residencesPhotos.url}
                                 />
                                 <h6 className="sticky-text">
-                                    {page[activeIndex].residencesPhotos.title}
+                                    {page[activeIndex].residencesPhotos.title} |{" "}
+                                    {page[activeIndex].description}
                                 </h6>
                             </div>
                         </div>
