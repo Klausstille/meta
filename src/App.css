@@ -1,6 +1,10 @@
 @font-face {
-    font-family: Graphik;
+    font-family: "Graphik";
     src: url("../public/Graphik-Regular.otf") format("opentype");
+}
+@font-face {
+    font-family: "Graphikmedium";
+    src: url("../public/Graphik-Medium.otf") format("opentype");
 }
 
 * {
@@ -9,8 +13,12 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: Graphik;
     cursor: none;
+    color: #006eff;
+}
+
+body {
+    font-family: "Graphik", Fallback, sans-serif;
 }
 
 main {

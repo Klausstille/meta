@@ -44,8 +44,9 @@
     position: fixed;
     left: 40px;
     top: 0px;
-    font-weight: bold;
+    font-family: "Graphikmedium", Fallback, sans-serif;
 }
+
 .nav-logo .nav-links:hover {
     transform: none;
 }

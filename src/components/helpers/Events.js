@@ -23,18 +23,14 @@ export default function Events({
                     {!isReadMore ? (
                         <p className="readmore">
                             {en ? (
-                                <strong>...read more</strong>
+                                <p>...read more</p>
                             ) : (
-                                <strong>...en savoir plus</strong>
+                                <p>...en savoir plus</p>
                             )}
                         </p>
                     ) : (
                         <p className="readmore">
-                            {en ? (
-                                <strong>show less</strong>
-                            ) : (
-                                <strong>moins</strong>
-                            )}
+                            {en ? <p>show less</p> : <p>moins</p>}
                         </p>
                     )}
                 </div>

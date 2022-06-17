@@ -5,17 +5,6 @@
     object-position: top;
 }
 
-h2 {
-    font-size: 2.2rem;
-    color: #006eff;
-    font-weight: 100;
-}
-
-h6 {
-    color: #006eff;
-    font-size: 1rem;
-}
-
 .image-container {
     position: absolute;
     right: 0;

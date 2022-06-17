@@ -79,18 +79,6 @@ ul.index-items {
     height: 100%;
 }
 
-h6.sticky-text {
-    background-color: #ffffff;
-    border-top: solid 1px;
-    color: #006eff;
-    font-weight: bold;
-    margin-top: -40px;
-    opacity: 1;
-    padding: 10px;
-    position: fixed;
-    width: 100%;
-}
-
 .img-module {
     margin-top: 80px;
     right: 0;
