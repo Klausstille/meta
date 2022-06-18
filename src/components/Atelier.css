@@ -29,13 +29,25 @@ h1 {
 }
 
 .text-container {
-    background-color: white;
+    background-color: #f8f8f8;
     box-sizing: content-box;
     overflow: scroll;
     position: absolute;
     padding: 54px 0 0px 0px;
     right: 0;
     top: 0;
+}
+
+.back {
+    height: 80vh;
+    width: 100vw;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    object-fit: contain;
+    background-color: #f8f8f8;
 }
 
 @media screen and (max-width: 1200px) {

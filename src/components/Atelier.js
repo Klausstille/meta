@@ -54,14 +54,18 @@ const q = {
 
 export default function Atelier({ lang = "fr" }) {
     const [page, setPage] = useState(null);
+    const [en, setEn] = useState(false);
     const { x, y } = useMouse();
     const { width } = GetWindowDimensions();
     // console.log("height, x, y", height, x, y);
     useEffect(() => {
         const query = q[lang];
+        // console.log({ lang });
+        // console.log(query);
 
-        console.log({ lang });
-        console.log(query);
+        if (query === q["en-US"]) {
+            setEn(true);
+        } else setEn(false);
 
         window
             .fetch(
@@ -134,13 +138,27 @@ export default function Atelier({ lang = "fr" }) {
                                         }
                                     </h1>
                                 </div> */}
-                                {/* <div className="hero-container">
-                                    <img
+                                <div className="back">
+                                    {en ? (
+                                        <p>
+                                            ↑<br />
+                                            Move mouse here and scroll!
+                                            <br />↓
+                                        </p>
+                                    ) : (
+                                        <p>
+                                            ↑<br />
+                                            Déplacez la souris ici et faites
+                                            défiler!
+                                            <br />↓
+                                        </p>
+                                    )}
+                                    {/* <img
                                         className="atelier-img"
                                         src={data.heromedia.url}
                                         alt=""
-                                    />
-                                </div> */}
+                                    /> */}
+                                </div>
                             </>
                         );
                     })}
