@@ -17,6 +17,11 @@
     color: #006eff;
 }
 
+a:hover {
+    text-decoration: none;
+    color: #006eff;
+}
+
 body {
     font-family: "Graphik", Fallback, sans-serif;
 }
@@ -40,6 +45,9 @@ main {
     overflow: hidden;
     pointer-events: none;
     z-index: 10;
+}
+.policy h1 {
+    text-align: left;
 }
 
 footer {
