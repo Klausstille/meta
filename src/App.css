@@ -10,11 +10,16 @@
 * {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     cursor: none;
     color: #006eff;
+}
+body::-webkit-scrollbar {
+    display: none; /* Chrome Safari */
 }
 
 a:hover {
