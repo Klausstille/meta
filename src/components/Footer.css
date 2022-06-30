@@ -18,6 +18,7 @@
     margin-bottom: 24px;
     color: #006eff;
     width: 320px;
+    z-index: 99;
 }
 
 .footer-subscription-heading {
@@ -63,6 +64,7 @@
     text-align: left;
     width: 160px;
     box-sizing: border-box;
+    z-index: 99;
 }
 
 p {
