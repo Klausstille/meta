@@ -164,11 +164,7 @@ export default function Atelier({ lang = "fr" }) {
                     })}
                 </div>
             </div>
-            <footer
-                style={{
-                    zIndex: "1",
-                }}
-            >
+            <footer>
                 <Footer lang={lang} />
             </footer>
         </>
