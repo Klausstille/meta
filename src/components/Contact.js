@@ -125,6 +125,14 @@ function Contact({ lang = "fr" }) {
                         </a>
                     </h6>
                 </div>
+                <img
+                    alt={page}
+                    className="contact-pic"
+                    src={page[1].bioImage.url}
+                    onClick={() => {
+                        setIsShown(true);
+                    }}
+                />
             </div>
             <div className="contact-grid">
                 {page.map((data) => {
@@ -137,14 +145,7 @@ function Contact({ lang = "fr" }) {
                         </div>
                     );
                 })}
-                <img
-                    alt={page}
-                    className="contact-pic"
-                    src={page[1].bioImage.url}
-                    onClick={() => {
-                        setIsShown(true);
-                    }}
-                />
+
                 {isShown && (
                     <div
                         key={page[1].bioImage.url}

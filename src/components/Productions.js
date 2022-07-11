@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import "./Productions.css";
-import ControlledCarousel from "./helpers/Carousel";
+// import ControlledCarousel from "./helpers/Carousel";
+import ProductionItem from "./helpers/IndexItem";
+import "./helpers/Index.css";
 import Footer from "./Footer";
 
 let SPACE_ID, ACCESS_TOKEN;
@@ -12,16 +14,18 @@ if (process.env.NODE_ENV === "production") {
     ACCESS_TOKEN = require("../secrets.json").REACT_APP_ACCESS_TOKEN;
 }
 
-// const { SPACE_ID, ACCESS_TOKEN } = require("../secrets.json");
-
 const engQuery = `
 {
-  carouselCollection {
+  productionsCollection {
     items {
-      carouselImageCollection {
+      artistName
+      projectName
+      year
+      description(locale:"en-US") {
+        json
+      }
+      galleryCollection {
         items {
-          title(locale: "en-US")
-          description(locale: "en-US")
           url
         }
       }
@@ -32,12 +36,16 @@ const engQuery = `
 
 const freQuery = `
 {
-  carouselCollection {
+  productionsCollection {
     items {
-      carouselImageCollection {
+      artistName
+      projectName
+      year
+      description(locale:"fr") {
+        json
+      }
+      galleryCollection {
         items {
-          title(locale: "fr")
-          description(locale: "fr")
           url
         }
       }
@@ -53,12 +61,15 @@ const q = {
 
 export default function Atelier({ lang = "fr" }) {
     const [page, setPage] = useState(null);
+    const [en, setEn] = useState(false);
 
     useEffect(() => {
         const query = q[lang];
-
-        console.log({ lang });
-        console.log(query);
+        // console.log({ lang });
+        // console.log(query);
+        if (query === q["en-US"]) {
+            setEn(true);
+        } else setEn(false);
 
         window
             .fetch(
@@ -77,8 +88,9 @@ export default function Atelier({ lang = "fr" }) {
                 if (errors) {
                     console.error(errors);
                 }
-                console.log(data.carouselCollection.items);
-                setPage(data.carouselCollection.items);
+                setPage(data.productionsCollection.items);
+                // console.log(data.carouselCollection.items);
+                // setPage(data.carouselCollection.items);
             });
     }, [lang]);
 
@@ -88,7 +100,75 @@ export default function Atelier({ lang = "fr" }) {
 
     return (
         <>
+            <li className="index-params">
+                <div className="index-item-info">
+                    {en ? (
+                        <p className="index-item-name">Artists</p>
+                    ) : (
+                        <p className="index-item-name">Artistes</p>
+                    )}
+                </div>
+                <div className="index-item-info">
+                    {en ? (
+                        <p className="index-item-project">Project</p>
+                    ) : (
+                        <p className="index-item-project">Projet</p>
+                    )}
+                </div>
+                <div className="index-item-info">
+                    {en ? (
+                        <p className="index-item-year">Year</p>
+                    ) : (
+                        <p className="index-item-year">Année</p>
+                    )}
+                </div>
+            </li>
             {page.map((data) => {
+                return (
+                    <div className="index" key={data.projectName}>
+                        <div className="index-container">
+                            <div className="index-wrapper">
+                                <ul className="index-items">
+                                    <ProductionItem
+                                        name={data.artistName}
+                                        project={data.projectName}
+                                        year={data.year}
+                                        des={
+                                            data.description.json.content[0]
+                                                .content[0].value
+                                        }
+                                        src={data.galleryCollection.items}
+                                    />
+                                </ul>
+                            </div>
+                        </div>
+                        <br />
+                    </div>
+                );
+            })}
+            <li className="index-params">
+                <div className="index-item-info">
+                    {en ? (
+                        <h3 className="index-item-name">
+                            META today is two collaborators, artists, builders
+                            and designers, Baptiste and Florent. It's a
+                            professional workspace efficient: equipped workshop,
+                            fully modular depending on projects of all volumes
+                            and all materials.
+                        </h3>
+                    ) : (
+                        <h3 className="index-item-name">
+                            META aujourd'hui c'est deux collaborateurs,
+                            artistes, constructeurs et designers, Baptiste et
+                            Florent. C'est un espace de travail professionnel
+                            performant : atelier équipé, entièrement modulable
+                            en fonction des projets de tous volumes et tous
+                            matériaux.
+                        </h3>
+                    )}
+                </div>
+            </li>
+            {/* {page.map((data) => {
                 return (
                     <section className="carousel-all-cont">
                         <ControlledCarousel
@@ -96,7 +176,7 @@ export default function Atelier({ lang = "fr" }) {
                         />
                     </section>
                 );
-            })}
+            })} */}
             <footer>
                 <Footer lang={lang} />
             </footer>
