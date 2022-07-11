@@ -110,18 +110,15 @@ function Footer({ lang = "fr" }) {
                             Youtube
                         </a>
                         <br />
-                        <Link to="/imprint">
-                            <p>Imprint</p>
-                        </Link>
                     </div>
                 </div>
             </div>
             <section className="footer-subscription">
                 <div className="footer-subscription-heading">
                     {en ? (
-                        <p>Be part of our METAdventure!</p>
+                        <p>Subsribe to our newsletter</p>
                     ) : (
-                        <p>Faites partie de la METAventure!</p>
+                        <p>Souscrire à notre newsletter</p>
                     )}
                 </div>
                 <div className="input-areas">
@@ -141,14 +138,14 @@ function Footer({ lang = "fr" }) {
             <section className="contact">
                 <div className="contact-wrap">
                     <p className="website-rights">
-                        Atelier Meta
+                        Meta
                         <br />
-                        Productions Plastiques Les Faures
+                        Les Faures
                         <br />
                         24560 Ste Radegonde
                         <br />
-                        <a href="mailto:inbox.meta@gmail.com">
-                            inbox.meta(at)gmail.com
+                        <a href="mailto:contact@atelier-meta.art">
+                            contact(at)atelier-meta.art
                         </a>
                         <br />
                         META © 2022

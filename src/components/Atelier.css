@@ -27,6 +27,16 @@ h1 {
     opacity: 0.1;
     padding: 0 40px;
 }
+.atelier-img img {
+    height: 96vh;
+    width: 100%;
+    object-fit: cover;
+    object-position: bottom;
+    position: absolute;
+    top: 0;
+    opacity: 0.2;
+    z-index: -1;
+}
 
 .text-container {
     background-color: #f8f8f8;
@@ -36,8 +46,13 @@ h1 {
     padding: 54px 0 0px 0px;
     right: 0;
     top: 0;
+    z-index: 1;
 }
 
+.back p {
+    position: absolute;
+    z-index: 0;
+}
 .back {
     height: 80vh;
     width: 100vw;
@@ -47,7 +62,7 @@ h1 {
     justify-content: center;
     align-items: center;
     object-fit: contain;
-    background-color: #f8f8f8;
+    /* background-color: #f8f8f8; */
 }
 
 @media screen and (max-width: 1200px) {

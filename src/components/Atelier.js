@@ -153,18 +153,22 @@ export default function Atelier({ lang = "fr" }) {
                                             <br />↓
                                         </p>
                                     )}
-                                    {/* <img
-                                        className="atelier-img"
-                                        src={data.heromedia.url}
-                                        alt=""
-                                    /> */}
                                 </div>
+                                {
+                                    <div className="atelier-img">
+                                        <img src={data.heromedia.url} alt="" />
+                                    </div>
+                                }
                             </>
                         );
                     })}
                 </div>
             </div>
-            <footer>
+            <footer
+                style={{
+                    zIndex: "1",
+                }}
+            >
                 <Footer lang={lang} />
             </footer>
         </>

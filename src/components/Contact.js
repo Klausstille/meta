@@ -93,6 +93,40 @@ function Contact({ lang = "fr" }) {
     return (
         <>
             <div className="contact-grid">
+                <div>
+                    <h6 style={{ textAlign: "left", paddingTop: "0" }}>
+                        Les Faures
+                        <br />
+                        Atelier Residences Recherche
+                        <br />
+                        24560 Ste Radegonde
+                        <br />
+                        <a
+                            style={{ textDecoration: "none" }}
+                            href="mailto:contact@atelier-meta.art"
+                        >
+                            contact(at)atelier-meta.art
+                        </a>
+                        <br />
+                        +33(0)7 6246 6770
+                    </h6>
+                </div>
+                <div>
+                    <h6 style={{ textAlign: "left", paddingTop: "0" }}>
+                        Website concept, design
+                        <br />
+                        and development: <br />
+                        <a
+                            href="http://www.stillestudio.com"
+                            target="blank"
+                            style={{ textDecoration: "none" }}
+                        >
+                            Klaus Stille
+                        </a>
+                    </h6>
+                </div>
+            </div>
+            <div className="contact-grid">
                 {page.map((data) => {
                     return (
                         <div key={data.bioTitle}>
