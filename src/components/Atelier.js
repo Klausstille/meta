@@ -140,18 +140,18 @@ export default function Atelier({ lang = "fr" }) {
                                 </div> */}
                                 <div className="back">
                                     {en ? (
-                                        <p>
+                                        <h3>
                                             ↑<br />
                                             Move mouse here and scroll!
                                             <br />↓
-                                        </p>
+                                        </h3>
                                     ) : (
-                                        <p>
+                                        <h3>
                                             ↑<br />
                                             Déplacez la souris ici et faites
                                             défiler!
                                             <br />↓
-                                        </p>
+                                        </h3>
                                     )}
                                 </div>
                                 {
