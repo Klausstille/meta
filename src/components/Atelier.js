@@ -156,7 +156,6 @@ export default function Atelier({ lang = "fr" }) {
                                 </div>
                                 {data.heromedia ? (
                                     <div className="atelier-img">
-                                        s
                                         <img src={data.heromedia.url} alt="" />
                                     </div>
                                 ) : (
