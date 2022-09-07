@@ -1,5 +1,5 @@
 .navbar {
-    height: 65px;
+    height: 52px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,7 +23,7 @@
     font-size: 1.2rem;
     position: fixed;
     right: 40px;
-    top: 15px;
+    top: 8px;
     line-height: 1;
 }
 
@@ -77,7 +77,7 @@ ul.nav-menu {
     text-decoration: none;
     padding: 0.5rem 0;
     height: 100%;
-    font-size: 2.2rem;
+    font-size: 1.7rem;
 }
 
 .nav-links:hover {
@@ -130,8 +130,6 @@ ul.nav-menu {
 @media screen and (max-width: 1200px) {
     .nav-logo {
         left: 0px;
-        position: fixed;
-        height: 65px;
     }
 
     .NavbarItems {
@@ -156,7 +154,7 @@ ul.nav-menu {
         background-color: rgba(255, 255, 255, 0.9);
         color: #006eff;
         left: 0;
-        top: 60px;
+        top: 52px;
         z-index: 1;
         height: 100vh;
     }
@@ -182,7 +180,7 @@ ul.nav-menu {
     .menu-icon {
         display: block;
         position: absolute;
-        top: 18px;
+        top: 13px;
         left: 0;
         margin-left: 40px;
     }

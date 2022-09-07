@@ -106,6 +106,9 @@ ul.index-items {
     .text-image-grid.active {
         grid-template-columns: repeat(2, 1fr);
     }
+    .index-params h3 {
+        font-size: 1rem;
+    }
 
     @media screen and (max-width: 800px) {
         .index {
@@ -134,8 +137,6 @@ ul.index-items {
         }
         .index-params {
             display: none;
-            padding: 10px 40px 0 40px;
-            margin-top: 10px;
         }
         .index-item-pics {
             padding: 5px 10px 5px 0;

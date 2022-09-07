@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import "./Productions.css";
 // import ControlledCarousel from "./helpers/Carousel";
 import ProductionItem from "./helpers/IndexItem";
 import "./helpers/Index.css";
