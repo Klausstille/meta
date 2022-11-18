@@ -14,24 +14,23 @@ function CheckLanguage({ setLang }) {
         }
     }
 
-    const [mobileButton, setMobileButton] = useState(true);
+    // const [mobileButton, setMobileButton] = useState(true);
     const [click, setClick] = useState(true);
-
     const switchLang = () => setClick(!click);
 
-    const showButton = () => {
-        if (window.innerWidth <= 1200) {
-            setMobileButton(false);
-        } else {
-            setMobileButton(true);
-        }
-    };
+    // const showButton = () => {
+    //     if (window.innerWidth <= 1200) {
+    //         setMobileButton(false);
+    //     } else {
+    //         setMobileButton(true);
+    //     }
+    // };
 
-    window.addEventListener("resize", showButton);
+    // window.addEventListener("resize", showButton);
 
     return (
         <>
-            {mobileButton ? (
+            {/* {mobileButton ? (
                 <div className="nav-lan">
                     <button onClick={handleclick} name="english">
                         En
@@ -41,27 +40,26 @@ function CheckLanguage({ setLang }) {
                         Fr
                     </button>
                 </div>
-            ) : (
-                <div className="nav-lan" onClick={switchLang}>
-                    {click ? (
-                        <button
-                            onClick={handleclick}
-                            name="english"
-                            className="mobile"
-                        >
-                            En
-                        </button>
-                    ) : (
-                        <button
-                            onClick={handleclick}
-                            name="french"
-                            className="mobile"
-                        >
-                            Fr
-                        </button>
-                    )}
-                </div>
-            )}
+            ) : ( */}
+            <div className="nav-lan" onClick={switchLang}>
+                {click ? (
+                    <button
+                        onClick={handleclick}
+                        name="english"
+                        className="mobile"
+                    >
+                        En
+                    </button>
+                ) : (
+                    <button
+                        onClick={handleclick}
+                        name="french"
+                        className="mobile"
+                    >
+                        Fr
+                    </button>
+                )}
+            </div>
         </>
     );
 }

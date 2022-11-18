@@ -59,7 +59,7 @@ export default function HomePage({ lang = "fr" }) {
     }, [lang]);
 
     if (!page) {
-        return "Loading...";
+        return;
     }
 
     return (

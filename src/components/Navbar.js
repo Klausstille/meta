@@ -79,7 +79,7 @@ function Navbar({ setLang, lang = "fr" }) {
     }, [lang]);
 
     if (!page) {
-        return "Loading...";
+        return;
     }
 
     return (
@@ -178,8 +178,8 @@ function Navbar({ setLang, lang = "fr" }) {
                                 {page[4]}
                             </Link>
                         </li>
-                        <CheckLanguage setLang={setLang} />
                     </ul>
+                    <CheckLanguage setLang={setLang} />
                 </div>
             </nav>
         </>

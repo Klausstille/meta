@@ -87,7 +87,7 @@ function Contact({ lang = "fr" }) {
     }, [lang]);
 
     if (!page) {
-        return "Loading...";
+        return;
     }
 
     return (

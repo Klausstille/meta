@@ -94,7 +94,7 @@ export default function Atelier({ lang = "fr" }) {
     }, [lang]);
 
     if (!page) {
-        return "Loading...";
+        return;
     }
 
     return (

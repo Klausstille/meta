@@ -94,7 +94,7 @@ function Residences({ lang = "fr" }) {
     }, [lang]);
 
     if (!page) {
-        return "Loading...";
+        return;
     }
 
     return (

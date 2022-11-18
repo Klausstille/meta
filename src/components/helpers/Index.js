@@ -92,7 +92,7 @@ function Index({ lang = "fr" }) {
     }, [lang]);
 
     if (!page) {
-        return "Loading...";
+        return;
     }
     return (
         <>

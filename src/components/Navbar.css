@@ -38,7 +38,7 @@
 }
 
 .nav-lan button.mobile {
-    margin-top: 8px;
+    margin-top: 7px;
     font-size: 1.7rem;
 }
 
@@ -135,6 +135,9 @@ ul.nav-menu {
 @media screen and (max-width: 1200px) {
     .nav-logo {
         left: 0px;
+        display: grid;
+        justify-content: center;
+        width: 100vw;
     }
 
     .NavbarItems {
@@ -147,15 +150,17 @@ ul.nav-menu {
         width: 100vw;
         height: 40vh;
         position: absolute;
-        right: 150%;
+        right: 100%;
         opacity: 1;
-        transition: background-color 1s ease;
         justify-content: flex-start;
         gap: 1rem;
         margin-left: 0;
+        opacity: 0;
+        transition: opacity 250ms ease;
     }
 
     .nav-menu.active {
+        opacity: 1;
         background-color: rgba(255, 255, 255, 0.9);
         color: #006eff;
         left: 0;
@@ -165,11 +170,11 @@ ul.nav-menu {
     }
 
     .nav-links {
-        text-align: center;
-        /* padding: 2rem; */
+        justify-content: center;
         width: 100vw;
-        display: table;
-        /* border-bottom: solid 3px; */
+    }
+    .nav-logo .nav-links {
+        width: 0;
     }
 
     ul.nav-menu.active {
