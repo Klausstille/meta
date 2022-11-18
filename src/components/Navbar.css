@@ -37,6 +37,11 @@
     cursor: none !important;
 }
 
+.nav-lan button.mobile {
+    margin-top: 8px;
+    font-size: 1.7rem;
+}
+
 .nav-logo {
     height: 65px;
     list-style: none;

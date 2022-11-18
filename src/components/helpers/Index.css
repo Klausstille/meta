@@ -122,8 +122,8 @@ ul.index-items {
             grid-template-columns: 1fr;
             grid-gap: 0;
             padding: 20px 40px 0 40px;
-            background-color: #f8f8f8;
-            border-top: none;
+            /* background-color: #f8f8f8; */
+            /* border-top: solid 3px; */
             margin: 0;
         }
         .index-item-year {
