@@ -7,10 +7,19 @@ import LazyLoad from "react-lazy-load";
 
 import "./Index.css";
 
-export default function IndexItem(props) {
+export default function IndexItem({
+    preview,
+    setPreview,
+    showAll,
+    name,
+    project,
+    year,
+    des,
+    src,
+}) {
     const [oneIsShown, setOneIsShown] = useState(false);
     const [isClicked, setIsClicked] = useState(false);
-    const [isSwitch, setSwitch] = useState(false);
+    const [isSwitch, setSwitch] = useState(null);
     const [activeIndex, setActiveIndex] = useState(-1);
     const { x, y } = useMouse();
     const { width } = GetWindowDimensions();
@@ -24,32 +33,39 @@ export default function IndexItem(props) {
     document.addEventListener("keydown", escape);
 
     function handleClick(e) {
-        if (e.currentTarget.innerText.indexOf("→") === 0) {
+        if (
+            e.currentTarget.innerText.indexOf("→") === 0 &&
+            e.target.parentElement.className.indexOf("index-item") === 0
+        ) {
             setSwitch(true);
-        } else if (e.currentTarget.innerText.indexOf("→") === -1) {
+        } else if (
+            e.currentTarget.innerText.indexOf("→") === -1 &&
+            e.target.parentElement.className.indexOf("index-item") === 0
+        ) {
             setSwitch(false);
         }
     }
 
     useEffect(() => {
-        if (props.showAll) {
-            isSwitch ? setSwitch(false) : setSwitch(true);
-        } else if (!props.showAll) {
-            !isSwitch ? setSwitch(true) : setSwitch(false);
-        }
-        const preventDefaultImage = () => {
-            console.log("RESIZSINGGG");
-            if (width <= 1200) {
-                props.setPreview(false);
-            } else if (width > 1200) {
-                console.log("BIG ENOUGN");
-                props.setPreview(true);
+        let abort = false;
+        if (!abort) {
+            if (showAll) {
+                setSwitch((isSwitch) => !isSwitch);
             }
-        };
-        if (isClicked) {
-            preventDefaultImage();
         }
-    }, [props.showAll, width, isClicked]);
+        return () => (abort = true);
+    }, [showAll]);
+
+    function preventDefaultImage() {
+        if (width <= 1200) {
+            setPreview(false);
+        } else if (width > 1200) {
+            setPreview(true);
+        }
+    }
+    if (isClicked) {
+        preventDefaultImage();
+    }
 
     return (
         <>
@@ -66,7 +82,7 @@ export default function IndexItem(props) {
                         <div
                             className="image-container"
                             style={
-                                props.preview
+                                preview
                                     ? {
                                           width: `${width - x}px`,
                                           height: `${y - 1}px`,
@@ -93,11 +109,7 @@ export default function IndexItem(props) {
                     </div>
                 </div>
             )}
-            <div
-                className="index"
-                key={props.projectName}
-                onClick={handleClick}
-            >
+            <div className="index" key={project} onClick={handleClick}>
                 <div className="index-container">
                     <div className="index-wrapper">
                         <ul className="index-items">
@@ -113,19 +125,15 @@ export default function IndexItem(props) {
                                     <h3 className="index-item-arrow">→</h3>
                                 )}
                                 <div className="index-item-info">
-                                    <h3 className="index-item-name">
-                                        {props.name}
-                                    </h3>
+                                    <h3 className="index-item-name">{name}</h3>
                                 </div>
                                 <div className="index-item-info">
                                     <h3 className="index-item-project">
-                                        {props.project}
+                                        {project}
                                     </h3>
                                 </div>
                                 <div className="index-item-info">
-                                    <h3 className="index-item-year">
-                                        {props.year}
-                                    </h3>
+                                    <h3 className="index-item-year">{year}</h3>
                                 </div>
                             </li>
 
@@ -133,20 +141,12 @@ export default function IndexItem(props) {
                                 <Transition
                                     // show={isShown}
                                     show={
-                                        (oneIsShown
-                                            ? oneIsShown
-                                            : props.showAll) ||
-                                        (props.showAll
-                                            ? props.showAll
-                                            : oneIsShown)
+                                        (oneIsShown ? oneIsShown : showAll) ||
+                                        (showAll ? showAll : oneIsShown)
                                     }
                                     hidden={
-                                        (oneIsShown
-                                            ? props.showAll
-                                            : oneIsShown) ||
-                                        (props.showAll
-                                            ? oneIsShown
-                                            : props.showAll)
+                                        (oneIsShown ? showAll : oneIsShown) ||
+                                        (showAll ? oneIsShown : showAll)
                                     }
                                     className="text-image-grid"
                                     enterFrom="opacity-0"
@@ -156,10 +156,10 @@ export default function IndexItem(props) {
                                 >
                                     <div className="text-image-grid active">
                                         <div className="text-grid">
-                                            <p>{props.des}</p>
+                                            <p>{des}</p>
                                         </div>
                                         <div className="image-grid">
-                                            {props.src.map((data) => {
+                                            {src.map((data) => {
                                                 return (
                                                     <LazyLoad>
                                                         <img
@@ -173,10 +173,10 @@ export default function IndexItem(props) {
                                                                 );
                                                                 setActiveIndex({
                                                                     url: data.url,
-                                                                    name: props.name,
+                                                                    name: name,
                                                                     project:
-                                                                        props.project,
-                                                                    year: props.year,
+                                                                        project,
+                                                                    year: year,
                                                                 });
                                                             }}
                                                         />

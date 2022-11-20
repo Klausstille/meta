@@ -91,7 +91,7 @@ function Index({ lang = "fr" }) {
                 }
                 setPage(data.artistesCollection.items);
             });
-    }, [lang]);
+    }, [lang, showAll]);
 
     if (!page) {
         return;
