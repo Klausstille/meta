@@ -61,8 +61,8 @@ function Contact({ lang = "fr" }) {
     useEffect(() => {
         const query = q[lang];
 
-        console.log({ lang });
-        console.log(query);
+        // console.log({ lang });
+        // console.log(query);
 
         window
             .fetch(
@@ -81,7 +81,6 @@ function Contact({ lang = "fr" }) {
                 if (errors) {
                     console.error(errors);
                 }
-                console.log(data.bioCollection.items);
                 setPage(data.bioCollection.items);
             });
     }, [lang]);

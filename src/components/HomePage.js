@@ -30,9 +30,6 @@ export default function HomePage({ lang = "fr" }) {
     const { width } = getWindowDimensions();
 
     useEffect(() => {
-        console.log({ lang });
-        console.log(query);
-
         window
             .fetch(
                 `https://graphql.contentful.com/content/v1/spaces/${SPACE_ID}/`,
@@ -50,10 +47,6 @@ export default function HomePage({ lang = "fr" }) {
                 if (errors) {
                     console.error(errors);
                 }
-                console.log(
-                    "data.heromediaCollection.items",
-                    data.heromediaCollection.items
-                );
                 setPage(data.heromediaCollection.items);
             });
     }, [lang]);

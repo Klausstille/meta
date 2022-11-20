@@ -39,19 +39,7 @@ img.residences-pic {
     width: 100vw;
     height: 100vh;
     position: fixed;
-    z-index: 0;
-}
-
-.backgrd {
-    background-color: rgba(255, 255, 255, 0.7);
-    margin-top: 80px;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    z-index: 0;
+    z-index: 1;
 }
 
 h6.sticky-text {
@@ -69,7 +57,7 @@ h6.sticky-text {
 .events-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    padding: 40px 40px 80px 40px;
+    padding: 0px 40px 80px 40px;
     gap: 20px;
 }
 

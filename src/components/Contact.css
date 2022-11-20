@@ -33,7 +33,7 @@
 .contact-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    padding: 30px 40px 80px 40px;
+    padding: 0px 40px 80px 40px;
     gap: 50px;
 }
 

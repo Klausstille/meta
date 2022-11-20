@@ -66,10 +66,6 @@ function Footer({ lang = "fr" }) {
                 if (errors) {
                     console.error(errors);
                 }
-                console.log(
-                    "HELLO NAVBAR DATA",
-                    data.navbarCollection.items[0].navbar
-                );
                 setPage(data.navbarCollection.items[0].navbar);
             });
     }, [lang]);

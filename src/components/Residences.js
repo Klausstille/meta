@@ -88,7 +88,6 @@ function Residences({ lang = "fr" }) {
                 if (errors) {
                     console.error(errors);
                 }
-                console.log(data.residencesCollection.items);
                 setPage(data.residencesCollection.items);
             });
     }, [lang]);

@@ -48,10 +48,6 @@ function Navbar({ setLang, lang = "fr" }) {
 
     useEffect(() => {
         const query = q[lang];
-        console.log({ lang });
-        console.log(query);
-        console.log("SPACE_ID", SPACE_ID);
-        console.log(process.env.NODE_ENV);
 
         window
             .fetch(
@@ -70,10 +66,6 @@ function Navbar({ setLang, lang = "fr" }) {
                 if (errors) {
                     console.error(errors);
                 }
-                console.log(
-                    "HELLO NAVBAR DATA",
-                    data.navbarCollection.items[0].navbar
-                );
                 setPage(data.navbarCollection.items[0].navbar);
             });
     }, [lang]);

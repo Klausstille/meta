@@ -61,6 +61,8 @@ const q = {
 function Index({ lang = "fr" }) {
     const [page, setPage] = useState(null);
     const [en, setEn] = useState(false);
+    const [showAll, setShowAll] = useState(false);
+    const [preview, setPreview] = useState(true);
 
     useEffect(() => {
         const query = q[lang];
@@ -97,6 +99,16 @@ function Index({ lang = "fr" }) {
     return (
         <>
             <li className="index-params">
+                <div
+                    className="index-item-info"
+                    onClick={() => setShowAll((showAll) => !showAll)}
+                >
+                    {en ? (
+                        <p className="index-item-name">Show All ⇲</p>
+                    ) : (
+                        <p className="index-item-name">Voir Tous ⇲</p>
+                    )}
+                </div>
                 <div className="index-item-info">
                     {en ? (
                         <p className="index-item-name">Artists</p>
@@ -119,51 +131,21 @@ function Index({ lang = "fr" }) {
                     )}
                 </div>
             </li>
+
             {page.map((data) => {
                 return (
-                    <div className="index" key={data.projectName}>
-                        <div className="index-container">
-                            <div className="index-wrapper">
-                                <ul className="index-items">
-                                    <IndexItem
-                                        name={data.artistName}
-                                        project={data.projectName}
-                                        year={data.year}
-                                        des={
-                                            data.description.json.content[0]
-                                                .content[0].value
-                                        }
-                                        src={data.galleryCollection.items}
-                                    />
-                                </ul>
-                            </div>
-                        </div>
-                        <br />
-                    </div>
+                    <IndexItem
+                        preview={preview}
+                        setPreview={setPreview}
+                        showAll={showAll}
+                        name={data.artistName}
+                        project={data.projectName}
+                        year={data.year}
+                        des={data.description.json.content[0].content[0].value}
+                        src={data.galleryCollection.items}
+                    />
                 );
             })}
-            <li className="index-params">
-                <div className="index-item-info">
-                    {en ? (
-                        <h3 className="index-item-name">
-                            META today is two collaborators, artists, builders
-                            and designers, Baptiste and Florent. It's a
-                            professional workspace efficient: equipped workshop,
-                            fully modular depending on projects of all volumes
-                            and all materials.
-                        </h3>
-                    ) : (
-                        <h3 className="index-item-name">
-                            META aujourd'hui c'est deux collaborateurs,
-                            artistes, constructeurs et designers, Baptiste et
-                            Florent. C'est un espace de travail professionnel
-                            performant : atelier équipé, entièrement modulable
-                            en fonction des projets de tous volumes et tous
-                            matériaux.
-                        </h3>
-                    )}
-                </div>
-            </li>
             <footer>
                 <Footer lang={lang} />
             </footer>

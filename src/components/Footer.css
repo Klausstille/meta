@@ -6,8 +6,8 @@
     display: flex;
     /* justify-content: center; */
     flex-direction: row;
-    background-color: #f8f8f8;
-    /* border-top: 3px solid #006eff; */
+    background-color: white;
+    border-top: 1px solid #006eff;
     margin-top: auto;
 }
 
@@ -18,7 +18,7 @@
     margin-bottom: 24px;
     color: #006eff;
     width: 320px;
-    z-index: 99;
+    /* z-index: 99; */
 }
 
 .footer-subscription-heading {
@@ -64,7 +64,7 @@
     text-align: left;
     width: 160px;
     box-sizing: border-box;
-    z-index: 99;
+    /* z-index: 99; */
 }
 
 p {

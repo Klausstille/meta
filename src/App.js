@@ -20,6 +20,7 @@ function App() {
     function changeQuery(lang) {
         // console.log("ChangeQuery");
         setLang(lang);
+        console.log({ lang });
     }
 
     return (

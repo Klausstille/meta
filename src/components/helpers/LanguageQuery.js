@@ -3,8 +3,6 @@ import { useState } from "react";
 function CheckLanguage({ setLang }) {
     function handleclick(e) {
         e.preventDefault();
-        console.log(e.target.name);
-
         if (e.target.name === "english") {
             // console.log("EN triggered", { englishQueries });
             setLang("en-US");
@@ -18,29 +16,8 @@ function CheckLanguage({ setLang }) {
     const [click, setClick] = useState(true);
     const switchLang = () => setClick(!click);
 
-    // const showButton = () => {
-    //     if (window.innerWidth <= 1200) {
-    //         setMobileButton(false);
-    //     } else {
-    //         setMobileButton(true);
-    //     }
-    // };
-
-    // window.addEventListener("resize", showButton);
-
     return (
         <>
-            {/* {mobileButton ? (
-                <div className="nav-lan">
-                    <button onClick={handleclick} name="english">
-                        En
-                    </button>
-                    <br />
-                    <button onClick={handleclick} name="french">
-                        Fr
-                    </button>
-                </div>
-            ) : ( */}
             <div className="nav-lan" onClick={switchLang}>
                 {click ? (
                     <button

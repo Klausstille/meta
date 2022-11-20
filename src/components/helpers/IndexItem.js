@@ -1,114 +1,191 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Transition } from "@headlessui/react";
 import useMouse from "../mouseEvent/MouseMove";
 import GetWindowDimensions from "../mouseEvent/DocumentSize";
 import "./Index.css";
 
 export default function IndexItem(props) {
-    const [isShown, setIsShown] = useState(false);
+    const [oneIsShown, setOneIsShown] = useState(false);
     const [isClicked, setIsClicked] = useState(false);
+    const [isSwitch, setSwitch] = useState(false);
     const [activeIndex, setActiveIndex] = useState(-1);
     const { x, y } = useMouse();
     const { width } = GetWindowDimensions();
 
+    const escape = (e) => {
+        if (e.keyCode === 27) {
+            setIsClicked(false);
+        }
+        return document.removeEventListener("keydown", escape);
+    };
+    document.addEventListener("keydown", escape);
+
+    const preventDefaultImage = () => {
+        if (width <= 1200) {
+            props.setPreview(false);
+        } else if (width > 1200) {
+            props.setPreview(true);
+        }
+    };
+    window.addEventListener("resize", preventDefaultImage);
+
+    function handleClick(e) {
+        if (e.currentTarget.innerText.indexOf("→") === 0) {
+            setSwitch(true);
+        } else if (e.currentTarget.innerText.indexOf("→") === -1) {
+            setSwitch(false);
+        }
+    }
+
+    if (isClicked) {
+        preventDefaultImage();
+    }
+    useEffect(() => {
+        if (props.showAll) {
+            isSwitch ? setSwitch(false) : setSwitch(true);
+        } else if (!props.showAll) {
+            !isSwitch ? setSwitch(true) : setSwitch(false);
+        }
+    }, [props.showAll]);
+
     return (
         <>
-            <li
-                className="index-item"
-                onClick={() => setIsShown((isShown) => !isShown)}
-            >
-                <div className="index-item-info">
-                    <h3 className="index-item-name">{props.name}</h3>
-                </div>
-                <div className="index-item-info">
-                    <h3 className="index-item-project">{props.project}</h3>
-                </div>
-                <div className="index-item-info">
-                    <h3 className="index-item-year">{props.year}</h3>
-                </div>
-            </li>
-
-            <section>
-                <Transition
-                    show={isShown}
-                    className="text-image-grid"
-                    enter="transition-opacity duration-75"
-                    enterFrom="opacity-0"
-                    enterTo="opacity-100"
-                    leave="transition-opacity duration-150"
-                    leaveFrom="opacity-100"
-                    leaveTo="opacity-0"
-                >
-                    <div className="text-image-grid active">
-                        <div className="text-grid">
-                            <p>{props.des}</p>
-                        </div>
-                        <div className="image-grid">
-                            {props.src.map((data) => {
-                                return (
-                                    <img
-                                        key={data.url}
-                                        className="index-item-pics"
-                                        alt="Pic"
-                                        src={data.url}
-                                        onClick={() => {
-                                            setIsClicked(true);
-                                            setActiveIndex(data);
-                                        }}
-                                    />
-                                );
-                            })}
-                            {isClicked && (
-                                <div className="backgrd">
-                                    {props.src.map((index) => {
-                                        const isActive = index === activeIndex;
-                                        return (
-                                            <>
-                                                <div
-                                                    key={index.url}
-                                                    className="img-module"
-                                                    onClick={() => {
-                                                        setIsClicked(false);
-                                                        setActiveIndex(-1);
-                                                    }}
-                                                >
-                                                    <div
-                                                        className="image-container"
-                                                        style={{
-                                                            width: `${
-                                                                width - x
-                                                            }px`,
-                                                            height: `${
-                                                                y - 1
-                                                            }px`,
-                                                        }}
-                                                    >
-                                                        <img
-                                                            alt={index}
-                                                            active={isActive}
-                                                            src={
-                                                                activeIndex.url
-                                                            }
-                                                        />
-                                                        <h6 className="sticky-text">
-                                                            {props.name}
-                                                            {" | "}
-                                                            {props.project}
-                                                            {" | "}
-                                                            {props.year}
-                                                        </h6>
-                                                    </div>
-                                                </div>
-                                            </>
-                                        );
-                                    })}
-                                </div>
-                            )}
+            {isClicked && (
+                <div className="backgrd">
+                    <div
+                        key={activeIndex.url}
+                        className="img-module"
+                        onClick={() => {
+                            setIsClicked(false);
+                            setActiveIndex(-1);
+                        }}
+                    >
+                        <div
+                            className="image-container"
+                            style={
+                                props.preview
+                                    ? {
+                                          width: `${width - x}px`,
+                                          height: `${y - 1}px`,
+                                      }
+                                    : {
+                                          width: `100%`,
+                                          height: `100%`,
+                                      }
+                            }
+                        >
+                            <img
+                                alt={activeIndex.name}
+                                active={activeIndex.isActive}
+                                src={activeIndex.url}
+                            />
+                            <h6 className="sticky-text">
+                                {activeIndex.name}
+                                {" | "}
+                                {activeIndex.project}
+                                {" | "}
+                                {activeIndex.year}
+                            </h6>
                         </div>
                     </div>
-                </Transition>
-            </section>
+                </div>
+            )}
+            <div
+                className="index"
+                key={props.projectName}
+                onClick={handleClick}
+            >
+                <div className="index-container">
+                    <div className="index-wrapper">
+                        <ul className="index-items">
+                            <li
+                                className="index-item"
+                                onClick={() => {
+                                    setOneIsShown((oneIsShown) => !oneIsShown);
+                                }}
+                            >
+                                {isSwitch ? (
+                                    <h3 className="index-item-arrow">↳</h3>
+                                ) : (
+                                    <h3 className="index-item-arrow">→</h3>
+                                )}
+                                <div className="index-item-info">
+                                    <h3 className="index-item-name">
+                                        {props.name}
+                                    </h3>
+                                </div>
+                                <div className="index-item-info">
+                                    <h3 className="index-item-project">
+                                        {props.project}
+                                    </h3>
+                                </div>
+                                <div className="index-item-info">
+                                    <h3 className="index-item-year">
+                                        {props.year}
+                                    </h3>
+                                </div>
+                            </li>
+
+                            <section>
+                                <Transition
+                                    // show={isShown}
+                                    show={
+                                        (oneIsShown
+                                            ? oneIsShown
+                                            : props.showAll) ||
+                                        (props.showAll
+                                            ? props.showAll
+                                            : oneIsShown)
+                                    }
+                                    hidden={
+                                        (oneIsShown
+                                            ? props.showAll
+                                            : oneIsShown) ||
+                                        (props.showAll
+                                            ? oneIsShown
+                                            : props.showAll)
+                                    }
+                                    className="text-image-grid"
+                                    enterFrom="opacity-0"
+                                    enterTo="opacity-100"
+                                    leaveFrom="opacity-100"
+                                    leaveTo="opacity-0"
+                                >
+                                    <div className="text-image-grid active">
+                                        <div className="text-grid">
+                                            <p>{props.des}</p>
+                                        </div>
+                                        <div className="image-grid">
+                                            {props.src.map((data) => {
+                                                return (
+                                                    <img
+                                                        key={data.url}
+                                                        className="index-item-pics"
+                                                        alt="Pic"
+                                                        src={data.url}
+                                                        onClick={() => {
+                                                            setIsClicked(true);
+                                                            setActiveIndex({
+                                                                url: data.url,
+                                                                name: props.name,
+                                                                project:
+                                                                    props.project,
+                                                                year: props.year,
+                                                            });
+                                                        }}
+                                                    />
+                                                );
+                                            })}
+                                        </div>
+                                    </div>
+                                </Transition>
+                            </section>
+                        </ul>
+                    </div>
+                </div>
+                <br />
+            </div>
         </>
     );
 }
