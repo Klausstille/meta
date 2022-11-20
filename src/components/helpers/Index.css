@@ -142,6 +142,11 @@ ul.index-items {
             position: sticky;
             top: 50px;
         }
+        .image-grid {
+            overflow: scroll;
+            height: calc(90vh - 300px);
+        }
+
         .index-item {
             display: grid;
             grid-template-columns: 1fr;
