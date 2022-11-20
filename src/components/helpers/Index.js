@@ -89,7 +89,29 @@ function Index({ lang = "fr" }) {
                 if (errors) {
                     console.error(errors);
                 }
-                setPage(data.artistesCollection.items);
+                const results = data.artistesCollection.items;
+                const mapped = results.map((results) => {
+                    let newResults = {};
+                    if (!results.year) {
+                        var year = "0000–00";
+                    } else {
+                        year = results.year.toString().replace("-", "–");
+                    }
+                    newResults = {
+                        artistName: results.artistName,
+                        projectName: results.projectName,
+                        year: year,
+                        description: results.description,
+                        galleryCollection: results.galleryCollection,
+                    };
+                    return newResults;
+                });
+                const sorted = mapped.sort(function (a, b) {
+                    let newa = a.year.split("–");
+                    let newb = b.year.split("–");
+                    return newb[0] - newa[0] + newb[1] - newa[1];
+                });
+                setPage(sorted);
             });
     }, [lang, showAll]);
 
