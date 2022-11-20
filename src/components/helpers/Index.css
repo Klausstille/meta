@@ -144,7 +144,6 @@ ul.index-items {
         }
         .image-grid {
             overflow: scroll;
-            height: 90vh;
         }
 
         .index-item {
