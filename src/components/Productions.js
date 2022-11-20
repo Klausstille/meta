@@ -62,7 +62,7 @@ export default function Atelier({ lang = "fr" }) {
     const [page, setPage] = useState(null);
     const [en, setEn] = useState(false);
     const [showAll, setShowAll] = useState(false);
-    const [preview, setPreview] = useState(true);
+    const [preview, setPreview] = useState(false);
 
     useEffect(() => {
         const query = q[lang];
@@ -104,12 +104,18 @@ export default function Atelier({ lang = "fr" }) {
             <li className="index-params">
                 <div
                     className="index-item-info"
-                    onClick={() => setShowAll((isShown) => !isShown)}
+                    onClick={() => setShowAll((showAll) => !showAll)}
                 >
                     {en ? (
-                        <p className="index-item-name">Show All ⇲</p>
+                        showAll ? (
+                            <p className="index-item-name">↑ Hide all</p>
+                        ) : (
+                            <p className="index-item-name">↓ Show all</p>
+                        )
+                    ) : showAll ? (
+                        <p className="index-item-name">↑ Voir moins</p>
                     ) : (
-                        <p className="index-item-name">Voir Tous ⇲</p>
+                        <p className="index-item-name">↓ Voir tous</p>
                     )}
                 </div>
                 <div className="index-item-info">

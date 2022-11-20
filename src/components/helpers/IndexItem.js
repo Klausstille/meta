@@ -21,15 +21,6 @@ export default function IndexItem(props) {
     };
     document.addEventListener("keydown", escape);
 
-    const preventDefaultImage = () => {
-        if (width <= 1200) {
-            props.setPreview(false);
-        } else if (width > 1200) {
-            props.setPreview(true);
-        }
-    };
-    window.addEventListener("resize", preventDefaultImage);
-
     function handleClick(e) {
         if (e.currentTarget.innerText.indexOf("→") === 0) {
             setSwitch(true);
@@ -38,16 +29,25 @@ export default function IndexItem(props) {
         }
     }
 
-    if (isClicked) {
-        preventDefaultImage();
-    }
     useEffect(() => {
         if (props.showAll) {
             isSwitch ? setSwitch(false) : setSwitch(true);
         } else if (!props.showAll) {
             !isSwitch ? setSwitch(true) : setSwitch(false);
         }
-    }, [props.showAll]);
+        const preventDefaultImage = () => {
+            console.log("RESIZSINGGG");
+            if (width <= 1200) {
+                props.setPreview(false);
+            } else if (width > 1200) {
+                console.log("BIG ENOUGN");
+                props.setPreview(true);
+            }
+        };
+        if (isClicked) {
+            preventDefaultImage();
+        }
+    }, [props.showAll, width, isClicked]);
 
     return (
         <>
