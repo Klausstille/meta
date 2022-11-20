@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { Transition } from "@headlessui/react";
 import useMouse from "../mouseEvent/MouseMove";
 import GetWindowDimensions from "../mouseEvent/DocumentSize";
+import LazyLoad from "react-lazy-load";
+
 import "./Index.css";
 
 export default function IndexItem(props) {
@@ -159,22 +161,26 @@ export default function IndexItem(props) {
                                         <div className="image-grid">
                                             {props.src.map((data) => {
                                                 return (
-                                                    <img
-                                                        key={data.url}
-                                                        className="index-item-pics"
-                                                        alt="Pic"
-                                                        src={data.url}
-                                                        onClick={() => {
-                                                            setIsClicked(true);
-                                                            setActiveIndex({
-                                                                url: data.url,
-                                                                name: props.name,
-                                                                project:
-                                                                    props.project,
-                                                                year: props.year,
-                                                            });
-                                                        }}
-                                                    />
+                                                    <LazyLoad>
+                                                        <img
+                                                            key={data.url}
+                                                            className="index-item-pics"
+                                                            alt="Pic"
+                                                            src={data.url}
+                                                            onClick={() => {
+                                                                setIsClicked(
+                                                                    true
+                                                                );
+                                                                setActiveIndex({
+                                                                    url: data.url,
+                                                                    name: props.name,
+                                                                    project:
+                                                                        props.project,
+                                                                    year: props.year,
+                                                                });
+                                                            }}
+                                                        />
+                                                    </LazyLoad>
                                                 );
                                             })}
                                         </div>
