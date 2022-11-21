@@ -122,7 +122,7 @@ function Index({ lang = "fr" }) {
         <>
             <li className="index-params">
                 <div
-                    className="index-item-info"
+                    className="show-all"
                     onClick={() => setShowAll((showAll) => !showAll)}
                 >
                     {en ? (

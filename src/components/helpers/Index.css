@@ -59,7 +59,6 @@ ul.index-items {
 }
 
 .index-item-pics {
-    /* padding: 5px; */
     width: 160px;
     height: 100px;
     object-fit: cover;
@@ -136,20 +135,28 @@ ul.index-items {
     .index-params h3 {
         font-size: 1rem;
     }
+    .index-item-pics {
+        width: 140px;
+        height: 80px;
+        object-fit: cover;
+    }
 
     @media screen and (max-width: 800px) {
         .index {
-            position: sticky;
-            top: 50px;
+            position: relative;
+            top: 20px;
         }
-        .text-grid {
-            height: 14vh;
-            overflow: scroll;
+
+        .index-params {
+            padding: 0 40px 0px 40px;
+            position: relative;
+            top: 0;
+            background-color: white;
+            margin: 50px 0 0 0;
         }
+
         .image-grid {
-            overflow: scroll;
             align-content: flex-start;
-            height: 50vh;
         }
 
         .index-item {
@@ -162,7 +169,7 @@ ul.index-items {
         .index-item-year {
             justify-items: start;
         }
-        .index-params {
+        .index-params .index-item-info:not(:first-child) {
             display: none;
         }
     }
