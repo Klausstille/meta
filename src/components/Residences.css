@@ -107,7 +107,4 @@ p.readmore {
         height: 50vw !important;
         object-fit: cover;
     }
-    .events-grid img {
-        pointer-events: none;
-    }
 }

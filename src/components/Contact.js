@@ -57,12 +57,21 @@ function Contact({ lang = "fr" }) {
     const [isShown, setIsShown] = useState(false);
     const { x, y } = useMouse();
     const { width } = GetWindowDimensions();
+    const [preview, setPreview] = useState(false);
 
     useEffect(() => {
         const query = q[lang];
 
-        // console.log({ lang });
-        // console.log(query);
+        if (isShown) {
+            preventDefaultImage();
+        }
+        function preventDefaultImage() {
+            if (width <= 1200) {
+                setPreview(false);
+            } else if (width > 1200) {
+                setPreview(true);
+            }
+        }
 
         window
             .fetch(
@@ -83,7 +92,7 @@ function Contact({ lang = "fr" }) {
                 }
                 setPage(data.bioCollection.items);
             });
-    }, [lang]);
+    }, [lang, isShown, width]);
 
     if (!page) {
         return;
@@ -155,10 +164,17 @@ function Contact({ lang = "fr" }) {
                     >
                         <div
                             className="image-container"
-                            style={{
-                                width: `${width - x}px`,
-                                height: `${y - 1}px`,
-                            }}
+                            style={
+                                preview
+                                    ? {
+                                          width: `${width - x}px`,
+                                          height: `${y - 1}px`,
+                                      }
+                                    : {
+                                          width: `100%`,
+                                          height: `100%`,
+                                      }
+                            }
                         >
                             <img alt="" src={page[1].bioImage.url} />
                         </div>

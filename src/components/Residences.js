@@ -60,6 +60,7 @@ function Residences({ lang = "fr" }) {
     const [en, setEn] = useState(false);
     const [isShown, setIsShown] = useState(false);
     const [activeIndex, setActiveIndex] = useState(-1);
+    const [preview, setPreview] = useState(false);
     const { x, y } = useMouse();
     const { width } = GetWindowDimensions();
 
@@ -70,7 +71,16 @@ function Residences({ lang = "fr" }) {
         if (query === q["en-US"]) {
             setEn(true);
         } else setEn(false);
-
+        if (isShown) {
+            preventDefaultImage();
+        }
+        function preventDefaultImage() {
+            if (width <= 1200) {
+                setPreview(false);
+            } else if (width > 1200) {
+                setPreview(true);
+            }
+        }
         window
             .fetch(
                 `https://graphql.contentful.com/content/v1/spaces/${SPACE_ID}/`,
@@ -90,7 +100,7 @@ function Residences({ lang = "fr" }) {
                 }
                 setPage(data.residencesCollection.items);
             });
-    }, [lang]);
+    }, [lang, isShown, width]);
 
     if (!page) {
         return;
@@ -122,10 +132,17 @@ function Residences({ lang = "fr" }) {
                         >
                             <div
                                 className="image-container"
-                                style={{
-                                    width: `${width - x}px`,
-                                    height: `${y - 1}px`,
-                                }}
+                                style={
+                                    preview
+                                        ? {
+                                              width: `${width - x}px`,
+                                              height: `${y - 1}px`,
+                                          }
+                                        : {
+                                              width: `100%`,
+                                              height: `100%`,
+                                          }
+                                }
                             >
                                 <img
                                     alt={
