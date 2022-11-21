@@ -142,8 +142,14 @@ ul.index-items {
             position: sticky;
             top: 50px;
         }
+        .text-grid {
+            height: 14vh;
+            overflow: scroll;
+        }
         .image-grid {
             overflow: scroll;
+            align-content: flex-start;
+            height: 50vh;
         }
 
         .index-item {
