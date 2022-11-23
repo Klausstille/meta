@@ -57,14 +57,13 @@ h6.sticky-text {
     gap: 20px;
 }
 
-p.readmore {
+.readmore p {
     margin-top: -15px;
     font-family: "Graphikmedium", Fallback, sans-serif;
 }
 
 .event-text {
     margin-top: auto;
-    display: none;
 }
 
 .title-text {
