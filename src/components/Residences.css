@@ -9,11 +9,6 @@
     object-fit: cover;
 }
 
-img.residences-pic {
-    width: 100%;
-    height: 100%;
-}
-
 .image-container {
     position: absolute;
     right: 0;
