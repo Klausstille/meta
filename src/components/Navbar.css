@@ -96,8 +96,8 @@ ul.nav-menu {
 
 .hamburger__bar {
     transition-property: transform;
-    transition-duration: 1s;
-    transform-origin: center;
+    transition-duration: 2s;
+    transform-origin: initial;
     stroke: #006eff;
     stroke-width: 3px;
 }
