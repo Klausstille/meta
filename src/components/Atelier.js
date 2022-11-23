@@ -186,7 +186,7 @@ export default function Atelier({ lang = "fr" }) {
                                         </h3>
                                     )}
                                 </div> */}
-                                {y > 90 ? (
+                                {y > 45 ? (
                                     <div
                                         className="atelier-img"
                                         style={{
