@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import useMouse from "./mouseEvent/MouseMove";
-import GetWindowDimensions from "./mouseEvent/DocumentSize";
+// import useMouse from "./mouseEvent/MouseMove";
+// import GetWindowDimensions from "./mouseEvent/DocumentSize";
 import Footer from "./Footer";
 import "./Atelier.css";
 
@@ -54,18 +54,18 @@ const q = {
 
 export default function Atelier({ lang = "fr" }) {
     const [page, setPage] = useState(null);
-    const [en, setEn] = useState(false);
-    const { x, y } = useMouse();
-    const { width } = GetWindowDimensions();
+    // const [en, setEn] = useState(false);
+    // const { x, y } = useMouse();
+    // const { width } = GetWindowDimensions();
     // console.log("height, x, y", height, x, y);
     useEffect(() => {
         const query = q[lang];
         // console.log({ lang });
         // console.log(query);
 
-        if (query === q["en-US"]) {
-            setEn(true);
-        } else setEn(false);
+        // if (query === q["en-US"]) {
+        //     setEn(true);
+        // } else setEn(false);
 
         window
             .fetch(
