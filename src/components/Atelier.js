@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-// import useMouse from "./mouseEvent/MouseMove";
-// import GetWindowDimensions from "./mouseEvent/DocumentSize";
+import useMouse from "./mouseEvent/MouseMove";
+import GetWindowDimensions from "./mouseEvent/DocumentSize";
 import Footer from "./Footer";
 import "./Atelier.css";
 
@@ -21,6 +21,7 @@ const engQuery = `
     items {
       heromedia {
         url
+        title(locale:"en-US")
       }
       homeText(locale: "en-US") {
         json
@@ -37,6 +38,8 @@ const freQuery = `
     items {
       heromedia {
         url
+        title(locale:"fr")
+
       }
       homeText(locale: "fr") {
         json
@@ -55,8 +58,8 @@ const q = {
 export default function Atelier({ lang = "fr" }) {
     const [page, setPage] = useState(null);
     // const [en, setEn] = useState(false);
-    // const { x, y } = useMouse();
-    // const { width } = GetWindowDimensions();
+    const { x, y } = useMouse();
+    const { width } = GetWindowDimensions();
     // console.log("height, x, y", height, x, y);
     useEffect(() => {
         const query = q[lang];
@@ -84,8 +87,6 @@ export default function Atelier({ lang = "fr" }) {
                 if (errors) {
                     console.error(errors);
                 }
-                console.log(data.homeCollection.items);
-
                 setPage(data.homeCollection.items);
             });
     }, [lang]);
@@ -185,10 +186,22 @@ export default function Atelier({ lang = "fr" }) {
                                         </h3>
                                     )}
                                 </div> */}
-
-                                <div className="atelier-img">
-                                    <img src={data.heromedia.url} alt="" />
-                                </div>
+                                {y > 90 ? (
+                                    <div
+                                        className="atelier-img"
+                                        style={{
+                                            width: `${width - x}px`,
+                                            height: `${y}px`,
+                                        }}
+                                    >
+                                        <img src={data.heromedia.url} alt="" />
+                                        <h6 className="sticky-text">
+                                            {data.heromedia.title}
+                                        </h6>
+                                    </div>
+                                ) : (
+                                    <p></p>
+                                )}
                             </>
                         );
                     })}

@@ -70,7 +70,7 @@ export default function HomePage({ lang = "fr" }) {
                             <img src="./logo_meta.png" alt="Meta" />
                         </div>
                     ) : (
-                        <div></div>
+                        <p></p>
                     )}
                 </div>
                 {/* <div className="hero-container">
