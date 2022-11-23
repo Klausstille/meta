@@ -64,16 +64,15 @@ p.readmore {
 
 .event-text {
     margin-top: auto;
+    display: none;
 }
 
 .title-text {
     padding-top: 1.25rem;
-    display: none;
 }
 .description-text {
     padding-top: 0;
     padding-bottom: 1.25rem;
-    display: none;
 }
 
 .category-title {
