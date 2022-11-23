@@ -26,7 +26,7 @@ h2 {
     height: 100%;
 }
 .atelier-img {
-    position: absolute;
+    position: fixed;
     right: 0;
     top: 0;
 }
