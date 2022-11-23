@@ -39,6 +39,7 @@ export default function Events({
             <div key={data.residencesPhotos.url}>
                 <img
                     alt={data}
+                    className="residences-pic"
                     src={data.residencesPhotos.url}
                     onClick={() => {
                         setIsShown(true);

@@ -9,6 +9,11 @@
     object-fit: cover;
 }
 
+img.residences-pic {
+    width: 100%;
+    height: 100%;
+}
+
 .image-container {
     position: absolute;
     right: 0;
@@ -35,7 +40,6 @@
 .backgrd {
     position: absolute;
 }
-
 h6.sticky-text {
     background-color: #ffffff;
     color: #006eff;
