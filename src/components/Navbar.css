@@ -95,8 +95,8 @@ ul.nav-menu {
 }
 
 .hamburger__bar--top {
-    transform: translateY(-40%);
-    transition-property: transform;
+    transform: translate(0, -10px);
+    transition-property: all;
     transition-duration: 2s;
     transform-origin: initial;
     stroke: #006eff;
@@ -104,8 +104,8 @@ ul.nav-menu {
 }
 
 .hamburger__bar--mid {
-    transform: translateY(0%);
-    transition-property: transform;
+    transform: translate(0, 0);
+    transition-property: all;
     transition-duration: 2s;
     transform-origin: initial;
     stroke: #006eff;
@@ -113,8 +113,8 @@ ul.nav-menu {
 }
 
 .hamburger__bar--bot {
-    transform: translateY(40%);
-    transition-property: transform;
+    transform: translate(0, 10px);
+    transition-property: all;
     transition-duration: 2s;
     transform-origin: initial;
     stroke: #006eff;
@@ -122,15 +122,15 @@ ul.nav-menu {
 }
 
 .is-opened .hamburger__bar--top {
-    transform: rotate(90deg) scaleX(0.5) translateX(-10px);
+    transform: rotate(90deg) scaleX(0.5) translate(-10px, 0);
 }
 
 .is-opened .hamburger__bar--mid {
-    transform: scaleX(0.5) translateX(10px);
+    transform: scaleX(0.5) translate(10px, 0);
 }
 
 .is-opened .hamburger__bar--bot {
-    transform: rotate(-45deg) scaleX(0.5) translate(-10px);
+    transform: rotate(-45deg) scaleX(0.5) translate(-10px, 0);
 }
 
 .nav-links-mobile {
