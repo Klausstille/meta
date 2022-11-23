@@ -94,7 +94,8 @@ ul.nav-menu {
     height: 25px;
 }
 
-.hamburger__bar {
+.hamburger__bar--top {
+    transform: translateY(-40%);
     transition-property: transform;
     transition-duration: 2s;
     transform-origin: initial;
@@ -102,12 +103,22 @@ ul.nav-menu {
     stroke-width: 3px;
 }
 
-.hamburger__bar--top {
-    transform: translateY(-40%);
+.hamburger__bar--mid {
+    transform: translateY(0%);
+    transition-property: transform;
+    transition-duration: 2s;
+    transform-origin: initial;
+    stroke: #006eff;
+    stroke-width: 3px;
 }
 
 .hamburger__bar--bot {
     transform: translateY(40%);
+    transition-property: transform;
+    transition-duration: 2s;
+    transform-origin: initial;
+    stroke: #006eff;
+    stroke-width: 3px;
 }
 
 .is-opened .hamburger__bar--top {
