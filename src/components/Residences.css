@@ -37,6 +37,10 @@ img.residences-pic {
     z-index: 1;
 }
 
+.backgrd {
+    position: absolute;
+}
+
 h6.sticky-text {
     background-color: #ffffff;
     color: #006eff;
