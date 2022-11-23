@@ -35,7 +35,7 @@ export default function Events({
     };
 
     return (
-        <div className="events-grid" key={data.residencesPhotos.url}>
+        <div className="events-grid">
             <div key={data.residencesPhotos.url}>
                 <img
                     alt={data}
