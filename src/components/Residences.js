@@ -108,6 +108,41 @@ function Residences({ lang = "fr" }) {
 
     return (
         <>
+            {isShown && (
+                <div className="backgrd">
+                    <div
+                        className="img-module"
+                        onClick={() => {
+                            setIsShown(false);
+                            setActiveIndex(-1);
+                        }}
+                    >
+                        <div
+                            className="image-container"
+                            style={
+                                preview
+                                    ? {
+                                          width: `${width - x}px`,
+                                          height: `${y - 1}px`,
+                                      }
+                                    : {
+                                          width: `100%`,
+                                          height: `100%`,
+                                      }
+                            }
+                        >
+                            <img
+                                alt={page[activeIndex].residencesPhotos.title}
+                                src={page[activeIndex].residencesPhotos.url}
+                            />
+                            <h6 className="sticky-text">
+                                {page[activeIndex].residencesPhotos.title} |{" "}
+                                {page[activeIndex].description}
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+            )}
             <div className="events-container">
                 {page.map((data, index) => {
                     return (
@@ -120,44 +155,6 @@ function Residences({ lang = "fr" }) {
                         />
                     );
                 })}
-
-                {isShown && (
-                    <div className="backgrd">
-                        <div
-                            className="img-module"
-                            onClick={() => {
-                                setIsShown(false);
-                                setActiveIndex(-1);
-                            }}
-                        >
-                            <div
-                                className="image-container"
-                                style={
-                                    preview
-                                        ? {
-                                              width: `${width - x}px`,
-                                              height: `${y - 1}px`,
-                                          }
-                                        : {
-                                              width: `100%`,
-                                              height: `100%`,
-                                          }
-                                }
-                            >
-                                <img
-                                    alt={
-                                        page[activeIndex].residencesPhotos.title
-                                    }
-                                    src={page[activeIndex].residencesPhotos.url}
-                                />
-                                <h6 className="sticky-text">
-                                    {page[activeIndex].residencesPhotos.title} |{" "}
-                                    {page[activeIndex].description}
-                                </h6>
-                            </div>
-                        </div>
-                    </div>
-                )}
             </div>
             <footer>
                 <Footer lang={lang} />
