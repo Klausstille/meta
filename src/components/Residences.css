@@ -12,6 +12,7 @@
 img.residences-pic {
     width: 100%;
     height: 100%;
+    display: none;
 }
 
 .image-container {
@@ -55,7 +56,6 @@ h6.sticky-text {
     grid-template-columns: 1fr 1fr;
     padding: 0px 40px 80px 40px;
     gap: 20px;
-    visibility: hidden;
 }
 
 p.readmore {
