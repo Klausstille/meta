@@ -154,7 +154,7 @@ function Residences({ lang = "fr" }) {
                             setActiveIndex={setActiveIndex}
                             index={index}
                             en={en}
-                            // key={data.residencesPhotos.title}
+                            key={data.residencesPhotos.title}
                         />
                     );
                 })}
