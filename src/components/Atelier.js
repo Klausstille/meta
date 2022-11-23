@@ -102,7 +102,7 @@ export default function Atelier({ lang = "fr" }) {
                     {page.map((data) => {
                         return (
                             <>
-                                <div>
+                                {/* <div>
                                     {y > 64 ? (
                                         <h1
                                             key={data.homeText}
@@ -126,19 +126,50 @@ export default function Atelier({ lang = "fr" }) {
                                                 height: `0px`,
                                             }}
                                         >
-                                            &nbsp;
+
                                         </h3>
                                     )}
-                                </div>
-                                {/* <div>
-                                    <h1 className="info-text">
-                                        {
-                                            data.infoText.json.content[0]
-                                                .content[0].value
-                                        }
-                                    </h1>
                                 </div> */}
-                                <div className="back">
+                                <div>
+                                    {data.homeText.json.content.map(
+                                        (content) => {
+                                            return content.content.length ===
+                                                0 ? (
+                                                <>{content.content[0].value},</>
+                                            ) : (
+                                                <h2>
+                                                    {content.content.map(
+                                                        (content) => {
+                                                            return content.data
+                                                                .uri ? (
+                                                                <a
+                                                                    href={
+                                                                        content
+                                                                            .data
+                                                                            .uri
+                                                                    }
+                                                                >
+                                                                    {
+                                                                        content
+                                                                            .content[0]
+                                                                            .value
+                                                                    }
+                                                                </a>
+                                                            ) : (
+                                                                <>
+                                                                    {
+                                                                        content.value
+                                                                    }
+                                                                </>
+                                                            );
+                                                        }
+                                                    )}
+                                                </h2>
+                                            );
+                                        }
+                                    )}
+                                </div>
+                                {/* <div className="back">
                                     {en ? (
                                         <h3>
                                             ↑<br />
@@ -153,14 +184,11 @@ export default function Atelier({ lang = "fr" }) {
                                             <br />↓
                                         </h3>
                                     )}
+                                </div> */}
+
+                                <div className="atelier-img">
+                                    <img src={data.heromedia.url} alt="" />
                                 </div>
-                                {data.heromedia ? (
-                                    <div className="atelier-img">
-                                        <img src={data.heromedia.url} alt="" />
-                                    </div>
-                                ) : (
-                                    <div></div>
-                                )}
                             </>
                         );
                     })}

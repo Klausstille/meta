@@ -1,5 +1,5 @@
 .navbar {
-    height: 52px;
+    height: 45px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,11 +20,9 @@
 
 .nav-lan {
     color: #006eff;
-    font-size: 1.2rem;
     position: fixed;
     right: 40px;
-    top: 8px;
-    line-height: 1;
+    top: 1px;
 }
 
 .nav-lan button {
@@ -39,7 +37,7 @@
 
 .nav-lan button.mobile {
     margin-top: 7px;
-    font-size: 1.7rem;
+    font-size: 1.4rem;
 }
 
 .nav-logo {
@@ -82,7 +80,7 @@ ul.nav-menu {
     text-decoration: none;
     padding: 0.5rem 0;
     height: 100%;
-    font-size: 1.7rem;
+    font-size: 1.4rem;
 }
 
 .nav-links:hover {
@@ -92,8 +90,8 @@ ul.nav-menu {
 }
 
 .hamburger {
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
 }
 
 .hamburger__bar {
@@ -113,15 +111,15 @@ ul.nav-menu {
 }
 
 .is-opened .hamburger__bar--top {
-    transform: rotate(90deg) scaleX(0.5) translateX(-15px);
+    transform: rotate(90deg) scaleX(0.5) translateX(-10px);
 }
 
 .is-opened .hamburger__bar--mid {
-    transform: scaleX(0.5) translateX(15px);
+    transform: scaleX(0.5) translateX(10px);
 }
 
 .is-opened .hamburger__bar--bot {
-    transform: rotate(-45deg) scaleX(0.5) translate(-15px);
+    transform: rotate(-45deg) scaleX(0.5) translate(-10px);
 }
 
 .nav-links-mobile {
@@ -164,7 +162,7 @@ ul.nav-menu {
         background-color: rgba(255, 255, 255, 0.9);
         color: #006eff;
         left: 0;
-        top: 52px;
+        top: 45px;
         z-index: 1;
         height: 100vh;
     }
@@ -190,7 +188,7 @@ ul.nav-menu {
     .menu-icon {
         display: block;
         position: absolute;
-        top: 13px;
+        top: 10px;
         left: 0;
         margin-left: 40px;
     }

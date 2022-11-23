@@ -1,8 +1,3 @@
-h2 {
-    font-size: 1.7rem;
-    color: #006eff;
-}
-
 .event-text h6 {
     color: #006eff;
     font-size: 1rem;
@@ -44,11 +39,9 @@ img.residences-pic {
 
 h6.sticky-text {
     background-color: #ffffff;
-    border-top: solid 1px;
     color: #006eff;
-    font-family: "Graphikmedium", Fallback, sans-serif;
+    font-family: "Graphikregular", Fallback, sans-serif;
     margin-top: -40px;
-    opacity: 1;
     padding: 10px;
     position: fixed;
     width: 100%;

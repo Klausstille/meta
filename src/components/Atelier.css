@@ -1,18 +1,12 @@
-h1 {
+h2 {
+    font-size: 2.8rem;
     color: #006eff;
-    font-size: 1.7rem;
-    padding-top: 80px;
-    text-align: center;
-    margin-top: 10px;
+    margin-bottom: 2rem;
+    line-height: 1.1;
 }
 
 .text-module {
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: 100vw;
-    height: 50vh;
-    z-index: 0;
+    padding: 0px 40px 80px 40px;
 }
 
 .info-text {
@@ -21,33 +15,13 @@ h1 {
     text-align-last: center;
     font-size: 6vw;
     padding: 0;
-    line-height: 1;
     margin-top: -20px;
     z-index: -1;
     opacity: 0.1;
     padding: 0 40px;
 }
 .atelier-img img {
-    height: 96vh;
-    width: 100%;
-    object-fit: cover;
-    object-position: bottom;
-    position: absolute;
-    top: 0;
-    opacity: 0.2;
-    z-index: -1;
-    filter: grayscale(1);
-}
-
-.text-container {
-    background-color: #f8f8f8;
-    box-sizing: content-box;
-    overflow: scroll;
-    position: absolute;
-    padding: 54px 0 0px 0px;
-    right: 0;
-    top: 0;
-    z-index: 1;
+    width: 40vw;
 }
 
 .back p {
@@ -67,17 +41,14 @@ h1 {
 }
 
 @media screen and (max-width: 1200px) {
-    h1 {
-        font-size: 1.2rem;
-    }
-    .info-text {
-        margin-top: 0;
+    h2 {
+        font-size: 1rem;
+        line-height: 1.4rem;
     }
 }
 
 @media screen and (max-width: 800px) {
-    .info-text {
-        margin-top: 0;
-        font-size: 8vw;
+    .text-module {
+        padding: 40px 40px 80px 40px;
     }
 }
