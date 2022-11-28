@@ -149,7 +149,7 @@ ul.index-items {
     @media screen and (max-width: 800px) {
         .index {
             position: relative;
-            top: 20px;
+            top: 0px;
         }
 
         .index-params {
@@ -176,6 +176,10 @@ ul.index-items {
         }
         .index-params .index-item-info:not(:first-child) {
             display: none;
+        }
+
+        ul.index-items {
+            margin: 0 0 -15px 0;
         }
     }
 }
