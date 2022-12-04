@@ -69,7 +69,7 @@ main {
 
 footer {
     margin-top: auto;
-    z-index: 1;
+    z-index: 0;
 }
 @media screen and (max-width: 1200px) {
     h3 {
