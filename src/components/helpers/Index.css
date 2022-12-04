@@ -1,7 +1,7 @@
 .index-params {
     display: grid;
     grid-template-columns: 100px 1fr 1fr 1fr;
-    padding: 40px 40px 0px 40px;
+    padding: 40px 20px 0px 20px;
     grid-gap: 40px;
     position: sticky;
     top: 2px;
@@ -31,7 +31,7 @@
     align-items: end;
     grid-template-columns: 100px 1fr 1fr 1fr;
     grid-gap: 40px;
-    padding: 10px 40px 0 40px;
+    padding: 10px 20px 0 20px;
     margin: 0px 0px;
     background-color: #ffffff;
 }
@@ -76,7 +76,7 @@ ul.index-items {
 
 .text-image-grid {
     display: grid;
-    padding: 10px 20px 10px 20px;
+    padding: 10px 10px 10px 10px;
     grid-gap: 40px;
     transition: all 0.2s ease-in-out;
 }
@@ -153,22 +153,24 @@ ul.index-items {
         }
 
         .index-params {
-            padding: 0 40px 0px 40px;
             position: relative;
             top: 0;
             background-color: white;
             margin: 50px 0 0 0;
+            padding: 0 20px 0px 20px;
         }
 
         .image-grid {
             align-content: flex-start;
         }
-
+        .text-image-grid {
+            padding: 10px 10px 10px 10px;
+        }
         .index-item {
             display: grid;
             grid-template-columns: 1fr;
             grid-gap: 0;
-            padding: 20px 40px 0 40px;
+            padding: 20px 20px 0 20px;
             margin: 0;
         }
         .index-item-year {
