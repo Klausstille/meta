@@ -18,7 +18,7 @@
 .nav-lan {
     color: #006eff;
     position: fixed;
-    right: 40px;
+    right: 20px;
     top: 1px;
 }
 
@@ -43,7 +43,7 @@
     list-style: none;
     padding: 0;
     position: fixed;
-    left: 40px;
+    left: 20px;
     top: 0px;
     font-family: "Graphikmedium", Fallback, sans-serif;
 }
@@ -58,8 +58,8 @@
     grid-template-columns: repeat(5, auto);
     list-style: none;
     text-align: center;
-    width: 85vw;
-    margin-left: 50px;
+    width: 90vw;
+    /* margin-left: 50px; */
     justify-content: space-evenly;
 }
 
@@ -199,7 +199,7 @@ ul.nav-menu {
         position: absolute;
         top: 10px;
         left: 0;
-        margin-left: 40px;
+        margin-left: 20px;
     }
 
     .nav-links-mobile {

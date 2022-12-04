@@ -2,7 +2,7 @@
     text-decoration: none;
 }
 .footer-container {
-    padding: 2rem 40px 1rem 40px;
+    padding: 2rem 20px 1rem 20px;
     display: flex;
     /* justify-content: center; */
     flex-direction: row;
