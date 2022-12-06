@@ -88,43 +88,40 @@ ul.nav-menu {
 }
 
 .hamburger {
-    width: 27px;
-    height: 27px;
+    width: 23px;
+    height: 23px;
 }
 
 .hamburger__bar--top {
-    transform: translate(0, -10px);
-    transition-property: all;
-    transition-duration: 2s;
+    transform: translate(0, -8px);
     transform-origin: initial;
     stroke: #006eff;
     stroke-width: 3px;
+    transition: all 1s ease-in-out;
 }
 
 .hamburger__bar--mid {
     transform: translate(0, 0);
-    transition-property: all;
-    transition-duration: 2s;
     transform-origin: initial;
     stroke: #006eff;
     stroke-width: 3px;
+    transition: all 1s ease-in-out;
 }
 
 .hamburger__bar--bot {
-    transform: translate(0, 10px);
-    transition-property: all;
-    transition-duration: 2s;
+    transform: translate(0, 8px);
     transform-origin: initial;
     stroke: #006eff;
     stroke-width: 3px;
+    transition: all 1s ease-in-out;
 }
 
 .is-opened .hamburger__bar--top {
-    transform: rotate(90deg) scaleX(0.8) translate(-13px, 0);
+    transform: rotate(90deg) scaleX(0.8) translate(-10px, 0);
 }
 
 .is-opened .hamburger__bar--mid {
-    transform: translate(13px, 0);
+    transform: translate(10px, 0);
 }
 
 .is-opened .hamburger__bar--bot {
