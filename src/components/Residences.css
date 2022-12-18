@@ -48,6 +48,7 @@ h6.sticky-text {
     padding: 10px;
     position: fixed;
     width: 100%;
+    /* bottom: -10px; */
 }
 
 .events-container {

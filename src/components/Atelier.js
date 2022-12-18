@@ -60,7 +60,11 @@ export default function Atelier({ lang = "fr" }) {
     // const [en, setEn] = useState(false);
     const { x, y } = useMouse();
     const { width } = GetWindowDimensions();
+    const [isShown, setIsShown] = useState(false);
+    const [preview, setPreview] = useState(false);
+
     // console.log("height, x, y", height, x, y);
+
     useEffect(() => {
         const query = q[lang];
         // console.log({ lang });
@@ -69,7 +73,16 @@ export default function Atelier({ lang = "fr" }) {
         // if (query === q["en-US"]) {
         //     setEn(true);
         // } else setEn(false);
-
+        if (isShown) {
+            preventDefaultImage();
+        }
+        function preventDefaultImage() {
+            if (width <= 1200) {
+                setPreview(false);
+            } else if (width > 1200) {
+                setPreview(true);
+            }
+        }
         window
             .fetch(
                 `https://graphql.contentful.com/content/v1/spaces/${SPACE_ID}/`,
@@ -89,7 +102,7 @@ export default function Atelier({ lang = "fr" }) {
                 }
                 setPage(data.homeCollection.items);
             });
-    }, [lang]);
+    }, [lang, isShown, width]);
 
     if (!page) {
         return;
@@ -103,34 +116,6 @@ export default function Atelier({ lang = "fr" }) {
                     {page.map((data) => {
                         return (
                             <>
-                                {/* <div>
-                                    {y > 64 ? (
-                                        <h1
-                                            key={data.homeText}
-                                            className="text-container"
-                                            style={{
-                                                width: `${width - x}px`,
-                                                height: `${y - 63}px`,
-                                            }}
-                                        >
-                                            {
-                                                data.homeText.json.content[0]
-                                                    .content[0].value
-                                            }
-                                        </h1>
-                                    ) : (
-                                        <h3
-                                            key={data.homeText}
-                                            className="text-container"
-                                            style={{
-                                                width: `0px`,
-                                                height: `0px`,
-                                            }}
-                                        >
-
-                                        </h3>
-                                    )}
-                                </div> */}
                                 <div>
                                     {data.homeText.json.content.map(
                                         (content) => {
@@ -169,38 +154,50 @@ export default function Atelier({ lang = "fr" }) {
                                             );
                                         }
                                     )}
-                                </div>
-                                {/* <div className="back">
-                                    {en ? (
-                                        <h3>
-                                            ↑<br />
-                                            Move mouse here and scroll!
-                                            <br />↓
-                                        </h3>
-                                    ) : (
-                                        <h3>
-                                            ↑<br />
-                                            Déplacez la souris ici et faites
-                                            défiler!
-                                            <br />↓
-                                        </h3>
-                                    )}
-                                </div> */}
-                                {y > 45 ? (
-                                    <div
-                                        className="atelier-img"
-                                        style={{
-                                            width: `${width - x}px`,
-                                            height: `${y}px`,
-                                        }}
-                                    >
-                                        <img src={data.heromedia.url} alt="" />
-                                        <h6 className="sticky-text">
-                                            {data.heromedia.title}
+                                    <div className="pic-container">
+                                        <h6
+                                            onClick={() => {
+                                                setIsShown(true);
+                                            }}
+                                        >
+                                            ↳ {data.heromedia.title}
                                         </h6>
                                     </div>
-                                ) : (
-                                    <p></p>
+                                </div>
+
+                                {isShown && (
+                                    <div
+                                        key={data.heromedia.url}
+                                        className="img-module-contact"
+                                        onClick={() => {
+                                            setIsShown(false);
+                                        }}
+                                    >
+                                        <div
+                                            className="image-container"
+                                            style={
+                                                preview
+                                                    ? {
+                                                          width: `${
+                                                              width - x
+                                                          }px`,
+                                                          height: `${y - 1}px`,
+                                                      }
+                                                    : {
+                                                          width: `100%`,
+                                                          height: `100%`,
+                                                      }
+                                            }
+                                        >
+                                            <img
+                                                alt=""
+                                                src={data.heromedia.url}
+                                            />
+                                            <h6 className="sticky-text">
+                                                {data.heromedia.title}
+                                            </h6>
+                                        </div>
+                                    </div>
                                 )}
                             </>
                         );
