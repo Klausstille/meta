@@ -21,15 +21,29 @@
 }
 
 input {
-    padding: 5px 15px;
+    padding: 2px 15px;
     border-radius: 2px;
     margin-right: 10px;
     outline: none;
     border: none;
     font-size: 1rem;
-    /* margin-bottom: 16px; */
+    margin-bottom: 3px;
     border: 1px solid #006eff;
     background-color: transparent;
+}
+
+input::placeholder {
+    color: #006eff40;
+}
+
+button {
+    cursor: none !important;
+    border-radius: 2px;
+    background-color: transparent;
+    border: 1px solid #006eff;
+    transition: all 0.5s ease-out;
+    padding: 2px 15px;
+    font-size: 1rem;
 }
 
 .footer-links {
@@ -69,10 +83,6 @@ p {
     transition: 0.3s ease-out;
 }
 
-input::placeholder {
-    color: #006eff40;
-}
-
 .contact {
     width: 100%;
     text-align: right;
@@ -110,6 +120,7 @@ input::placeholder {
     color: #006eff;
     margin-bottom: 16px;
     margin-right: 40px;
+    line-height: 1.5;
 }
 
 .logo-2 {
@@ -117,15 +128,8 @@ input::placeholder {
     margin-top: 5px;
 }
 
-button {
-    cursor: none !important;
-    border-radius: 2px;
-    background-color: transparent;
-    padding: 8px 20px;
-    border: 1px solid #006eff;
-    transition: all 0.5s ease-out;
-    padding: 5px 15px;
-    font-size: 1rem;
+.content__gdprLegal {
+    width: 300px;
 }
 
 @media screen and (max-width: 1200px) {

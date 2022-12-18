@@ -89,6 +89,8 @@ function Footer({ lang = "fr" }) {
                     </div>
 
                     <div className="footer-link-items">
+                        <Link to="/privacy">Privacy</Link>
+                        <br></br>
                         <a
                             href="https://www.instagram.com/collectif.meta/"
                             target="blank"
@@ -120,6 +122,43 @@ function Footer({ lang = "fr" }) {
                     )}
                 </div>
                 <MailchimpSubscribe url={MAILCHIMP_URL} />
+
+                <div class="content__gdprLegal">
+                    {en ? (
+                        <p style={{ fontSize: "9px", lineHeight: "1.3" }}>
+                            You can unsubscribe at any time by clicking on the
+                            link in the footer of our emails. We use Mailchimp
+                            as our marketing platform. By clicking to subscribe,
+                            you acknowledge that your information will be
+                            transferred to Mailchimp for processing.{" "}
+                            <a
+                                rel="noreferrer"
+                                href="https://mailchimp.com/legal/terms"
+                                target="_blank"
+                            >
+                                Learn more about Mailchimp's privacy practices
+                                here.
+                            </a>
+                        </p>
+                    ) : (
+                        <p style={{ fontSize: "9px", lineHeight: "1.3" }}>
+                            Vous pouvez vous désabonner à tout moment en
+                            cliquant sur le lien dans le bas de page de nos
+                            e-mails. Nous utilisons Mailchimp comme plateforme
+                            marketing. En cliquant sur souscrire, vous
+                            reconnaissez que vos informations seront transférées
+                            à Mailchimp.{" "}
+                            <a
+                                rel="noreferrer"
+                                href="https://mailchimp.com/legal/terms"
+                                target="_blank"
+                            >
+                                Learn more about Mailchimp's privacy practices
+                                here.
+                            </a>
+                        </p>
+                    )}
+                </div>
             </section>
             <section className="contact">
                 <div className="contact-wrap">

@@ -9,6 +9,7 @@ import Residences from "./components/Residences";
 import Artistes from "./components/Artistes";
 import Productions from "./components/Productions";
 import Contact from "./components/Contact";
+import Privacy from "./components/Privacy";
 
 import "./App.css";
 
@@ -60,6 +61,10 @@ function App() {
                         <Route
                             path="/contact"
                             element={<Contact lang={lang} />}
+                        />
+                        <Route
+                            path="/privacy"
+                            element={<Privacy lang={lang} />}
                         />
                     </Routes>
                 </main>
