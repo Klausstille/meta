@@ -15,34 +15,19 @@
     display: flex;
     flex-wrap: wrap;
     text-align: left;
-    margin-bottom: 24px;
+    align-content: flex-start;
     color: #006eff;
-    width: 320px;
-    /* z-index: 99; */
+    width: 50em;
 }
 
-.footer-subscription-heading {
-    margin-bottom: -20px;
-    font-size: 1rem;
-}
-
-.input-areas form {
-    display: flex;
-}
-
-.footer-subscription-text {
-    margin-bottom: 24px;
-    font-size: 1rem;
-}
-
-.footer-input {
+input {
     padding: 5px 15px;
     border-radius: 2px;
     margin-right: 10px;
     outline: none;
     border: none;
     font-size: 1rem;
-    margin-bottom: 16px;
+    /* margin-bottom: 16px; */
     border: 1px solid #006eff;
     background-color: transparent;
 }
@@ -84,11 +69,7 @@ p {
     transition: 0.3s ease-out;
 }
 
-.footer-email-form h2 {
-    margin-bottom: 2rem;
-}
-
-.footer-input::placeholder {
+input::placeholder {
     color: #006eff40;
 }
 
@@ -136,6 +117,17 @@ p {
     margin-top: 5px;
 }
 
+button {
+    cursor: none !important;
+    border-radius: 2px;
+    background-color: transparent;
+    padding: 8px 20px;
+    border: 1px solid #006eff;
+    transition: all 0.5s ease-out;
+    padding: 5px 15px;
+    font-size: 1rem;
+}
+
 @media screen and (max-width: 1200px) {
     .contact-wrap {
         display: flex;
@@ -149,17 +141,16 @@ p {
     .footer-container {
         padding: 2rem 0 2rem 0px;
         display: flex;
-        flex-direction: column;
+        flex-direction: column-reverse;
         align-items: center;
     }
 
     .footer-subscription {
-        display: none;
+        display: flex;
         justify-content: center;
-        flex-wrap: wrap;
         flex-direction: column;
-        width: 50%;
-        align-items: center;
+        align-content: space-around;
+        width: 100%;
     }
     .footer-links {
         display: none;
