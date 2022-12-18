@@ -1,16 +1,18 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import "./Footer.css";
-import { Button } from "./Button";
 import { Link } from "react-router-dom";
+import MailchimpSubscribe from "react-mailchimp-subscribe";
 
-let SPACE_ID, ACCESS_TOKEN;
+let SPACE_ID, ACCESS_TOKEN, MAILCHIMP_URL;
 if (process.env.NODE_ENV === "production") {
     SPACE_ID = process.env.REACT_APP_SPACE_ID;
     ACCESS_TOKEN = process.env.REACT_APP_ACCESS_TOKEN;
+    MAILCHIMP_URL = process.env.REACT_APP_MAILCHIMP_URL;
 } else {
     SPACE_ID = require("../secrets.json").REACT_APP_SPACE_ID;
     ACCESS_TOKEN = require("../secrets.json").REACT_APP_ACCESS_TOKEN;
+    MAILCHIMP_URL = require("../secrets.json").REACT_APP_MAILCHIMP_URL;
 }
 
 const engQuery = `
@@ -117,19 +119,7 @@ function Footer({ lang = "fr" }) {
                         <p>Souscrire à notre newsletter</p>
                     )}
                 </div>
-                <div className="input-areas">
-                    <form>
-                        <input
-                            className="footer-input"
-                            name="email"
-                            type="email"
-                            placeholder="Email"
-                        />
-                        <Button>
-                            {en ? <p>Subscribe</p> : <p>Souscrire</p>}
-                        </Button>
-                    </form>
-                </div>
+                <MailchimpSubscribe url={MAILCHIMP_URL} />
             </section>
             <section className="contact">
                 <div className="contact-wrap">
