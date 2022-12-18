@@ -36,11 +36,22 @@
     gap: 50px;
 }
 
+.privacy-grid {
+    padding: 45px 20px 80px 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
 .category-title {
     padding: 30px 40px 0px 40px;
 }
 
 @media screen and (max-width: 1200px) {
+    .privacy-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
     .contact-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
