@@ -12,7 +12,7 @@
 .navbar-container {
     display: flex;
     align-items: center;
-    height: 40px;
+    height: 35px;
 }
 
 .nav-lan {
@@ -33,18 +33,17 @@
 }
 
 .nav-lan button.mobile {
-    margin-top: 7px;
+    margin-top: 4.5px;
     font-size: 1.4rem;
 }
 
 .nav-logo {
-    height: 40px;
     margin: 0;
     list-style: none;
     padding: 0;
     position: fixed;
     left: 20px;
-    top: 0px;
+    top: -2px;
     font-family: "Graphikmedium", Fallback, sans-serif;
 }
 
