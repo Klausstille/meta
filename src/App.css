@@ -1,13 +1,23 @@
 @font-face {
-    font-family: "Graphik";
-    src: url("../public/Graphik-Regular.otf") format("opentype");
-}
-@font-face {
     font-family: "Graphikmedium";
-    src: url("../public/Graphik-Medium.otf") format("opentype");
+    src: url("../public/Graphik-Medium-Web.woff2") format("woff2"),
+        url("../public/Graphik-Medium-Web.woff") format("woff");
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+}
+
+@font-face {
+    font-family: "Graphik";
+    src: url("../public/Graphik-Regular-Web.woff2") format("woff2"),
+        url("../public/Graphik-Regular-Web.woff") format("woff");
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
 }
 
 * {
+    font-feature-settings: "liga", "kern";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     scrollbar-width: none;
