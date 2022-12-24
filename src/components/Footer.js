@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import "./Footer.css";
 import { Link } from "react-router-dom";
 import MailchimpSubscribe from "react-mailchimp-subscribe";
+import { footer_engQuery, footer_freQuery } from "./helpers/queries";
 
 let SPACE_ID, ACCESS_TOKEN, MAILCHIMP_URL;
 if (process.env.NODE_ENV === "production") {
@@ -15,29 +16,9 @@ if (process.env.NODE_ENV === "production") {
     MAILCHIMP_URL = require("../secrets.json").REACT_APP_MAILCHIMP_URL;
 }
 
-const engQuery = `
-{
-  navbarCollection {
-    items {
-      navbar(locale:"en-US")
-    }
-  }
-}
-`;
-
-const freQuery = `
-{
-  navbarCollection {
-    items {
-      navbar(locale: "fr")
-    }
-  }
-}
-`;
-
 const q = {
-    fr: freQuery,
-    "en-US": engQuery,
+    fr: footer_freQuery,
+    "en-US": footer_engQuery,
 };
 
 function Footer({ lang = "fr" }) {
@@ -123,7 +104,7 @@ function Footer({ lang = "fr" }) {
                 </div>
                 <MailchimpSubscribe url={MAILCHIMP_URL} />
 
-                <div class="content__gdprLegal">
+                <div className="content__gdprLegal">
                     {en ? (
                         <p style={{ fontSize: "9px", lineHeight: "1.3" }}>
                             You can unsubscribe at any time by clicking on the

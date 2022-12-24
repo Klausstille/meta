@@ -139,7 +139,6 @@ export default function IndexItem({
 
                             <section>
                                 <Transition
-                                    // show={isShown}
                                     show={
                                         (oneIsShown ? oneIsShown : showAll) ||
                                         (showAll ? showAll : oneIsShown)

@@ -4,6 +4,7 @@ import GetWindowDimensions from "./mouseEvent/DocumentSize";
 import Event from "./helpers/Events";
 import Footer from "./Footer";
 import "./Residences.css";
+import { events_engQuery, events_freQuery } from "./helpers/queries";
 
 let SPACE_ID, ACCESS_TOKEN;
 if (process.env.NODE_ENV === "production") {
@@ -14,45 +15,9 @@ if (process.env.NODE_ENV === "production") {
     ACCESS_TOKEN = require("../secrets.json").REACT_APP_ACCESS_TOKEN;
 }
 
-// const { SPACE_ID, ACCESS_TOKEN } = require("../secrets.json");
-
-const engQuery = `
-{
-  residencesCollection {
-    items {
-      description(locale:"en-US")
-      residencesPhotos {
-        title(locale:"en-US")
-        url
-      }
-      eventText(locale:"en-US") {
-        json
-      }
-    }
-  }
-}
-`;
-
-const freQuery = `
-{
-  residencesCollection {
-    items {
-      description(locale:"fr")
-      residencesPhotos {
-        title(locale:"fr")
-        url
-      }
-      eventText(locale:"fr") {
-        json
-      }
-    }
-  }
-}
-`;
-
 const q = {
-    fr: freQuery,
-    "en-US": engQuery,
+    fr: events_freQuery,
+    "en-US": events_engQuery,
 };
 
 function Residences({ lang = "fr" }) {
@@ -66,8 +31,6 @@ function Residences({ lang = "fr" }) {
 
     useEffect(() => {
         const query = q[lang];
-        // console.log({ lang });
-        // console.log(query);
         if (query === q["en-US"]) {
             setEn(true);
         } else setEn(false);

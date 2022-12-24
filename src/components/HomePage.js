@@ -3,6 +3,7 @@ import useMouse from "../components/mouseEvent/MouseMove";
 import getWindowDimensions from "../components/mouseEvent/DocumentSize";
 import "./HomePage.css";
 import Footer from "./Footer";
+import { home_query as query } from "./helpers/queries";
 
 let SPACE_ID, ACCESS_TOKEN;
 if (process.env.NODE_ENV === "production") {
@@ -12,17 +13,6 @@ if (process.env.NODE_ENV === "production") {
     SPACE_ID = require("../secrets.json").REACT_APP_SPACE_ID;
     ACCESS_TOKEN = require("../secrets.json").REACT_APP_ACCESS_TOKEN;
 }
-
-const query = `
-{
-  heromediaCollection {
-    items {
-      heromedia {
-        url
-      }
-    }
-  }
-}`;
 
 export default function HomePage({ lang = "fr" }) {
     const [page, setPage] = useState(null);
@@ -73,9 +63,6 @@ export default function HomePage({ lang = "fr" }) {
                         <p></p>
                     )}
                 </div>
-                {/* <div className="hero-container">
-                    <video src="./amalia.mp4" playsInline autoPlay loop muted />
-                </div> */}
                 <div className="hero-container">
                     <video
                         src={page[0].heromedia.url}

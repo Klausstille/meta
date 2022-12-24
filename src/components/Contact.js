@@ -3,6 +3,7 @@ import useMouse from "./mouseEvent/MouseMove";
 import GetWindowDimensions from "./mouseEvent/DocumentSize";
 import Footer from "./Footer";
 import "./Contact.css";
+import { contact_engQuery, contact_freQuery } from "./helpers/queries";
 
 let SPACE_ID, ACCESS_TOKEN;
 if (process.env.NODE_ENV === "production") {
@@ -13,43 +14,9 @@ if (process.env.NODE_ENV === "production") {
     ACCESS_TOKEN = require("../secrets.json").REACT_APP_ACCESS_TOKEN;
 }
 
-// const { SPACE_ID, ACCESS_TOKEN } = require("../secrets.json");
-
-const engQuery = `
-{
-  bioCollection {
-    items {
-      bioText (locale: "en-US") {
-        json
-      }
-      bioTitle
-      bioImage {
-        url
-      }
-    }
-  }
-}
-`;
-
-const freQuery = `
-{
-  bioCollection {
-    items {
-      bioText (locale: "fr") {
-        json
-      }
-      bioTitle
-      bioImage {
-        url
-      }
-    }
-  }
-}
-`;
-
 const q = {
-    fr: freQuery,
-    "en-US": engQuery,
+    fr: contact_freQuery,
+    "en-US": contact_engQuery,
 };
 
 function Contact({ lang = "fr" }) {
