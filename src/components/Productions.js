@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-// import ControlledCarousel from "./helpers/Carousel";
 import ProductionItem from "./helpers/IndexItem";
 import "./helpers/Index.css";
 import Footer from "./Footer";
+import { residences_engQuery, residences_freQuery } from "./helpers/queries";
 
 let SPACE_ID, ACCESS_TOKEN;
 if (process.env.NODE_ENV === "production") {
@@ -13,49 +13,9 @@ if (process.env.NODE_ENV === "production") {
     ACCESS_TOKEN = require("../secrets.json").REACT_APP_ACCESS_TOKEN;
 }
 
-const engQuery = `
-{
-  productionsCollection {
-    items {
-      artistName
-      projectName
-      year
-      description(locale:"en-US") {
-        json
-      }
-      galleryCollection {
-        items {
-          url
-        }
-      }
-    }
-  }
-}
-`;
-
-const freQuery = `
-{
-  productionsCollection {
-    items {
-      artistName
-      projectName
-      year
-      description(locale:"fr") {
-        json
-      }
-      galleryCollection {
-        items {
-          url
-        }
-      }
-    }
-  }
-}
-`;
-
 const q = {
-    fr: freQuery,
-    "en-US": engQuery,
+    fr: residences_freQuery,
+    "en-US": residences_engQuery,
 };
 
 export default function Atelier({ lang = "fr" }) {
@@ -66,8 +26,6 @@ export default function Atelier({ lang = "fr" }) {
 
     useEffect(() => {
         const query = q[lang];
-        // console.log({ lang });
-        // console.log(query);
         if (query === q["en-US"]) {
             setEn(true);
         } else setEn(false);

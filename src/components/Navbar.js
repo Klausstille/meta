@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import CheckLanguage from "./helpers/LanguageQuery";
 import "./Navbar.css";
+import { nav_freQuery, nav_engQuery } from "./helpers/queries";
 
 let SPACE_ID, ACCESS_TOKEN;
 if (process.env.NODE_ENV === "production") {
@@ -12,31 +13,9 @@ if (process.env.NODE_ENV === "production") {
     ACCESS_TOKEN = require("../secrets.json").REACT_APP_ACCESS_TOKEN;
 }
 
-// const { SPACE_ID, ACCESS_TOKEN } = require("../secrets.json");
-
-const engQuery = `
-{
-  navbarCollection {
-    items {
-      navbar(locale:"en-US")
-    }
-  }
-}
-`;
-
-const freQuery = `
-{
-  navbarCollection {
-    items {
-      navbar(locale: "fr")
-    }
-  }
-}
-`;
-
 const q = {
-    fr: freQuery,
-    "en-US": engQuery,
+    fr: nav_freQuery,
+    "en-US": nav_engQuery,
 };
 
 function Navbar({ setLang, lang = "fr" }) {

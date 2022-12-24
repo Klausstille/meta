@@ -36,7 +36,7 @@
     background-color: #ffffff;
 }
 
-.index:not(:first-of-type) .index-item {
+.index .index-item {
     border-top: solid 1px #006eff;
 }
 

@@ -3,6 +3,7 @@ import React from "react";
 import "./Index.css";
 import IndexItem from "./IndexItem";
 import Footer from "../Footer";
+import { productions_engQuery, productions_freQuery } from "../helpers/queries";
 
 let SPACE_ID, ACCESS_TOKEN;
 if (process.env.NODE_ENV === "production") {
@@ -13,49 +14,9 @@ if (process.env.NODE_ENV === "production") {
     ACCESS_TOKEN = require("../../secrets.json").REACT_APP_ACCESS_TOKEN;
 }
 
-const engQuery = `
-{
-  artistesCollection {
-    items {
-      artistName
-      projectName
-      year
-      description(locale:"en-US") {
-        json
-      }
-      galleryCollection {
-        items {
-          url
-        }
-      }
-    }
-  }
-}
-`;
-
-const freQuery = `
-{
-  artistesCollection {
-    items {
-      artistName
-      projectName
-      year
-      description(locale:"fr") {
-        json
-      }
-      galleryCollection {
-        items {
-          url
-        }
-      }
-    }
-  }
-}
-`;
-
 const q = {
-    fr: freQuery,
-    "en-US": engQuery,
+    fr: productions_freQuery,
+    "en-US": productions_engQuery,
 };
 
 function Index({ lang = "fr" }) {
@@ -66,8 +27,6 @@ function Index({ lang = "fr" }) {
 
     useEffect(() => {
         const query = q[lang];
-        // console.log({ lang });
-        // console.log(query);
         if (query === q["en-US"]) {
             setEn(true);
         } else setEn(false);
@@ -107,8 +66,8 @@ function Index({ lang = "fr" }) {
                     return newResults;
                 });
                 const sorted = mapped.sort(function (a, b) {
-                    let newa = a.year.split("–");
-                    let newb = b.year.split("–");
+                    var newa = a.year.split("–");
+                    var newb = b.year.split("–");
                     return newb[0] - newa[0] + newb[1] - newa[1];
                 });
                 setPage(sorted);

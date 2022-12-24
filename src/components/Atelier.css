@@ -2,29 +2,7 @@ h2 {
     font-size: 1.4rem;
     color: #006eff;
     margin-bottom: 2rem;
-    /* line-height: 1.1; */
 }
-/* 
-.pic-container {
-    margin-top: 70px;
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-}
-
-.atelier-pic {
-    width: 30vw;
-    height: 20vw;
-    margin-bottom: 10px;
-    object-fit: cover;
-    object-position: top;
-    filter: opacity(0.5);
-    transition: all 0.2s ease-in-out;
-}
-.atelier-pic:hover {
-    filter: opacity(1);
-} */
 
 .text-module {
     padding: 45px 20px 80px 20px;
@@ -45,8 +23,8 @@ h2 {
     object-fit: cover;
     width: 100%;
     height: 100%;
-    /* filter: grayscale(1); */
 }
+
 .atelier-img {
     position: fixed;
     right: 0;
