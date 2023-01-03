@@ -65,6 +65,21 @@ export default function Atelier({ lang = "fr" }) {
 
     return (
         <>
+            <div className="atelier-module">
+                {y > 90 ? (
+                    <div
+                        className="logo-container"
+                        style={{
+                            width: `${width - x}px`,
+                            height: `${y}px`,
+                        }}
+                    >
+                        <img src="./logo_meta.png" alt="Meta" />
+                    </div>
+                ) : (
+                    <p></p>
+                )}
+            </div>
             <div className="text-module">
                 {page.map((data) => {
                     return (
