@@ -14,9 +14,9 @@
     height: 100%;
     opacity: 1;
 }
+
 .atelier-module {
     mix-blend-mode: multiply;
-    opacity: 0.1;
 }
 
 .home-module,
