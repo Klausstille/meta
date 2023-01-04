@@ -83,7 +83,12 @@ function Contact({ lang = "fr" }) {
                             contact(at)atelier-meta.art
                         </a>
                         <br />
-                        +33(0)7 6246 6770
+                        <a
+                            href="tel:+33(0)783069206"
+                            style={{ textDecoration: "none" }}
+                        >
+                            +33(0)7 8306 9206
+                        </a>
                     </h6>
                 </div>
                 <div>

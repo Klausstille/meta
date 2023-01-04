@@ -70,42 +70,40 @@ export default function IndexItem({
     return (
         <>
             {isClicked && (
-                <div className="backgrd">
+                <div
+                    key={activeIndex.url}
+                    className="img-module"
+                    onClick={() => {
+                        setIsClicked(false);
+                        setActiveIndex(-1);
+                    }}
+                >
                     <div
-                        key={activeIndex.url}
-                        className="img-module"
-                        onClick={() => {
-                            setIsClicked(false);
-                            setActiveIndex(-1);
-                        }}
+                        className="image-container"
+                        style={
+                            preview
+                                ? {
+                                      width: `${width - x}px`,
+                                      height: `${y - 1}px`,
+                                  }
+                                : {
+                                      width: `100%`,
+                                      height: `100%`,
+                                  }
+                        }
                     >
-                        <div
-                            className="image-container"
-                            style={
-                                preview
-                                    ? {
-                                          width: `${width - x}px`,
-                                          height: `${y - 1}px`,
-                                      }
-                                    : {
-                                          width: `100%`,
-                                          height: `100%`,
-                                      }
-                            }
-                        >
-                            <img
-                                alt={activeIndex.name}
-                                active={activeIndex.isActive}
-                                src={activeIndex.url}
-                            />
-                            <h6 className="sticky-text">
-                                {activeIndex.name}
-                                {" | "}
-                                {activeIndex.project}
-                                {" | "}
-                                {activeIndex.year}
-                            </h6>
-                        </div>
+                        <img
+                            alt={activeIndex.name}
+                            active={activeIndex.isActive}
+                            src={activeIndex.url}
+                        />
+                        <h6 className="sticky-text">
+                            {activeIndex.name}
+                            {" | "}
+                            {activeIndex.project}
+                            {" | "}
+                            {activeIndex.year}
+                        </h6>
                     </div>
                 </div>
             )}
