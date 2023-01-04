@@ -14,18 +14,6 @@ img.residences-pic {
     height: 100%;
 }
 
-.image-container {
-    position: absolute;
-    right: 0;
-    top: 0;
-}
-
-.image-container img {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-}
-
 .img-module {
     margin-top: 80px;
     right: 0;
@@ -40,6 +28,7 @@ img.residences-pic {
 .backgrd {
     position: absolute;
 }
+
 h6.sticky-text {
     background-color: #ffffff;
     color: #006eff;

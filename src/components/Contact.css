@@ -5,19 +5,6 @@
     object-position: top;
 }
 
-.image-container {
-    position: absolute;
-    right: 0;
-    top: 0;
-}
-
-.image-container img {
-    object-position: top;
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-}
-
 .img-module-contact {
     margin-top: 80px;
     right: 0;

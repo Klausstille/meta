@@ -106,6 +106,7 @@ ul.index-items {
 
 .image-container {
     position: absolute;
+    /* overflow-x: scroll; */
     right: 0;
     top: 0;
 }
@@ -147,6 +148,15 @@ ul.index-items {
     }
 
     @media screen and (max-width: 800px) {
+        .image-container {
+            overflow-x: scroll;
+        }
+
+        .image-container img {
+            width: auto;
+            height: 100%;
+        }
+
         .index {
             position: relative;
             top: 0px;
