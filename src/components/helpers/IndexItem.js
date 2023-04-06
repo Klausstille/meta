@@ -5,7 +5,7 @@ import useMouse from "../mouseEvent/MouseMove";
 import GetWindowDimensions from "../mouseEvent/DocumentSize";
 import LazyLoad from "react-lazy-load";
 
-import "./Index.css";
+import "../Residences.css";
 
 export default function IndexItem({
     preview,

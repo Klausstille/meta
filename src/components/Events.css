@@ -1,0 +1,70 @@
+.event-text h6 {
+    color: #006eff;
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+.residences-pic {
+    height: 30vw !important;
+    object-fit: cover;
+}
+
+img.residences-pic {
+    width: 100%;
+    height: 100%;
+}
+
+.events-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 45px 20px 80px 20px;
+    gap: 20px;
+}
+
+.readmore p {
+    margin-top: -15px;
+    font-family: "Graphikmedium", Fallback, sans-serif;
+}
+
+.event-text {
+    margin-top: auto;
+}
+
+.title-text {
+    padding-top: 1.25rem;
+}
+.description-text {
+    padding-top: 0;
+    padding-bottom: 1.25rem;
+}
+
+.category-title {
+    padding: 30px 40px 0px 40px;
+}
+
+@media screen and (max-width: 1200px) {
+    .events-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .events-grid {
+        gap: 30px;
+    }
+    .residences-pic {
+        width: 100% !important;
+        height: 30vw !important;
+        object-fit: cover;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .events-container {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    .residences-pic {
+        width: 100% !important;
+        height: 50vw !important;
+        object-fit: cover;
+    }
+}

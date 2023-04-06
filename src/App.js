@@ -5,12 +5,11 @@ import getWindowDimensions from "./components/mouseEvent/DocumentSize";
 import Navbar from "./components/Navbar";
 import Atelier from "./components/Atelier";
 import HomePage from "./components/HomePage";
+import Events from "./components/Events";
 import Residences from "./components/Residences";
-import Artistes from "./components/Artistes";
 import Productions from "./components/Productions";
 import Contact from "./components/Contact";
 import Privacy from "./components/Privacy";
-
 import "./App.css";
 
 function App() {
@@ -47,8 +46,8 @@ function App() {
                             element={<Atelier lang={lang} />}
                         />
                         <Route
-                            path="/artistes"
-                            element={<Artistes lang={lang} />}
+                            path="/residences"
+                            element={<Residences lang={lang} />}
                         />
                         <Route
                             path="/productions"
@@ -56,7 +55,7 @@ function App() {
                         />
                         <Route
                             path="/events"
-                            element={<Residences lang={lang} />}
+                            element={<Events lang={lang} />}
                         />
                         <Route
                             path="/contact"

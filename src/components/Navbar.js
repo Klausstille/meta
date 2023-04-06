@@ -115,7 +115,7 @@ function Navbar({ setLang, lang = "fr" }) {
                         </li>
                         <li className="nav-item">
                             <Link
-                                to="/artistes"
+                                to="/residences"
                                 className="nav-links"
                                 onClick={closeMobileMenu}
                             >

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import ProductionItem from "./helpers/IndexItem";
-import "./helpers/Index.css";
+import IndexItem from "./helpers/IndexItem";
+import "./Residences.css";
 import Footer from "./Footer";
 import { residences_engQuery, residences_freQuery } from "./helpers/queries";
 
@@ -120,7 +120,7 @@ export default function Atelier({ lang = "fr" }) {
             </li>
             {page.map((data) => {
                 return (
-                    <ProductionItem
+                    <IndexItem
                         preview={preview}
                         setPreview={setPreview}
                         showAll={showAll}

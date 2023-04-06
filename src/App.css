@@ -33,6 +33,10 @@ h3 {
     font-size: 1.4rem;
 }
 
+h3.index-item-name::before {
+    content: "✨ ";
+}
+
 h1,
 h3,
 h6,
