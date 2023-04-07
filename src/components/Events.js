@@ -101,6 +101,12 @@ export default function Events({ lang = "fr" }) {
                             <img
                                 alt={page[activeIndex].residencesPhotos.title}
                                 src={page[activeIndex].residencesPhotos.url}
+                                className="fixed-image"
+                            />
+                            <img
+                                alt={page[activeIndex].residencesPhotos.title}
+                                src={page[activeIndex].residencesPhotos.url}
+                                className="blurred-image"
                             />
                             <h6 className="sticky-text">
                                 {page[activeIndex].residencesPhotos.title} |{" "}

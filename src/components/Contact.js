@@ -69,7 +69,7 @@ function Contact({ lang = "fr" }) {
             <main className="contact-section">
                 <section className="contact-grid">
                     <div>
-                        <h6 style={{ textAlign: "left", paddingTop: "0" }}>
+                        <p style={{ textAlign: "left", paddingTop: "0" }}>
                             Les Faures
                             <br />
                             Atelier Residences Recherche
@@ -89,10 +89,10 @@ function Contact({ lang = "fr" }) {
                             >
                                 +33(0)7 8306 9206
                             </a>
-                        </h6>
+                        </p>
                     </div>
                     <div>
-                        <h6 style={{ textAlign: "left", paddingTop: "0" }}>
+                        <p style={{ textAlign: "left", paddingTop: "0" }}>
                             Website concept, design
                             <br />
                             and development: <br />
@@ -103,7 +103,7 @@ function Contact({ lang = "fr" }) {
                             >
                                 Klaus Stille
                             </a>
-                        </h6>
+                        </p>
                     </div>
                     <img
                         alt={page}
@@ -119,12 +119,12 @@ function Contact({ lang = "fr" }) {
                         return (
                             <div key={data.bioTitle}>
                                 <h3>{data.bioTitle}</h3>
-                                <h6>
+                                <p>
                                     {
                                         data.bioText.json.content[0].content[0]
                                             .value
                                     }
-                                </h6>
+                                </p>
                             </div>
                         );
                     })}

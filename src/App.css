@@ -21,6 +21,7 @@
 
 :root {
     --primary-color: #006eff;
+    --secondary-color: #006eff;
 }
 
 * {
@@ -47,11 +48,8 @@ h3 {
     font-size: 1.4rem;
 }
 
-h1,
-h3,
-h6,
-p {
-    line-height: 1.4rem;
+a {
+    color: var(--primary-color);
 }
 
 a:hover {
@@ -85,6 +83,10 @@ footer {
     h3 {
         font-family: "Graphikmedium";
         font-size: 1rem;
-        line-height: 1rem;
+        line-height: 1.4rem;
+    }
+    p {
+        font-size: 1rem;
+        line-height: 1.4rem;
     }
 }

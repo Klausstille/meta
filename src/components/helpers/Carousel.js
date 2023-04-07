@@ -22,7 +22,7 @@ export default function Slideshow({ images }) {
         >
             {images.items?.map((data, index) => {
                 return (
-                    <Carousel.Item interval={3000} key={`index-item-${index}`}>
+                    <Carousel.Item interval={2500} key={`index-item-${index}`}>
                         <div className="img-container">
                             <img
                                 className="d-block w-100"

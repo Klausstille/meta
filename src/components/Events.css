@@ -1,5 +1,5 @@
 .event-text h6 {
-    color: #006eff;
+    color: var(--primary-color);
     font-size: 1rem;
     margin-bottom: 15px;
 }

@@ -9,12 +9,6 @@ h3 {
     width: auto;
 }
 
-/* .carousel-inner {
-    position: relative;
-    width: 65%;
-    overflow: hidden;
-} */
-
 .img-container img {
     object-fit: cover;
     width: 100%;
@@ -48,7 +42,7 @@ h3 {
     right: 0;
     height: 30vw;
     cursor: none;
-    opacity: 1;
+    opacity: 0;
 }
 
 .carousel-item {
@@ -60,19 +54,26 @@ h3 {
     cursor: none;
 }
 
+.atelier-container .carousel-dark .carousel-indicators [data-bs-target] {
+    background-color: white;
+    cursor: none;
+}
+
 @media screen and (max-width: 1200px) {
     .carousel-control-next,
-    .carousel-control-prev {
-        height: 50vw;
+    .carousel-control-prev,
+    .img-container {
+        height: 30vw;
     }
 
-    .img-container {
-        height: 50vw;
-    }
     .carousel-container {
         width: auto;
     }
-    .carousel-inner {
-        width: 100%;
+}
+@media screen and (max-width: 800px) {
+    .carousel-control-next,
+    .carousel-control-prev,
+    .img-container {
+        height: 60vw;
     }
 }

@@ -1,40 +1,53 @@
 .atelier-section {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    padding: 45px 20px 0 20px;
+    padding: 45px 0 0 20px;
 }
 .atelier-container {
     height: 100vh;
     overflow: scroll;
+    border-left: 1px solid var(--secondary-color);
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: var(--secondary-color);
 }
 .residences-container {
     height: 100vh;
     overflow: scroll;
+    padding-right: 20px;
 }
-.atelier-text {
+.atelier-container > h1,
+.atelier-item > h3 {
+    color: white;
+}
+
+.atelier-item,
+.residences-item {
     padding-bottom: 10px;
 }
+
 .atelier-section h1 {
-    padding: 30px 0 30px 0;
+    padding: 10px 0 0 0;
     font-size: 4em;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 800px) {
     .atelier-section {
         display: grid;
         grid-template-columns: 1fr;
+        padding: 45px 0 0 0;
     }
-    .atelier-container {
+    .atelier-container,
+    .residences-container {
         height: auto;
         overflow: auto;
+        border-left: none;
+        padding: 0 20px 20px 20px;
     }
     .residences-container {
         height: auto;
         overflow: auto;
     }
-}
-@media screen and (max-width: 800px) {
     .atelier-section h1 {
         padding: 20px 0;
         font-size: 3em;

@@ -78,7 +78,10 @@ export default function Atelier({ lang = "fr" }) {
                             index
                         ) => {
                             return (
-                                <div key={`index-item-${index}`}>
+                                <div
+                                    key={`index-item-${index}`}
+                                    className="residences-item"
+                                >
                                     <Slideshow
                                         images={carouselImageCollection}
                                     />
@@ -86,12 +89,9 @@ export default function Atelier({ lang = "fr" }) {
                                     {description.json.content?.map(
                                         (item, index) => {
                                             return (
-                                                <p
-                                                    className="atelier-text"
-                                                    key={`index-item-${index}`}
-                                                >
+                                                <h3 key={`index-item-${index}`}>
                                                     {item.content[0].value}
-                                                </p>
+                                                </h3>
                                             );
                                         }
                                     )}
@@ -108,7 +108,10 @@ export default function Atelier({ lang = "fr" }) {
                             index
                         ) => {
                             return (
-                                <div key={`index-item-${index}`}>
+                                <div
+                                    key={`index-item-${index}`}
+                                    className="atelier-item"
+                                >
                                     <Slideshow
                                         key={`index-item-${index}`}
                                         images={carouselImageCollection}
@@ -117,12 +120,9 @@ export default function Atelier({ lang = "fr" }) {
                                     {description.json.content?.map(
                                         (item, index) => {
                                             return (
-                                                <p
-                                                    className="atelier-text"
-                                                    key={`index-item-${index}`}
-                                                >
+                                                <h3 key={`index-item-${index}`}>
                                                     {item.content[0].value}
-                                                </p>
+                                                </h3>
                                             );
                                         }
                                     )}

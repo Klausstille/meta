@@ -102,6 +102,13 @@ export default function IndexItem({
                             alt={activeIndex.name}
                             active={activeIndex.isActive}
                             src={activeIndex.url}
+                            className="fixed-image"
+                        />
+                        <img
+                            alt={activeIndex.name}
+                            active={activeIndex.isActive}
+                            src={activeIndex.url}
+                            className="blurred-image"
                         />
                         <h6 className="sticky-text">
                             {activeIndex.name}
