@@ -2,21 +2,16 @@
     height: 45px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-content: center;
     position: fixed;
     width: 100vw;
     background-color: white;
     z-index: 2;
-}
-
-.navbar-container {
-    display: flex;
-    align-items: center;
-    height: 35px;
+    border-bottom: 1px solid var(--primary-color);
 }
 
 .nav-lan {
-    color: #006eff;
+    color: var(--primary-color);
     position: fixed;
     right: 20px;
     top: 1px;
@@ -58,7 +53,7 @@
     list-style: none;
     text-align: center;
     width: 90vw;
-    /* margin-left: 50px; */
+    margin-top: 7px;
     justify-content: space-evenly;
 }
 
@@ -67,13 +62,12 @@ ul.nav-menu {
 }
 
 .nav-item {
-    height: 40px;
+    height: 39px;
 }
 
 .nav-links {
-    color: #006eff;
+    color: var(--primary-color);
     display: flex;
-    /* align-items: center; */
     text-decoration: none;
     padding: 0.5rem 0;
     height: 100%;
@@ -82,8 +76,11 @@ ul.nav-menu {
 
 .nav-links:hover {
     transition: all 0.2s ease-in-out;
-    transform: translateY(-2px);
-    color: #006eff;
+    transform: translateY(-1px);
+}
+
+.nav-links.active {
+    font-family: "Graphikmedium";
 }
 
 .hamburger {
@@ -94,7 +91,7 @@ ul.nav-menu {
 .hamburger__bar--top {
     transform: translate(0, -8px);
     transform-origin: initial;
-    stroke: #006eff;
+    stroke: var(--primary-color);
     stroke-width: 3px;
     transition: all 1s ease-in-out;
 }
@@ -102,7 +99,7 @@ ul.nav-menu {
 .hamburger__bar--mid {
     transform: translate(0, 0);
     transform-origin: initial;
-    stroke: #006eff;
+    stroke: var(--primary-color);
     stroke-width: 3px;
     transition: all 1s ease-in-out;
 }
@@ -110,7 +107,7 @@ ul.nav-menu {
 .hamburger__bar--bot {
     transform: translate(0, 8px);
     transform-origin: initial;
-    stroke: #006eff;
+    stroke: var(--primary-color);
     stroke-width: 3px;
     transition: all 1s ease-in-out;
 }
@@ -165,10 +162,9 @@ ul.nav-menu {
     .nav-menu.active {
         opacity: 1;
         background-color: rgba(255, 255, 255, 0.9);
-        color: #006eff;
+        color: var(--primary-color);
         left: 0;
-        top: 45px;
-        z-index: 1;
+        top: 38px;
         height: 100vh;
     }
 
@@ -201,16 +197,13 @@ ul.nav-menu {
     .nav-links-mobile {
         display: block;
         text-align: center;
-        /* margin: 2rem auto; */
         border-radius: 4px;
         width: 80%;
         text-decoration: none;
         font-size: 1.5rem;
         background-color: transparent;
         color: #fff;
-        /* padding: 14px 20px; */
         border: 1px solid #fff;
-        /* transition: all 0.2s ease-out; */
     }
 
     .nav-links-mobile:hover {

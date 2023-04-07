@@ -1,19 +1,19 @@
 h3 {
-    color: #006eff;
+    color: var(--primary-color);
 }
 
 .carousel-container {
     display: flex;
     justify-content: center;
     padding-bottom: 50px;
-    width: 80vw;
+    width: auto;
 }
 
-.carousel-inner {
+/* .carousel-inner {
     position: relative;
     width: 65%;
     overflow: hidden;
-}
+} */
 
 .img-container img {
     object-fit: cover;
@@ -32,8 +32,15 @@ h3 {
     left: 15%;
     padding-top: 1.25rem;
     padding-bottom: 1.25rem;
-    color: #006eff;
+    color: var(--primary-color);
     text-align: center;
+}
+.carousel-indicators {
+    z-index: 0;
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    opacity: 1;
 }
 
 .carousel-control-next,
@@ -41,6 +48,7 @@ h3 {
     right: 0;
     height: 30vw;
     cursor: none;
+    opacity: 1;
 }
 
 .carousel-item {
@@ -48,7 +56,7 @@ h3 {
 }
 
 .carousel-dark .carousel-indicators [data-bs-target] {
-    background-color: #006eff;
+    background-color: var(--primary-color);
     cursor: none;
 }
 
@@ -62,7 +70,7 @@ h3 {
         height: 50vw;
     }
     .carousel-container {
-        width: 100vw;
+        width: auto;
     }
     .carousel-inner {
         width: 100%;

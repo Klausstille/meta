@@ -60,9 +60,6 @@ video {
         width: 100vw;
         height: 100vh;
     }
-    .home-footer {
-        display: none;
-    }
     .logo-container img {
         display: none;
     }

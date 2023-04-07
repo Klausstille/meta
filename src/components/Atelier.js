@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import useMouse from "./mouseEvent/MouseMove";
 import GetWindowDimensions from "./mouseEvent/DocumentSize";
 import Footer from "./Footer";
+import Slideshow from "./helpers/Carousel";
 import "./Atelier.css";
 import { atelier_engQuery, atelier_freQuery } from "./helpers/queries";
 
@@ -20,138 +20,118 @@ const q = {
 };
 
 export default function Atelier({ lang = "fr" }) {
-    const [page, setPage] = useState(null);
-    const { x, y } = useMouse();
+    const [isAtelier, setIsAtelier] = useState([]);
+    const [isResidence, setIsResidence] = useState([]);
+    const [en, setEn] = useState(false);
     const { width } = GetWindowDimensions();
-    const [isShown, setIsShown] = useState(false);
-    const [preview, setPreview] = useState(false);
 
     useEffect(() => {
         const query = q[lang];
-        if (isShown) {
-            preventDefaultImage();
-        }
-        function preventDefaultImage() {
-            if (width <= 1200) {
-                setPreview(false);
-            } else if (width > 1200) {
-                setPreview(true);
-            }
-        }
-        window
-            .fetch(
-                `https://graphql.contentful.com/content/v1/spaces/${SPACE_ID}/`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${ACCESS_TOKEN}`,
-                    },
-                    body: JSON.stringify({ query }),
-                }
-            )
-            .then((response) => response.json())
-            .then(({ data, errors }) => {
+        if (query === q["en-US"]) {
+            setEn(true);
+        } else setEn(false);
+
+        async function fetchData() {
+            try {
+                const response = await fetch(
+                    `https://graphql.contentful.com/content/v1/spaces/${SPACE_ID}/`,
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${ACCESS_TOKEN}`,
+                        },
+                        body: JSON.stringify({ query }),
+                    }
+                );
+                const { data, errors } = await response.json();
                 if (errors) {
                     console.error(errors);
                 }
-                setPage(data.homeCollection.items);
-            });
-    }, [lang, isShown, width]);
+                const residences = data.carouselCollection.items.filter(
+                    (item) => item.validation === "residences"
+                );
+                setIsResidence(residences);
+                const atelier = data.carouselCollection.items.filter(
+                    (item) => item.validation === "atelier"
+                );
+                setIsAtelier(atelier);
+            } catch (error) {
+                console.error(error);
+            }
+        }
 
-    if (!page) {
+        fetchData();
+    }, [lang, width]);
+
+    if (!isAtelier || !isResidence) {
         return;
     }
-
     return (
         <>
-            <div className="atelier-module">
-                {y > 90 ? (
-                    <div
-                        className="logo-container"
-                        style={{
-                            width: `${width - x}px`,
-                            height: `${y}px`,
-                        }}
-                    >
-                        <img src="./logo_meta.png" alt="Meta" />
-                    </div>
-                ) : (
-                    <p></p>
-                )}
-            </div>
-            <div className="text-module">
-                {page.map((data) => {
-                    return (
-                        <>
-                            <div>
-                                {data.homeText.json.content.map((content) => {
-                                    return content.content.length === 0 ? (
-                                        <>{content.content[0].value},</>
-                                    ) : (
-                                        <h2>
-                                            {content.content.map((content) => {
-                                                return content.data.uri ? (
-                                                    <a
-                                                        key={content.data.uri}
-                                                        href={content.data.uri}
-                                                    >
-                                                        {
-                                                            content.content[0]
-                                                                .value
-                                                        }
-                                                    </a>
-                                                ) : (
-                                                    <>{content.value}</>
-                                                );
-                                            })}
-                                        </h2>
-                                    );
-                                })}
-                                <div className="pic-container">
-                                    <h6
-                                        onClick={() => {
-                                            setIsShown(true);
-                                        }}
-                                    >
-                                        ↳ {data.heromedia.title}
-                                    </h6>
-                                </div>
-                            </div>
-
-                            {isShown && (
-                                <div
-                                    key={data.heromedia.url}
-                                    className="img-module-contact"
-                                    onClick={() => {
-                                        setIsShown(false);
-                                    }}
-                                >
-                                    <div
-                                        className="image-container"
-                                        style={
-                                            preview
-                                                ? {
-                                                      width: `${width - x}px`,
-                                                      height: `${y - 1}px`,
-                                                  }
-                                                : {
-                                                      width: `100%`,
-                                                      height: `100%`,
-                                                  }
+            <main className="atelier-section">
+                <section className="residences-container">
+                    {en ? <h1>Residences</h1> : <h1>Résidences</h1>}
+                    {isResidence.map(
+                        (
+                            { carouselImageCollection, description, title },
+                            index
+                        ) => {
+                            return (
+                                <div key={`index-item-${index}`}>
+                                    <Slideshow
+                                        images={carouselImageCollection}
+                                    />
+                                    <h3> {title}</h3>
+                                    {description.json.content?.map(
+                                        (item, index) => {
+                                            return (
+                                                <p
+                                                    className="atelier-text"
+                                                    key={`index-item-${index}`}
+                                                >
+                                                    {item.content[0].value}
+                                                </p>
+                                            );
                                         }
-                                    >
-                                        <img alt="" src={data.heromedia.url} />
-                                        <h6 className="sticky-text">
-                                            {data.heromedia.title}
-                                        </h6>
-                                    </div>
+                                    )}
                                 </div>
-                            )}
-                        </>
-                    );
-                })}
-            </div>
+                            );
+                        }
+                    )}
+                </section>
+                <section className="atelier-container">
+                    {en ? <h1>Workshop</h1> : <h1>Atelier</h1>}
+                    {isAtelier.map(
+                        (
+                            { carouselImageCollection, description, title },
+                            index
+                        ) => {
+                            return (
+                                <div key={`index-item-${index}`}>
+                                    <Slideshow
+                                        key={`index-item-${index}`}
+                                        images={carouselImageCollection}
+                                    />
+                                    <h3> {title}</h3>
+                                    {description.json.content?.map(
+                                        (item, index) => {
+                                            return (
+                                                <p
+                                                    className="atelier-text"
+                                                    key={`index-item-${index}`}
+                                                >
+                                                    {item.content[0].value}
+                                                </p>
+                                            );
+                                        }
+                                    )}
+                                </div>
+                            );
+                        }
+                    )}
+                </section>
+            </main>
             <footer>
                 <Footer lang={lang} />
             </footer>

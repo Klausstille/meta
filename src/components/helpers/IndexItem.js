@@ -24,48 +24,54 @@ export default function IndexItem({
     const { x, y } = useMouse();
     const { width } = GetWindowDimensions();
 
-    const escape = (e) => {
-        if (e.keyCode === 27) {
+    const handleEscape = (event) => {
+        if (event.keyCode === 27) {
             setIsClicked(false);
         }
-        return document.removeEventListener("keydown", escape);
     };
-    document.addEventListener("keydown", escape);
 
-    function handleClick(e) {
+    const handleClick = (event) => {
+        const { innerText } = event.currentTarget;
+        const { className } = event.target.parentElement;
+
         if (
-            e.currentTarget.innerText.indexOf("→") === 0 &&
-            e.target.parentElement.className.indexOf("index-item") === 0
+            innerText.indexOf("→") === 0 &&
+            className.indexOf("index-item") === 0
         ) {
             setSwitch(true);
         } else if (
-            e.currentTarget.innerText.indexOf("→") === -1 &&
-            e.target.parentElement.className.indexOf("index-item") === 0
+            innerText.indexOf("→") === -1 &&
+            className.indexOf("index-item") === 0
         ) {
             setSwitch(false);
         }
-    }
+    };
+
+    const handleShowAll = () => {
+        setSwitch((isSwitch) => !isSwitch);
+    };
 
     useEffect(() => {
-        let abort = false;
-        if (!abort) {
-            if (showAll) {
-                setSwitch((isSwitch) => !isSwitch);
-            }
+        document.addEventListener("keydown", handleEscape);
+        return () => {
+            document.removeEventListener("keydown", handleEscape);
+        };
+    }, []);
+
+    useEffect(() => {
+        if (showAll) {
+            handleShowAll();
         }
-        return () => (abort = true);
     }, [showAll]);
 
-    function preventDefaultImage() {
-        if (width <= 1200) {
-            setPreview(false);
-        } else if (width > 1200) {
-            setPreview(true);
+    useEffect(() => {
+        const preventDefaultImage = () => {
+            setPreview(width > 1200);
+        };
+        if (isClicked) {
+            preventDefaultImage();
         }
-    }
-    if (isClicked) {
-        preventDefaultImage();
-    }
+    }, [isClicked, setPreview, width]);
 
     return (
         <>
@@ -156,11 +162,13 @@ export default function IndexItem({
                                             <p>{des}</p>
                                         </div>
                                         <div className="image-grid">
-                                            {src.map((data) => {
+                                            {src.map((data, index) => {
                                                 return (
-                                                    <LazyLoad>
+                                                    <LazyLoad
+                                                        key={`index-item-${index}`}
+                                                    >
                                                         <img
-                                                            key={data.url}
+                                                            key={`index-item-${index}`}
                                                             className="index-item-pics"
                                                             alt="Pic"
                                                             src={data.url}

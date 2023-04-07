@@ -32,25 +32,30 @@ function Footer({ lang = "fr" }) {
             setEn(true);
         } else setEn(false);
 
-        window
-            .fetch(
-                `https://graphql.contentful.com/content/v1/spaces/${SPACE_ID}/`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${ACCESS_TOKEN}`,
-                    },
-                    body: JSON.stringify({ query }),
-                }
-            )
-            .then((response) => response.json())
-            .then(({ data, errors }) => {
+        const fetchPage = async () => {
+            try {
+                const response = await fetch(
+                    `https://graphql.contentful.com/content/v1/spaces/${SPACE_ID}/`,
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${ACCESS_TOKEN}`,
+                        },
+                        body: JSON.stringify({ query }),
+                    }
+                );
+                const { data, errors } = await response.json();
                 if (errors) {
                     console.error(errors);
+                    return;
                 }
                 setPage(data.navbarCollection.items[0].navbar);
-            });
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        fetchPage();
     }, [lang]);
 
     if (!page) {
@@ -58,7 +63,7 @@ function Footer({ lang = "fr" }) {
     }
 
     return (
-        <div className="footer-container">
+        <footer className="footer-container">
             <div className="footer-links">
                 <div className="footer-link-wrapper">
                     <div className="footer-link-items">
@@ -161,7 +166,7 @@ function Footer({ lang = "fr" }) {
             <div>
                 <img src="./logo_2.png" alt="" className="logo-2" />
             </div>
-        </div>
+        </footer>
     );
 }
 

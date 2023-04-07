@@ -15,6 +15,13 @@
     font-style: normal;
     font-stretch: normal;
 }
+::-webkit-scrollbar {
+    display: none;
+}
+
+:root {
+    --primary-color: #006eff;
+}
 
 * {
     font-feature-settings: "liga", "kern";
@@ -26,15 +33,18 @@
     margin: 0;
     padding: 0;
     cursor: none;
-    color: #006eff;
+    color: var(--primary-color);
+}
+
+body {
+    font-family: "Graphik", Fallback, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 h3 {
     font-size: 1.4rem;
-}
-
-h3.index-item-name::before {
-    content: "✨ ";
 }
 
 h1,
@@ -44,27 +54,13 @@ p {
     line-height: 1.4rem;
 }
 
-body::-webkit-scrollbar {
-    display: none; /* Chrome Safari */
-}
-
 a:hover {
     text-decoration: none;
-    color: #006eff;
-}
-
-body {
-    font-family: "Graphik", Fallback, sans-serif;
-}
-
-main {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    color: var(--primary-color);
 }
 
 .hand {
-    stroke: #006eff;
+    stroke: var(--primary-color);
     stroke-width: 3;
     stroke-linecap: round;
 }
@@ -87,6 +83,7 @@ footer {
 }
 @media screen and (max-width: 1200px) {
     h3 {
+        font-family: "Graphikmedium";
         font-size: 1rem;
         line-height: 1rem;
     }

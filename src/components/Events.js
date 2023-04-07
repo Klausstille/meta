@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import useMouse from "./mouseEvent/MouseMove";
 import GetWindowDimensions from "./mouseEvent/DocumentSize";
-import Event from "./helpers/Events";
+import Event from "./helpers/Event";
 import Footer from "./Footer";
 import "./Events.css";
 import { events_engQuery, events_freQuery } from "./helpers/queries";
@@ -20,7 +20,7 @@ const q = {
     "en-US": events_engQuery,
 };
 
-function Residences({ lang = "fr" }) {
+export default function Events({ lang = "fr" }) {
     const [page, setPage] = useState(null);
     const [en, setEn] = useState(false);
     const [isShown, setIsShown] = useState(false);
@@ -31,38 +31,42 @@ function Residences({ lang = "fr" }) {
 
     useEffect(() => {
         const query = q[lang];
-        if (query === q["en-US"]) {
-            setEn(true);
-        } else setEn(false);
-        if (isShown) {
-            preventDefaultImage();
-        }
-        function preventDefaultImage() {
-            if (width <= 1200) {
-                setPreview(false);
-            } else if (width > 1200) {
-                setPreview(true);
-            }
-        }
-        window
-            .fetch(
-                `https://graphql.contentful.com/content/v1/spaces/${SPACE_ID}/`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${ACCESS_TOKEN}`,
-                    },
-                    body: JSON.stringify({ query }),
-                }
-            )
-            .then((response) => response.json())
-            .then(({ data, errors }) => {
+        const fetchPageData = async () => {
+            try {
+                const response = await window.fetch(
+                    `https://graphql.contentful.com/content/v1/spaces/${SPACE_ID}/`,
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${ACCESS_TOKEN}`,
+                        },
+                        body: JSON.stringify({ query }),
+                    }
+                );
+                const { data, errors } = await response.json();
                 if (errors) {
                     console.error(errors);
+                } else {
+                    setPage(data.residencesCollection.items);
                 }
-                setPage(data.residencesCollection.items);
-            });
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        if (isShown) {
+            const preventDefaultImage = () => {
+                if (width <= 1200) {
+                    setPreview(false);
+                } else {
+                    setPreview(true);
+                }
+            };
+            preventDefaultImage();
+        }
+        fetchPageData();
+        const en = query === q["en-US"];
+        setEn(en);
     }, [lang, isShown, width]);
 
     if (!page) {
@@ -71,7 +75,7 @@ function Residences({ lang = "fr" }) {
 
     return (
         <>
-            <div className="events-container">
+            <main className="events-container">
                 {isShown && (
                     <div
                         className="img-module"
@@ -117,12 +121,8 @@ function Residences({ lang = "fr" }) {
                         />
                     );
                 })}
-            </div>
-            <footer>
-                <Footer lang={lang} />
-            </footer>
+            </main>
+            <Footer lang={lang} />
         </>
     );
 }
-
-export default Residences;

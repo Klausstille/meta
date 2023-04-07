@@ -18,7 +18,7 @@ const q = {
     "en-US": residences_engQuery,
 };
 
-export default function Atelier({ lang = "fr" }) {
+export default function Productions({ lang = "fr" }) {
     const [page, setPage] = useState(null);
     const [en, setEn] = useState(false);
     const [showAll, setShowAll] = useState(false);
@@ -29,48 +29,54 @@ export default function Atelier({ lang = "fr" }) {
         if (query === q["en-US"]) {
             setEn(true);
         } else setEn(false);
+        const fetchData = async () => {
+            try {
+                const response = await fetch(
+                    `https://graphql.contentful.com/content/v1/spaces/${SPACE_ID}/`,
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${ACCESS_TOKEN}`,
+                        },
+                        body: JSON.stringify({ query }),
+                    }
+                );
 
-        window
-            .fetch(
-                `https://graphql.contentful.com/content/v1/spaces/${SPACE_ID}/`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${ACCESS_TOKEN}`,
-                    },
-                    body: JSON.stringify({ query }),
-                }
-            )
-            .then((response) => response.json())
-            .then(({ data, errors }) => {
+                const { data, errors } = await response.json();
+
                 if (errors) {
                     console.error(errors);
+                    return;
                 }
-                const results = data.productionsCollection.items;
-                const mapped = results.map((results) => {
-                    let newResults = {};
-                    if (!results.year) {
-                        var year = "0000–00";
-                    } else {
-                        year = results.year.toString().replace("-", "–");
-                    }
-                    newResults = {
-                        artistName: results.artistName,
-                        projectName: results.projectName,
-                        year: year,
-                        description: results.description,
-                        galleryCollection: results.galleryCollection,
+
+                const mapped = data.productionsCollection.items.map((item) => {
+                    const year = item.year
+                        ? item.year.toString().replace("-", "–")
+                        : "0000–00";
+
+                    return {
+                        artistName: item.artistName,
+                        projectName: item.projectName,
+                        year,
+                        description: item.description,
+                        galleryCollection: item.galleryCollection,
                     };
-                    return newResults;
                 });
-                const sorted = mapped.sort(function (a, b) {
-                    let newa = a.year.split("–");
-                    let newb = b.year.split("–");
-                    return newb[0] - newa[0] + newb[1] - newa[1];
+
+                const sorted = mapped.sort((a, b) => {
+                    const [aYearStart, aYearEnd] = a.year.split("–");
+                    const [bYearStart, bYearEnd] = b.year.split("–");
+                    return bYearStart - aYearStart + bYearEnd - aYearEnd;
                 });
+
                 setPage(sorted);
-            });
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchData();
     }, [lang]);
 
     if (!page) {
@@ -79,62 +85,66 @@ export default function Atelier({ lang = "fr" }) {
 
     return (
         <>
-            <li className="index-params">
-                <div
-                    className="index-item-info"
-                    onClick={() => setShowAll((showAll) => !showAll)}
-                >
-                    {en ? (
-                        showAll ? (
-                            <p className="index-item-name">↑ Hide all</p>
+            <main className="production-section">
+                <li className="index-params">
+                    <div
+                        className="index-item-info"
+                        onClick={() => setShowAll((showAll) => !showAll)}
+                    >
+                        {en ? (
+                            showAll ? (
+                                <p className="index-item-name">↑ Hide all</p>
+                            ) : (
+                                <p className="index-item-name">↓ Show all</p>
+                            )
+                        ) : showAll ? (
+                            <p className="index-item-name">↑ Voir moins</p>
                         ) : (
-                            <p className="index-item-name">↓ Show all</p>
-                        )
-                    ) : showAll ? (
-                        <p className="index-item-name">↑ Voir moins</p>
-                    ) : (
-                        <p className="index-item-name">↓ Voir tous</p>
-                    )}
-                </div>
-                <div className="index-item-info">
-                    {en ? (
-                        <p className="index-item-name">Artists</p>
-                    ) : (
-                        <p className="index-item-name">Artistes</p>
-                    )}
-                </div>
-                <div className="index-item-info">
-                    {en ? (
-                        <p className="index-item-project">Project</p>
-                    ) : (
-                        <p className="index-item-project">Projet</p>
-                    )}
-                </div>
-                <div className="index-item-info">
-                    {en ? (
-                        <p className="index-item-year">Year</p>
-                    ) : (
-                        <p className="index-item-year">Année</p>
-                    )}
-                </div>
-            </li>
-            {page.map((data) => {
-                return (
-                    <IndexItem
-                        preview={preview}
-                        setPreview={setPreview}
-                        showAll={showAll}
-                        name={data.artistName}
-                        project={data.projectName}
-                        year={data.year}
-                        des={data.description.json.content[0].content[0].value}
-                        src={data.galleryCollection.items}
-                    />
-                );
-            })}
-            <footer>
-                <Footer lang={lang} />
-            </footer>
+                            <p className="index-item-name">↓ Voir tous</p>
+                        )}
+                    </div>
+                    <div className="index-item-info">
+                        {en ? (
+                            <p className="index-item-name">Artists</p>
+                        ) : (
+                            <p className="index-item-name">Artistes</p>
+                        )}
+                    </div>
+                    <div className="index-item-info">
+                        {en ? (
+                            <p className="index-item-project">Project</p>
+                        ) : (
+                            <p className="index-item-project">Projet</p>
+                        )}
+                    </div>
+                    <div className="index-item-info">
+                        {en ? (
+                            <p className="index-item-year">Year</p>
+                        ) : (
+                            <p className="index-item-year">Année</p>
+                        )}
+                    </div>
+                </li>
+                {page.map((data, index) => {
+                    return (
+                        <IndexItem
+                            key={`index-item-${index}`}
+                            preview={preview}
+                            setPreview={setPreview}
+                            showAll={showAll}
+                            name={data.artistName}
+                            project={data.projectName}
+                            year={data.year}
+                            des={
+                                data.description.json.content[0].content[0]
+                                    .value
+                            }
+                            src={data.galleryCollection.items}
+                        />
+                    );
+                })}
+            </main>
+            <Footer lang={lang} />
         </>
     );
 }

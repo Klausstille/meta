@@ -20,25 +20,30 @@ export default function HomePage({ lang = "fr" }) {
     const { width } = getWindowDimensions();
 
     useEffect(() => {
-        window
-            .fetch(
-                `https://graphql.contentful.com/content/v1/spaces/${SPACE_ID}/`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${ACCESS_TOKEN}`,
-                    },
-                    body: JSON.stringify({ query }),
-                }
-            )
-            .then((response) => response.json())
-            .then(({ data, errors }) => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch(
+                    `https://graphql.contentful.com/content/v1/spaces/${SPACE_ID}/`,
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${ACCESS_TOKEN}`,
+                        },
+                        body: JSON.stringify({ query }),
+                    }
+                );
+                const { data, errors } = await response.json();
                 if (errors) {
                     console.error(errors);
+                    return;
                 }
                 setPage(data.heromediaCollection.items);
-            });
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        fetchData();
     }, [lang]);
 
     if (!page) {
@@ -73,9 +78,7 @@ export default function HomePage({ lang = "fr" }) {
                     />
                 </div>
             </div>
-            <footer className="home-footer">
-                <Footer lang={lang} />
-            </footer>
+            <Footer lang={lang} />
         </>
     );
 }

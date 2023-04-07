@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import CheckLanguage from "./helpers/LanguageQuery";
-import "./Navbar.css";
 import { nav_freQuery, nav_engQuery } from "./helpers/queries";
+import { NavLink } from "react-router-dom";
+import "./Navbar.css";
 
 let SPACE_ID, ACCESS_TOKEN;
 if (process.env.NODE_ENV === "production") {
@@ -26,27 +26,30 @@ function Navbar({ setLang, lang = "fr" }) {
     const closeMobileMenu = () => setClick(false);
 
     useEffect(() => {
-        const query = q[lang];
-
-        window
-            .fetch(
-                `https://graphql.contentful.com/content/v1/spaces/${SPACE_ID}/`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${ACCESS_TOKEN}`,
-                    },
-                    body: JSON.stringify({ query }),
-                }
-            )
-            .then((response) => response.json())
-            .then(({ data, errors }) => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch(
+                    `https://graphql.contentful.com/content/v1/spaces/${SPACE_ID}/`,
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${ACCESS_TOKEN}`,
+                        },
+                        body: JSON.stringify({ query: q[lang] }),
+                    }
+                );
+                const { data, errors } = await response.json();
                 if (errors) {
                     console.error(errors);
+                    return;
                 }
                 setPage(data.navbarCollection.items[0].navbar);
-            });
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        fetchData();
     }, [lang]);
 
     if (!page) {
@@ -56,102 +59,92 @@ function Navbar({ setLang, lang = "fr" }) {
     return (
         <>
             <nav className="navbar">
-                <div className="navbar-container">
-                    {/* <Link
-                        to="/"
-                        className="navbar-logo"
-                        onClick={closeMobileMenu}
-                    >
-                        <h1 className="nav-item">Meta</h1>
-                        <img src="./logo_meta.png" alt="Meta" />
-                    </Link> */}
-                    <ul className="nav-logo">
-                        <li>
-                            <Link
-                                to="/"
-                                className="nav-links"
-                                onClick={closeMobileMenu}
-                            >
-                                Meta
-                            </Link>
-                        </li>
-                    </ul>
-                    <div className="menu-icon" onClick={handleClick}>
-                        <div className={click ? "is-opened" : "hamburger"}>
-                            <svg className="hamburger">
-                                <line
-                                    x1="0"
-                                    y1="50%"
-                                    x2="100%"
-                                    y2="50%"
-                                    className="hamburger__bar hamburger__bar--top"
-                                />
-                                <line
-                                    x1="0"
-                                    y1="50%"
-                                    x2="100%"
-                                    y2="50%"
-                                    className="hamburger__bar hamburger__bar--mid"
-                                />
-                                <line
-                                    x1="0"
-                                    y1="50%"
-                                    x2="100%"
-                                    y2="50%"
-                                    className="hamburger__bar hamburger__bar--bot"
-                                />
-                            </svg>
-                        </div>
+                <ul className="nav-logo">
+                    <li>
+                        <NavLink
+                            to="/"
+                            className="nav-links"
+                            onClick={closeMobileMenu}
+                        >
+                            Meta
+                        </NavLink>
+                    </li>
+                </ul>
+                <div className="menu-icon" onClick={handleClick}>
+                    <div className={click ? "is-opened" : "hamburger"}>
+                        <svg className="hamburger">
+                            <line
+                                x1="0"
+                                y1="50%"
+                                x2="100%"
+                                y2="50%"
+                                className="hamburger__bar hamburger__bar--top"
+                            />
+                            <line
+                                x1="0"
+                                y1="50%"
+                                x2="100%"
+                                y2="50%"
+                                className="hamburger__bar hamburger__bar--mid"
+                            />
+                            <line
+                                x1="0"
+                                y1="50%"
+                                x2="100%"
+                                y2="50%"
+                                className="hamburger__bar hamburger__bar--bot"
+                            />
+                        </svg>
                     </div>
-                    <ul className={click ? "nav-menu active" : "nav-menu"}>
-                        <li className="nav-item">
-                            <Link
-                                to="/atelier"
-                                className="nav-links"
-                                onClick={closeMobileMenu}
-                            >
-                                {page[0]}
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link
-                                to="/residences"
-                                className="nav-links"
-                                onClick={closeMobileMenu}
-                            >
-                                {page[1]}
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link
-                                to="/productions"
-                                className="nav-links"
-                                onClick={closeMobileMenu}
-                            >
-                                {page[2]}
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link
-                                to="/events"
-                                className="nav-links"
-                                onClick={closeMobileMenu}
-                            >
-                                {page[3]}
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link
-                                to="/contact"
-                                className="nav-links"
-                                onClick={closeMobileMenu}
-                            >
-                                {page[4]}
-                            </Link>
-                        </li>
-                    </ul>
-                    <CheckLanguage setLang={setLang} />
                 </div>
+                <ul className={click ? "nav-menu active" : "nav-menu"}>
+                    <li className="nav-item">
+                        <NavLink
+                            to="/atelier"
+                            className="nav-links"
+                            onClick={closeMobileMenu}
+                        >
+                            {page[0]}
+                        </NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink
+                            to="/residences"
+                            className="nav-links"
+                            onClick={closeMobileMenu}
+                        >
+                            {page[1]}
+                        </NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink
+                            to="/productions"
+                            className="nav-links"
+                            onClick={closeMobileMenu}
+                        >
+                            {page[2]}
+                        </NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink
+                            to="/events"
+                            className="nav-links"
+                            onClick={closeMobileMenu}
+                        >
+                            {page[3]}
+                        </NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink
+                            to="/contact"
+                            className="nav-links"
+                            onClick={closeMobileMenu}
+                        >
+                            {page[4]}
+                        </NavLink>
+                    </li>
+                </ul>
+                <CheckLanguage setLang={setLang} />
             </nav>
         </>
     );

@@ -19,7 +19,7 @@ const q = {
     "en-US": productions_engQuery,
 };
 
-function Residences({ lang = "fr" }) {
+export default function Residences({ lang = "fr" }) {
     const [page, setPage] = useState(null);
     const [en, setEn] = useState(false);
     const [showAll, setShowAll] = useState(false);
@@ -31,47 +31,54 @@ function Residences({ lang = "fr" }) {
             setEn(true);
         } else setEn(false);
 
-        window
-            .fetch(
-                `https://graphql.contentful.com/content/v1/spaces/${SPACE_ID}/`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${ACCESS_TOKEN}`,
-                    },
-                    body: JSON.stringify({ query }),
-                }
-            )
-            .then((response) => response.json())
-            .then(({ data, errors }) => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch(
+                    `https://graphql.contentful.com/content/v1/spaces/${SPACE_ID}/`,
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${ACCESS_TOKEN}`,
+                        },
+                        body: JSON.stringify({ query }),
+                    }
+                );
+
+                const { data, errors } = await response.json();
+
                 if (errors) {
                     console.error(errors);
+                    return;
                 }
-                const results = data.artistesCollection.items;
-                const mapped = results.map((results) => {
-                    let newResults = {};
-                    if (!results.year) {
-                        var year = "0000–00";
-                    } else {
-                        year = results.year.toString().replace("-", "–");
-                    }
-                    newResults = {
-                        artistName: results.artistName,
-                        projectName: results.projectName,
-                        year: year,
-                        description: results.description,
-                        galleryCollection: results.galleryCollection,
+
+                const mapped = data.artistesCollection.items.map((item) => {
+                    const year = item.year
+                        ? item.year.toString().replace("-", "–")
+                        : "0000–00";
+
+                    return {
+                        artistName: item.artistName,
+                        projectName: item.projectName,
+                        year,
+                        description: item.description,
+                        galleryCollection: item.galleryCollection,
                     };
-                    return newResults;
                 });
-                const sorted = mapped.sort(function (a, b) {
-                    var newa = a.year.split("–");
-                    var newb = b.year.split("–");
-                    return newb[0] - newa[0] + newb[1] - newa[1];
+
+                const sorted = mapped.sort((a, b) => {
+                    const [aYearStart, aYearEnd] = a.year.split("–");
+                    const [bYearStart, bYearEnd] = b.year.split("–");
+                    return bYearStart - aYearStart + bYearEnd - aYearEnd;
                 });
+
                 setPage(sorted);
-            });
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchData();
     }, [lang, showAll]);
 
     if (!page) {
@@ -79,65 +86,67 @@ function Residences({ lang = "fr" }) {
     }
     return (
         <>
-            <li className="index-params">
-                <div
-                    className="show-all"
-                    onClick={() => setShowAll((showAll) => !showAll)}
-                >
-                    {en ? (
-                        showAll ? (
-                            <p className="index-item-name">↑ Hide all</p>
+            <main className="residences-section">
+                <li className="index-params">
+                    <div
+                        className="show-all"
+                        onClick={() => setShowAll((showAll) => !showAll)}
+                    >
+                        {en ? (
+                            showAll ? (
+                                <p className="index-item-name">↑ Hide all</p>
+                            ) : (
+                                <p className="index-item-name">↓ Show all</p>
+                            )
+                        ) : showAll ? (
+                            <p className="index-item-name">↑ Voir moins</p>
                         ) : (
-                            <p className="index-item-name">↓ Show all</p>
-                        )
-                    ) : showAll ? (
-                        <p className="index-item-name">↑ Voir moins</p>
-                    ) : (
-                        <p className="index-item-name">↓ Voir tous</p>
-                    )}
-                </div>
-                <div className="index-item-info">
-                    {en ? (
-                        <p className="index-item-name">Artists</p>
-                    ) : (
-                        <p className="index-item-name">Artistes</p>
-                    )}
-                </div>
-                <div className="index-item-info">
-                    {en ? (
-                        <p className="index-item-project">Project</p>
-                    ) : (
-                        <p className="index-item-project">Projet</p>
-                    )}
-                </div>
-                <div className="index-item-info">
-                    {en ? (
-                        <p className="index-item-year">Year</p>
-                    ) : (
-                        <p className="index-item-year">Année</p>
-                    )}
-                </div>
-            </li>
+                            <p className="index-item-name">↓ Voir tous</p>
+                        )}
+                    </div>
+                    <div className="index-item-info">
+                        {en ? (
+                            <p className="index-item-name">Artists</p>
+                        ) : (
+                            <p className="index-item-name">Artistes</p>
+                        )}
+                    </div>
+                    <div className="index-item-info">
+                        {en ? (
+                            <p className="index-item-project">Project</p>
+                        ) : (
+                            <p className="index-item-project">Projet</p>
+                        )}
+                    </div>
+                    <div className="index-item-info">
+                        {en ? (
+                            <p className="index-item-year">Year</p>
+                        ) : (
+                            <p className="index-item-year">Année</p>
+                        )}
+                    </div>
+                </li>
 
-            {page.map((data) => {
-                return (
-                    <IndexItem
-                        preview={preview}
-                        setPreview={setPreview}
-                        showAll={showAll}
-                        name={data.artistName}
-                        project={data.projectName}
-                        year={data.year}
-                        des={data.description.json.content[0].content[0].value}
-                        src={data.galleryCollection.items}
-                    />
-                );
-            })}
-            <footer>
-                <Footer lang={lang} />
-            </footer>
+                {page.map((data, index) => {
+                    return (
+                        <IndexItem
+                            key={`index-item-${index}`}
+                            preview={preview}
+                            setPreview={setPreview}
+                            showAll={showAll}
+                            name={data.artistName}
+                            project={data.projectName}
+                            year={data.year}
+                            des={
+                                data.description.json.content[0].content[0]
+                                    .value
+                            }
+                            src={data.galleryCollection.items}
+                        />
+                    );
+                })}
+            </main>
+            <Footer lang={lang} />
         </>
     );
 }
-
-export default Residences;

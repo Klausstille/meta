@@ -1,10 +1,10 @@
 .index-params {
     display: grid;
     grid-template-columns: 100px 1fr 1fr 1fr;
-    padding: 40px 20px 0px 20px;
+    padding: 65px 20px 0px 20px;
     grid-gap: 40px;
     position: sticky;
-    top: 2px;
+    top: 0;
     background-color: white;
     margin-bottom: 18px;
 }
@@ -17,8 +17,17 @@
 
 .index {
     position: sticky;
-    top: 80px;
+    top: 96px;
     background-color: white;
+}
+
+.index-item:hover {
+    background-color: rgb(234, 234, 234);
+    transition: all 0.3s;
+}
+
+.index:first-of-type .index-item {
+    border-top: none;
 }
 
 .index-wrapper {
@@ -37,7 +46,7 @@
 }
 
 .index .index-item {
-    border-top: solid 1px #006eff;
+    border-top: solid 1px var(--primary-color);
 }
 
 .index-item-year {
@@ -98,7 +107,7 @@ ul.index-items {
 
 h6.sticky-text {
     background-color: #ffffff;
-    color: #006eff;
+    color: var(--primary-color);
     font-family: "Graphikregular", Fallback, sans-serif;
     margin-top: -40px;
     padding: 10px;
@@ -149,9 +158,6 @@ h6.sticky-text {
 }
 
 @media screen and (max-width: 1200px) {
-    .index:first-of-type .index-item {
-        border-top: none;
-    }
     .index-item {
         grid-gap: 15px;
     }
@@ -180,17 +186,17 @@ h6.sticky-text {
     .image-grid img {
         opacity: 1;
     }
+    .image-container {
+        overflow-x: scroll;
+    }
+
+    .image-container img {
+        width: auto;
+        min-width: 100%;
+        height: 100%;
+    }
 
     @media screen and (max-width: 800px) {
-        .image-container {
-            overflow-x: scroll;
-        }
-
-        .image-container img {
-            width: auto;
-            height: 100%;
-        }
-
         .index {
             position: relative;
             top: 0px;
@@ -200,7 +206,7 @@ h6.sticky-text {
             position: relative;
             top: 0;
             background-color: white;
-            margin: 50px 0 0 0;
+            margin: 65px 0 0 0;
             padding: 0 20px 0 20px;
         }
 
