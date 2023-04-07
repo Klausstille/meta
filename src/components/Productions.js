@@ -20,9 +20,9 @@ const q = {
 
 export default function Productions({ lang = "fr" }) {
     const [page, setPage] = useState(null);
-    const [en, setEn] = useState(false);
-    const [showAll, setShowAll] = useState(false);
-    const [preview, setPreview] = useState(false);
+    const [en, setEn] = useState(null);
+    const [showAll, setShowAll] = useState(null);
+    const [preview, setPreview] = useState(null);
 
     useEffect(() => {
         const query = q[lang];

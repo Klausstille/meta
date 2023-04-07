@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: 100px 1fr 1fr 1fr;
     padding: 65px 20px 0px 20px;
-    grid-gap: 40px;
+    grid-gap: 60px;
     position: sticky;
     top: 0;
     background-color: white;
@@ -181,7 +181,7 @@ img.blurred-image {
     }
 
     .index-params {
-        grid-gap: 15px;
+        grid-gap: 20px;
         z-index: 1;
     }
 
@@ -195,6 +195,7 @@ img.blurred-image {
         grid-gap: 20px;
     }
     .index-item h3 {
+        font-family: "Graphik";
         display: grid;
         align-items: end;
         padding-top: 0;

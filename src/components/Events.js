@@ -22,10 +22,10 @@ const q = {
 
 export default function Events({ lang = "fr" }) {
     const [page, setPage] = useState(null);
-    const [en, setEn] = useState(false);
-    const [isShown, setIsShown] = useState(false);
+    const [en, setEn] = useState(null);
+    const [isShown, setIsShown] = useState(null);
     const [activeIndex, setActiveIndex] = useState(-1);
-    const [preview, setPreview] = useState(false);
+    const [preview, setPreview] = useState(null);
     const { x, y } = useMouse();
     const { width } = GetWindowDimensions();
 
@@ -54,20 +54,11 @@ export default function Events({ lang = "fr" }) {
                 console.error(error);
             }
         };
-        if (isShown) {
-            const preventDefaultImage = () => {
-                if (width <= 1200) {
-                    setPreview(false);
-                } else {
-                    setPreview(true);
-                }
-            };
-            preventDefaultImage();
-        }
         fetchPageData();
+        isShown && width <= 1200 ? setPreview(false) : setPreview(true);
         const en = query === q["en-US"];
         setEn(en);
-    }, [lang, isShown, width]);
+    }, [lang, isShown, width, setPreview, setPage]);
 
     if (!page) {
         return;

@@ -7,18 +7,16 @@ export default function GetWindowDimensions() {
     });
 
     useEffect(() => {
-        let abort = false;
         function handleResize() {
-            if (!abort) {
-                setDimensions({
-                    height: window.innerHeight,
-                    width: window.innerWidth,
-                });
-            }
+            setDimensions({
+                height: window.innerHeight,
+                width: window.innerWidth,
+            });
         }
         window.addEventListener("resize", handleResize);
-        return () => (abort = true);
-    });
-
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
     return dimensions;
 }

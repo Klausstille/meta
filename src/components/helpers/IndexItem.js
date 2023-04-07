@@ -18,7 +18,7 @@ export default function IndexItem({
     src,
 }) {
     const [oneIsShown, setOneIsShown] = useState(false);
-    const [isClicked, setIsClicked] = useState(false);
+    const [isClicked, setIsClicked] = useState(null);
     const [isSwitch, setSwitch] = useState(null);
     const [activeIndex, setActiveIndex] = useState(-1);
     const { x, y } = useMouse();
@@ -65,12 +65,7 @@ export default function IndexItem({
     }, [showAll]);
 
     useEffect(() => {
-        const preventDefaultImage = () => {
-            setPreview(width > 1200);
-        };
-        if (isClicked) {
-            preventDefaultImage();
-        }
+        isClicked && width <= 1200 ? setPreview(false) : setPreview(true);
     }, [isClicked, setPreview, width]);
 
     return (

@@ -21,10 +21,10 @@ const q = {
 
 function Contact({ lang = "fr" }) {
     const [page, setPage] = useState(null);
-    const [isShown, setIsShown] = useState(false);
+    const [isShown, setIsShown] = useState(null);
     const { x, y } = useMouse();
     const { width } = GetWindowDimensions();
-    const [preview, setPreview] = useState(false);
+    const [preview, setPreview] = useState(null);
 
     useEffect(() => {
         const query = q[lang];
@@ -50,14 +50,8 @@ function Contact({ lang = "fr" }) {
                 console.error(error);
             }
         }
-
-        if (isShown && width <= 1200) {
-            setPreview(false);
-        } else {
-            setPreview(true);
-        }
-
         fetchData();
+        isShown && width <= 1200 ? setPreview(false) : setPreview(true);
     }, [lang, isShown, width, setPage, setPreview]);
 
     if (!page) {

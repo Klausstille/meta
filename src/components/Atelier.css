@@ -1,20 +1,19 @@
 .atelier-section {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    padding: 45px 0 0 20px;
+    padding-top: 45px;
 }
 .atelier-container {
     height: 100vh;
     overflow: scroll;
     border-left: 1px solid var(--secondary-color);
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 0 20px;
     background-color: var(--secondary-color);
 }
 .residences-container {
     height: 100vh;
     overflow: scroll;
-    padding-right: 20px;
+    padding: 0 20px;
 }
 .atelier-container > h1,
 .atelier-item > h3 {
@@ -27,7 +26,7 @@
 }
 
 .atelier-section h1 {
-    padding: 10px 0 0 0;
+    padding-top: 10px;
     font-size: 4em;
 }
 
@@ -35,7 +34,7 @@
     .atelier-section {
         display: grid;
         grid-template-columns: 1fr;
-        padding: 45px 0 0 0;
+        padding-top: 45px;
     }
     .atelier-container,
     .residences-container {
