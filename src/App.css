@@ -70,6 +70,7 @@ a:hover {
     overflow: hidden;
     pointer-events: none;
     z-index: 10;
+    mix-blend-mode: exclusion;
 }
 .policy h1 {
     text-align: left;
