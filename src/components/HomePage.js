@@ -52,8 +52,8 @@ export default function HomePage({ lang = "fr" }) {
 
     return (
         <>
-            <div className="home">
-                <div className="home-module">
+            <main className="home">
+                <section className="home-module">
                     {y > 90 ? (
                         <div
                             className="logo-container"
@@ -67,8 +67,8 @@ export default function HomePage({ lang = "fr" }) {
                     ) : (
                         <p></p>
                     )}
-                </div>
-                <div className="hero-container">
+                </section>
+                <section className="hero-container">
                     <video
                         src={page[0].heromedia.url}
                         playsInline
@@ -76,8 +76,8 @@ export default function HomePage({ lang = "fr" }) {
                         loop
                         muted
                     />
-                </div>
-            </div>
+                </section>
+            </main>
             <Footer lang={lang} />
         </>
     );

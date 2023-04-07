@@ -37,7 +37,7 @@
     color: var(--primary-color);
 }
 
-body {
+container {
     font-family: "Graphik", Fallback, sans-serif;
     display: flex;
     flex-direction: column;
