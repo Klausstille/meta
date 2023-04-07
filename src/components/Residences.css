@@ -175,10 +175,6 @@ img.blurred-image {
 }
 
 @media screen and (max-width: 1200px) {
-    /* .index-item h3 {
-        display: block;
-    } */
-
     .index .index-item {
         grid-gap: 0;
         height: auto;
@@ -186,6 +182,7 @@ img.blurred-image {
 
     .index-params {
         grid-gap: 15px;
+        z-index: 1;
     }
 
     .text-grid {
@@ -196,6 +193,11 @@ img.blurred-image {
         display: flex;
         flex-wrap: wrap;
         grid-gap: 20px;
+    }
+    .index-item h3 {
+        display: grid;
+        align-items: end;
+        padding-top: 0;
     }
     .index-params h3 {
         font-size: 1rem;

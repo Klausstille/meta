@@ -151,7 +151,16 @@ function Contact({ lang = "fr" }) {
                                           }
                                 }
                             >
-                                <img alt="" src={page[1].bioImage.url} />
+                                <img
+                                    alt=""
+                                    src={page[1].bioImage.url}
+                                    className="fixed-image"
+                                />
+                                <img
+                                    alt=""
+                                    src={page[1].bioImage.url}
+                                    className="blurred-image"
+                                />
                             </div>
                         </div>
                     )}
