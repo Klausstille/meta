@@ -5,7 +5,7 @@
     grid-gap: 60px;
     position: sticky;
     top: 0;
-    background-color: white;
+    background-color: var(--background-color);
     margin-bottom: 18px;
 }
 .index:first-of-type .index-item {
@@ -21,7 +21,7 @@
 .index {
     position: sticky;
     top: 99px;
-    background-color: white;
+    background-color: var(--background-color);
 }
 
 .index-wrapper {
@@ -35,7 +35,7 @@
     grid-template-columns: 100px 1fr 1fr 1fr;
     grid-gap: 40px;
     padding: 0 20px 0 20px;
-    background-color: #ffffff;
+    background-color: var(--background-color);
 }
 
 .index .index-item {
@@ -120,11 +120,12 @@ ul.index-items {
 }
 
 h6.sticky-text {
-    background-color: #ffffff;
+    background-color: var(--background-color);
     color: var(--primary-color);
+    border-top: solid 1px;
     font-family: "Graphikregular", Fallback, sans-serif;
     margin-top: -40px;
-    padding: 10px;
+    padding: 11px;
     position: fixed;
     width: 100%;
 }
@@ -260,7 +261,7 @@ img.blurred-image {
         .index-params {
             position: relative;
             top: 0;
-            background-color: white;
+            background-color: var(--background-color);
             margin: 65px 0 0 0;
             padding: 0 20px 0 20px;
         }

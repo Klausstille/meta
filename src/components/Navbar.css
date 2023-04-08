@@ -5,7 +5,7 @@
     align-content: center;
     position: fixed;
     width: 100vw;
-    background-color: white;
+    background-color: var(--background-color);
     z-index: 2;
     border-bottom: 1px solid var(--primary-color);
 }
@@ -49,12 +49,10 @@
 .nav-menu {
     min-width: 850px;
     display: grid;
-    grid-template-columns: repeat(5, auto);
+    grid-template-columns: repeat(5, 1fr);
     list-style: none;
-    text-align: center;
-    width: 90vw;
+    width: 80vw;
     margin-top: 7px;
-    justify-content: space-evenly;
 }
 
 ul.nav-menu {
@@ -63,6 +61,7 @@ ul.nav-menu {
 
 .nav-item {
     height: 39px;
+    width: 100%;
 }
 
 .nav-links,
@@ -75,13 +74,17 @@ ul.nav-menu {
     height: 47px;
 }
 .nav-links-first {
-    border-left: none;
+    border-right: none;
     padding-left: 0;
 }
 .nav-links {
-    border-left: solid 1px;
-    padding-left: 67px;
+    border-right: solid 1px;
+    justify-content: center;
 }
+.nav-item:first-child .nav-links {
+    border-left: solid 1px;
+}
+
 .nav-links:hover {
     transition: all 0.2s ease-in-out;
     transform: translateY(-1px);
@@ -169,7 +172,7 @@ ul.nav-menu {
 
     .nav-menu.active {
         opacity: 1;
-        background-color: rgba(255, 255, 255, 0.9);
+        background-color: rgba(238, 238, 238, 0.8);
         color: var(--primary-color);
         left: 0;
         top: 38px;
@@ -182,7 +185,9 @@ ul.nav-menu {
         padding-left: 0;
         border-left: none;
     }
-
+    .nav-item:first-child .nav-links {
+        border-left: none;
+    }
     .nav-logo .nav-links {
         width: 0;
     }
@@ -213,12 +218,12 @@ ul.nav-menu {
         text-decoration: none;
         font-size: 1.5rem;
         background-color: transparent;
-        color: #fff;
-        border: 1px solid #fff;
+        color: var(--background-color);
+        border: 1px solid var(--background-color);
     }
 
     .nav-links-mobile:hover {
-        background: #fff;
+        background: var(--background-color);
         transition: 250ms;
     }
 }
