@@ -2,6 +2,16 @@
     color: var(--primary-color);
     font-size: 1rem;
 }
+h6.sticky-text-event {
+    background-color: var(--secondary-color);
+    color: var(--background-color);
+    border-top: solid 1px;
+    font-family: "Graphikregular", Fallback, sans-serif;
+    margin-top: -40px;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+}
 
 .residences-pic {
     height: 30vw !important;

@@ -1,3 +1,16 @@
+body:has(.events-container) .navbar {
+    background-color: var(--secondary-color);
+    border-bottom: 1px solid white;
+}
+body:has(.events-container) .nav-links,
+body:has(.events-container) .nav-links-first,
+body:has(.events-container) .nav-lan {
+    color: white;
+}
+body:has(.events-container) .hamburger {
+    stroke: white;
+}
+
 .navbar {
     height: 45px;
     display: flex;
@@ -97,12 +110,12 @@ ul.nav-menu {
 .hamburger {
     width: 23px;
     height: 23px;
+    stroke: var(--primary-color);
 }
 
 .hamburger__bar--top {
     transform: translate(0, -8px);
     transform-origin: initial;
-    stroke: var(--primary-color);
     stroke-width: 3px;
     transition: all 1s ease-in-out;
 }
@@ -110,7 +123,6 @@ ul.nav-menu {
 .hamburger__bar--mid {
     transform: translate(0, 0);
     transform-origin: initial;
-    stroke: var(--primary-color);
     stroke-width: 3px;
     transition: all 1s ease-in-out;
 }
@@ -118,7 +130,6 @@ ul.nav-menu {
 .hamburger__bar--bot {
     transform: translate(0, 8px);
     transform-origin: initial;
-    stroke: var(--primary-color);
     stroke-width: 3px;
     transition: all 1s ease-in-out;
 }

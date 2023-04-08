@@ -21,7 +21,7 @@
 
 :root {
     --primary-color: #006eff;
-    --secondary-color: #ff4800;
+    --secondary-color: rgb(39, 39, 39);
     --background-color: #eeeeee;
 }
 

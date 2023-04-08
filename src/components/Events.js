@@ -72,7 +72,7 @@ export default function Events({ lang = "fr" }) {
                                 src={page[activeIndex].residencesPhotos.url}
                                 className="blurred-image"
                             />
-                            <h6 className="sticky-text">
+                            <h6 className="sticky-text-event">
                                 {page[activeIndex].residencesPhotos.title} |{" "}
                                 {page[activeIndex].description}
                             </h6>
