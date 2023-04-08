@@ -72,7 +72,12 @@ a:hover {
     z-index: 10;
     mix-blend-mode: exclusion;
     -webkit-mix-blend-mode: exclusion;
-    filter: drop-shadow(1px 3px 5px var(--primary-color));
+    filter: drop-shadow(1px 4px 8px var(--primary-color));
+}
+
+body :has(.residences-section, .production-section) #canvas {
+    mix-blend-mode: normal;
+    -webkit-mix-blend-mode: normal;
 }
 
 .policy h1 {
