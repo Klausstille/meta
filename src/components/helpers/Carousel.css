@@ -39,8 +39,8 @@ h3 {
 
 .carousel-control-next,
 .carousel-control-prev {
-    mix-blend-mode: exclusion;
-    -webkit-mix-blend-mode: exclusion;
+    mix-blend-mode: plus-lighter;
+    -webkit-mix-blend-mode: plus-lighter;
     right: 0;
     height: 30vw;
     cursor: none;

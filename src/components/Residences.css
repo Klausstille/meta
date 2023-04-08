@@ -125,7 +125,7 @@ h6.sticky-text {
     border-top: solid 1px;
     font-family: "Graphikregular", Fallback, sans-serif;
     margin-top: -40px;
-    padding: 11px;
+    padding: 10px;
     position: fixed;
     width: 100%;
 }

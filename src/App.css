@@ -64,7 +64,7 @@ a:hover {
 
 .hand {
     stroke: var(--primary-color);
-    stroke-width: 3;
+    stroke-width: 1;
     stroke-linecap: round;
 }
 
@@ -75,16 +75,20 @@ a:hover {
     overflow: hidden;
     pointer-events: none;
     z-index: 10;
-    mix-blend-mode: plus-lighter;
-    -webkit-mix-blend-mode: plus-lighter;
+    mix-blend-mode: color-dodge;
+    -webkit-mix-blend-mode: color-dodge;
     filter: drop-shadow(1px 4px 8px var(--primary-color));
 }
 
-body :has(.home) #canvas {
+body:has(.contact-section, .events-container, .atelier-section) #canvas {
+    mix-blend-mode: plus-lighter;
+    -webkit-mix-blend-mode: plus-lighter;
+}
+body:has(.home) #canvas {
     mix-blend-mode: color-dodge;
     -webkit-mix-blend-mode: color-dodge;
 }
-body :has(.residences-section, .production-section) #canvas {
+body:has(.residences-section, .production-section) #canvas {
     mix-blend-mode: normal;
     -webkit-mix-blend-mode: normal;
     filter: none;
