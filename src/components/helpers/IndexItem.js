@@ -5,7 +5,7 @@ import useMouse from "../mouseEvent/MouseMove";
 import GetWindowDimensions from "../mouseEvent/DocumentSize";
 import LazyLoad from "react-lazy-load";
 
-import "./Index.css";
+import "../Residences.css";
 
 export default function IndexItem({
     preview,
@@ -18,54 +18,55 @@ export default function IndexItem({
     src,
 }) {
     const [oneIsShown, setOneIsShown] = useState(false);
-    const [isClicked, setIsClicked] = useState(false);
+    const [isClicked, setIsClicked] = useState(null);
     const [isSwitch, setSwitch] = useState(null);
     const [activeIndex, setActiveIndex] = useState(-1);
     const { x, y } = useMouse();
     const { width } = GetWindowDimensions();
 
-    const escape = (e) => {
-        if (e.keyCode === 27) {
+    const handleEscape = (event) => {
+        if (event.keyCode === 27) {
             setIsClicked(false);
         }
-        return document.removeEventListener("keydown", escape);
     };
-    document.addEventListener("keydown", escape);
 
-    function handleClick(e) {
+    const handleClick = (event) => {
+        const { innerText } = event.currentTarget;
+        const { className } = event.target.parentElement;
+
         if (
-            e.currentTarget.innerText.indexOf("→") === 0 &&
-            e.target.parentElement.className.indexOf("index-item") === 0
+            innerText.indexOf("→") === 0 &&
+            className.indexOf("index-item") === 0
         ) {
             setSwitch(true);
         } else if (
-            e.currentTarget.innerText.indexOf("→") === -1 &&
-            e.target.parentElement.className.indexOf("index-item") === 0
+            innerText.indexOf("→") === -1 &&
+            className.indexOf("index-item") === 0
         ) {
             setSwitch(false);
         }
-    }
+    };
+
+    const handleShowAll = () => {
+        setSwitch((isSwitch) => !isSwitch);
+    };
 
     useEffect(() => {
-        let abort = false;
-        if (!abort) {
-            if (showAll) {
-                setSwitch((isSwitch) => !isSwitch);
-            }
+        document.addEventListener("keydown", handleEscape);
+        return () => {
+            document.removeEventListener("keydown", handleEscape);
+        };
+    }, []);
+
+    useEffect(() => {
+        if (showAll) {
+            handleShowAll();
         }
-        return () => (abort = true);
     }, [showAll]);
 
-    function preventDefaultImage() {
-        if (width <= 1200) {
-            setPreview(false);
-        } else if (width > 1200) {
-            setPreview(true);
-        }
-    }
-    if (isClicked) {
-        preventDefaultImage();
-    }
+    useEffect(() => {
+        isClicked && width <= 1200 ? setPreview(false) : setPreview(true);
+    }, [isClicked, setPreview, width]);
 
     return (
         <>
@@ -96,6 +97,13 @@ export default function IndexItem({
                             alt={activeIndex.name}
                             active={activeIndex.isActive}
                             src={activeIndex.url}
+                            className="fixed-image"
+                        />
+                        <img
+                            alt={activeIndex.name}
+                            active={activeIndex.isActive}
+                            src={activeIndex.url}
+                            className="blurred-image"
                         />
                         <h6 className="sticky-text">
                             {activeIndex.name}
@@ -156,11 +164,13 @@ export default function IndexItem({
                                             <p>{des}</p>
                                         </div>
                                         <div className="image-grid">
-                                            {src.map((data) => {
+                                            {src.map((data, index) => {
                                                 return (
-                                                    <LazyLoad>
+                                                    <LazyLoad
+                                                        key={`index-item-${index}`}
+                                                    >
                                                         <img
-                                                            key={data.url}
+                                                            key={`index-item-${index}`}
                                                             className="index-item-pics"
                                                             alt="Pic"
                                                             src={data.url}

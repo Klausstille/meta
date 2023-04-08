@@ -1,70 +1,55 @@
-h2 {
-    color: #006eff;
-    margin-bottom: 2rem;
+.atelier-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding-top: 45px;
+}
+.atelier-container {
+    height: 100vh;
+    overflow: scroll;
+    border-left: 1px solid var(--primary-color);
+    padding: 0 20px;
+    background-color: var(--secondary-color);
+}
+.residences-container {
+    height: 100vh;
+    overflow: scroll;
+    padding: 0 20px;
+}
+.atelier-container > h1,
+.atelier-item > h3 {
+    color: white;
 }
 
-.text-module {
-    padding: 45px 20px 80px 20px;
+.atelier-item,
+.residences-item {
+    padding-bottom: 10px;
 }
 
-.info-text {
-    position: absolute;
-    text-align: justify;
-    text-align-last: center;
-    font-size: 6vw;
-    padding: 0;
-    margin-top: -20px;
-    z-index: -1;
-    opacity: 0.1;
-    padding: 0 40px;
-}
-.atelier-img img {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
+.atelier-section h1 {
+    padding-top: 10px;
+    margin-left: -4px;
+    font-size: 4em;
 }
 
-.atelier-img {
-    position: fixed;
-    right: 0;
-    top: 0;
-    z-index: 1;
-    pointer-events: none;
-}
-
-.back p {
-    position: absolute;
-    z-index: 0;
-}
-.back {
-    height: 80vh;
-    width: 100vw;
-    display: flex;
-    text-align: center;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    object-fit: contain;
-    background-color: #f8f8f8;
-}
-
-@media screen and (max-width: 1200px) {
-    h2 {
-        font-size: 1rem;
+@media screen and (max-width: 1000px) {
+    .atelier-section {
+        display: grid;
+        grid-template-columns: 1fr;
+        padding-top: 45px;
     }
-
-    .atelier-pic {
-        width: 60vw;
-        height: 40vw;
-        margin-bottom: 10px;
-        object-fit: cover;
-        object-position: top;
-        filter: blur(0);
+    .atelier-container,
+    .residences-container {
+        height: auto;
+        overflow: auto;
+        border-left: none;
+        padding: 0 20px 20px 20px;
     }
-}
-
-@media screen and (max-width: 800px) {
-    .text-module {
-        padding: 50px 20px 80px 20px;
+    .residences-container {
+        height: auto;
+        overflow: auto;
+    }
+    .atelier-section h1 {
+        padding: 10px 0 0 0;
+        font-size: 3em;
     }
 }

@@ -4,15 +4,7 @@ import getWindowDimensions from "../components/mouseEvent/DocumentSize";
 import "./HomePage.css";
 import Footer from "./Footer";
 import { home_query as query } from "./helpers/queries";
-
-let SPACE_ID, ACCESS_TOKEN;
-if (process.env.NODE_ENV === "production") {
-    SPACE_ID = process.env.REACT_APP_SPACE_ID;
-    ACCESS_TOKEN = process.env.REACT_APP_ACCESS_TOKEN;
-} else {
-    SPACE_ID = require("../secrets.json").REACT_APP_SPACE_ID;
-    ACCESS_TOKEN = require("../secrets.json").REACT_APP_ACCESS_TOKEN;
-}
+import fetchData from "./helpers/Fetcher";
 
 export default function HomePage({ lang = "fr" }) {
     const [page, setPage] = useState(null);
@@ -20,25 +12,11 @@ export default function HomePage({ lang = "fr" }) {
     const { width } = getWindowDimensions();
 
     useEffect(() => {
-        window
-            .fetch(
-                `https://graphql.contentful.com/content/v1/spaces/${SPACE_ID}/`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${ACCESS_TOKEN}`,
-                    },
-                    body: JSON.stringify({ query }),
-                }
-            )
-            .then((response) => response.json())
-            .then(({ data, errors }) => {
-                if (errors) {
-                    console.error(errors);
-                }
-                setPage(data.heromediaCollection.items);
-            });
+        const fetchDataAsync = async () => {
+            const data = await fetchData({ query });
+            setPage(data.heromediaCollection.items);
+        };
+        fetchDataAsync();
     }, [lang]);
 
     if (!page) {
@@ -47,9 +25,9 @@ export default function HomePage({ lang = "fr" }) {
 
     return (
         <>
-            <div className="home">
-                <div className="home-module">
-                    {y > 90 ? (
+            <main className="home">
+                <section className="home-module">
+                    {y > 90 && (
                         <div
                             className="logo-container"
                             style={{
@@ -59,11 +37,9 @@ export default function HomePage({ lang = "fr" }) {
                         >
                             <img src="./logo_meta.png" alt="Meta" />
                         </div>
-                    ) : (
-                        <p></p>
                     )}
-                </div>
-                <div className="hero-container">
+                </section>
+                <section className="hero-container">
                     <video
                         src={page[0].heromedia.url}
                         playsInline
@@ -71,11 +47,9 @@ export default function HomePage({ lang = "fr" }) {
                         loop
                         muted
                     />
-                </div>
-            </div>
-            <footer className="home-footer">
-                <Footer lang={lang} />
-            </footer>
+                </section>
+            </main>
+            <Footer lang={lang} />
         </>
     );
 }

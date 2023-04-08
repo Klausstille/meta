@@ -1,18 +1,10 @@
 import { useState, useEffect } from "react";
-import useMouse from "./mouseEvent/MouseMove";
 import GetWindowDimensions from "./mouseEvent/DocumentSize";
 import Footer from "./Footer";
+import Slideshow from "./helpers/Carousel";
 import "./Atelier.css";
 import { atelier_engQuery, atelier_freQuery } from "./helpers/queries";
-
-let SPACE_ID, ACCESS_TOKEN;
-if (process.env.NODE_ENV === "production") {
-    SPACE_ID = process.env.REACT_APP_SPACE_ID;
-    ACCESS_TOKEN = process.env.REACT_APP_ACCESS_TOKEN;
-} else {
-    SPACE_ID = require("../secrets.json").REACT_APP_SPACE_ID;
-    ACCESS_TOKEN = require("../secrets.json").REACT_APP_ACCESS_TOKEN;
-}
+import fetchData from "./helpers/Fetcher";
 
 const q = {
     fr: atelier_freQuery,
@@ -20,138 +12,97 @@ const q = {
 };
 
 export default function Atelier({ lang = "fr" }) {
-    const [page, setPage] = useState(null);
-    const { x, y } = useMouse();
+    const [isAtelier, setIsAtelier] = useState([]);
+    const [isResidence, setIsResidence] = useState([]);
+    const [en, setEn] = useState(false);
     const { width } = GetWindowDimensions();
-    const [isShown, setIsShown] = useState(false);
-    const [preview, setPreview] = useState(false);
 
     useEffect(() => {
         const query = q[lang];
-        if (isShown) {
-            preventDefaultImage();
-        }
-        function preventDefaultImage() {
-            if (width <= 1200) {
-                setPreview(false);
-            } else if (width > 1200) {
-                setPreview(true);
-            }
-        }
-        window
-            .fetch(
-                `https://graphql.contentful.com/content/v1/spaces/${SPACE_ID}/`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${ACCESS_TOKEN}`,
-                    },
-                    body: JSON.stringify({ query }),
-                }
-            )
-            .then((response) => response.json())
-            .then(({ data, errors }) => {
-                if (errors) {
-                    console.error(errors);
-                }
-                setPage(data.homeCollection.items);
-            });
-    }, [lang, isShown, width]);
+        const en = query === q["en-US"];
+        setEn(en);
+        const fetchDataAsync = async () => {
+            const data = await fetchData({ query });
+            const residences = data.carouselCollection.items.filter(
+                (item) => item.validation === "residences"
+            );
+            setIsResidence(residences);
+            const atelier = data.carouselCollection.items.filter(
+                (item) => item.validation === "atelier"
+            );
+            setIsAtelier(atelier);
+        };
+        fetchDataAsync();
+    }, [lang, width]);
 
-    if (!page) {
+    if (!isAtelier || !isResidence) {
         return;
     }
-
     return (
         <>
-            <div className="atelier-module">
-                {y > 90 ? (
-                    <div
-                        className="logo-container"
-                        style={{
-                            width: `${width - x}px`,
-                            height: `${y}px`,
-                        }}
-                    >
-                        <img src="./logo_meta.png" alt="Meta" />
-                    </div>
-                ) : (
-                    <p></p>
-                )}
-            </div>
-            <div className="text-module">
-                {page.map((data) => {
-                    return (
-                        <>
-                            <div>
-                                {data.homeText.json.content.map((content) => {
-                                    return content.content.length === 0 ? (
-                                        <>{content.content[0].value},</>
-                                    ) : (
-                                        <h2>
-                                            {content.content.map((content) => {
-                                                return content.data.uri ? (
-                                                    <a
-                                                        key={content.data.uri}
-                                                        href={content.data.uri}
-                                                    >
-                                                        {
-                                                            content.content[0]
-                                                                .value
-                                                        }
-                                                    </a>
-                                                ) : (
-                                                    <>{content.value}</>
-                                                );
-                                            })}
-                                        </h2>
-                                    );
-                                })}
-                                <div className="pic-container">
-                                    <h6
-                                        onClick={() => {
-                                            setIsShown(true);
-                                        }}
-                                    >
-                                        ↳ {data.heromedia.title}
-                                    </h6>
-                                </div>
-                            </div>
-
-                            {isShown && (
+            <main className="atelier-section">
+                <section className="residences-container">
+                    {en ? <h1>Residences</h1> : <h1>Résidences</h1>}
+                    {isResidence.map(
+                        (
+                            { carouselImageCollection, description, title },
+                            index
+                        ) => {
+                            return (
                                 <div
-                                    key={data.heromedia.url}
-                                    className="img-module-contact"
-                                    onClick={() => {
-                                        setIsShown(false);
-                                    }}
+                                    key={`index-item-${index}`}
+                                    className="residences-item"
                                 >
-                                    <div
-                                        className="image-container"
-                                        style={
-                                            preview
-                                                ? {
-                                                      width: `${width - x}px`,
-                                                      height: `${y - 1}px`,
-                                                  }
-                                                : {
-                                                      width: `100%`,
-                                                      height: `100%`,
-                                                  }
+                                    <Slideshow
+                                        images={carouselImageCollection}
+                                    />
+                                    <h3> {title}</h3>
+                                    {description.json.content?.map(
+                                        (item, index) => {
+                                            return (
+                                                <h3 key={`index-item-${index}`}>
+                                                    {item.content[0].value}
+                                                </h3>
+                                            );
                                         }
-                                    >
-                                        <img alt="" src={data.heromedia.url} />
-                                        <h6 className="sticky-text">
-                                            {data.heromedia.title}
-                                        </h6>
-                                    </div>
+                                    )}
                                 </div>
-                            )}
-                        </>
-                    );
-                })}
-            </div>
+                            );
+                        }
+                    )}
+                </section>
+                <section className="atelier-container">
+                    {en ? <h1>Workshop</h1> : <h1>Atelier</h1>}
+                    {isAtelier.map(
+                        (
+                            { carouselImageCollection, description, title },
+                            index
+                        ) => {
+                            return (
+                                <div
+                                    key={`index-item-${index}`}
+                                    className="atelier-item"
+                                >
+                                    <Slideshow
+                                        key={`index-item-${index}`}
+                                        images={carouselImageCollection}
+                                    />
+                                    <h3> {title}</h3>
+                                    {description.json.content?.map(
+                                        (item, index) => {
+                                            return (
+                                                <h3 key={`index-item-${index}`}>
+                                                    {item.content[0].value}
+                                                </h3>
+                                            );
+                                        }
+                                    )}
+                                </div>
+                            );
+                        }
+                    )}
+                </section>
+            </main>
             <footer>
                 <Footer lang={lang} />
             </footer>

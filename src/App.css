@@ -15,6 +15,15 @@
     font-style: normal;
     font-stretch: normal;
 }
+::-webkit-scrollbar {
+    display: none;
+}
+
+:root {
+    --primary-color: #006eff;
+    --secondary-color: rgb(39, 39, 39);
+    --background-color: #eeeeee;
+}
 
 * {
     font-feature-settings: "liga", "kern";
@@ -26,42 +35,36 @@
     margin: 0;
     padding: 0;
     cursor: none;
-    color: #006eff;
+    color: var(--primary-color);
+}
+
+container {
+    font-family: "Graphik", Fallback, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--background-color);
 }
 
 h3 {
     font-size: 1.4rem;
 }
-
-h1,
-h3,
-h6,
 p {
-    line-height: 1.4rem;
+    line-height: 1.3rem;
 }
 
-body::-webkit-scrollbar {
-    display: none; /* Chrome Safari */
+a {
+    color: var(--primary-color);
 }
 
 a:hover {
     text-decoration: none;
-    color: #006eff;
-}
-
-body {
-    font-family: "Graphik", Fallback, sans-serif;
-}
-
-main {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    color: var(--primary-color);
 }
 
 .hand {
-    stroke: #006eff;
-    stroke-width: 3;
+    stroke: var(--primary-color);
+    stroke-width: 1;
     stroke-linecap: round;
 }
 
@@ -72,7 +75,25 @@ main {
     overflow: hidden;
     pointer-events: none;
     z-index: 10;
+    mix-blend-mode: color-dodge;
+    -webkit-mix-blend-mode: color-dodge;
+    filter: drop-shadow(1px 4px 8px var(--primary-color));
 }
+
+body:has(.contact-section, .events-container, .atelier-section) #canvas {
+    mix-blend-mode: plus-lighter;
+    -webkit-mix-blend-mode: plus-lighter;
+}
+body:has(.home) #canvas {
+    mix-blend-mode: color-dodge;
+    -webkit-mix-blend-mode: color-dodge;
+}
+body:has(.residences-section, .production-section) #canvas {
+    mix-blend-mode: normal;
+    -webkit-mix-blend-mode: normal;
+    filter: none;
+}
+
 .policy h1 {
     text-align: left;
 }
@@ -83,7 +104,12 @@ footer {
 }
 @media screen and (max-width: 1200px) {
     h3 {
+        font-family: "Graphikmedium";
         font-size: 1rem;
-        line-height: 1rem;
+        line-height: 1.4rem;
+    }
+    p {
+        font-size: 1rem;
+        line-height: 1.4rem;
     }
 }

@@ -1,128 +1,116 @@
 import { useState, useEffect } from "react";
-import useMouse from "./mouseEvent/MouseMove";
-import GetWindowDimensions from "./mouseEvent/DocumentSize";
-import Event from "./helpers/Events";
-import Footer from "./Footer";
+import React from "react";
 import "./Residences.css";
-import { events_engQuery, events_freQuery } from "./helpers/queries";
-
-let SPACE_ID, ACCESS_TOKEN;
-if (process.env.NODE_ENV === "production") {
-    SPACE_ID = process.env.REACT_APP_SPACE_ID;
-    ACCESS_TOKEN = process.env.REACT_APP_ACCESS_TOKEN;
-} else {
-    SPACE_ID = require("../secrets.json").REACT_APP_SPACE_ID;
-    ACCESS_TOKEN = require("../secrets.json").REACT_APP_ACCESS_TOKEN;
-}
+import IndexItem from "./helpers/IndexItem";
+import Footer from "./Footer";
+import { productions_engQuery, productions_freQuery } from "./helpers/queries";
+import fetchData from "./helpers/Fetcher";
 
 const q = {
-    fr: events_freQuery,
-    "en-US": events_engQuery,
+    fr: productions_freQuery,
+    "en-US": productions_engQuery,
 };
 
-function Residences({ lang = "fr" }) {
+export default function Residences({ lang = "fr" }) {
     const [page, setPage] = useState(null);
-    const [en, setEn] = useState(false);
-    const [isShown, setIsShown] = useState(false);
-    const [activeIndex, setActiveIndex] = useState(-1);
-    const [preview, setPreview] = useState(false);
-    const { x, y } = useMouse();
-    const { width } = GetWindowDimensions();
+    const [en, setEn] = useState(null);
+    const [showAll, setShowAll] = useState(null);
+    const [preview, setPreview] = useState(null);
 
     useEffect(() => {
         const query = q[lang];
-        if (query === q["en-US"]) {
-            setEn(true);
-        } else setEn(false);
-        if (isShown) {
-            preventDefaultImage();
-        }
-        function preventDefaultImage() {
-            if (width <= 1200) {
-                setPreview(false);
-            } else if (width > 1200) {
-                setPreview(true);
-            }
-        }
-        window
-            .fetch(
-                `https://graphql.contentful.com/content/v1/spaces/${SPACE_ID}/`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${ACCESS_TOKEN}`,
-                    },
-                    body: JSON.stringify({ query }),
-                }
-            )
-            .then((response) => response.json())
-            .then(({ data, errors }) => {
-                if (errors) {
-                    console.error(errors);
-                }
-                setPage(data.residencesCollection.items);
+        const en = query === q["en-US"];
+        setEn(en);
+        const fetchDataAsync = async () => {
+            const data = await fetchData({ query });
+            const mapped = data.artistesCollection.items.map((item) => {
+                const year = item.year
+                    ? item.year.toString().replace("-", "–")
+                    : "0000–00";
+                return {
+                    artistName: item.artistName,
+                    projectName: item.projectName,
+                    year,
+                    description: item.description,
+                    galleryCollection: item.galleryCollection,
+                };
             });
-    }, [lang, isShown, width]);
+            const sorted = mapped.sort((a, b) => {
+                const [aYearStart, aYearEnd] = a.year.split("–");
+                const [bYearStart, bYearEnd] = b.year.split("–");
+                return bYearStart - aYearStart + bYearEnd - aYearEnd;
+            });
+            setPage(sorted);
+        };
+        fetchDataAsync();
+    }, [lang, showAll]);
 
     if (!page) {
         return;
     }
-
     return (
         <>
-            <div className="events-container">
-                {isShown && (
+            <main className="residences-section">
+                <li className="index-params">
                     <div
-                        className="img-module"
-                        onClick={() => {
-                            setIsShown(false);
-                            setActiveIndex(-1);
-                        }}
+                        className="show-all"
+                        onClick={() => setShowAll((showAll) => !showAll)}
                     >
-                        <div
-                            className="image-container"
-                            style={
-                                preview
-                                    ? {
-                                          width: `${width - x}px`,
-                                          height: `${y - 1}px`,
-                                      }
-                                    : {
-                                          width: `100%`,
-                                          height: `100%`,
-                                      }
-                            }
-                        >
-                            <img
-                                alt={page[activeIndex].residencesPhotos.title}
-                                src={page[activeIndex].residencesPhotos.url}
-                            />
-                            <h6 className="sticky-text">
-                                {page[activeIndex].residencesPhotos.title} |{" "}
-                                {page[activeIndex].description}
-                            </h6>
-                        </div>
+                        {en ? (
+                            showAll ? (
+                                <p className="index-item-name">↑ Hide all</p>
+                            ) : (
+                                <p className="index-item-name">↓ Show all</p>
+                            )
+                        ) : showAll ? (
+                            <p className="index-item-name">↑ Voir moins</p>
+                        ) : (
+                            <p className="index-item-name">↓ Voir tous</p>
+                        )}
                     </div>
-                )}
+                    <div className="index-item-info">
+                        {en ? (
+                            <p className="index-item-name">Artists</p>
+                        ) : (
+                            <p className="index-item-name">Artistes</p>
+                        )}
+                    </div>
+                    <div className="index-item-info">
+                        {en ? (
+                            <p className="index-item-project">Project</p>
+                        ) : (
+                            <p className="index-item-project">Projet</p>
+                        )}
+                    </div>
+                    <div className="index-item-info">
+                        {en ? (
+                            <p className="index-item-year">Year</p>
+                        ) : (
+                            <p className="index-item-year">Année</p>
+                        )}
+                    </div>
+                </li>
+
                 {page.map((data, index) => {
                     return (
-                        <Event
-                            data={data}
-                            setIsShown={setIsShown}
-                            setActiveIndex={setActiveIndex}
-                            index={index}
-                            en={en}
-                            key={data.residencesPhotos.title}
+                        <IndexItem
+                            key={`index-item-${index}`}
+                            preview={preview}
+                            setPreview={setPreview}
+                            showAll={showAll}
+                            name={data.artistName}
+                            project={data.projectName}
+                            year={data.year}
+                            des={
+                                data.description.json.content[0].content[0]
+                                    .value
+                            }
+                            src={data.galleryCollection.items}
                         />
                     );
                 })}
-            </div>
-            <footer>
-                <Footer lang={lang} />
-            </footer>
+            </main>
+            <Footer lang={lang} />
         </>
     );
 }
-
-export default Residences;

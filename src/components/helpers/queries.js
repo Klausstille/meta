@@ -1,12 +1,15 @@
 export const atelier_engQuery = `
 {
-  homeCollection {
+  carouselCollection {
     items {
-      heromedia {
-        url
-        title(locale:"en-US")
+      title(locale: "en-US")
+      validation
+      carouselImageCollection {
+        items {
+          url
+        }
       }
-      homeText(locale: "en-US") {
+      description(locale: "en-US") {
         json
       }
     }
@@ -17,14 +20,16 @@ export const atelier_engQuery = `
 
 export const atelier_freQuery = `
 {
-  homeCollection {
+  carouselCollection {
     items {
-      heromedia {
-        url
-        title(locale:"fr")
-
+      title(locale: "fr")
+      validation
+      carouselImageCollection {
+        items {
+          url
+        }
       }
-      homeText(locale: "fr") {
+      description(locale: "fr") {
         json
       }
     }
