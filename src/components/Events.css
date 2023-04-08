@@ -71,7 +71,7 @@ img.residences-pic {
     }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1000px) {
     .events-container {
         display: grid;
         grid-template-columns: 1fr;
