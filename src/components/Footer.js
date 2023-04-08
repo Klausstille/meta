@@ -137,7 +137,9 @@ function Footer({ lang = "fr" }) {
                 </div>
             </section>
             <div>
-                <img src="./logo_2.png" alt="" className="logo-2" />
+                <Link to="/">
+                    <img src="./logo_2.png" alt="" className="logo-2" />
+                </Link>
             </div>
         </footer>
     );

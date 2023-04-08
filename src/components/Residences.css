@@ -262,8 +262,9 @@ img.blurred-image {
             background-color: var(--background-color);
             margin: 65px 0 0 0;
             padding: 0 20px 0 20px;
+            grid-template-columns: 1fr;
+            text-align: center;
         }
-
         .image-grid {
             align-content: flex-start;
         }
@@ -277,6 +278,9 @@ img.blurred-image {
             padding: 20px 20px 0 20px;
             margin: 0;
         }
+        .index-item h3 {
+            justify-content: center;
+        }
         .index-item-year {
             justify-items: start;
         }
@@ -288,17 +292,4 @@ img.blurred-image {
             margin: 0 0 -15px 0;
         }
     }
-    /* @media screen and (max-width: 800px) and (orientation: landscape) {
-        .image-container {
-            position: absolute;
-            right: 0;
-            top: 0;
-        }
-
-        .image-container img {
-            object-fit: cover;
-            width: 100%;
-            height: 100%;
-        }
-    } */
 }
