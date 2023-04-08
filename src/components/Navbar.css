@@ -2,6 +2,9 @@ body:has(.events-container) .navbar {
     background-color: var(--secondary-color);
     border-bottom: 1px solid white;
 }
+body:has(.events-container) .nav-menu.active {
+    background-color: rgba(20, 20, 20, 0.8);
+}
 body:has(.events-container) .nav-links,
 body:has(.events-container) .nav-links-first,
 body:has(.events-container) .nav-lan {
@@ -194,7 +197,7 @@ ul.nav-menu {
         justify-content: center;
         width: 100vw;
         padding-left: 0;
-        border-left: none;
+        border: none;
     }
     .nav-item:first-child .nav-links {
         border-left: none;
