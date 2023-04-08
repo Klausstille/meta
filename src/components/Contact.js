@@ -4,15 +4,7 @@ import GetWindowDimensions from "./mouseEvent/DocumentSize";
 import Footer from "./Footer";
 import "./Contact.css";
 import { contact_engQuery, contact_freQuery } from "./helpers/queries";
-
-let SPACE_ID, ACCESS_TOKEN;
-if (process.env.NODE_ENV === "production") {
-    SPACE_ID = process.env.REACT_APP_SPACE_ID;
-    ACCESS_TOKEN = process.env.REACT_APP_ACCESS_TOKEN;
-} else {
-    SPACE_ID = require("../secrets.json").REACT_APP_SPACE_ID;
-    ACCESS_TOKEN = require("../secrets.json").REACT_APP_ACCESS_TOKEN;
-}
+import fetchData from "./helpers/Fetcher";
 
 const q = {
     fr: contact_freQuery,
@@ -28,29 +20,11 @@ function Contact({ lang = "fr" }) {
 
     useEffect(() => {
         const query = q[lang];
-        async function fetchData() {
-            try {
-                const response = await fetch(
-                    `https://graphql.contentful.com/content/v1/spaces/${SPACE_ID}/`,
-                    {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                            Authorization: `Bearer ${ACCESS_TOKEN}`,
-                        },
-                        body: JSON.stringify({ query }),
-                    }
-                );
-                const { data, errors } = await response.json();
-                if (errors) {
-                    console.error(errors);
-                }
-                setPage(data.bioCollection.items);
-            } catch (error) {
-                console.error(error);
-            }
-        }
-        fetchData();
+        const fetchDataAsync = async () => {
+            const data = await fetchData({ query });
+            setPage(data.bioCollection.items);
+        };
+        fetchDataAsync();
         isShown && width <= 1200 ? setPreview(false) : setPreview(true);
     }, [lang, isShown, width, setPage, setPreview]);
 

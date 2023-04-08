@@ -4,15 +4,7 @@ import Footer from "./Footer";
 import Slideshow from "./helpers/Carousel";
 import "./Atelier.css";
 import { atelier_engQuery, atelier_freQuery } from "./helpers/queries";
-
-let SPACE_ID, ACCESS_TOKEN;
-if (process.env.NODE_ENV === "production") {
-    SPACE_ID = process.env.REACT_APP_SPACE_ID;
-    ACCESS_TOKEN = process.env.REACT_APP_ACCESS_TOKEN;
-} else {
-    SPACE_ID = require("../secrets.json").REACT_APP_SPACE_ID;
-    ACCESS_TOKEN = require("../secrets.json").REACT_APP_ACCESS_TOKEN;
-}
+import fetchData from "./helpers/Fetcher";
 
 const q = {
     fr: atelier_freQuery,
@@ -27,41 +19,20 @@ export default function Atelier({ lang = "fr" }) {
 
     useEffect(() => {
         const query = q[lang];
-        if (query === q["en-US"]) {
-            setEn(true);
-        } else setEn(false);
-
-        async function fetchData() {
-            try {
-                const response = await fetch(
-                    `https://graphql.contentful.com/content/v1/spaces/${SPACE_ID}/`,
-                    {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                            Authorization: `Bearer ${ACCESS_TOKEN}`,
-                        },
-                        body: JSON.stringify({ query }),
-                    }
-                );
-                const { data, errors } = await response.json();
-                if (errors) {
-                    console.error(errors);
-                }
-                const residences = data.carouselCollection.items.filter(
-                    (item) => item.validation === "residences"
-                );
-                setIsResidence(residences);
-                const atelier = data.carouselCollection.items.filter(
-                    (item) => item.validation === "atelier"
-                );
-                setIsAtelier(atelier);
-            } catch (error) {
-                console.error(error);
-            }
-        }
-
-        fetchData();
+        const en = query === q["en-US"];
+        setEn(en);
+        const fetchDataAsync = async () => {
+            const data = await fetchData({ query });
+            const residences = data.carouselCollection.items.filter(
+                (item) => item.validation === "residences"
+            );
+            setIsResidence(residences);
+            const atelier = data.carouselCollection.items.filter(
+                (item) => item.validation === "atelier"
+            );
+            setIsAtelier(atelier);
+        };
+        fetchDataAsync();
     }, [lang, width]);
 
     if (!isAtelier || !isResidence) {

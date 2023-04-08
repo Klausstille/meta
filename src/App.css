@@ -71,7 +71,10 @@ a:hover {
     pointer-events: none;
     z-index: 10;
     mix-blend-mode: exclusion;
+    -webkit-mix-blend-mode: exclusion;
+    filter: drop-shadow(1px 3px 5px var(--primary-color));
 }
+
 .policy h1 {
     text-align: left;
 }

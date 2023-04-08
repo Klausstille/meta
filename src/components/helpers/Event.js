@@ -1,4 +1,3 @@
-// import { useState } from "react";
 export default function Event({ data, setIsShown, setActiveIndex, index }) {
     return (
         <section className="events-grid" key={data.residencesPhotos.url}>

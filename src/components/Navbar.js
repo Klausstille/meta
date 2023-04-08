@@ -3,15 +3,7 @@ import CheckLanguage from "./helpers/LanguageQuery";
 import { nav_freQuery, nav_engQuery } from "./helpers/queries";
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
-
-let SPACE_ID, ACCESS_TOKEN;
-if (process.env.NODE_ENV === "production") {
-    SPACE_ID = process.env.REACT_APP_SPACE_ID;
-    ACCESS_TOKEN = process.env.REACT_APP_ACCESS_TOKEN;
-} else {
-    SPACE_ID = require("../secrets.json").REACT_APP_SPACE_ID;
-    ACCESS_TOKEN = require("../secrets.json").REACT_APP_ACCESS_TOKEN;
-}
+import fetchData from "./helpers/Fetcher";
 
 const q = {
     fr: nav_freQuery,
@@ -21,35 +13,16 @@ const q = {
 function Navbar({ setLang, lang = "fr" }) {
     const [click, setClick] = useState(false);
     const [page, setPage] = useState(null);
-
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch(
-                    `https://graphql.contentful.com/content/v1/spaces/${SPACE_ID}/`,
-                    {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                            Authorization: `Bearer ${ACCESS_TOKEN}`,
-                        },
-                        body: JSON.stringify({ query: q[lang] }),
-                    }
-                );
-                const { data, errors } = await response.json();
-                if (errors) {
-                    console.error(errors);
-                    return;
-                }
-                setPage(data.navbarCollection.items[0].navbar);
-            } catch (error) {
-                console.error(error);
-            }
+        const query = q[lang];
+        const fetchDataAsync = async () => {
+            const data = await fetchData({ query });
+            setPage(data.navbarCollection.items[0].navbar);
         };
-        fetchData();
+        fetchDataAsync();
     }, [lang]);
 
     if (!page) {
@@ -63,7 +36,7 @@ function Navbar({ setLang, lang = "fr" }) {
                     <li>
                         <NavLink
                             to="/"
-                            className="nav-links"
+                            className="nav-links-first"
                             onClick={closeMobileMenu}
                         >
                             Meta

@@ -4,17 +4,12 @@ import "./Footer.css";
 import { Link } from "react-router-dom";
 import MailchimpSubscribe from "react-mailchimp-subscribe";
 import { footer_engQuery, footer_freQuery } from "./helpers/queries";
+import fetchData from "./helpers/Fetcher";
 
-let SPACE_ID, ACCESS_TOKEN, MAILCHIMP_URL;
-if (process.env.NODE_ENV === "production") {
-    SPACE_ID = process.env.REACT_APP_SPACE_ID;
-    ACCESS_TOKEN = process.env.REACT_APP_ACCESS_TOKEN;
-    MAILCHIMP_URL = process.env.REACT_APP_MAILCHIMP_URL;
-} else {
-    SPACE_ID = require("../secrets.json").REACT_APP_SPACE_ID;
-    ACCESS_TOKEN = require("../secrets.json").REACT_APP_ACCESS_TOKEN;
-    MAILCHIMP_URL = require("../secrets.json").REACT_APP_MAILCHIMP_URL;
-}
+let MAILCHIMP_URL;
+process.env.NODE_ENV === "production"
+    ? (MAILCHIMP_URL = process.env.REACT_APP_MAILCHIMP_URL)
+    : (MAILCHIMP_URL = require("../secrets.json").REACT_APP_MAILCHIMP_URL);
 
 const q = {
     fr: footer_freQuery,
@@ -27,35 +22,13 @@ function Footer({ lang = "fr" }) {
 
     useEffect(() => {
         const query = q[lang];
-
-        if (query === q["en-US"]) {
-            setEn(true);
-        } else setEn(false);
-
-        const fetchPage = async () => {
-            try {
-                const response = await fetch(
-                    `https://graphql.contentful.com/content/v1/spaces/${SPACE_ID}/`,
-                    {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                            Authorization: `Bearer ${ACCESS_TOKEN}`,
-                        },
-                        body: JSON.stringify({ query }),
-                    }
-                );
-                const { data, errors } = await response.json();
-                if (errors) {
-                    console.error(errors);
-                    return;
-                }
-                setPage(data.navbarCollection.items[0].navbar);
-            } catch (error) {
-                console.error(error);
-            }
+        const en = query === q["en-US"];
+        setEn(en);
+        const fetchDataAsync = async () => {
+            const data = await fetchData({ query });
+            setPage(data.navbarCollection.items[0].navbar);
         };
-        fetchPage();
+        fetchDataAsync();
     }, [lang]);
 
     if (!page) {

@@ -39,6 +39,8 @@ h3 {
 
 .carousel-control-next,
 .carousel-control-prev {
+    mix-blend-mode: exclusion;
+    -webkit-mix-blend-mode: exclusion;
     right: 0;
     height: 30vw;
     cursor: none;
@@ -70,7 +72,7 @@ h3 {
         width: auto;
     }
 }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1000px) {
     .carousel-control-next,
     .carousel-control-prev,
     .img-container {

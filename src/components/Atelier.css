@@ -27,10 +27,11 @@
 
 .atelier-section h1 {
     padding-top: 10px;
+    margin-left: -4px;
     font-size: 4em;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1000px) {
     .atelier-section {
         display: grid;
         grid-template-columns: 1fr;
@@ -48,7 +49,7 @@
         overflow: auto;
     }
     .atelier-section h1 {
-        padding: 20px 0;
+        padding: 10px 0 0 0;
         font-size: 3em;
     }
 }

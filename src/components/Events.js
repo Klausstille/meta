@@ -5,15 +5,7 @@ import Event from "./helpers/Event";
 import Footer from "./Footer";
 import "./Events.css";
 import { events_engQuery, events_freQuery } from "./helpers/queries";
-
-let SPACE_ID, ACCESS_TOKEN;
-if (process.env.NODE_ENV === "production") {
-    SPACE_ID = process.env.REACT_APP_SPACE_ID;
-    ACCESS_TOKEN = process.env.REACT_APP_ACCESS_TOKEN;
-} else {
-    SPACE_ID = require("../secrets.json").REACT_APP_SPACE_ID;
-    ACCESS_TOKEN = require("../secrets.json").REACT_APP_ACCESS_TOKEN;
-}
+import fetchData from "./helpers/Fetcher";
 
 const q = {
     fr: events_freQuery,
@@ -31,30 +23,11 @@ export default function Events({ lang = "fr" }) {
 
     useEffect(() => {
         const query = q[lang];
-        const fetchPageData = async () => {
-            try {
-                const response = await window.fetch(
-                    `https://graphql.contentful.com/content/v1/spaces/${SPACE_ID}/`,
-                    {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                            Authorization: `Bearer ${ACCESS_TOKEN}`,
-                        },
-                        body: JSON.stringify({ query }),
-                    }
-                );
-                const { data, errors } = await response.json();
-                if (errors) {
-                    console.error(errors);
-                } else {
-                    setPage(data.residencesCollection.items);
-                }
-            } catch (error) {
-                console.error(error);
-            }
+        const fetchDataAsync = async () => {
+            const data = await fetchData({ query });
+            setPage(data.residencesCollection.items);
         };
-        fetchPageData();
+        fetchDataAsync();
         isShown && width <= 1200 ? setPreview(false) : setPreview(true);
         const en = query === q["en-US"];
         setEn(en);

@@ -65,15 +65,23 @@ ul.nav-menu {
     height: 39px;
 }
 
-.nav-links {
+.nav-links,
+.nav-links-first {
     color: var(--primary-color);
     display: flex;
     text-decoration: none;
     padding: 0.5rem 0;
-    height: 100%;
     font-size: 1.4rem;
+    height: 47px;
 }
-
+.nav-links-first {
+    border-left: none;
+    padding-left: 0;
+}
+.nav-links {
+    border-left: solid 1px;
+    padding-left: 67px;
+}
 .nav-links:hover {
     transition: all 0.2s ease-in-out;
     transform: translateY(-1px);
@@ -171,7 +179,10 @@ ul.nav-menu {
     .nav-links {
         justify-content: center;
         width: 100vw;
+        padding-left: 0;
+        border-left: none;
     }
+
     .nav-logo .nav-links {
         width: 0;
     }
