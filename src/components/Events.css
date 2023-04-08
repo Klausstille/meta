@@ -69,6 +69,9 @@ img.residences-pic {
         height: 30vw !important;
         object-fit: cover;
     }
+    h6.sticky-text-event {
+        bottom: -10px;
+    }
 }
 
 @media screen and (max-width: 1000px) {
