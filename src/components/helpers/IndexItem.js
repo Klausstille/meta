@@ -130,6 +130,15 @@ export default function IndexItem({
                                 ) : (
                                     <h3 className="index-item-arrow">→</h3>
                                 )}
+                                <div className="index-preview-container">
+                                    <LazyLoad>
+                                        <img
+                                            className="index-preview-pic"
+                                            alt={project}
+                                            src={src[1]?.url}
+                                        />
+                                    </LazyLoad>
+                                </div>
                                 <div className="index-item-info">
                                     <h3 className="index-item-name">{name}</h3>
                                 </div>
@@ -170,9 +179,8 @@ export default function IndexItem({
                                                         key={`index-item-${index}`}
                                                     >
                                                         <img
-                                                            key={`index-item-${index}`}
                                                             className="index-item-pics"
-                                                            alt="Pic"
+                                                            alt={project}
                                                             src={data.url}
                                                             onClick={() => {
                                                                 setIsClicked(
