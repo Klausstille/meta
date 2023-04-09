@@ -64,7 +64,7 @@ a:hover {
 
 .hand {
     stroke: var(--primary-color);
-    stroke-width: 1;
+    stroke-width: 3;
     stroke-linecap: round;
 }
 
@@ -80,12 +80,12 @@ a:hover {
     filter: drop-shadow(1px 4px 8px var(--primary-color));
 }
 
-body:has(.home, .contact-section, .events-container, .atelier-section) #canvas {
-    mix-blend-mode: plus-lighter;
-    -webkit-mix-blend-mode: plus-lighter;
+body:has(.production-section, .residences-section) .hand {
+    stroke: var(--primary-color);
+    stroke-width: 1;
+    stroke-linecap: round;
 }
-
-body:has(.residences-section, .production-section) #canvas {
+body:has(.production-section, .residences-section) #canvas {
     mix-blend-mode: normal;
     -webkit-mix-blend-mode: normal;
     filter: none;
