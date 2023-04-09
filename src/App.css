@@ -75,19 +75,16 @@ a:hover {
     overflow: hidden;
     pointer-events: none;
     z-index: 10;
-    mix-blend-mode: color-dodge;
-    -webkit-mix-blend-mode: color-dodge;
+    mix-blend-mode: plus-lighter;
+    -webkit-mix-blend-mode: plus-lighter;
     filter: drop-shadow(1px 4px 8px var(--primary-color));
 }
 
-body:has(.contact-section, .events-container, .atelier-section) #canvas {
+body:has(.home, .contact-section, .events-container, .atelier-section) #canvas {
     mix-blend-mode: plus-lighter;
     -webkit-mix-blend-mode: plus-lighter;
 }
-body:has(.home) #canvas {
-    mix-blend-mode: color-dodge;
-    -webkit-mix-blend-mode: color-dodge;
-}
+
 body:has(.residences-section, .production-section) #canvas {
     mix-blend-mode: normal;
     -webkit-mix-blend-mode: normal;
