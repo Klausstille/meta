@@ -71,7 +71,7 @@ export default function IndexItem({
     return (
         <>
             {isClicked && (
-                <div
+                <section
                     key={activeIndex.url}
                     className="img-module"
                     onClick={() => {
@@ -113,9 +113,9 @@ export default function IndexItem({
                             {activeIndex.year}
                         </h6>
                     </div>
-                </div>
+                </section>
             )}
-            <div className="index" key={project} onClick={handleClick}>
+            <section className="index" key={project} onClick={handleClick}>
                 <div className="index-container">
                     <div className="index-wrapper">
                         <ul className="index-items">
@@ -206,7 +206,7 @@ export default function IndexItem({
                     </div>
                 </div>
                 <br />
-            </div>
+            </section>
         </>
     );
 }

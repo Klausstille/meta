@@ -51,7 +51,7 @@ export default function Productions({ lang = "fr" }) {
     return (
         <>
             <main className="production-section">
-                <li className="index-params">
+                <section className="index-params">
                     <div
                         className="index-item-info"
                         onClick={() => setShowAll((showAll) => !showAll)}
@@ -89,7 +89,7 @@ export default function Productions({ lang = "fr" }) {
                             <p className="index-item-year">Année</p>
                         )}
                     </div>
-                </li>
+                </section>
                 {page.map((data, index) => {
                     return (
                         <IndexItem

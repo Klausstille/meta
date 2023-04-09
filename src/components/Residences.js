@@ -51,7 +51,7 @@ export default function Residences({ lang = "fr" }) {
     return (
         <>
             <main className="residences-section">
-                <li className="index-params">
+                <section className="index-params">
                     <div
                         className="show-all"
                         onClick={() => setShowAll((showAll) => !showAll)}
@@ -89,7 +89,7 @@ export default function Residences({ lang = "fr" }) {
                             <p className="index-item-year">Année</p>
                         )}
                     </div>
-                </li>
+                </section>
 
                 {page.map((data, index) => {
                     return (
