@@ -2,6 +2,7 @@ import { Carousel } from "react-bootstrap";
 import { useState } from "react";
 import { ReactComponent as CustomPrevIcon } from "../../assets/prev.svg";
 import { ReactComponent as CustomNextIcon } from "../../assets/next.svg";
+import LazyLoad from "react-lazy-load";
 import "./Carousel.css";
 
 export default function Slideshow({ images, title }) {
@@ -23,22 +24,24 @@ export default function Slideshow({ images, title }) {
             {images.items?.map((data, index) => {
                 return (
                     <Carousel.Item interval={4000} key={`index-item-${index}`}>
-                        <div className="img-container">
-                            {data.url.includes("mp4") ? (
-                                <video
-                                    src={data.url}
-                                    playsInline
-                                    autoPlay
-                                    loop
-                                    muted
-                                />
-                            ) : (
-                                <img
-                                    className="d-block w-100"
-                                    src={data.url}
-                                    alt={title}
-                                />
-                            )}
+                        <div>
+                            <LazyLoad className="img-container">
+                                {data.url.includes("mp4") ? (
+                                    <video
+                                        src={data.url}
+                                        playsInline
+                                        autoPlay
+                                        loop
+                                        muted
+                                    />
+                                ) : (
+                                    <img
+                                        className="d-block w-100"
+                                        src={data.url}
+                                        alt={title}
+                                    />
+                                )}
+                            </LazyLoad>
                         </div>
                         {/* <Carousel.Caption>
                             <h3>{data.title}</h3>

@@ -4,6 +4,7 @@ import { nav_freQuery, nav_engQuery } from "./helpers/queries";
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 import fetchData from "./helpers/Fetcher";
+import useSWR from "swr";
 
 const q = {
     fr: nav_freQuery,
@@ -16,14 +17,16 @@ function Navbar({ setLang, lang = "fr" }) {
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
 
-    useEffect(() => {
+    const { data } = useSWR(["nav", lang], async () => {
         const query = q[lang];
-        const fetchDataAsync = async () => {
-            const data = await fetchData({ query });
+        return await fetchData({ query });
+    });
+
+    useEffect(() => {
+        if (data) {
             setPage(data.navbarCollection.items[0].navbar);
-        };
-        fetchDataAsync();
-    }, [lang]);
+        }
+    }, [data]);
 
     if (!page) {
         return;

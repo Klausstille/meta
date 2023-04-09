@@ -6,6 +6,7 @@ import Footer from "./Footer";
 import "./Events.css";
 import { events_engQuery, events_freQuery } from "./helpers/queries";
 import fetchData from "./helpers/Fetcher";
+import useSWR from "swr";
 
 const q = {
     fr: events_freQuery,
@@ -14,24 +15,26 @@ const q = {
 
 export default function Events({ lang = "fr" }) {
     const [page, setPage] = useState(null);
-    const [en, setEn] = useState(null);
     const [isShown, setIsShown] = useState(null);
     const [activeIndex, setActiveIndex] = useState(-1);
     const [preview, setPreview] = useState(null);
     const { x, y } = useMouse();
     const { width } = GetWindowDimensions();
 
-    useEffect(() => {
+    const { data } = useSWR(["events", lang], async () => {
         const query = q[lang];
-        const fetchDataAsync = async () => {
-            const data = await fetchData({ query });
+        return await fetchData({ query });
+    });
+
+    useEffect(() => {
+        if (data) {
             setPage(data.residencesCollection.items);
-        };
-        fetchDataAsync();
+        }
+    }, [data]);
+
+    useEffect(() => {
         isShown && width <= 1200 ? setPreview(false) : setPreview(true);
-        const en = query === q["en-US"];
-        setEn(en);
-    }, [lang, isShown, width, setPreview, setPage]);
+    }, [isShown, width, setPreview]);
 
     if (!page) {
         return;
@@ -111,7 +114,6 @@ export default function Events({ lang = "fr" }) {
                             setIsShown={setIsShown}
                             setActiveIndex={setActiveIndex}
                             index={index}
-                            en={en}
                             key={data.residencesPhotos.title}
                         />
                     );

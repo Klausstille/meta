@@ -5,6 +5,7 @@ import IndexItem from "./helpers/IndexItem";
 import Footer from "./Footer";
 import { productions_engQuery, productions_freQuery } from "./helpers/queries";
 import fetchData from "./helpers/Fetcher";
+import useSWR from "swr";
 
 const q = {
     fr: productions_freQuery,
@@ -17,33 +18,35 @@ export default function Residences({ lang = "fr" }) {
     const [showAll, setShowAll] = useState(null);
     const [preview, setPreview] = useState(null);
 
-    useEffect(() => {
+    const { data } = useSWR(["residences", lang], async () => {
         const query = q[lang];
-        const en = query === q["en-US"];
-        setEn(en);
-        const fetchDataAsync = async () => {
-            const data = await fetchData({ query });
-            const mapped = data.artistesCollection.items.map((item) => {
-                const year = item.year
-                    ? item.year.toString().replace("-", "–")
-                    : "0000–00";
-                return {
-                    artistName: item.artistName,
-                    projectName: item.projectName,
-                    year,
-                    description: item.description,
-                    galleryCollection: item.galleryCollection,
-                };
-            });
-            const sorted = mapped.sort((a, b) => {
-                const [aYearStart, aYearEnd] = a.year.split("–");
-                const [bYearStart, bYearEnd] = b.year.split("–");
-                return bYearStart - aYearStart + bYearEnd - aYearEnd;
-            });
-            setPage(sorted);
-        };
-        fetchDataAsync();
-    }, [lang, showAll]);
+        const isEn = query === q["en-US"];
+        const data = await fetchData({ query });
+        const mapped = data.artistesCollection.items.map((item) => {
+            const year = item.year
+                ? item.year.toString().replace("-", "–")
+                : "0000–00";
+            return {
+                artistName: item.artistName,
+                projectName: item.projectName,
+                description: item.description,
+                galleryCollection: item.galleryCollection,
+                year,
+            };
+        });
+        const sorted = mapped.sort((a, b) => {
+            const [aYearStart, aYearEnd] = a.year.split("–");
+            const [bYearStart, bYearEnd] = b.year.split("–");
+            return bYearStart - aYearStart + bYearEnd - aYearEnd;
+        });
+        return { sorted, isEn };
+    });
+    useEffect(() => {
+        if (data) {
+            setEn(data.isEn);
+            setPage(data.sorted);
+        }
+    }, [data]);
 
     if (!page) {
         return;

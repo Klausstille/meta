@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import MailchimpSubscribe from "react-mailchimp-subscribe";
 import { footer_engQuery, footer_freQuery } from "./helpers/queries";
 import fetchData from "./helpers/Fetcher";
+import useSWR from "swr";
 
 let MAILCHIMP_URL;
 process.env.NODE_ENV === "production"
@@ -20,16 +21,19 @@ function Footer({ lang = "fr" }) {
     const [page, setPage] = useState(null);
     const [en, setEn] = useState(false);
 
-    useEffect(() => {
+    const { data } = useSWR(["footer", lang], async () => {
         const query = q[lang];
-        const en = query === q["en-US"];
-        setEn(en);
-        const fetchDataAsync = async () => {
-            const data = await fetchData({ query });
-            setPage(data.navbarCollection.items[0].navbar);
-        };
-        fetchDataAsync();
-    }, [lang]);
+        const isEn = query === q["en-US"];
+        const data = await fetchData({ query });
+        return { data, isEn };
+    });
+
+    useEffect(() => {
+        if (data) {
+            setEn(data.isEn);
+            setPage(data.data.navbarCollection.items[0].navbar);
+        }
+    }, [data]);
 
     if (!page) {
         return;

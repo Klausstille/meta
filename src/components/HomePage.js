@@ -5,19 +5,21 @@ import "./HomePage.css";
 import Footer from "./Footer";
 import { home_query as query } from "./helpers/queries";
 import fetchData from "./helpers/Fetcher";
+import useSWR from "swr";
+import LazyLoad from "react-lazy-load";
 
 export default function HomePage({ lang = "fr" }) {
     const [page, setPage] = useState(null);
     const { x, y } = useMouse();
     const { width } = getWindowDimensions();
-
+    const { data } = useSWR("homepage", async () => {
+        return await fetchData({ query });
+    });
     useEffect(() => {
-        const fetchDataAsync = async () => {
-            const data = await fetchData({ query });
+        if (data) {
             setPage(data.heromediaCollection.items);
-        };
-        fetchDataAsync();
-    }, [lang]);
+        }
+    }, [data]);
 
     if (!page) {
         return;
@@ -39,14 +41,16 @@ export default function HomePage({ lang = "fr" }) {
                         </div>
                     )}
                 </section>
-                <section className="hero-container">
-                    <video
-                        src={page[0].heromedia.url}
-                        playsInline
-                        autoPlay
-                        loop
-                        muted
-                    />
+                <section>
+                    <LazyLoad className="hero-container">
+                        <video
+                            src={page[0].heromedia.url}
+                            playsInline
+                            autoPlay
+                            loop
+                            muted
+                        />
+                    </LazyLoad>
                 </section>
             </main>
             <Footer lang={lang} />

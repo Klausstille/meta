@@ -4,6 +4,7 @@ import "./Residences.css";
 import Footer from "./Footer";
 import { residences_engQuery, residences_freQuery } from "./helpers/queries";
 import fetchData from "./helpers/Fetcher";
+import useSWR from "swr";
 
 const q = {
     fr: residences_freQuery,
@@ -12,37 +13,39 @@ const q = {
 
 export default function Productions({ lang = "fr" }) {
     const [page, setPage] = useState(null);
-    const [en, setEn] = useState(null);
-    const [showAll, setShowAll] = useState(null);
+    const [en, setEn] = useState(false);
+    const [showAll, setShowAll] = useState(false);
     const [preview, setPreview] = useState(null);
 
-    useEffect(() => {
+    const { data } = useSWR(["production", lang], async () => {
         const query = q[lang];
-        const en = query === q["en-US"];
-        setEn(en);
-        const fetchDataAsync = async () => {
-            const data = await fetchData({ query });
-            const mapped = data.productionsCollection.items.map((item) => {
-                const year = item.year
-                    ? item.year.toString().replace("-", "–")
-                    : "0000–00";
-                return {
-                    artistName: item.artistName,
-                    projectName: item.projectName,
-                    year,
-                    description: item.description,
-                    galleryCollection: item.galleryCollection,
-                };
-            });
-            const sorted = mapped.sort((a, b) => {
-                const [aYearStart, aYearEnd] = a.year.split("–");
-                const [bYearStart, bYearEnd] = b.year.split("–");
-                return bYearStart - aYearStart + bYearEnd - aYearEnd;
-            });
-            setPage(sorted);
-        };
-        fetchDataAsync();
-    }, [lang]);
+        const isEn = query === q["en-US"];
+        const data = await fetchData({ query });
+        const mapped = data.productionsCollection.items.map((item) => {
+            const year = item.year
+                ? item.year.toString().replace("-", "–")
+                : "0000–00";
+            return {
+                artistName: item.artistName,
+                projectName: item.projectName,
+                description: item.description,
+                galleryCollection: item.galleryCollection,
+                year,
+            };
+        });
+        const sorted = mapped.sort((a, b) => {
+            const [aYearStart, aYearEnd] = a.year.split("–");
+            const [bYearStart, bYearEnd] = b.year.split("–");
+            return bYearStart - aYearStart + bYearEnd - aYearEnd;
+        });
+        return { sorted, isEn };
+    });
+    useEffect(() => {
+        if (data) {
+            setEn(data.isEn);
+            setPage(data.sorted);
+        }
+    }, [data]);
 
     if (!page) {
         return;

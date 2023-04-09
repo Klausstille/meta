@@ -5,6 +5,8 @@ import Footer from "./Footer";
 import "./Contact.css";
 import { contact_engQuery, contact_freQuery } from "./helpers/queries";
 import fetchData from "./helpers/Fetcher";
+import useSWR from "swr";
+import LazyLoad from "react-lazy-load";
 
 const q = {
     fr: contact_freQuery,
@@ -18,15 +20,16 @@ function Contact({ lang = "fr" }) {
     const { width } = GetWindowDimensions();
     const [preview, setPreview] = useState(null);
 
-    useEffect(() => {
+    const { data } = useSWR(["contact", lang], async () => {
         const query = q[lang];
-        const fetchDataAsync = async () => {
-            const data = await fetchData({ query });
+        return await fetchData({ query });
+    });
+    useEffect(() => {
+        if (data) {
             setPage(data.bioCollection.items);
-        };
-        fetchDataAsync();
+        }
         isShown && width <= 1200 ? setPreview(false) : setPreview(true);
-    }, [lang, isShown, width, setPage, setPreview]);
+    }, [data, isShown, width, setPage, setPreview]);
 
     if (!page) {
         return;
@@ -73,14 +76,16 @@ function Contact({ lang = "fr" }) {
                             </a>
                         </p>
                     </div>
-                    <img
-                        alt={page[0].bioTitle}
-                        className="contact-pic"
-                        src={page[1].bioImage.url}
-                        onClick={() => {
-                            setIsShown(true);
-                        }}
-                    />
+                    <LazyLoad>
+                        <img
+                            alt={page[0].bioTitle}
+                            className="contact-pic"
+                            src={page[1].bioImage.url}
+                            onClick={() => {
+                                setIsShown(true);
+                            }}
+                        />
+                    </LazyLoad>
                 </section>
                 <section className="contact-grid">
                     {page.map((data) => {

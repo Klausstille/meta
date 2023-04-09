@@ -6,7 +6,7 @@ export const atelier_engQuery = `
       validation
       carouselImageCollection {
         items {
-          url
+          url (transform: {width: 1400})
         }
       }
       description(locale: "en-US") {
@@ -26,7 +26,7 @@ export const atelier_freQuery = `
       validation
       carouselImageCollection {
         items {
-          url
+          url (transform: {width: 1400})
         }
       }
       description(locale: "fr") {
@@ -47,7 +47,7 @@ export const contact_engQuery = `
       }
       bioTitle
       bioImage {
-        url
+          url (transform: {width: 1400})
       }
     }
   }
@@ -63,7 +63,7 @@ export const contact_freQuery = `
       }
       bioTitle
       bioImage {
-        url
+          url (transform: {width: 1400})
       }
     }
   }
@@ -77,7 +77,7 @@ export const events_engQuery = `
       description(locale:"en-US")
       residencesPhotos {
         title(locale:"en-US")
-        url
+          url (transform: {width: 1400})
       }
       eventText(locale:"en-US") {
         json
@@ -94,7 +94,7 @@ export const events_freQuery = `
       description(locale:"fr")
       residencesPhotos {
         title(locale:"fr")
-        url
+          url (transform: {width: 1400})
       }
       eventText(locale:"fr") {
         json
@@ -116,7 +116,7 @@ export const productions_engQuery = `
       }
       galleryCollection {
         items {
-          url
+          url (transform: {width: 1400})
         }
       }
     }
@@ -136,7 +136,7 @@ export const productions_freQuery = `
       }
       galleryCollection {
         items {
-          url
+          url (transform: {width: 1400})
         }
       }
     }
@@ -156,7 +156,7 @@ export const residences_engQuery = `
       }
       galleryCollection {
         items {
-          url
+          url (transform: {width: 1400})
         }
       }
     }
@@ -176,7 +176,7 @@ export const residences_freQuery = `
       }
       galleryCollection {
         items {
-          url
+          url (transform: {width: 1400})
         }
       }
     }
@@ -209,7 +209,7 @@ export const home_query = `
   heromediaCollection {
     items {
       heromedia {
-        url
+          url
       }
     }
   }
