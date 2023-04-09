@@ -119,16 +119,26 @@ function Contact({ lang = "fr" }) {
                                           }
                                 }
                             >
-                                <img
-                                    alt={page[0].bioTitle}
-                                    src={page[1].bioImage.url}
-                                    className="fixed-image"
-                                />
-                                <img
-                                    alt={page[0].bioTitle}
-                                    src={page[1].bioImage.url}
-                                    className="blurred-image"
-                                />
+                                {preview ? (
+                                    <img
+                                        alt={page[0].bioTitle}
+                                        src={page[1].bioImage.url}
+                                        className="fixed-image"
+                                    />
+                                ) : (
+                                    <>
+                                        <img
+                                            alt={page[0].bioTitle}
+                                            src={page[1].bioImage.url}
+                                            className="fixed-image"
+                                        />
+                                        <img
+                                            alt={page[0].bioTitle}
+                                            src={page[1].bioImage.url}
+                                            className="blurred-image"
+                                        />
+                                    </>
+                                )}
                             </div>
                         </div>
                     )}

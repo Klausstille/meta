@@ -183,10 +183,6 @@ h6.sticky-text {
     opacity: 1;
 }
 
-img.blurred-image {
-    display: none;
-}
-
 @media screen and (max-width: 1200px) {
     .index .index-item {
         height: auto;

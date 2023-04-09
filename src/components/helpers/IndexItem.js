@@ -93,18 +93,30 @@ export default function IndexItem({
                                   }
                         }
                     >
-                        <img
-                            alt={activeIndex.name}
-                            active={activeIndex.isActive}
-                            src={activeIndex.url}
-                            className="fixed-image"
-                        />
-                        <img
-                            alt={activeIndex.name}
-                            active={activeIndex.isActive}
-                            src={activeIndex.url}
-                            className="blurred-image"
-                        />
+                        {preview ? (
+                            <img
+                                alt={activeIndex.name}
+                                active={activeIndex.isActive}
+                                src={activeIndex.url}
+                                className="fixed-image"
+                            />
+                        ) : (
+                            <>
+                                <img
+                                    alt={activeIndex.name}
+                                    active={activeIndex.isActive}
+                                    src={activeIndex.url}
+                                    className="fixed-image"
+                                />
+                                <img
+                                    alt={activeIndex.name}
+                                    active={activeIndex.isActive}
+                                    src={activeIndex.url}
+                                    className="blurred-image"
+                                />
+                            </>
+                        )}
+
                         <h6 className="sticky-text">
                             {activeIndex.name}
                             {" | "}
