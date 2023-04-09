@@ -2,7 +2,7 @@ export default function Event({ data, setIsShown, setActiveIndex, index }) {
     return (
         <section className="events-grid" key={data.residencesPhotos.url}>
             <img
-                alt={data}
+                alt={data.residencesPhotos.title}
                 className="residences-pic"
                 src={data.residencesPhotos.url}
                 onClick={() => {

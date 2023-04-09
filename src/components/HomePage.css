@@ -28,7 +28,7 @@
     mix-blend-mode: plus-lighter;
 }
 
-video {
+.hero-container video {
     object-fit: cover;
     position: fixed;
     width: 100%;

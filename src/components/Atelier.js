@@ -54,6 +54,7 @@ export default function Atelier({ lang = "fr" }) {
                                     className="residences-item"
                                 >
                                     <Slideshow
+                                        title={title}
                                         images={carouselImageCollection}
                                     />
                                     <h3> {title}</h3>
@@ -84,7 +85,7 @@ export default function Atelier({ lang = "fr" }) {
                                     className="atelier-item"
                                 >
                                     <Slideshow
-                                        key={`index-item-${index}`}
+                                        title={title}
                                         images={carouselImageCollection}
                                     />
                                     <h3> {title}</h3>

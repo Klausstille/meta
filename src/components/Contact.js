@@ -69,12 +69,12 @@ function Contact({ lang = "fr" }) {
                                 target="blank"
                                 style={{ textDecoration: "none" }}
                             >
-                                Klaus Stille
+                                <strong> Klaus Stille</strong>
                             </a>
                         </p>
                     </div>
                     <img
-                        alt={page}
+                        alt={page[0].bioTitle}
                         className="contact-pic"
                         src={page[1].bioImage.url}
                         onClick={() => {
@@ -120,12 +120,12 @@ function Contact({ lang = "fr" }) {
                                 }
                             >
                                 <img
-                                    alt=""
+                                    alt={page[0].bioTitle}
                                     src={page[1].bioImage.url}
                                     className="fixed-image"
                                 />
                                 <img
-                                    alt=""
+                                    alt={page[0].bioTitle}
                                     src={page[1].bioImage.url}
                                     className="blurred-image"
                                 />

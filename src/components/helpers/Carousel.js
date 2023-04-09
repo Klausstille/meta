@@ -4,7 +4,7 @@ import { ReactComponent as CustomPrevIcon } from "../../assets/prev.svg";
 import { ReactComponent as CustomNextIcon } from "../../assets/next.svg";
 import "./Carousel.css";
 
-export default function Slideshow({ images }) {
+export default function Slideshow({ images, title }) {
     const [index, setIndex] = useState(0);
     const handleSelect = (selectedIndex, e) => {
         setIndex(selectedIndex);
@@ -22,13 +22,23 @@ export default function Slideshow({ images }) {
         >
             {images.items?.map((data, index) => {
                 return (
-                    <Carousel.Item interval={2500} key={`index-item-${index}`}>
+                    <Carousel.Item interval={4000} key={`index-item-${index}`}>
                         <div className="img-container">
-                            <img
-                                className="d-block w-100"
-                                src={data.url}
-                                alt=""
-                            />
+                            {data.url.includes("mp4") ? (
+                                <video
+                                    src={data.url}
+                                    playsInline
+                                    autoPlay
+                                    loop
+                                    muted
+                                />
+                            ) : (
+                                <img
+                                    className="d-block w-100"
+                                    src={data.url}
+                                    alt={title}
+                                />
+                            )}
                         </div>
                         {/* <Carousel.Caption>
                             <h3>{data.title}</h3>
