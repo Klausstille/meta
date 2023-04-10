@@ -43,7 +43,7 @@ export default function Atelier({ lang = "fr" }) {
         <>
             <main className="atelier-section">
                 <section className="residences-container">
-                    {en ? <h1>Residences</h1> : <h1>Résidences</h1>}
+                    <h1>{en ? "Residences" : "Résidences"}</h1>
                     {isResidence.map(
                         (
                             { carouselImageCollection, description, title },
@@ -74,7 +74,7 @@ export default function Atelier({ lang = "fr" }) {
                     )}
                 </section>
                 <section className="atelier-container">
-                    {en ? <h1>Workshop</h1> : <h1>Atelier</h1>}
+                    <h1>{en ? "Workshop" : "Atelier"}</h1>
                     {isAtelier.map(
                         (
                             { carouselImageCollection, description, title },

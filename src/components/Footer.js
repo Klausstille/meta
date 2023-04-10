@@ -78,49 +78,29 @@ function Footer({ lang = "fr" }) {
             </div>
             <section className="footer-subscription">
                 <div className="footer-subscription-heading">
-                    {en ? (
-                        <p>Subsribe to our newsletter</p>
-                    ) : (
-                        <p>Souscrire à notre newsletter</p>
-                    )}
+                    <p>
+                        {en
+                            ? "Subsribe to our newsletter"
+                            : "Souscrire à notre newsletter"}
+                    </p>
                 </div>
                 <MailchimpSubscribe url={MAILCHIMP_URL} />
 
                 <div className="content__gdprLegal">
-                    {en ? (
-                        <p style={{ fontSize: "9px", lineHeight: "1.3" }}>
-                            You can unsubscribe at any time by clicking on the
-                            link in the footer of our emails. We use Mailchimp
-                            as our marketing platform. By clicking to subscribe,
-                            you acknowledge that your information will be
-                            transferred to Mailchimp for processing.{" "}
-                            <a
-                                rel="noreferrer"
-                                href="https://mailchimp.com/legal/terms"
-                                target="_blank"
-                            >
-                                Learn more about Mailchimp's privacy practices
-                                here.
-                            </a>
-                        </p>
-                    ) : (
-                        <p style={{ fontSize: "9px", lineHeight: "1.3" }}>
-                            Vous pouvez vous désabonner à tout moment en
-                            cliquant sur le lien dans le bas de page de nos
-                            e-mails. Nous utilisons Mailchimp comme plateforme
-                            marketing. En cliquant sur souscrire, vous
-                            reconnaissez que vos informations seront transférées
-                            à Mailchimp.{" "}
-                            <a
-                                rel="noreferrer"
-                                href="https://mailchimp.com/legal/terms"
-                                target="_blank"
-                            >
-                                Learn more about Mailchimp's privacy practices
-                                here.
-                            </a>
-                        </p>
-                    )}
+                    <p style={{ fontSize: "9px", lineHeight: "1.3" }}>
+                        {en
+                            ? "You can unsubscribe at any time by clicking on the link in the footer of our emails. We use Mailchimp as our marketing platform. By clicking to subscribe, you acknowledge that your information will be transferred to Mailchimp for processing."
+                            : "Vous pouvez vous désabonner à tout moment en cliquant sur le lien dans le bas de page de nos e-mails. Nous utilisons Mailchimp comme plateforme marketing. En cliquant sur souscrire, vous reconnaissez que vos informations seront transférées à Mailchimp."}
+                        <a
+                            rel="noreferrer"
+                            href="https://mailchimp.com/legal/terms"
+                            target="_blank"
+                        >
+                            {en
+                                ? "Learn more about Mailchimp's privacy practices here."
+                                : "En savoir plus sur les pratiques de confidentialité de Mailchimp ici."}
+                        </a>
+                    </p>
                 </div>
             </section>
             <section className="contact">
