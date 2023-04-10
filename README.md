@@ -12,6 +12,9 @@ npm run start
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+Or visit the page here:
+[https://www.atelier-meta.art](https://www.atelier-meta.art)
+
 ## Overview
 
 This page was created for an association that provides a space for design, production, prototyping, aesthetic research and creation assistance. The goal of this artistic structure is to offer a decentralized space dedicated to visual and contemporary art. The association's visual identity was also designed by the developer in 2020 (before Facebook changed its company name to Meta...). This website represents a new milestone for the association, providing them with an online presence to showcase their work and reach a wider audience.
