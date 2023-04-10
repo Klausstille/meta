@@ -14,13 +14,12 @@ h6.sticky-text-event {
 }
 
 .residences-pic {
-    height: 30vw !important;
+    width: 100%;
     object-fit: cover;
 }
 
 img.residences-pic {
-    width: 100%;
-    height: 100%;
+    aspect-ratio: 16/9;
 }
 
 .events-container {

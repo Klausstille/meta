@@ -17,7 +17,7 @@ h3 {
 }
 
 .img-container {
-    height: 30vw;
+    aspect-ratio: 16/9;
 }
 
 .carousel-caption {
@@ -42,8 +42,8 @@ h3 {
 .carousel-control-prev {
     mix-blend-mode: plus-lighter;
     -webkit-mix-blend-mode: plus-lighter;
+    height: calc(100% - 56px);
     right: 0;
-    height: 30vw;
     cursor: none;
     opacity: 0;
 }
@@ -63,20 +63,7 @@ h3 {
 }
 
 @media screen and (max-width: 1200px) {
-    .carousel-control-next,
-    .carousel-control-prev,
-    .img-container {
-        height: 30vw;
-    }
-
     .carousel-container {
         width: auto;
-    }
-}
-@media screen and (max-width: 1000px) {
-    .carousel-control-next,
-    .carousel-control-prev,
-    .img-container {
-        height: 60vw;
     }
 }

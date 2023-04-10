@@ -94,7 +94,7 @@ ul.index-items {
 
 .index-item-pics {
     width: 160px;
-    height: 100px;
+    aspect-ratio: 16/9;
     object-fit: cover;
 }
 .image-grid {
