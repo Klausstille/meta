@@ -32,7 +32,10 @@ h3 {
 .carousel-control-next-icon {
     opacity: 1;
 }
-
+.carousel-control-next svg,
+.carousel-control-prev svg {
+    height: 100%;
+}
 .carousel-control-next,
 .carousel-control-prev {
     mix-blend-mode: plus-lighter;
