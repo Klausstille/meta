@@ -25,11 +25,19 @@ The application has several features based on the association's identity and log
 
 ## Technologies
 
-[![My Skills](https://skillicons.dev/icons?i=js,css,react,netlify,graphql)](https://skillicons.dev)
+-   Javascript
+-   CSS
+-   React
+-   GraphQL
+-   Contentful API
+-   SWR
+-   Netlify
+
+The project utilizes the Contentful API to manage and deliver content, and uses the SWR library to handle data fetching and caching. The application is hosted on Netlify.
 
 ## Made by
 
-This page was designed and developed by Klaus Stille in 2023.
+This page was designed and developed by Klaus Stille in 2022.
 
 ## Preview
 
