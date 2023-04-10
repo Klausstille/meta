@@ -56,44 +56,35 @@ export default function Residences({ lang = "fr" }) {
             <main className="residences-section">
                 <section className="index-params">
                     <div
-                        className="show-all"
+                        className="index-item-info"
                         onClick={() => setShowAll((showAll) => !showAll)}
                     >
-                        {en ? (
-                            showAll ? (
-                                <p className="index-item-name">↑ Hide all</p>
-                            ) : (
-                                <p className="index-item-name">↓ Show all</p>
-                            )
-                        ) : showAll ? (
-                            <p className="index-item-name">↑ Voir moins</p>
-                        ) : (
-                            <p className="index-item-name">↓ Voir tous</p>
-                        )}
+                        <p className="index-item-name">
+                            {en
+                                ? showAll
+                                    ? "↑ Hide all"
+                                    : "↓ Show all"
+                                : showAll
+                                ? "↑ Voir moins"
+                                : "↓ Voir tous"}
+                        </p>
                     </div>
                     <div className="index-item-info">
-                        {en ? (
-                            <p className="index-item-name">Artists</p>
-                        ) : (
-                            <p className="index-item-name">Artistes</p>
-                        )}
+                        <p className="index-item-name">
+                            {en ? "Artists" : "Artistes"}
+                        </p>
                     </div>
                     <div className="index-item-info">
-                        {en ? (
-                            <p className="index-item-project">Project</p>
-                        ) : (
-                            <p className="index-item-project">Projet</p>
-                        )}
+                        <p className="index-item-project">
+                            {en ? "Project" : "Projet"}
+                        </p>
                     </div>
                     <div className="index-item-info">
-                        {en ? (
-                            <p className="index-item-year">Year</p>
-                        ) : (
-                            <p className="index-item-year">Année</p>
-                        )}
+                        <p className="index-item-year">
+                            {en ? "Year" : "Année"}
+                        </p>
                     </div>
                 </section>
-
                 {page.map((data, index) => {
                     return (
                         <IndexItem
