@@ -33,7 +33,7 @@ The application has several features based on the association's identity and log
 -   SWR
 -   Netlify
 
-The project utilizes the Contentful API to manage and deliver content, and uses the SWR library to handle data fetching and caching. The application is hosted on Netlify.
+The application supports multilingual content and renders in both French and English. The project utilizes the Contentful API to manage and deliver content, and uses the SWR library to handle data fetching and caching. The application is hosted on Netlify.
 
 ## Made by
 
