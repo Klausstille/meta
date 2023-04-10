@@ -6,7 +6,6 @@ import "./Contact.css";
 import { contact_engQuery, contact_freQuery } from "./helpers/queries";
 import fetchData from "./helpers/Fetcher";
 import useSWR from "swr";
-import LazyLoad from "react-lazy-load";
 
 const q = {
     fr: contact_freQuery,
@@ -76,16 +75,14 @@ function Contact({ lang = "fr" }) {
                             </a>
                         </p>
                     </div>
-                    <LazyLoad>
-                        <img
-                            alt={page[0].bioTitle}
-                            className="contact-pic"
-                            src={page[1].bioImage.url}
-                            onClick={() => {
-                                setIsShown(true);
-                            }}
-                        />
-                    </LazyLoad>
+                    <img
+                        alt={page[0].bioTitle}
+                        className="contact-pic"
+                        src={page[1].bioImage.url}
+                        onClick={() => {
+                            setIsShown(true);
+                        }}
+                    />
                 </section>
                 <section className="contact-grid">
                     {page.map((data) => {
