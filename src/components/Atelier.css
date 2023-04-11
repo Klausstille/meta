@@ -43,6 +43,13 @@ button.read-more-btn {
     border: none;
     background-color: transparent;
     cursor: none;
+    font-size: 1rem;
+    opacity: 0.5;
+    font-family: "Graphikmedium";
+}
+button.read-more-btn:hover {
+    opacity: 1;
+    transition: all 0.25s;
 }
 
 @media screen and (max-width: 1000px) {
@@ -50,6 +57,10 @@ button.read-more-btn {
         display: grid;
         grid-template-columns: 1fr;
         padding-top: 45px;
+    }
+    .atelier-item,
+    .residences-item {
+        padding-bottom: 30px;
     }
     .atelier-container,
     .residences-container {

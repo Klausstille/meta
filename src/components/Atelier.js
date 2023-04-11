@@ -4,6 +4,7 @@ import Slideshow from "./helpers/Carousel";
 import "./Atelier.css";
 import { atelier_engQuery, atelier_freQuery } from "./helpers/queries";
 import fetchData from "./helpers/Fetcher";
+import GetWindowDimensions from "./mouseEvent/DocumentSize";
 import useSWR from "swr";
 
 const q = {
@@ -16,6 +17,8 @@ export default function Atelier({ lang = "fr" }) {
     const [showMoreAtelier, setShowMoreAtelier] = useState([]);
     const [showMoreResidences, setShowMoreResidences] = useState([]);
     const [en, setEn] = useState(false);
+    const [isPhone, setIsPhone] = useState(false);
+    const { width } = GetWindowDimensions();
 
     const { data } = useSWR(["atelier", lang], async () => {
         const query = q[lang];
@@ -37,6 +40,10 @@ export default function Atelier({ lang = "fr" }) {
             setEn(data.isEn);
         }
     }, [data]);
+
+    useEffect(() => {
+        width <= 1200 ? setIsPhone(true) : setIsPhone(false);
+    }, [width, setIsPhone]);
 
     if (!isAtelier || !isResidence) {
         return null;
@@ -100,20 +107,20 @@ export default function Atelier({ lang = "fr" }) {
                                             <h3 className="read-more-text">
                                                 {content[0].content[0].value.substring(
                                                     0,
-                                                    300
-                                                ) + "..."}
+                                                    isPhone ? 200 : 500
+                                                )}
+                                                <button
+                                                    className="read-more-btn"
+                                                    onClick={() =>
+                                                        readMoreResidences(
+                                                            index
+                                                        )
+                                                    }
+                                                >
+                                                    ...Read more
+                                                </button>
                                             </h3>
                                         </div>
-                                    )}
-                                    {!showAll && (
-                                        <button
-                                            className="read-more-btn"
-                                            onClick={() =>
-                                                readMoreResidences(index)
-                                            }
-                                        >
-                                            Read more
-                                        </button>
                                     )}
                                     {showAll && (
                                         <button
@@ -170,20 +177,18 @@ export default function Atelier({ lang = "fr" }) {
                                             <h3>
                                                 {content[0].content[0].value.substring(
                                                     0,
-                                                    300
-                                                ) + "..."}
+                                                    isPhone ? 200 : 500
+                                                )}
+                                                <button
+                                                    className="read-more-btn"
+                                                    onClick={() =>
+                                                        readMoreAtelier(index)
+                                                    }
+                                                >
+                                                    ...Read more
+                                                </button>
                                             </h3>
                                         </div>
-                                    )}
-                                    {!showAllAtelier && (
-                                        <button
-                                            className="read-more-btn"
-                                            onClick={() =>
-                                                readMoreAtelier(index)
-                                            }
-                                        >
-                                            Read more
-                                        </button>
                                     )}
                                     {showAllAtelier && (
                                         <button
