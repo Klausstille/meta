@@ -31,7 +31,7 @@ img.residences-pic {
 }
 .events-container h3,
 .events-container p {
-    color: white;
+    color: var(--background-color);
 }
 
 .readmore p {

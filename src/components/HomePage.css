@@ -25,7 +25,6 @@
     position: fixed;
     z-index: 1;
     pointer-events: none;
-    mix-blend-mode: plus-lighter;
 }
 
 .hero-container video {

@@ -38,8 +38,6 @@ h3 {
 }
 .carousel-control-next,
 .carousel-control-prev {
-    mix-blend-mode: plus-lighter;
-    -webkit-mix-blend-mode: plus-lighter;
     height: calc(100% - 56px);
     right: 0;
     cursor: none;
@@ -59,7 +57,8 @@ h3 {
 }
 
 .atelier-container .carousel-dark .carousel-indicators [data-bs-target] {
-    background-color: white;
+    background-color: var(--background-color);
+
     cursor: none;
 }
 

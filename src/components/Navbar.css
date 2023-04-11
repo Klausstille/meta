@@ -1,6 +1,6 @@
 body:has(.events-container) .navbar {
     background-color: var(--secondary-color);
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid var(--background-color);
 }
 body:has(.events-container) .nav-menu.active {
     background-color: rgba(20, 20, 20, 0.8);
@@ -8,10 +8,10 @@ body:has(.events-container) .nav-menu.active {
 body:has(.events-container) .nav-links,
 body:has(.events-container) .nav-links-first,
 body:has(.events-container) .nav-lan {
-    color: white;
+    color: var(--background-color);
 }
 body:has(.events-container) .hamburger {
-    stroke: white;
+    stroke: var(--background-color);
 }
 
 .navbar {
