@@ -13,6 +13,8 @@ const q = {
 export default function Atelier({ lang = "fr" }) {
     const [isAtelier, setIsAtelier] = useState([]);
     const [isResidence, setIsResidence] = useState([]);
+    const [showMoreAtelier, setShowMoreAtelier] = useState([]);
+    const [showMoreResidences, setShowMoreResidences] = useState([]);
     const [en, setEn] = useState(false);
 
     const { data } = useSWR(["atelier", lang], async () => {
@@ -39,16 +41,37 @@ export default function Atelier({ lang = "fr" }) {
     if (!isAtelier || !isResidence) {
         return null;
     }
+
+    const readMoreResidences = (index) => {
+        setShowMoreResidences((prevShowMore) => {
+            const newShowMore = [...prevShowMore];
+            newShowMore[index] = !newShowMore[index];
+            return newShowMore;
+        });
+    };
+    const readMoreAtelier = (index) => {
+        setShowMoreAtelier((prevShowMore) => {
+            const newShowMore = [...prevShowMore];
+            newShowMore[index] = !newShowMore[index];
+            return newShowMore;
+        });
+    };
+
     return (
         <>
             <main className="atelier-section">
                 <section className="residences-container">
-                    <h1>{en ? "Residences" : "Résidences"}</h1>
-                    {isResidence.map(
+                    <section className="atelier-header">
+                        <h1>{en ? "The location" : "Le lieu"}</h1>
+                        <h1>↴</h1>
+                    </section>
+                    {isAtelier.map(
                         (
                             { carouselImageCollection, description, title },
                             index
                         ) => {
+                            const content = description.json.content;
+                            const showAll = showMoreResidences[index];
                             return (
                                 <div
                                     key={`index-item-${index}`}
@@ -59,14 +82,48 @@ export default function Atelier({ lang = "fr" }) {
                                         images={carouselImageCollection}
                                     />
                                     <h3> {title}</h3>
-                                    {description.json.content?.map(
-                                        (item, index) => {
-                                            return (
-                                                <h3 key={`index-item-${index}`}>
-                                                    {item.content[0].value}
-                                                </h3>
-                                            );
-                                        }
+                                    {showAll ? (
+                                        <div>
+                                            {content.map((item, index) => {
+                                                return (
+                                                    <h3
+                                                        key={`index-item-${index}`}
+                                                        className="read-more-text"
+                                                    >
+                                                        {item.content[0].value}
+                                                    </h3>
+                                                );
+                                            })}
+                                        </div>
+                                    ) : (
+                                        <div>
+                                            <h3 className="read-more-text">
+                                                {content[0].content[0].value.substring(
+                                                    0,
+                                                    300
+                                                ) + "..."}
+                                            </h3>
+                                        </div>
+                                    )}
+                                    {!showAll && (
+                                        <button
+                                            className="read-more-btn"
+                                            onClick={() =>
+                                                readMoreResidences(index)
+                                            }
+                                        >
+                                            Read more
+                                        </button>
+                                    )}
+                                    {showAll && (
+                                        <button
+                                            className="read-more-btn"
+                                            onClick={() =>
+                                                readMoreResidences(index)
+                                            }
+                                        >
+                                            Show less
+                                        </button>
                                     )}
                                 </div>
                             );
@@ -74,12 +131,18 @@ export default function Atelier({ lang = "fr" }) {
                     )}
                 </section>
                 <section className="atelier-container">
-                    <h1>{en ? "Workshop" : "Atelier"}</h1>
-                    {isAtelier.map(
+                    <section className="atelier-header">
+                        <h1>{en ? "Residences" : "Résidences"}</h1>
+                        <h1>↴</h1>
+                    </section>
+                    {isResidence.map(
                         (
                             { carouselImageCollection, description, title },
                             index
                         ) => {
+                            const content = description.json.content;
+                            const showAllAtelier = showMoreAtelier[index];
+
                             return (
                                 <div
                                     key={`index-item-${index}`}
@@ -90,14 +153,47 @@ export default function Atelier({ lang = "fr" }) {
                                         images={carouselImageCollection}
                                     />
                                     <h3> {title}</h3>
-                                    {description.json.content?.map(
-                                        (item, index) => {
-                                            return (
-                                                <h3 key={`index-item-${index}`}>
-                                                    {item.content[0].value}
-                                                </h3>
-                                            );
-                                        }
+                                    {showAllAtelier ? (
+                                        <div>
+                                            {content.map((item, index) => {
+                                                return (
+                                                    <h3
+                                                        key={`index-item-${index}`}
+                                                    >
+                                                        {item.content[0].value}
+                                                    </h3>
+                                                );
+                                            })}
+                                        </div>
+                                    ) : (
+                                        <div>
+                                            <h3>
+                                                {content[0].content[0].value.substring(
+                                                    0,
+                                                    300
+                                                ) + "..."}
+                                            </h3>
+                                        </div>
+                                    )}
+                                    {!showAllAtelier && (
+                                        <button
+                                            className="read-more-btn"
+                                            onClick={() =>
+                                                readMoreAtelier(index)
+                                            }
+                                        >
+                                            Read more
+                                        </button>
+                                    )}
+                                    {showAllAtelier && (
+                                        <button
+                                            className="read-more-btn"
+                                            onClick={() =>
+                                                readMoreAtelier(index)
+                                            }
+                                        >
+                                            Show less
+                                        </button>
                                     )}
                                 </div>
                             );
