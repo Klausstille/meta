@@ -22,7 +22,7 @@
 :root {
     --primary-color: #006eff;
     --secondary-color: rgb(39, 39, 39);
-    --background-color: rgb(237, 237, 237);
+    --background-color: white;
 }
 
 * {
@@ -77,15 +77,9 @@ a:hover {
     z-index: 10;
 }
 
-body:has(.events-container) .hand {
+/* body:has(.events-container) .hand {
     stroke: var(--background-color);
-}
-
-body:has(.atelier-section) #canvas {
-    mix-blend-mode: plus-lighter;
-    -webkit-mix-blend-mode: plus-lighter;
-    filter: drop-shadow(1px 4px 8px var(--primary-color));
-}
+} */
 
 .policy h1 {
     text-align: left;

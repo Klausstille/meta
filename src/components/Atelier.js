@@ -69,7 +69,7 @@ export default function Atelier({ lang = "fr" }) {
             <main className="atelier-section">
                 <section className="residences-container">
                     <section className="atelier-header">
-                        <h1>{en ? "The location" : "Le lieu"}</h1>
+                        <h1>{en ? "Workshop" : "Atelier"}</h1>
                         <h1>↴</h1>
                     </section>
                     {isAtelier.map(
