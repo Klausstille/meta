@@ -205,6 +205,7 @@ h6.sticky-text {
         display: flex;
         flex-wrap: wrap;
         grid-gap: 20px;
+        padding: 15px 10px;
     }
     .index-item h3 {
         font-family: "Graphik";
@@ -313,7 +314,9 @@ h6.sticky-text {
         .index-params {
             display: none;
         }
-
+        .text-image-grid {
+            padding: 10px 10px 50px 10px;
+        }
         ul.index-items {
             margin: 0 0 -15px 0;
         }
