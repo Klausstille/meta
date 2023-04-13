@@ -21,23 +21,25 @@ export default function Productions({ lang = "fr" }) {
         const query = q[lang];
         const isEn = query === q["en-US"];
         const data = await fetchData({ query });
-        const mapped = data.productionsCollection.items.map((item) => {
-            const year = item.year
-                ? item.year.toString().replace("-", "–")
-                : "0000–00";
-            return {
-                artistName: item.artistName,
-                projectName: item.projectName,
-                description: item.description,
-                galleryCollection: item.galleryCollection,
+        const mapped = data.productionsCollection.items.map(
+            ({
+                artistName,
+                projectName,
+                description,
+                galleryCollection,
                 year,
-            };
-        });
-        const sorted = mapped.sort((a, b) => {
-            const [aYearStart, aYearEnd] = a.year.split("–");
-            const [bYearStart, bYearEnd] = b.year.split("–");
-            return bYearStart - aYearStart + bYearEnd - aYearEnd;
-        });
+            }) => {
+                year = year ? year.toString().replace("-", "–") : "0000–00";
+                return {
+                    artistName,
+                    projectName,
+                    description,
+                    galleryCollection,
+                    year,
+                };
+            }
+        );
+        const sorted = mapped.sort((a, b) => b.year.localeCompare(a.year));
         return { sorted, isEn };
     });
     useEffect(() => {
