@@ -52,16 +52,18 @@ export default function Productions({ lang = "fr" }) {
     }, [data]);
 
     const handleShowOne = (id) => {
-        const toggleProject = page.map((item) =>
-            item.id === id ? { ...item, isShown: !item.isShown } : item
+        setPage(
+            page.map((item) =>
+                item.id === id ? { ...item, isShown: !item.isShown } : item
+            )
         );
-        setPage(toggleProject);
     };
     const handleShowAll = () => {
-        const toggleAllProjects = page.map((item) => {
-            return { ...item, isShown: !showAllProjects };
-        });
-        setPage(toggleAllProjects);
+        setPage(
+            page.map((item) => {
+                return { ...item, isShown: !showAllProjects };
+            })
+        );
     };
 
     if (!page) {
