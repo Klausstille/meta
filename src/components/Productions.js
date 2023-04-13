@@ -5,6 +5,7 @@ import Footer from "./Footer";
 import { residences_engQuery, residences_freQuery } from "./helpers/queries";
 import fetchData from "./helpers/Fetcher";
 import useSWR from "swr";
+import { uid } from "uid";
 
 const q = {
     fr: residences_freQuery,
@@ -14,7 +15,7 @@ const q = {
 export default function Productions({ lang = "fr" }) {
     const [page, setPage] = useState(null);
     const [en, setEn] = useState(false);
-    const [showAll, setShowAll] = useState(false);
+    const [showAllProjects, setShowAllProjects] = useState(false);
     const [preview, setPreview] = useState(null);
 
     const { data } = useSWR(["production", lang], async () => {
@@ -36,6 +37,7 @@ export default function Productions({ lang = "fr" }) {
                     description,
                     galleryCollection,
                     year,
+                    id: uid(),
                 };
             }
         );
@@ -49,6 +51,19 @@ export default function Productions({ lang = "fr" }) {
         }
     }, [data]);
 
+    const handleShowOne = (id) => {
+        const toggleProject = page.map((item) =>
+            item.id === id ? { ...item, isShown: !item.isShown } : item
+        );
+        setPage(toggleProject);
+    };
+    const handleShowAll = () => {
+        const toggleAllProjects = page.map((item) => {
+            return { ...item, isShown: !showAllProjects };
+        });
+        setPage(toggleAllProjects);
+    };
+
     if (!page) {
         return;
     }
@@ -59,14 +74,17 @@ export default function Productions({ lang = "fr" }) {
                 <section className="index-params">
                     <div
                         className="index-item-info"
-                        onClick={() => setShowAll((showAll) => !showAll)}
+                        onClick={() => {
+                            setShowAllProjects((showAll) => !showAll);
+                            handleShowAll();
+                        }}
                     >
                         <p className="index-item-name">
                             {en
-                                ? showAll
+                                ? showAllProjects
                                     ? "↑ Hide all"
                                     : "↓ Show all"
-                                : showAll
+                                : showAllProjects
                                 ? "↑ Voir moins"
                                 : "↓ Voir tous"}
                         </p>
@@ -93,7 +111,6 @@ export default function Productions({ lang = "fr" }) {
                             key={`index-item-${index}`}
                             preview={preview}
                             setPreview={setPreview}
-                            showAll={showAll}
                             name={data.artistName}
                             project={data.projectName}
                             year={data.year}
@@ -102,6 +119,9 @@ export default function Productions({ lang = "fr" }) {
                                     .value
                             }
                             src={data.galleryCollection.items}
+                            onShow={handleShowOne}
+                            showProject={data?.isShown}
+                            id={data.id}
                         />
                     );
                 })}

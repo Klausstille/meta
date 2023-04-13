@@ -10,16 +10,16 @@ import "../Residences.css";
 export default function IndexItem({
     preview,
     setPreview,
-    showAll,
     name,
     project,
     year,
     des,
     src,
+    id,
+    showProject = false,
+    onShow,
 }) {
-    const [oneIsShown, setOneIsShown] = useState(false);
     const [isClicked, setIsClicked] = useState(null);
-    const [isSwitch, setSwitch] = useState(null);
     const [activeIndex, setActiveIndex] = useState(-1);
     const { x, y } = useMouse();
     const { width } = GetWindowDimensions();
@@ -30,39 +30,12 @@ export default function IndexItem({
         }
     };
 
-    const handleClick = (event) => {
-        const { innerText } = event.currentTarget;
-        const { className } = event.target.parentElement;
-
-        if (
-            innerText.indexOf("→") === 0 &&
-            className.indexOf("index-item") === 0
-        ) {
-            setSwitch(true);
-        } else if (
-            innerText.indexOf("→") === -1 &&
-            className.indexOf("index-item") === 0
-        ) {
-            setSwitch(false);
-        }
-    };
-
-    const handleShowAll = () => {
-        setSwitch((isSwitch) => !isSwitch);
-    };
-
     useEffect(() => {
         document.addEventListener("keydown", handleEscape);
         return () => {
             document.removeEventListener("keydown", handleEscape);
         };
     }, []);
-
-    useEffect(() => {
-        if (showAll) {
-            handleShowAll();
-        }
-    }, [showAll]);
 
     useEffect(() => {
         isClicked && width <= 1200 ? setPreview(false) : setPreview(true);
@@ -127,17 +100,17 @@ export default function IndexItem({
                     </div>
                 </section>
             )}
-            <section className="index" key={project} onClick={handleClick}>
+            <section className="index" key={project}>
                 <div className="index-container">
                     <div className="index-wrapper">
                         <ul className="index-items">
                             <li
                                 className="index-item"
                                 onClick={() => {
-                                    setOneIsShown((oneIsShown) => !oneIsShown);
+                                    onShow(id);
                                 }}
                             >
-                                {isSwitch ? (
+                                {showProject ? (
                                     <h3 className="index-item-arrow">↳</h3>
                                 ) : (
                                     <h3 className="index-item-arrow">→</h3>
@@ -163,17 +136,9 @@ export default function IndexItem({
                                     <h3 className="index-item-year">{year}</h3>
                                 </div>
                             </li>
-
                             <section>
                                 <Transition
-                                    show={
-                                        (oneIsShown ? oneIsShown : showAll) ||
-                                        (showAll ? showAll : oneIsShown)
-                                    }
-                                    hidden={
-                                        (oneIsShown ? showAll : oneIsShown) ||
-                                        (showAll ? oneIsShown : showAll)
-                                    }
+                                    show={showProject}
                                     className="text-image-grid"
                                     enterFrom="opacity-0"
                                     enterTo="opacity-100"
