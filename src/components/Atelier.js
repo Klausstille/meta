@@ -88,7 +88,9 @@ export default function Atelier({ lang = "fr" }) {
                                         title={title}
                                         images={carouselImageCollection}
                                     />
-                                    <h3> {title}</h3>
+                                    <h3 className="residences-item--title">
+                                        {title}
+                                    </h3>
                                     {showAll ? (
                                         <div>
                                             {content.map((item, index) => {
@@ -159,13 +161,16 @@ export default function Atelier({ lang = "fr" }) {
                                         title={title}
                                         images={carouselImageCollection}
                                     />
-                                    <h3> {title}</h3>
+                                    <h3 className="atelier-item--title">
+                                        {title}
+                                    </h3>
                                     {showAllAtelier ? (
                                         <div>
                                             {content.map((item, index) => {
                                                 return (
                                                     <h3
                                                         key={`index-item-${index}`}
+                                                        className="read-more-text"
                                                     >
                                                         {item.content[0].value}
                                                     </h3>
@@ -174,7 +179,7 @@ export default function Atelier({ lang = "fr" }) {
                                         </div>
                                     ) : (
                                         <div>
-                                            <h3>
+                                            <h3 className="read-more-text">
                                                 {content[0].content[0].value.substring(
                                                     0,
                                                     isPhone ? 200 : 500

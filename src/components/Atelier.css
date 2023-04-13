@@ -21,6 +21,13 @@
 .atelier-item button.read-more-btn {
     color: var(--background-color);
 }
+h3.residences-item--title,
+h3.atelier-item--title {
+    font-family: "Graphikmedium";
+}
+h3.read-more-text {
+    font-family: "Graphik";
+}
 
 .atelier-item,
 .residences-item {
