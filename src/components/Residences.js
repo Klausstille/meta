@@ -15,7 +15,7 @@ const q = {
 export default function Residences({ lang = "fr" }) {
     const [page, setPage] = useState(null);
     const [en, setEn] = useState(null);
-    const open = JSON.parse(localStorage.getItem("AllOpenResidences"));
+    const open = JSON.parse(sessionStorage.getItem("AllOpenResidences"));
     const [showAllProjects, setShowAllProjects] = useState(open ? open : false);
     const [preview, setPreview] = useState(null);
 
@@ -50,7 +50,7 @@ export default function Residences({ lang = "fr" }) {
 
     useEffect(() => {
         const storedIsShownValues = JSON.parse(
-            localStorage.getItem("isOpenResidences")
+            sessionStorage.getItem("isOpenResidences")
         );
         if (data && storedIsShownValues) {
             const restoredPage = data.sorted.map((item, index) => ({
@@ -71,7 +71,10 @@ export default function Residences({ lang = "fr" }) {
         );
         setPage(toggleShowOne);
         const isShownValues = toggleShowOne.map((item) => item.isShown);
-        localStorage.setItem("isOpenResidences", JSON.stringify(isShownValues));
+        sessionStorage.setItem(
+            "isOpenResidences",
+            JSON.stringify(isShownValues)
+        );
     };
     function handleShowAll() {
         const toggleShowAll = page.map((item) => ({
@@ -80,8 +83,11 @@ export default function Residences({ lang = "fr" }) {
         }));
         setPage(toggleShowAll);
         const isShownValues = toggleShowAll.map((item) => item.isShown);
-        localStorage.setItem("isOpenResidences", JSON.stringify(isShownValues));
-        localStorage.setItem("AllOpenResidences", !showAllProjects);
+        sessionStorage.setItem(
+            "isOpenResidences",
+            JSON.stringify(isShownValues)
+        );
+        sessionStorage.setItem("AllOpenResidences", !showAllProjects);
     }
 
     if (!page) {

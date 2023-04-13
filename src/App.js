@@ -16,7 +16,9 @@ function App() {
     const { x, y } = useMouse();
     const { width, height } = getWindowDimensions();
     const [lang, setLang] = useState("fr");
-
+    window.addEventListener("beforeunload", () => {
+        sessionStorage.clear();
+    });
     function changeQuery(lang) {
         setLang(lang);
         console.log({ lang });
