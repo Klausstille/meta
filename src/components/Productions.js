@@ -5,7 +5,6 @@ import Footer from "./Footer";
 import { residences_engQuery, residences_freQuery } from "./helpers/queries";
 import fetchData from "./helpers/Fetcher";
 import useSWR from "swr";
-import { uid } from "uid";
 
 const q = {
     fr: residences_freQuery,
@@ -29,6 +28,7 @@ export default function Productions({ lang = "fr" }) {
                 description,
                 galleryCollection,
                 year,
+                sys,
             }) => {
                 year = year ? year.toString().replace("-", "–") : "0000–00";
                 return {
@@ -37,7 +37,7 @@ export default function Productions({ lang = "fr" }) {
                     description,
                     galleryCollection,
                     year,
-                    id: uid(),
+                    id: sys.id,
                 };
             }
         );

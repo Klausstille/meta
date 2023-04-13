@@ -108,6 +108,9 @@ export const productions_engQuery = `
 {
   artistesCollection {
     items {
+      sys {
+        id
+      }
       artistName
       projectName
       year
@@ -128,6 +131,9 @@ export const productions_freQuery = `
 {
   artistesCollection {
     items {
+      sys {
+        id
+      }
       artistName
       projectName
       year
@@ -148,6 +154,9 @@ export const residences_engQuery = `
 {
   productionsCollection {
     items {
+      sys {
+        id
+      }
       artistName
       projectName
       year
@@ -168,6 +177,9 @@ export const residences_freQuery = `
 {
   productionsCollection {
     items {
+      sys {
+        id
+      }
       artistName
       projectName
       year
