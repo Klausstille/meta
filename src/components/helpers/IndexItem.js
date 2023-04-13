@@ -4,7 +4,6 @@ import { Transition } from "@headlessui/react";
 import useMouse from "../mouseEvent/MouseMove";
 import GetWindowDimensions from "../mouseEvent/DocumentSize";
 import LazyLoad from "react-lazy-load";
-
 import "../Residences.css";
 
 export default function IndexItem({
