@@ -13,6 +13,14 @@ h6.sticky-text-event {
     width: 100%;
 }
 
+.events-container h3,
+.events-container p {
+    color: var(--background-color);
+}
+h3.title-text {
+    margin-bottom: 0;
+}
+
 .residences-pic {
     width: 100%;
     object-fit: cover;
@@ -29,10 +37,6 @@ img.residences-pic {
     gap: 20px;
     background-color: var(--secondary-color);
 }
-.events-container h3,
-.events-container p {
-    color: var(--background-color);
-}
 
 .readmore p {
     margin-top: -15px;
@@ -48,7 +52,6 @@ img.residences-pic {
 }
 .description-text {
     padding-top: 0;
-    padding-bottom: 1.25rem;
 }
 
 .category-title {

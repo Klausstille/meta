@@ -9,7 +9,14 @@
     background-color: var(--background-color);
     margin-bottom: 18px;
 }
-
+.text-image-grid.opacity-0 {
+    opacity: 0;
+    transition: opacity 0.1s ease-in-out;
+}
+.text-image-grid.opacity-100 {
+    opacity: 1;
+    transition: opacity 0.1s ease-in-out;
+}
 .info {
     padding: 0px 40px 0px 40px;
     display: grid;
