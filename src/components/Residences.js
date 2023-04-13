@@ -15,7 +15,8 @@ const q = {
 export default function Residences({ lang = "fr" }) {
     const [page, setPage] = useState(null);
     const [en, setEn] = useState(null);
-    const [showAllProjects, setShowAllProjects] = useState(false);
+    const open = JSON.parse(localStorage.getItem("AllOpenResidences"));
+    const [showAllProjects, setShowAllProjects] = useState(open ? open : false);
     const [preview, setPreview] = useState(null);
 
     const { data } = useSWR(["residences", lang], async () => {
@@ -39,33 +40,49 @@ export default function Residences({ lang = "fr" }) {
                     galleryCollection,
                     year,
                     id: sys.id,
+                    isShown: false,
                 };
             }
         );
         const sorted = mapped.sort((a, b) => b.year.localeCompare(a.year));
         return { sorted, isEn };
     });
+
     useEffect(() => {
-        if (data) {
+        const storedIsShownValues = JSON.parse(
+            localStorage.getItem("isOpenResidences")
+        );
+        if (data && storedIsShownValues) {
+            const restoredPage = data.sorted.map((item, index) => ({
+                ...item,
+                isShown: storedIsShownValues[index],
+            }));
+            setPage(restoredPage);
+            setEn(data.isEn);
+        } else if (data) {
             setEn(data.isEn);
             setPage(data.sorted);
         }
     }, [data]);
 
     const handleShowOne = (id) => {
-        setPage(
-            page.map((item) =>
-                item.id === id ? { ...item, isShown: !item.isShown } : item
-            )
+        const toggleShowOne = page.map((item) =>
+            item.id === id ? { ...item, isShown: !item.isShown } : item
         );
+        setPage(toggleShowOne);
+        const isShownValues = toggleShowOne.map((item) => item.isShown);
+        localStorage.setItem("isOpenResidences", JSON.stringify(isShownValues));
     };
-    const handleShowAll = () => {
-        setPage(
-            page.map((item) => {
-                return { ...item, isShown: !showAllProjects };
-            })
-        );
-    };
+    function handleShowAll() {
+        const toggleShowAll = page.map((item) => ({
+            ...item,
+            isShown: !showAllProjects,
+        }));
+        setPage(toggleShowAll);
+        const isShownValues = toggleShowAll.map((item) => item.isShown);
+        localStorage.setItem("isOpenResidences", JSON.stringify(isShownValues));
+        localStorage.setItem("AllOpenResidences", !showAllProjects);
+    }
 
     if (!page) {
         return;

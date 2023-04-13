@@ -14,7 +14,8 @@ const q = {
 export default function Productions({ lang = "fr" }) {
     const [page, setPage] = useState(null);
     const [en, setEn] = useState(false);
-    const [showAllProjects, setShowAllProjects] = useState(false);
+    const open = JSON.parse(localStorage.getItem("AllOpenProductions"));
+    const [showAllProjects, setShowAllProjects] = useState(open ? open : false);
     const [preview, setPreview] = useState(null);
 
     const { data } = useSWR(["production", lang], async () => {
@@ -38,6 +39,7 @@ export default function Productions({ lang = "fr" }) {
                     galleryCollection,
                     year,
                     id: sys.id,
+                    isShown: false,
                 };
             }
         );
@@ -45,26 +47,46 @@ export default function Productions({ lang = "fr" }) {
         return { sorted, isEn };
     });
     useEffect(() => {
-        if (data) {
+        const storedIsShownValues = JSON.parse(
+            localStorage.getItem("isOpenProductions")
+        );
+        if (data && storedIsShownValues) {
+            const restoredPage = data.sorted.map((item, index) => ({
+                ...item,
+                isShown: storedIsShownValues[index],
+            }));
+            setPage(restoredPage);
+            setEn(data.isEn);
+        } else if (data) {
             setEn(data.isEn);
             setPage(data.sorted);
         }
     }, [data]);
 
     const handleShowOne = (id) => {
-        setPage(
-            page.map((item) =>
-                item.id === id ? { ...item, isShown: !item.isShown } : item
-            )
+        const toggleShowOne = page.map((item) =>
+            item.id === id ? { ...item, isShown: !item.isShown } : item
+        );
+        setPage(toggleShowOne);
+        const isShownValues = toggleShowOne.map((item) => item.isShown);
+        localStorage.setItem(
+            "isOpenProductions",
+            JSON.stringify(isShownValues)
         );
     };
-    const handleShowAll = () => {
-        setPage(
-            page.map((item) => {
-                return { ...item, isShown: !showAllProjects };
-            })
+    function handleShowAll() {
+        const toggleShowAll = page.map((item) => ({
+            ...item,
+            isShown: !showAllProjects,
+        }));
+        setPage(toggleShowAll);
+        const isShownValues = toggleShowAll.map((item) => item.isShown);
+        localStorage.setItem(
+            "isOpenProductions",
+            JSON.stringify(isShownValues)
         );
-    };
+        localStorage.setItem("AllOpenProductions", !showAllProjects);
+    }
 
     if (!page) {
         return;
