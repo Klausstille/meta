@@ -42,7 +42,7 @@ export default function Atelier({ lang = "fr" }) {
     }, [data]);
 
     useEffect(() => {
-        width <= 1200 ? setIsPhone(true) : setIsPhone(false);
+        width <= 700 ? setIsPhone(true) : setIsPhone(false);
     }, [width, setIsPhone]);
 
     if (!isAtelier || !isResidence) {
