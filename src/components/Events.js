@@ -18,17 +18,20 @@ export default function Events({ lang = "fr" }) {
     const [isShown, setIsShown] = useState(null);
     const [activeIndex, setActiveIndex] = useState(-1);
     const [preview, setPreview] = useState(null);
+    const [en, setEn] = useState(false);
     const { x, y } = useMouse();
     const { width } = GetWindowDimensions();
 
     const { data } = useSWR(["events", lang], async () => {
         const query = q[lang];
-        return await fetchData({ query });
+        const isEn = query === q["en-US"];
+        const fetchedData = await fetchData({ query });
+        return { fetchedData, isEn };
     });
-
     useEffect(() => {
         if (data) {
-            setPage(data.residencesCollection.items);
+            setPage(data.fetchedData.residencesCollection.items);
+            setEn(data.isEn);
         }
     }, [data]);
 
@@ -115,6 +118,7 @@ export default function Events({ lang = "fr" }) {
                             setActiveIndex={setActiveIndex}
                             index={index}
                             key={data.residencesPhotos.title}
+                            en={en}
                         />
                     );
                 })}

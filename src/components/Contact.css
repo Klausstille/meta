@@ -1,9 +1,14 @@
 .contact-pic {
     width: 30vw;
     aspect-ratio: 16/9;
-
     object-fit: cover;
     object-position: center;
+    opacity: 0.9;
+    transition: all 0.2s ease-in-out;
+}
+
+img.contact-pic:hover {
+    opacity: 1;
 }
 
 .img-module-contact {
@@ -48,6 +53,7 @@
         width: 100%;
         height: auto;
         object-fit: cover;
+        opacity: 1;
     }
 }
 

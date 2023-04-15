@@ -9,6 +9,11 @@ h3.title-text {
 
 img.residences-pic {
     aspect-ratio: 16/9;
+    opacity: 0.9;
+    transition: all 0.2s ease-in-out;
+}
+img.residences-pic:hover {
+    opacity: 1;
 }
 
 .events-container {
@@ -40,6 +45,9 @@ img.residences-pic {
 }
 
 @media screen and (max-width: 1200px) {
+    img.residences-pic {
+        opacity: 1;
+    }
     .events-container {
         display: grid;
         grid-template-columns: 1fr 1fr;

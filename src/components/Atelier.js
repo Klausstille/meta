@@ -118,7 +118,9 @@ export default function Atelier({ lang = "fr" }) {
                                                         )
                                                     }
                                                 >
-                                                    ...Read more
+                                                    {en
+                                                        ? "...Read more"
+                                                        : "...Lire plus"}
                                                 </button>
                                             </h3>
                                         </div>
@@ -130,7 +132,7 @@ export default function Atelier({ lang = "fr" }) {
                                                 readMoreResidences(index)
                                             }
                                         >
-                                            Show less
+                                            {en ? "Show less" : "Réduire"}
                                         </button>
                                     )}
                                 </div>
@@ -189,7 +191,9 @@ export default function Atelier({ lang = "fr" }) {
                                                         readMoreAtelier(index)
                                                     }
                                                 >
-                                                    ...Read more
+                                                    {en
+                                                        ? "...Read more"
+                                                        : "...Lire plus"}
                                                 </button>
                                             </h3>
                                         </div>
@@ -201,7 +205,7 @@ export default function Atelier({ lang = "fr" }) {
                                                 readMoreAtelier(index)
                                             }
                                         >
-                                            Show less
+                                            {en ? "Show less" : "Réduire"}
                                         </button>
                                     )}
                                 </div>

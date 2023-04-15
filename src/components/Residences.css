@@ -201,6 +201,9 @@ h6.sticky-text {
 }
 
 @media screen and (max-width: 1200px) {
+    .image-grid img {
+        opacity: 1;
+    }
     .index .index-item {
         height: auto;
         gap: 0;

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Event({ data, setIsShown, setActiveIndex, index }) {
+export default function Event({ data, setIsShown, setActiveIndex, index, en }) {
     const [showMore, setShowMore] = useState([]);
     const readMore = (index) => {
         setShowMore((prevShowMore) => {
@@ -47,7 +47,7 @@ export default function Event({ data, setIsShown, setActiveIndex, index }) {
                                 className="read-more-btn"
                                 onClick={() => readMore(index)}
                             >
-                                ...Read more
+                                {en ? "...Read more" : "...Lire plus"}{" "}
                             </button>
                         </p>
                     </div>
@@ -57,7 +57,7 @@ export default function Event({ data, setIsShown, setActiveIndex, index }) {
                         className="read-more-btn"
                         onClick={() => readMore(index)}
                     >
-                        Show less
+                        {en ? "Show less" : "Réduire"}
                     </button>
                 )}
             </div>
