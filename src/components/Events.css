@@ -13,7 +13,7 @@ img.residences-pic {
 
 .events-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     padding: 65px 20px 80px 20px;
     gap: 20px;
     /* background-color: var(--secondary-color); */
