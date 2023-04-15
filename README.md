@@ -1,6 +1,6 @@
 # Association Meta
 
-![Meta](public/logo_2.png)
+![Meta](public/logo.svg)
 
 ## Running the project
 
