@@ -26,12 +26,15 @@ export default function Events({ lang = "fr" }) {
         const query = q[lang];
         const isEn = query === q["en-US"];
         const fetchedData = await fetchData({ query });
-        return { fetchedData, isEn };
+        const sorted = fetchedData.residencesCollection.items.sort(
+            (a, b) => new Date(b.startDate) - new Date(a.startDate)
+        );
+        return { sorted, isEn };
     });
 
     useEffect(() => {
         if (data) {
-            setPage(data.fetchedData.residencesCollection.items);
+            setPage(data.sorted);
             setEn(data.isEn);
         }
     }, [data]);
