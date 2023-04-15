@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import "./Footer.css";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import MailchimpSubscribe from "react-mailchimp-subscribe";
 import { footer_engQuery, footer_freQuery } from "./helpers/queries";
 import fetchData from "./helpers/Fetcher";
@@ -44,15 +44,25 @@ function Footer({ lang = "fr", isDarkMode }) {
             <div className="footer-links">
                 <div className="footer-link-wrapper">
                     <div className="footer-link-items">
-                        <Link to="/atelier">{page[0]}</Link>
-                        <Link to="/residences">{page[1]}</Link>
-                        <Link to="/productions">{page[2]}</Link>
-                        <Link to="/events">{page[3]}</Link>
-                        <Link to="/contact">{page[4]}</Link>
+                        <NavLink to="/atelier" className="footer-link-item">
+                            {page[0]}
+                        </NavLink>
+                        <NavLink to="/residences" className="footer-link-item">
+                            {page[1]}
+                        </NavLink>
+                        <NavLink to="/productions" className="footer-link-item">
+                            {page[2]}
+                        </NavLink>
+                        <NavLink to="/events" className="footer-link-item">
+                            {page[3]}
+                        </NavLink>
+                        <NavLink to="/contact" className="footer-link-item">
+                            {page[4]}
+                        </NavLink>
                     </div>
 
                     <div className="footer-link-items">
-                        <Link to="/privacy">Privacy</Link>
+                        <NavLink to="/privacy">Privacy</NavLink>
                         <br></br>
                         <a
                             href="https://www.instagram.com/collectif.meta/"
@@ -121,13 +131,13 @@ function Footer({ lang = "fr", isDarkMode }) {
                 </div>
             </section>
             <div>
-                <Link to="/">
+                <NavLink to="/">
                     <img
                         src={isDarkMode ? "./logo-dark.svg" : "./logo.svg"}
                         alt="meta-logo"
                         className="logo-2"
                     />
-                </Link>
+                </NavLink>
             </div>
         </footer>
     );

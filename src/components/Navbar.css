@@ -42,7 +42,7 @@
     font-family: "Graphikmedium", Fallback, sans-serif;
 }
 
-.nav-logo .nav-links:hover {
+.nav-logo:hover {
     transform: none;
 }
 
@@ -80,6 +80,7 @@ ul.nav-menu {
 .nav-links {
     border-right: solid 1px;
     justify-content: center;
+    opacity: 0.8;
 }
 .nav-item:first-child .nav-links {
     border-left: solid 1px;
@@ -87,11 +88,11 @@ ul.nav-menu {
 
 .nav-links:hover {
     transition: all 0.2s ease-in-out;
-    transform: translateY(-1px);
+    opacity: 1;
 }
 
 .nav-links.active {
-    font-family: "Graphikmedium";
+    opacity: 1;
 }
 
 .hamburger {

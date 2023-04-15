@@ -70,7 +70,6 @@ footer button:hover {
     text-align: left;
     width: 160px;
     box-sizing: border-box;
-    /* z-index: 99; */
 }
 
 p {
@@ -80,14 +79,18 @@ p {
 }
 
 .footer-link-items a {
-    color: var(--primary-color);
     text-decoration: none;
-    /* margin-bottom: 0.5rem; */
 }
 
-.footer-link-items a:hover {
-    color: var(--primary-color);
+.footer-link-item.active {
+    opacity: 1;
+}
+.footer-link-item {
+    opacity: 0.6;
+}
+.footer-link-item:hover {
     transition: 0.3s ease-out;
+    opacity: 1;
 }
 
 .contact {
