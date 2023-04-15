@@ -92,7 +92,7 @@ export default function Atelier({ lang = "fr" }) {
                                     </h3>
                                     {showAll ? (
                                         <div>
-                                            {content.map((item, index) => {
+                                            {content?.map((item, index) => {
                                                 return (
                                                     <h3
                                                         key={`index-item-${index}`}
@@ -165,7 +165,7 @@ export default function Atelier({ lang = "fr" }) {
                                     </h3>
                                     {showAllAtelier ? (
                                         <div>
-                                            {content.map((item, index) => {
+                                            {content?.map((item, index) => {
                                                 return (
                                                     <h3
                                                         key={`index-item-${index}`}
