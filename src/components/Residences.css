@@ -46,6 +46,7 @@
     border-top: solid 1px var(--primary-color);
     height: 40px;
     margin-bottom: 0;
+    transition: all 0.5 ease-in-out;
 }
 
 .index-item-year {
@@ -53,7 +54,16 @@
     justify-items: end;
     font-size: 1rem;
 }
-
+.index-items:has(.text-image-grid) img.index-preview-pic {
+    filter: opacity(1);
+}
+img.index-preview-pic {
+    filter: opacity(0.7);
+}
+.index-items:hover img.index-preview-pic {
+    filter: opacity(1);
+    transition: 0.2s all ease-in-out;
+}
 .index-item-arrow,
 .index-item-name,
 .index-item-project,

@@ -77,9 +77,9 @@ a:hover {
     z-index: 10;
 }
 
-/* body:has(.events-container) .hand {
-    stroke: var(--background-color);
-} */
+body:has(.home) #canvas {
+    mix-blend-mode: exclusion;
+}
 
 .policy h1 {
     text-align: left;
