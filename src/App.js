@@ -10,19 +10,21 @@ import Residences from "./components/Residences";
 import Productions from "./components/Productions";
 import Contact from "./components/Contact";
 import Privacy from "./components/Privacy";
+import Footer from "./components/Footer";
 import "./App.css";
 
 function App() {
     const { x, y } = useMouse();
     const { width, height } = getWindowDimensions();
     const [lang, setLang] = useState("fr");
+    const [isDarkMode, setIsDarkMode] = useState(false);
     window.addEventListener("beforeunload", () => {
         sessionStorage.clear();
     });
-    function changeQuery(lang) {
+    const changeQuery = (lang) => {
         setLang(lang);
         console.log({ lang });
-    }
+    };
 
     return (
         <>
@@ -33,7 +35,12 @@ function App() {
             </svg>
 
             <BrowserRouter>
-                <Navbar setLang={changeQuery} lang={lang} />
+                <Navbar
+                    setLang={changeQuery}
+                    lang={lang}
+                    setIsDarkMode={setIsDarkMode}
+                    isDarkMode={isDarkMode}
+                />
                 <Routes>
                     <Route exact path="/" element={<HomePage lang={lang} />} />
                     <Route path="/atelier" element={<Atelier lang={lang} />} />
@@ -49,6 +56,7 @@ function App() {
                     <Route path="/contact" element={<Contact lang={lang} />} />
                     <Route path="/privacy" element={<Privacy lang={lang} />} />
                 </Routes>
+                <Footer lang={lang} isDarkMode={isDarkMode} />
             </BrowserRouter>
         </>
     );

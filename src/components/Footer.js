@@ -17,7 +17,7 @@ const q = {
     "en-US": footer_engQuery,
 };
 
-function Footer({ lang = "fr" }) {
+function Footer({ lang = "fr", isDarkMode }) {
     const [page, setPage] = useState(null);
     const [en, setEn] = useState(false);
 
@@ -122,7 +122,11 @@ function Footer({ lang = "fr" }) {
             </section>
             <div>
                 <Link to="/">
-                    <img src="./logo_2.png" alt="" className="logo-2" />
+                    <img
+                        src={isDarkMode ? "./logo-dark.svg" : "./logo.svg"}
+                        alt="meta-logo"
+                        className="logo-2"
+                    />
                 </Link>
             </div>
         </footer>

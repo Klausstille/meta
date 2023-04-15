@@ -56,11 +56,9 @@ h3 {
     cursor: none;
 }
 
-.atelier-container .carousel-dark .carousel-indicators [data-bs-target] {
+/* .atelier-container .carousel-dark .carousel-indicators [data-bs-target] {
     background-color: var(--background-color);
-
-    cursor: none;
-}
+} */
 
 @media screen and (max-width: 1200px) {
     .carousel-container {

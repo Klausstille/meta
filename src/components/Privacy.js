@@ -1,4 +1,3 @@
-import Footer from "./Footer";
 import "./Contact.css";
 
 export default function Privacy({ lang = "fr" }) {
@@ -424,10 +423,6 @@ export default function Privacy({ lang = "fr" }) {
                     <p>Latest update: December 18, 2022</p>
                 </div>
             </div>
-
-            <footer>
-                <Footer lang={lang} />
-            </footer>
         </>
     );
 }

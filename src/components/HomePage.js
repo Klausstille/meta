@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import useMouse from "../components/mouseEvent/MouseMove";
 import getWindowDimensions from "../components/mouseEvent/DocumentSize";
 import "./HomePage.css";
-import Footer from "./Footer";
 import { home_query as query } from "./helpers/queries";
 import fetchData from "./helpers/Fetcher";
 import useSWR from "swr";
@@ -37,7 +36,7 @@ export default function HomePage({ lang = "fr" }) {
                                 height: `${y}px`,
                             }}
                         >
-                            <img src="./logo_meta.png" alt="Meta" />
+                            <img src="./logo-meta.svg" alt="Meta" />
                         </div>
                     )}
                 </section>
@@ -53,7 +52,6 @@ export default function HomePage({ lang = "fr" }) {
                     </LazyLoad>
                 </section>
             </main>
-            <Footer lang={lang} />
         </>
     );
 }

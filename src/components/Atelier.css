@@ -8,19 +8,14 @@
     overflow: scroll;
     border-left: 1px solid var(--primary-color);
     padding: 0 20px;
-    background-color: var(--secondary-color);
+    /* background-color: var(--secondary-color); */
 }
 .residences-container {
     height: 100vh;
     overflow: scroll;
     padding: 0 20px;
 }
-.atelier-container h1,
-.atelier-container h2,
-.atelier-item h3,
-.atelier-item button.read-more-btn {
-    color: var(--background-color);
-}
+
 h3.residences-item--title,
 h3.atelier-item--title {
     font-family: "Graphikmedium";

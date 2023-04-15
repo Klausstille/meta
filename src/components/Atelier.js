@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import Footer from "./Footer";
 import Slideshow from "./helpers/Carousel";
 import "./Atelier.css";
 import { atelier_engQuery, atelier_freQuery } from "./helpers/queries";
@@ -211,9 +210,6 @@ export default function Atelier({ lang = "fr" }) {
                     )}
                 </section>
             </main>
-            <footer>
-                <Footer lang={lang} />
-            </footer>
         </>
     );
 }

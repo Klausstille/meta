@@ -11,7 +11,7 @@ const q = {
     "en-US": nav_engQuery,
 };
 
-function Navbar({ setLang, lang = "fr" }) {
+function Navbar({ setLang, lang = "fr", setIsDarkMode, isDarkMode }) {
     const [click, setClick] = useState(false);
     const [page, setPage] = useState(null);
     const handleClick = () => setClick(!click);
@@ -21,6 +21,12 @@ function Navbar({ setLang, lang = "fr" }) {
         const query = q[lang];
         return await fetchData({ query });
     });
+
+    useEffect(() => {
+        isDarkMode
+            ? document.body.classList.add("darkmode")
+            : document.body.classList.remove("darkmode");
+    }, [isDarkMode]);
 
     useEffect(() => {
         if (data) {
@@ -120,6 +126,17 @@ function Navbar({ setLang, lang = "fr" }) {
                         </NavLink>
                     </li>
                 </ul>
+                <button
+                    id="toggleMode"
+                    onClick={() => setIsDarkMode((active) => !active)}
+                >
+                    <img
+                        alt="toggle-dark-mode"
+                        src={
+                            isDarkMode ? "./mode-dark.svg" : "./mode-light.svg"
+                        }
+                    />
+                </button>
                 <CheckLanguage setLang={setLang} />
             </nav>
         </>

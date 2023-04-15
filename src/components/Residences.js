@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import React from "react";
 import "./Residences.css";
 import IndexItem from "./helpers/IndexItem";
-import Footer from "./Footer";
 import { productions_engQuery, productions_freQuery } from "./helpers/queries";
 import fetchData from "./helpers/Fetcher";
 import useSWR from "swr";
@@ -151,7 +150,6 @@ export default function Residences({ lang = "fr" }) {
                     );
                 })}
             </main>
-            <Footer lang={lang} />
         </>
     );
 }

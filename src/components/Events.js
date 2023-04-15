@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import useMouse from "./mouseEvent/MouseMove";
 import GetWindowDimensions from "./mouseEvent/DocumentSize";
 import Event from "./helpers/Event";
-import Footer from "./Footer";
+
 import "./Events.css";
 import { events_engQuery, events_freQuery } from "./helpers/queries";
 import fetchData from "./helpers/Fetcher";
@@ -100,7 +100,7 @@ export default function Events({ lang = "fr" }) {
                                 </>
                             )}
 
-                            <h6 className="sticky-text-event">
+                            <h6 className="sticky-text">
                                 {page[activeIndex].residencesPhotos.title} |{" "}
                                 {page[activeIndex].description}
                             </h6>
@@ -119,7 +119,6 @@ export default function Events({ lang = "fr" }) {
                     );
                 })}
             </main>
-            <Footer lang={lang} />
         </>
     );
 }
