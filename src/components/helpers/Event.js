@@ -9,13 +9,31 @@ export default function Event({ data, setIsShown, setActiveIndex, index, en }) {
             return newShowMore;
         });
     };
+
+    const formatDate = (date) =>
+        new Intl.DateTimeFormat("fr", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+        }).format(date);
+
+    const formatTime = (date) =>
+        new Intl.DateTimeFormat("fr", {
+            hour: "2-digit",
+            minute: "2-digit",
+        }).format(date);
+
+    const startDate = formatDate(new Date(data.startDate));
+    const endDate = formatDate(new Date(data.endDate));
+    const startTime = formatTime(new Date(data.startDate));
+    const endTime = formatTime(new Date(data.endDate));
     const content = data.eventText.json.content;
     const showAll = showMore[index];
 
     return (
-        <section className="events-grid" key={data.residencesPhotos.url}>
+        <section className="events-grid" key={data.eventTitle}>
             <img
-                alt={data.residencesPhotos.title}
+                alt={data.eventTitle}
                 className="residences-pic"
                 src={data.residencesPhotos.url}
                 onClick={() => {
@@ -23,8 +41,14 @@ export default function Event({ data, setIsShown, setActiveIndex, index, en }) {
                     setActiveIndex(index);
                 }}
             />
-            <h3 className="title-text">{data.residencesPhotos.title}</h3>
-            <h3 className="description-text">{data.description}</h3>
+            <h3 className="title-text">{data.eventTitle}</h3>
+            <p className="description-text">
+                {startDate} - {endDate}
+                {endTime && startTime !== "00:00"
+                    ? ` | ${startTime}-${endTime}`
+                    : ""}
+            </p>
+
             <div className="event-text">
                 {showAll ? (
                     <div>

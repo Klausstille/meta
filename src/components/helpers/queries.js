@@ -74,9 +74,10 @@ export const events_engQuery = `
 {
   residencesCollection {
     items {
-      description(locale:"en-US")
+			eventTitle(locale:"en-US") 
+			startDate
+      endDate
       residencesPhotos {
-        title(locale:"en-US")
           url (transform: {width: 1400})
       }
       eventText(locale:"en-US") {
@@ -91,9 +92,10 @@ export const events_freQuery = `
 {
   residencesCollection {
     items {
-      description(locale:"fr")
+			eventTitle(locale:"fr") 
+			startDate
+      endDate
       residencesPhotos {
-        title(locale:"fr")
           url (transform: {width: 1400})
       }
       eventText(locale:"fr") {

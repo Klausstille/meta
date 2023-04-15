@@ -1,7 +1,3 @@
-h3.title-text {
-    margin-bottom: 0;
-}
-
 .residences-pic {
     width: 100%;
     object-fit: cover;
@@ -35,9 +31,10 @@ img.residences-pic:hover {
 
 .title-text {
     padding-top: 1.25rem;
+    margin-bottom: 0;
 }
 .description-text {
-    padding-top: 0;
+    padding-bottom: 10px;
 }
 
 .category-title {

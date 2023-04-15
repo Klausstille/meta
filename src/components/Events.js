@@ -28,6 +28,7 @@ export default function Events({ lang = "fr" }) {
         const fetchedData = await fetchData({ query });
         return { fetchedData, isEn };
     });
+
     useEffect(() => {
         if (data) {
             setPage(data.fetchedData.residencesCollection.items);
@@ -70,19 +71,14 @@ export default function Events({ lang = "fr" }) {
                         >
                             {preview ? (
                                 <img
-                                    alt={
-                                        page[activeIndex].residencesPhotos.title
-                                    }
+                                    alt={page[activeIndex].eventTitle}
                                     src={page[activeIndex].residencesPhotos.url}
                                     className="fixed-image"
                                 />
                             ) : (
                                 <>
                                     <img
-                                        alt={
-                                            page[activeIndex].residencesPhotos
-                                                .title
-                                        }
+                                        alt={page[activeIndex].eventTitle}
                                         src={
                                             page[activeIndex].residencesPhotos
                                                 .url
@@ -90,10 +86,7 @@ export default function Events({ lang = "fr" }) {
                                         className="fixed-image"
                                     />
                                     <img
-                                        alt={
-                                            page[activeIndex].residencesPhotos
-                                                .title
-                                        }
+                                        alt={page[activeIndex].eventTitle}
                                         src={
                                             page[activeIndex].residencesPhotos
                                                 .url
@@ -104,8 +97,22 @@ export default function Events({ lang = "fr" }) {
                             )}
 
                             <h6 className="sticky-text">
-                                {page[activeIndex].residencesPhotos.title} |{" "}
-                                {page[activeIndex].description}
+                                {page[activeIndex].eventTitle} |{" "}
+                                {new Date(
+                                    page[activeIndex].startDate
+                                ).toLocaleDateString("fr", {
+                                    day: "2-digit",
+                                    month: "2-digit",
+                                    year: "numeric",
+                                })}{" "}
+                                -{" "}
+                                {new Date(
+                                    page[activeIndex].endDate
+                                ).toLocaleDateString("fr", {
+                                    day: "2-digit",
+                                    month: "2-digit",
+                                    year: "numeric",
+                                })}
                             </h6>
                         </div>
                     </div>
