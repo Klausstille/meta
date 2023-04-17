@@ -11,13 +11,17 @@ import Productions from "./components/Productions";
 import Contact from "./components/Contact";
 import Privacy from "./components/Privacy";
 import Footer from "./components/Footer";
+import useLocalStorageState from "use-local-storage-state";
 import "./App.css";
 
 function App() {
     const { x, y } = useMouse();
     const { width, height } = getWindowDimensions();
     const [lang, setLang] = useState("fr");
-    const [isDarkMode, setIsDarkMode] = useState(false);
+    const [isDarkMode, setIsDarkMode] = useLocalStorageState(
+        "isDarkMode",
+        false
+    );
     window.addEventListener("beforeunload", () => {
         sessionStorage.clear();
     });

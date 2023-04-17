@@ -19,6 +19,8 @@
         "rxjs": "^7.5.5",
         "swr": "^2.1.2",
         "uid": "^2.0.2",
+        "use-local-storage-state": "^18.3.2",
+        "use-session-storage-state": "^18.1.1",
         "web-vitals": "^2.1.4"
     },
     "scripts": {

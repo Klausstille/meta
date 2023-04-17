@@ -5,6 +5,7 @@ import IndexItem from "./helpers/IndexItem";
 import { productions_engQuery, productions_freQuery } from "./helpers/queries";
 import fetchData from "./helpers/Fetcher";
 import useSWR from "swr";
+import useSessionStorageState from "use-session-storage-state";
 
 const q = {
     fr: productions_freQuery,
@@ -12,10 +13,16 @@ const q = {
 };
 
 export default function Residences({ lang = "fr" }) {
-    const [page, setPage] = useState(null);
+    const [page, setPage] = useState([]);
+    const [showAllProjects, setShowAllProjects] = useSessionStorageState(
+        "allOpenResidences",
+        false
+    );
+    const [isOpenResidence, setIsOpenResidence] = useSessionStorageState(
+        "isOpenResidence",
+        []
+    );
     const [en, setEn] = useState(null);
-    const open = JSON.parse(sessionStorage.getItem("AllOpenResidences"));
-    const [showAllProjects, setShowAllProjects] = useState(open ? open : false);
     const [preview, setPreview] = useState(null);
 
     const { data } = useSWR(["residences", lang], async () => {
@@ -48,46 +55,35 @@ export default function Residences({ lang = "fr" }) {
     });
 
     useEffect(() => {
-        const storedIsShownValues = JSON.parse(
-            sessionStorage.getItem("isOpenResidences")
-        );
-        if (data && storedIsShownValues) {
-            const restoredPage = data.sorted.map((item, index) => ({
-                ...item,
-                isShown: storedIsShownValues[index],
-            }));
-            setPage(restoredPage);
+        if (data && isOpenResidence) {
+            setPage(
+                data.sorted.map((item, index) => ({
+                    ...item,
+                    isShown: isOpenResidence[index],
+                }))
+            );
             setEn(data.isEn);
         } else if (data) {
             setEn(data.isEn);
             setPage(data.sorted);
         }
-    }, [data]);
+    }, [data, setPage, isOpenResidence]);
 
     const handleShowOne = (id) => {
         const toggleShowOne = page.map((item) =>
             item.id === id ? { ...item, isShown: !item.isShown } : item
         );
         setPage(toggleShowOne);
-        const isShownValues = toggleShowOne.map((item) => item.isShown);
-        sessionStorage.setItem(
-            "isOpenResidences",
-            JSON.stringify(isShownValues)
-        );
+        setIsOpenResidence(toggleShowOne.map((item) => item.isShown));
     };
-    function handleShowAll() {
+    const handleShowAll = () => {
         const toggleShowAll = page.map((item) => ({
             ...item,
             isShown: !showAllProjects,
         }));
         setPage(toggleShowAll);
-        const isShownValues = toggleShowAll.map((item) => item.isShown);
-        sessionStorage.setItem(
-            "isOpenResidences",
-            JSON.stringify(isShownValues)
-        );
-        sessionStorage.setItem("AllOpenResidences", !showAllProjects);
-    }
+        setIsOpenResidence(toggleShowAll.map((item) => item.isShown));
+    };
 
     if (!page) {
         return;

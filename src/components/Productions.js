@@ -4,6 +4,7 @@ import "./Residences.css";
 import { residences_engQuery, residences_freQuery } from "./helpers/queries";
 import fetchData from "./helpers/Fetcher";
 import useSWR from "swr";
+import useSessionStorageState from "use-session-storage-state";
 
 const q = {
     fr: residences_freQuery,
@@ -11,10 +12,16 @@ const q = {
 };
 
 export default function Productions({ lang = "fr" }) {
-    const [page, setPage] = useState(null);
+    const [page, setPage] = useState([]);
+    const [showAllProjects, setShowAllProjects] = useSessionStorageState(
+        "allOpenProductions",
+        false
+    );
+    const [isOpenProduction, setIsOpenProduction] = useSessionStorageState(
+        "isOpenProduction",
+        []
+    );
     const [en, setEn] = useState(false);
-    const open = JSON.parse(sessionStorage.getItem("AllOpenProductions"));
-    const [showAllProjects, setShowAllProjects] = useState(open ? open : false);
     const [preview, setPreview] = useState(null);
 
     const { data } = useSWR(["production", lang], async () => {
@@ -45,47 +52,37 @@ export default function Productions({ lang = "fr" }) {
         const sorted = mapped.sort((a, b) => b.year.localeCompare(a.year));
         return { sorted, isEn };
     });
+
     useEffect(() => {
-        const storedIsShownValues = JSON.parse(
-            sessionStorage.getItem("isOpenProductions")
-        );
-        if (data && storedIsShownValues) {
-            const restoredPage = data.sorted.map((item, index) => ({
-                ...item,
-                isShown: storedIsShownValues[index],
-            }));
-            setPage(restoredPage);
+        if (data && isOpenProduction) {
+            setPage(
+                data.sorted.map((item, index) => ({
+                    ...item,
+                    isShown: isOpenProduction[index],
+                }))
+            );
             setEn(data.isEn);
         } else if (data) {
             setEn(data.isEn);
             setPage(data.sorted);
         }
-    }, [data]);
+    }, [data, setPage, isOpenProduction]);
 
     const handleShowOne = (id) => {
         const toggleShowOne = page.map((item) =>
             item.id === id ? { ...item, isShown: !item.isShown } : item
         );
         setPage(toggleShowOne);
-        const isShownValues = toggleShowOne.map((item) => item.isShown);
-        sessionStorage.setItem(
-            "isOpenProductions",
-            JSON.stringify(isShownValues)
-        );
+        setIsOpenProduction(toggleShowOne.map((item) => item.isShown));
     };
-    function handleShowAll() {
+    const handleShowAll = () => {
         const toggleShowAll = page.map((item) => ({
             ...item,
             isShown: !showAllProjects,
         }));
         setPage(toggleShowAll);
-        const isShownValues = toggleShowAll.map((item) => item.isShown);
-        sessionStorage.setItem(
-            "isOpenProductions",
-            JSON.stringify(isShownValues)
-        );
-        sessionStorage.setItem("AllOpenProductions", !showAllProjects);
-    }
+        setIsOpenProduction(toggleShowAll.map((item) => item.isShown));
+    };
 
     if (!page) {
         return;
