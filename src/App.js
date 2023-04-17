@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { useState } from "react";
 import useMouse from "./components/mouseEvent/MouseMove";
 import getWindowDimensions from "./components/mouseEvent/DocumentSize";
 import Navbar from "./components/Navbar";
@@ -17,7 +16,7 @@ import "./App.css";
 function App() {
     const { x, y } = useMouse();
     const { width, height } = getWindowDimensions();
-    const [lang, setLang] = useState("fr");
+    const [lang, setLang] = useLocalStorageState("lang", "fr");
     const [isDarkMode, setIsDarkMode] = useLocalStorageState(
         "isDarkMode",
         false
@@ -27,7 +26,6 @@ function App() {
     });
     const changeQuery = (lang) => {
         setLang(lang);
-        console.log({ lang });
     };
 
     return (

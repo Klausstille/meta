@@ -137,7 +137,7 @@ function Navbar({ setLang, lang = "fr", setIsDarkMode, isDarkMode }) {
                         }
                     />
                 </button>
-                <CheckLanguage setLang={setLang} />
+                <CheckLanguage setLang={setLang} lang={lang} />
             </nav>
         </>
     );
