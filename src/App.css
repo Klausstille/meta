@@ -26,7 +26,7 @@
     --active-menu-color: rgba(255, 255, 255, 0.8);
 }
 .darkmode {
-    --primary-color: white;
+    --primary-color: #e2e2e2;
     --secondary-color: white;
     --background-color: rgb(39, 39, 39);
     --active-menu-color: rgba(39, 39, 39, 0.8);
