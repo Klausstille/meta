@@ -8,14 +8,12 @@
     overflow: scroll;
     border-left: 1px solid var(--primary-color);
     padding: 0 20px;
-    /* background-color: var(--secondary-color); */
 }
 .residences-container {
     height: 100vh;
     overflow: scroll;
     padding: 0 20px;
 }
-
 h3.residences-item--title,
 h3.atelier-item--title {
     font-family: "Graphikmedium";
@@ -23,24 +21,20 @@ h3.atelier-item--title {
 h3.read-more-text {
     font-family: "Graphik";
 }
-
 .atelier-item,
 .residences-item {
     padding-bottom: 70px;
 }
-
 section.atelier-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-
 .atelier-section h1 {
     padding-top: 10px;
     margin-left: -4px;
     font-size: 4em;
 }
-
 button.read-more-btn {
     border: none;
     background-color: transparent;
@@ -56,9 +50,7 @@ button.read-more-btn:hover {
 
 @media screen and (max-width: 1000px) {
     .atelier-section {
-        display: grid;
         grid-template-columns: 1fr;
-        padding-top: 45px;
     }
     .atelier-item,
     .residences-item {

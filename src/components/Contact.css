@@ -1,14 +1,10 @@
 .contact-pic {
-    width: 30vw;
+    width: 100%;
     aspect-ratio: 16/9;
     object-fit: cover;
     object-position: center;
     opacity: 0.9;
     transition: all 0.2s ease-in-out;
-}
-
-img.contact-pic:hover {
-    opacity: 1;
 }
 
 .img-module-contact {
@@ -22,49 +18,33 @@ img.contact-pic:hover {
     z-index: 1;
 }
 
-.contact-grid {
+.contact-grid,
+.privacy-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     padding: 65px 20px 60px 20px;
     gap: 50px;
 }
 
-.privacy-grid {
-    padding: 45px 20px 80px 20px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-}
-
 .category-title {
     padding: 30px 40px 0px 40px;
 }
 
+img.contact-pic:hover {
+    opacity: 1;
+}
+
 @media screen and (max-width: 1200px) {
     .privacy-grid {
-        display: grid;
         grid-template-columns: 1fr;
     }
     .contact-grid {
-        display: grid;
         grid-template-columns: 1fr 1fr;
-    }
-    .contact-pic {
-        width: 100%;
-        height: auto;
-        object-fit: cover;
-        opacity: 1;
     }
 }
 
 @media screen and (max-width: 800px) {
     .contact-grid {
-        display: grid;
         grid-template-columns: 1fr;
-    }
-    .contact-pic {
-        width: 100%;
-        aspect-ratio: 16/9;
-        object-fit: cover;
     }
 }

@@ -135,7 +135,7 @@ function Footer({ lang = "fr", isDarkMode }) {
                     <img
                         src={isDarkMode ? "./logo-dark.svg" : "./logo.svg"}
                         alt="meta-logo"
-                        className="logo-2"
+                        className="logo-meta"
                     />
                 </NavLink>
             </div>

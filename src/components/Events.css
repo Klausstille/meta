@@ -52,21 +52,10 @@ img.residences-pic:hover {
     .events-grid {
         gap: 30px;
     }
-    .residences-pic {
-        width: 100% !important;
-        height: 30vw !important;
-        object-fit: cover;
-    }
 }
-
 @media screen and (max-width: 1000px) {
     .events-container {
         display: grid;
         grid-template-columns: 1fr;
-    }
-    .residences-pic {
-        width: 100% !important;
-        height: 50vw !important;
-        object-fit: cover;
     }
 }
