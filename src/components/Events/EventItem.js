@@ -22,7 +22,7 @@ export default function EventItem({ lang = "fr" }) {
                 const isEn = query === q["en-US"];
                 const fetchedData = await fetchData({ query });
                 const filtered = fetchedData.residencesCollection.items.filter(
-                    (item) => item.eventTitle.includes(id)
+                    (item) => item.sys.id === id
                 );
                 if (!filtered.length) {
                     window.location.href = "/events";
