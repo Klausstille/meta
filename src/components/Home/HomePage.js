@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import useMouse from "../components/mouseEvent/MouseMove";
-import getWindowDimensions from "../components/mouseEvent/DocumentSize";
-import "./HomePage.css";
-import { home_query as query } from "./helpers/queries";
-import fetchData from "./helpers/Fetcher";
+import useMouse from "../helpers/mouseEvent/MouseMove";
+import getWindowDimensions from "../helpers/mouseEvent/DocumentSize";
+import { home_query as query } from "../helpers/queries";
+import fetchData from "../helpers/Fetcher";
 import useSWR from "swr";
 import LazyLoad from "react-lazy-load";
+import "./HomePage.css";
 
 export default function HomePage({ lang = "fr" }) {
     const [page, setPage] = useState(null);

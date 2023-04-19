@@ -3,14 +3,14 @@ import { useState, useEffect } from "react";
 import "./Footer.css";
 import { NavLink } from "react-router-dom";
 import MailchimpSubscribe from "react-mailchimp-subscribe";
-import { footer_engQuery, footer_freQuery } from "./helpers/queries";
-import fetchData from "./helpers/Fetcher";
+import { footer_engQuery, footer_freQuery } from "../helpers/queries";
+import fetchData from "../helpers/Fetcher";
 import useSWR from "swr";
 
 let MAILCHIMP_URL;
 process.env.NODE_ENV === "production"
     ? (MAILCHIMP_URL = process.env.REACT_APP_MAILCHIMP_URL)
-    : (MAILCHIMP_URL = require("../secrets.json").REACT_APP_MAILCHIMP_URL);
+    : (MAILCHIMP_URL = require("../../secrets.json").REACT_APP_MAILCHIMP_URL);
 
 const q = {
     fr: footer_freQuery,
@@ -133,7 +133,7 @@ function Footer({ lang = "fr", isDarkMode }) {
             <div>
                 <NavLink to="/">
                     <img
-                        src={isDarkMode ? "./logo-dark.svg" : "./logo.svg"}
+                        src={isDarkMode ? "../logo-dark.svg" : "../logo.svg"}
                         alt="meta-logo"
                         className="logo-meta"
                     />

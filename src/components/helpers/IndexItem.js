@@ -1,10 +1,10 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Transition } from "@headlessui/react";
-import useMouse from "../mouseEvent/MouseMove";
-import GetWindowDimensions from "../mouseEvent/DocumentSize";
+import useMouse from "./mouseEvent/MouseMove";
+import GetWindowDimensions from "./mouseEvent/DocumentSize";
 import LazyLoad from "react-lazy-load";
-import "../Residences.css";
+import "../Residences/Residences.css";
 
 export default function IndexItem({
     preview,

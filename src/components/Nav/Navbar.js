@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import CheckLanguage from "./helpers/LanguageQuery";
-import { nav_freQuery, nav_engQuery } from "./helpers/queries";
+import CheckLanguage from "../helpers/LanguageQuery";
+import { nav_freQuery, nav_engQuery } from "../helpers/queries";
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
-import fetchData from "./helpers/Fetcher";
+import fetchData from "../helpers/Fetcher";
 import useSWR from "swr";
 
 const q = {
@@ -133,7 +133,9 @@ function Navbar({ setLang, lang = "fr", setIsDarkMode, isDarkMode }) {
                     <img
                         alt="toggle-dark-mode"
                         src={
-                            isDarkMode ? "./mode-dark.svg" : "./mode-light.svg"
+                            isDarkMode
+                                ? "../mode-dark.svg"
+                                : "../mode-light.svg"
                         }
                     />
                 </button>

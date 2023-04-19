@@ -1,35 +1,34 @@
 import { useState, useEffect } from "react";
-import React from "react";
-import "./Residences.css";
-import IndexItem from "./helpers/IndexItem";
-import { productions_engQuery, productions_freQuery } from "./helpers/queries";
-import fetchData from "./helpers/Fetcher";
+import IndexItem from "../helpers/IndexItem";
+import "../Residences/Residences.css";
+import { residences_engQuery, residences_freQuery } from "../helpers/queries";
+import fetchData from "../helpers/Fetcher";
 import useSWR from "swr";
 import useSessionStorageState from "use-session-storage-state";
 
 const q = {
-    fr: productions_freQuery,
-    "en-US": productions_engQuery,
+    fr: residences_freQuery,
+    "en-US": residences_engQuery,
 };
 
-export default function Residences({ lang = "fr" }) {
+export default function Productions({ lang = "fr" }) {
     const [page, setPage] = useState([]);
     const [showAllProjects, setShowAllProjects] = useSessionStorageState(
-        "allOpenResidences",
+        "allOpenProductions",
         false
     );
-    const [isOpenResidence, setIsOpenResidence] = useSessionStorageState(
-        "isOpenResidence",
+    const [isOpenProduction, setIsOpenProduction] = useSessionStorageState(
+        "isOpenProduction",
         []
     );
-    const [en, setEn] = useState(null);
+    const [en, setEn] = useState(false);
     const [preview, setPreview] = useState(null);
 
-    const { data } = useSWR(["residences", lang], async () => {
+    const { data } = useSWR(["production", lang], async () => {
         const query = q[lang];
         const isEn = query === q["en-US"];
         const data = await fetchData({ query });
-        const mapped = data.artistesCollection.items.map(
+        const mapped = data.productionsCollection.items.map(
             ({
                 artistName,
                 projectName,
@@ -55,11 +54,11 @@ export default function Residences({ lang = "fr" }) {
     });
 
     useEffect(() => {
-        if (data && isOpenResidence) {
+        if (data && isOpenProduction) {
             setPage(
                 data.sorted.map((item, index) => ({
                     ...item,
-                    isShown: isOpenResidence[index],
+                    isShown: isOpenProduction[index],
                 }))
             );
             setEn(data.isEn);
@@ -67,14 +66,14 @@ export default function Residences({ lang = "fr" }) {
             setEn(data.isEn);
             setPage(data.sorted);
         }
-    }, [data, setPage, isOpenResidence]);
+    }, [data, setPage, isOpenProduction]);
 
     const handleShowOne = (id) => {
         const toggleShowOne = page.map((item) =>
             item.id === id ? { ...item, isShown: !item.isShown } : item
         );
         setPage(toggleShowOne);
-        setIsOpenResidence(toggleShowOne.map((item) => item.isShown));
+        setIsOpenProduction(toggleShowOne.map((item) => item.isShown));
     };
     const handleShowAll = () => {
         const toggleShowAll = page.map((item) => ({
@@ -82,15 +81,16 @@ export default function Residences({ lang = "fr" }) {
             isShown: !showAllProjects,
         }));
         setPage(toggleShowAll);
-        setIsOpenResidence(toggleShowAll.map((item) => item.isShown));
+        setIsOpenProduction(toggleShowAll.map((item) => item.isShown));
     };
 
     if (!page) {
         return;
     }
+
     return (
         <>
-            <main className="residences-section">
+            <main className="production-section">
                 <section className="index-params">
                     <div
                         className="index-item-info"

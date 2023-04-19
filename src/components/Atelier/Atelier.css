@@ -14,12 +14,10 @@
     overflow: scroll;
     padding: 0 20px;
 }
-h3.residences-item--title,
-h3.atelier-item--title {
-    font-family: "Graphikmedium";
-}
+
 h3.read-more-text {
     font-family: "Graphik";
+    opacity: 0.8;
 }
 .atelier-item,
 .residences-item {
@@ -29,11 +27,15 @@ section.atelier-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: var(--background-color);
+    border-bottom: solid 1px;
 }
 .atelier-section h1 {
     padding-top: 10px;
     margin-left: -4px;
-    font-size: 4em;
 }
 button.read-more-btn {
     border: none;
@@ -49,6 +51,9 @@ button.read-more-btn:hover {
 }
 
 @media screen and (max-width: 1000px) {
+    section.atelier-header {
+        z-index: 0;
+    }
     .atelier-section {
         grid-template-columns: 1fr;
     }

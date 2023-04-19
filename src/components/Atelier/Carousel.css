@@ -6,6 +6,7 @@ h3 {
     display: flex;
     justify-content: center;
     padding-bottom: 50px;
+    z-index: 0;
 }
 
 .img-container img,

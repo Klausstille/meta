@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import useMouse from "./mouseEvent/MouseMove";
-import GetWindowDimensions from "./mouseEvent/DocumentSize";
+import useMouse from "../helpers/mouseEvent/MouseMove";
+import GetWindowDimensions from "../helpers/mouseEvent/DocumentSize";
 import "./Contact.css";
-import { contact_engQuery, contact_freQuery } from "./helpers/queries";
-import fetchData from "./helpers/Fetcher";
+import { contact_engQuery, contact_freQuery } from "../helpers/queries";
+import fetchData from "../helpers/Fetcher";
 import useSWR from "swr";
 
 const q = {
