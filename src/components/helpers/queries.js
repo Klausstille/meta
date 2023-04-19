@@ -74,6 +74,9 @@ export const events_engQuery = `
 {
   residencesCollection {
     items {
+      sys {
+        id
+      }
 			eventTitle(locale:"en-US") 
 			startDate
       endDate
@@ -92,6 +95,9 @@ export const events_freQuery = `
 {
   residencesCollection {
     items {
+      sys {
+        id
+      }
 			eventTitle(locale:"fr") 
 			startDate
       endDate

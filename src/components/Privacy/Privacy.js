@@ -1,4 +1,4 @@
-import "./Contact.css";
+import "../Contact/Contact.css";
 
 export default function Privacy({ lang = "fr" }) {
     return (

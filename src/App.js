@@ -1,16 +1,17 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import useMouse from "./components/mouseEvent/MouseMove";
-import getWindowDimensions from "./components/mouseEvent/DocumentSize";
-import Navbar from "./components/Navbar";
-import Atelier from "./components/Atelier";
-import HomePage from "./components/HomePage";
-import Events from "./components/Events";
-import Residences from "./components/Residences";
-import Productions from "./components/Productions";
-import Contact from "./components/Contact";
-import Privacy from "./components/Privacy";
-import Footer from "./components/Footer";
+import useMouse from "./components/helpers/mouseEvent/MouseMove";
+import getWindowDimensions from "./components/helpers/mouseEvent/DocumentSize";
+import Navbar from "./components/Nav/Navbar";
+import Atelier from "./components/Atelier/Atelier";
+import HomePage from "./components/Home/HomePage";
+import Events from "./components/Events/Events";
+import Residences from "./components/Residences/Residences";
+import Productions from "./components/Productions/Productions";
+import Contact from "./components/Contact/Contact";
+import Privacy from "./components/Privacy/Privacy";
+import Footer from "./components/Footer/Footer";
 import useLocalStorageState from "use-local-storage-state";
+import EventItem from "./components/Events/EventItem";
 import "./App.css";
 
 function App() {
@@ -55,6 +56,10 @@ function App() {
                         element={<Productions lang={lang} />}
                     />
                     <Route path="/events" element={<Events lang={lang} />} />
+                    <Route
+                        path="/events/:id"
+                        element={<EventItem lang={lang} />}
+                    />
                     <Route path="/contact" element={<Contact lang={lang} />} />
                     <Route path="/privacy" element={<Privacy lang={lang} />} />
                 </Routes>

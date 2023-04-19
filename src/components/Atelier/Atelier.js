@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import Slideshow from "./helpers/Carousel";
+import Slideshow from "./Carousel";
 import "./Atelier.css";
-import { atelier_engQuery, atelier_freQuery } from "./helpers/queries";
-import fetchData from "./helpers/Fetcher";
-import GetWindowDimensions from "./mouseEvent/DocumentSize";
+import { atelier_engQuery, atelier_freQuery } from "../helpers/queries";
+import fetchData from "../helpers/Fetcher";
+import GetWindowDimensions from "../helpers/mouseEvent/DocumentSize";
 import useSWR from "swr";
 
 const q = {

@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
-import useMouse from "./mouseEvent/MouseMove";
-import GetWindowDimensions from "./mouseEvent/DocumentSize";
-import Event from "./helpers/Event";
-
+import useMouse from "../helpers/mouseEvent/MouseMove";
+import GetWindowDimensions from "../helpers/mouseEvent/DocumentSize";
+import EventCard from "./EventCard";
 import "./Events.css";
-import { events_engQuery, events_freQuery } from "./helpers/queries";
-import fetchData from "./helpers/Fetcher";
+import { events_engQuery, events_freQuery } from "../helpers/queries";
+import fetchData from "../helpers/Fetcher";
 import useSWR from "swr";
 
 const q = {
@@ -44,9 +43,8 @@ export default function Events({ lang = "fr" }) {
     }, [isShown, width, setPreview]);
 
     if (!page) {
-        return;
+        return <h1>LOADING</h1>;
     }
-
     return (
         <>
             <main className="events-container">
@@ -122,13 +120,14 @@ export default function Events({ lang = "fr" }) {
                 )}
                 {page.map((data, index) => {
                     return (
-                        <Event
+                        <EventCard
                             data={data}
                             setIsShown={setIsShown}
                             setActiveIndex={setActiveIndex}
                             index={index}
-                            key={data.residencesPhotos.title}
+                            key={data.sys.id}
                             en={en}
+                            id={data.sys.id}
                         />
                     );
                 })}
