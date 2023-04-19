@@ -23,19 +23,19 @@ export default function EventCard({
                 }}
             />
             <p className="title-text">{data.eventTitle}</p>
-            <p className="description-text">
+            <div className="description-text">
                 {CreateDate(data.startDate, data.endDate, "p")}
-            </p>
+            </div>
 
             <div className="event-text">
-                <p className="read-more-text">
+                <div className="read-more-text">
                     {content[0].content[0].value.substring(0, 140)}
-                    <Link to={`/events/${id}`}>
+                    <Link to={`/events/${data.eventTitle}`}>
                         <button className="read-more-btn">
                             {en ? "...Read more" : "...Lire plus"}
                         </button>
                     </Link>
-                </p>
+                </div>
             </div>
         </section>
     );

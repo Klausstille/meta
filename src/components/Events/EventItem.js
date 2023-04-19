@@ -15,7 +15,6 @@ export default function EventItem({ lang = "fr" }) {
     const { id } = useParams();
     const [page, setPage] = useState(null);
     const [en, setEn] = useState(false);
-
     useEffect(() => {
         const fetchEventData = async () => {
             try {
@@ -23,7 +22,7 @@ export default function EventItem({ lang = "fr" }) {
                 const isEn = query === q["en-US"];
                 const fetchedData = await fetchData({ query });
                 const filtered = fetchedData.residencesCollection.items.filter(
-                    (item) => item.sys.id === id
+                    (item) => item.eventTitle.includes(id)
                 );
                 if (!filtered.length) {
                     window.location.href = "/events";
