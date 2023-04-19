@@ -17,7 +17,10 @@
     color: var(--primary-color);
     width: 50em;
     max-width: 500px;
+    gap: 2px;
+    padding-top: 1px;
 }
+
 input {
     padding: 2px 15px;
     border-radius: 2px;
