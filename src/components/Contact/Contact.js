@@ -35,7 +35,7 @@ function Contact({ lang = "fr" }) {
 
     return (
         <>
-            <main className="contact-section">
+            <section className="contact-section">
                 <section className="contact-grid">
                     <div>
                         <p style={{ textAlign: "left", paddingTop: "0" }}>
@@ -144,7 +144,7 @@ function Contact({ lang = "fr" }) {
                         </div>
                     )}
                 </section>
-            </main>
+            </section>
         </>
     );
 }

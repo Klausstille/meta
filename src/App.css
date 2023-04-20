@@ -56,7 +56,7 @@ button#toggleMode {
     color: var(--primary-color);
 }
 
-container {
+main {
     font-family: "Graphik", Fallback, sans-serif;
     display: flex;
     flex-direction: column;

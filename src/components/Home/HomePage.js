@@ -26,7 +26,7 @@ export default function HomePage({ lang = "fr" }) {
 
     return (
         <>
-            <main className="home">
+            <section className="home">
                 <section className="home-module">
                     {y > 90 && (
                         <div
@@ -51,7 +51,7 @@ export default function HomePage({ lang = "fr" }) {
                         />
                     </LazyLoad>
                 </section>
-            </main>
+            </section>
         </>
     );
 }

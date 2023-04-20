@@ -65,7 +65,7 @@ export default function Atelier({ lang = "fr" }) {
 
     return (
         <>
-            <main className="atelier-section">
+            <section className="atelier-section">
                 <section className="residences-container">
                     <section className="atelier-header">
                         <h1>{en ? "Workshop" : "Atelier"}</h1>
@@ -213,7 +213,7 @@ export default function Atelier({ lang = "fr" }) {
                         }
                     )}
                 </section>
-            </main>
+            </section>
         </>
     );
 }

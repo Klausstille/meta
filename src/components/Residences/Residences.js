@@ -90,7 +90,7 @@ export default function Residences({ lang = "fr" }) {
     }
     return (
         <>
-            <main className="residences-section">
+            <section className="residences-section">
                 <section className="index-params">
                     <div
                         className="index-item-info"
@@ -145,7 +145,7 @@ export default function Residences({ lang = "fr" }) {
                         />
                     );
                 })}
-            </main>
+            </section>
         </>
     );
 }

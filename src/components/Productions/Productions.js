@@ -90,7 +90,7 @@ export default function Productions({ lang = "fr" }) {
 
     return (
         <>
-            <main className="production-section">
+            <section className="production-section">
                 <section className="index-params">
                     <div
                         className="index-item-info"
@@ -145,7 +145,7 @@ export default function Productions({ lang = "fr" }) {
                         />
                     );
                 })}
-            </main>
+            </section>
         </>
     );
 }

@@ -47,7 +47,7 @@ export default function Events({ lang = "fr" }) {
     }
     return (
         <>
-            <main className="events-container">
+            <section className="events-container">
                 {isShown && (
                     <div
                         className="img-module"
@@ -131,7 +131,7 @@ export default function Events({ lang = "fr" }) {
                         />
                     );
                 })}
-            </main>
+            </section>
         </>
     );
 }
