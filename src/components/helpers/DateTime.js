@@ -1,4 +1,4 @@
-export function CreateDate(start, end, el) {
+export function CreateDate({ start, end, el }) {
     const formatDate = (date) =>
         new Intl.DateTimeFormat("fr", {
             day: "2-digit",

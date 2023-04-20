@@ -60,10 +60,10 @@ export default function EventItem({ lang = "fr" }) {
                                 <div className="events-item__info">
                                     <h1>{data.eventTitle}</h1>
                                     <div className="events-item__date">
-                                        {CreateDate(
-                                            data.startDate,
-                                            data.endDate
-                                        )}
+                                        <CreateDate
+                                            start={data.startDate}
+                                            end={data.endDate}
+                                        />
                                     </div>
                                     <Link
                                         to="/events"
