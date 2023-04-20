@@ -36,7 +36,7 @@ export default function EventCard({
                     {content[0].content[0].value.substring(0, 140)}
                     <Link to={`/events/${id}`}>
                         <button className="read-more-btn">
-                            {en ? "...Read more" : "...Lire plus"}
+                            {en ? "...Read more ↸" : "...Lire plus ↸"}
                         </button>
                     </Link>
                 </p>
