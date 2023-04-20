@@ -50,11 +50,10 @@ img.events-item__image {
 .title-text {
     padding-top: 1.25rem;
     margin-bottom: 0;
+    font-family: "Graphikmedium", Fallback, sans-serif;
 }
 .description-text {
     padding-bottom: 10px;
-    font-size: 14px;
-    font-family: "Graphikmedium", Fallback, sans-serif;
 }
 .category-title {
     padding: 30px 40px 0px 40px;
