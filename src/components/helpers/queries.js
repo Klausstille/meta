@@ -6,6 +6,7 @@ export const atelier_engQuery = `
       validation
       carouselImageCollection {
         items {
+          description(locale: "en-US")
           url (transform: {width: 1400})
         }
       }
@@ -15,7 +16,6 @@ export const atelier_engQuery = `
     }
   }
 }
-
 `;
 
 export const atelier_freQuery = `
@@ -26,6 +26,7 @@ export const atelier_freQuery = `
       validation
       carouselImageCollection {
         items {
+          description(locale: "fr")
           url (transform: {width: 1400})
         }
       }
@@ -35,7 +36,6 @@ export const atelier_freQuery = `
     }
   }
 }
-
 `;
 
 export const contact_engQuery = `

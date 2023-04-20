@@ -21,7 +21,9 @@ h3.read-more-text {
 }
 .atelier-item,
 .residences-item {
-    padding-bottom: 70px;
+    margin-bottom: 20px;
+    padding-bottom: 30px;
+    border-bottom: solid 1px;
 }
 section.atelier-header {
     display: flex;

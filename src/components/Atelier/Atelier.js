@@ -88,7 +88,7 @@ export default function Atelier({ lang = "fr" }) {
                                         images={carouselImageCollection}
                                     />
                                     <h3 className="residences-item--title">
-                                        {title}
+                                        ↳ {title}
                                     </h3>
                                     {showAll ? (
                                         <div>
@@ -163,7 +163,7 @@ export default function Atelier({ lang = "fr" }) {
                                         images={carouselImageCollection}
                                     />
                                     <h3 className="atelier-item--title">
-                                        {title}
+                                        ↳ {title}
                                     </h3>
                                     {showAllAtelier ? (
                                         <div>

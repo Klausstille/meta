@@ -9,7 +9,6 @@ export default function Slideshow({ images, title }) {
     const handleSelect = (selectedIndex, e) => {
         setIndex(selectedIndex);
     };
-
     return (
         <Carousel
             prevIcon={<CustomPrevIcon />}
@@ -40,10 +39,11 @@ export default function Slideshow({ images, title }) {
                                 />
                             )}
                         </div>
-                        {/* <Carousel.Caption>
-                            <h3>{data.title}</h3>
-                            <p className="carousel">{data.description}</p>
-                        </Carousel.Caption> */}
+                        <Carousel.Caption>
+                            <p>
+                                fig.{index + 1} - {data.description}
+                            </p>
+                        </Carousel.Caption>
                     </Carousel.Item>
                 );
             })}
