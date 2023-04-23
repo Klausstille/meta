@@ -1,4 +1,4 @@
-export function CreateDate({ start, end, el }) {
+export function CreateDate({ start = null, end = null, el }) {
     const formatDate = (date) =>
         new Intl.DateTimeFormat("fr", {
             day: "2-digit",
@@ -15,19 +15,23 @@ export function CreateDate({ start, end, el }) {
     const endDate = formatDate(new Date(end));
     const startTime = formatTime(new Date(start));
     const endTime = formatTime(new Date(end));
+    console.log(end);
     return (
         <>
-            {el === "p" ? (
+            {el === "article" && (
+                <p className="published">published on {startDate}</p>
+            )}
+            {el === "p" && (
                 <p>
                     {startDate === endDate
                         ? startDate
                         : `${startDate}-${endDate}`}
-
-                    {endTime && startTime !== "00:00"
+                    {endTime !== "00:00" && startTime !== "00:00"
                         ? ` | ${startTime}-${endTime}`
                         : ""}
                 </p>
-            ) : (
+            )}
+            {!el && (
                 <>
                     <h3>
                         {startDate === endDate

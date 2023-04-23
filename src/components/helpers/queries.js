@@ -4,6 +4,9 @@ export const atelier_engQuery = `
     items {
       title(locale: "en-US")
       validation
+      sys {
+          firstPublishedAt
+      }
       carouselImageCollection {
         items {
           description(locale: "en-US")
@@ -24,6 +27,9 @@ export const atelier_freQuery = `
     items {
       title(locale: "fr")
       validation
+      sys {
+          firstPublishedAt
+      }
       carouselImageCollection {
         items {
           description(locale: "fr")

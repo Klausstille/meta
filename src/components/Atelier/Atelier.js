@@ -4,6 +4,7 @@ import "./Atelier.css";
 import { atelier_engQuery, atelier_freQuery } from "../helpers/queries";
 import fetchData from "../helpers/Fetcher";
 import GetWindowDimensions from "../helpers/mouseEvent/DocumentSize";
+import { CreateDate } from "../helpers/DateTime";
 import useSWR from "swr";
 
 const q = {
@@ -73,14 +74,19 @@ export default function Atelier({ lang = "fr" }) {
                     </section>
                     {isAtelier.map(
                         (
-                            { carouselImageCollection, description, title },
-                            index
+                            {
+                                carouselImageCollection,
+                                description,
+                                title,
+                                sys,
+                            },
+                            i
                         ) => {
                             const content = description.json.content;
-                            const showAll = showMoreResidences[index];
+                            const showAll = showMoreResidences[i];
                             return (
                                 <div
-                                    key={`index-item-${index}`}
+                                    key={`index-item-${i}`}
                                     className="residences-item"
                                 >
                                     <Slideshow
@@ -94,47 +100,65 @@ export default function Atelier({ lang = "fr" }) {
                                         <div>
                                             {content?.map((item, index) => {
                                                 return (
-                                                    <h3
-                                                        key={`index-item-${index}`}
-                                                        className="read-more-text"
-                                                    >
-                                                        {item.content[0].value}
-                                                    </h3>
+                                                    <>
+                                                        <h3
+                                                            key={`index-item-${index}`}
+                                                            className="read-more-text"
+                                                        >
+                                                            {
+                                                                item.content[0]
+                                                                    .value
+                                                            }
+                                                            {index ===
+                                                                content.length -
+                                                                    1 && (
+                                                                <button
+                                                                    className="read-more-btn"
+                                                                    onClick={() =>
+                                                                        readMoreResidences(
+                                                                            i
+                                                                        )
+                                                                    }
+                                                                >
+                                                                    {en
+                                                                        ? "Show less [...]"
+                                                                        : "Réduire [...]"}
+                                                                </button>
+                                                            )}
+                                                        </h3>
+                                                    </>
                                                 );
                                             })}
                                         </div>
                                     ) : (
                                         <div>
                                             <h3 className="read-more-text">
-                                                {content[0].content[0].value.substring(
-                                                    0,
-                                                    isPhone ? 200 : 500
-                                                )}
+                                                {isPhone
+                                                    ? content[0].content[0].value.substring(
+                                                          0,
+                                                          100
+                                                      )
+                                                    : content[0].content[0]
+                                                          .value}
                                                 <button
                                                     className="read-more-btn"
                                                     onClick={() =>
-                                                        readMoreResidences(
-                                                            index
-                                                        )
+                                                        readMoreResidences(i)
                                                     }
                                                 >
                                                     {en
-                                                        ? "...Read more"
-                                                        : "...Lire plus"}
+                                                        ? "[...] Read more"
+                                                        : "[...] Lire plus"}
                                                 </button>
                                             </h3>
                                         </div>
                                     )}
-                                    {showAll && (
-                                        <button
-                                            className="read-more-btn"
-                                            onClick={() =>
-                                                readMoreResidences(index)
-                                            }
-                                        >
-                                            {en ? "Show less" : "Réduire"}
-                                        </button>
-                                    )}
+                                    <p>
+                                        <CreateDate
+                                            start={sys.firstPublishedAt}
+                                            el={"article"}
+                                        />
+                                    </p>
                                 </div>
                             );
                         }
@@ -147,15 +171,20 @@ export default function Atelier({ lang = "fr" }) {
                     </section>
                     {isResidence.map(
                         (
-                            { carouselImageCollection, description, title },
-                            index
+                            {
+                                carouselImageCollection,
+                                description,
+                                title,
+                                sys,
+                            },
+                            i
                         ) => {
                             const content = description.json.content;
-                            const showAllAtelier = showMoreAtelier[index];
+                            const showAllAtelier = showMoreAtelier[i];
 
                             return (
                                 <div
-                                    key={`index-item-${index}`}
+                                    key={`index-item-${i}`}
                                     className="atelier-item"
                                 >
                                     <Slideshow
@@ -174,6 +203,22 @@ export default function Atelier({ lang = "fr" }) {
                                                         className="read-more-text"
                                                     >
                                                         {item.content[0].value}
+                                                        {index ===
+                                                            content.length -
+                                                                1 && (
+                                                            <button
+                                                                className="read-more-btn"
+                                                                onClick={() =>
+                                                                    readMoreAtelier(
+                                                                        i
+                                                                    )
+                                                                }
+                                                            >
+                                                                {en
+                                                                    ? "Show less [...]"
+                                                                    : "Réduire [...]"}
+                                                            </button>
+                                                        )}
                                                     </h3>
                                                 );
                                             })}
@@ -181,33 +226,32 @@ export default function Atelier({ lang = "fr" }) {
                                     ) : (
                                         <div>
                                             <h3 className="read-more-text">
-                                                {content[0].content[0].value.substring(
-                                                    0,
-                                                    isPhone ? 200 : 500
-                                                )}
+                                                {isPhone
+                                                    ? content[0].content[0].value.substring(
+                                                          0,
+                                                          100
+                                                      )
+                                                    : content[0].content[0]
+                                                          .value}
                                                 <button
                                                     className="read-more-btn"
                                                     onClick={() =>
-                                                        readMoreAtelier(index)
+                                                        readMoreAtelier(i)
                                                     }
                                                 >
                                                     {en
-                                                        ? "...Read more"
-                                                        : "...Lire plus"}
+                                                        ? "[...] Read more"
+                                                        : "[...] Lire plus"}
                                                 </button>
                                             </h3>
                                         </div>
                                     )}
-                                    {showAllAtelier && (
-                                        <button
-                                            className="read-more-btn"
-                                            onClick={() =>
-                                                readMoreAtelier(index)
-                                            }
-                                        >
-                                            {en ? "Show less" : "Réduire"}
-                                        </button>
-                                    )}
+                                    <p>
+                                        <CreateDate
+                                            start={sys.firstPublishedAt}
+                                            el={"article"}
+                                        />
+                                    </p>
                                 </div>
                             );
                         }

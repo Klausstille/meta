@@ -14,15 +14,20 @@
     overflow: scroll;
     padding: 0 20px;
 }
-
+.published {
+    opacity: 0.5;
+}
 h3.read-more-text {
     font-family: "Graphik";
-    opacity: 0.8;
+}
+h3.residences-item--title,
+h3.atelier-item--title {
+    font-family: "Graphikmedium";
 }
 .atelier-item,
 .residences-item {
     margin-bottom: 20px;
-    padding-bottom: 30px;
+    padding: 20px 0;
     border-bottom: solid 1px;
 }
 section.atelier-header {
