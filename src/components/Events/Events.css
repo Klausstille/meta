@@ -47,6 +47,7 @@ img.events-item__image {
 }
 .events-item__info {
     display: grid;
+    overflow-wrap: anywhere;
 }
 .title-text {
     padding-top: 1.25rem;
