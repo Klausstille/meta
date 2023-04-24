@@ -59,7 +59,8 @@ export default function Slideshow({ images, title }) {
                             )}
                         </div>
                         <p className="carousel-caption">
-                            fig.{index + 1} - {data.description}
+                            {index + 1}/{images.items.length} •{" "}
+                            {data.description}
                         </p>
                     </SwiperSlide>
                 );
