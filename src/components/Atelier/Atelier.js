@@ -134,12 +134,14 @@ export default function Atelier({ lang = "fr" }) {
                                         <div>
                                             <h3 className="read-more-text">
                                                 {isPhone
-                                                    ? content[0].content[0].value.substring(
-                                                          0,
-                                                          100
-                                                      )
-                                                    : content[0].content[0]
-                                                          .value}
+                                                    ? content[0].content[0].value
+                                                          .split(" ")
+                                                          .slice(0, 17)
+                                                          .join(" ")
+                                                    : content[0].content[0].value
+                                                          .split(" ")
+                                                          .slice(0, 90)
+                                                          .join(" ")}
                                                 <button
                                                     className="read-more-btn"
                                                     onClick={() =>
@@ -229,12 +231,14 @@ export default function Atelier({ lang = "fr" }) {
                                         <div>
                                             <h3 className="read-more-text">
                                                 {isPhone
-                                                    ? content[0].content[0].value.substring(
-                                                          0,
-                                                          100
-                                                      )
-                                                    : content[0].content[0]
-                                                          .value}
+                                                    ? content[0].content[0].value
+                                                          .split(" ")
+                                                          .slice(0, 17)
+                                                          .join(" ")
+                                                    : content[0].content[0].value
+                                                          .split(" ")
+                                                          .slice(0, 90)
+                                                          .join(" ")}
                                                 <button
                                                     className="read-more-btn"
                                                     onClick={() =>
