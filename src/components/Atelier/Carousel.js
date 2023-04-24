@@ -28,7 +28,7 @@ export default function Slideshow({ images, title }) {
             speed={1000}
             cubeEffect={{
                 shadow: false,
-                slideShadows: false,
+                slideShadows: true,
                 shadowOffset: 100,
                 shadowScale: 1,
             }}

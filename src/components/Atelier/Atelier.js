@@ -68,10 +68,6 @@ export default function Atelier({ lang = "fr" }) {
         <>
             <section className="atelier-section">
                 <section className="residences-container">
-                    <section className="atelier-header">
-                        <h1>{en ? "Workshop" : "Atelier"}</h1>
-                        <h1>↴</h1>
-                    </section>
                     {isAtelier.map(
                         (
                             {
@@ -85,10 +81,14 @@ export default function Atelier({ lang = "fr" }) {
                             const content = description.json.content;
                             const showAll = showMoreResidences[i];
                             return (
-                                <div
+                                <section
                                     key={`index-item-${i}`}
                                     className="residences-item"
                                 >
+                                    <div className="atelier-header">
+                                        <h1>{en ? "Workshop" : "Atelier"}</h1>
+                                        <h1>↴</h1>
+                                    </div>
                                     <Slideshow
                                         title={title}
                                         images={carouselImageCollection}
@@ -159,16 +159,12 @@ export default function Atelier({ lang = "fr" }) {
                                             el={"article"}
                                         />
                                     </p>
-                                </div>
+                                </section>
                             );
                         }
                     )}
                 </section>
                 <section className="atelier-container">
-                    <section className="atelier-header">
-                        <h1>{en ? "Residences" : "Résidences"}</h1>
-                        <h1>↴</h1>
-                    </section>
                     {isResidence.map(
                         (
                             {
@@ -183,10 +179,16 @@ export default function Atelier({ lang = "fr" }) {
                             const showAllAtelier = showMoreAtelier[i];
 
                             return (
-                                <div
+                                <section
                                     key={`index-item-${i}`}
                                     className="atelier-item"
                                 >
+                                    <div className="atelier-header">
+                                        <h1>
+                                            {en ? "Residences" : "Résidences"}
+                                        </h1>
+                                        <h1>↴</h1>
+                                    </div>
                                     <Slideshow
                                         title={title}
                                         images={carouselImageCollection}
@@ -252,7 +254,7 @@ export default function Atelier({ lang = "fr" }) {
                                             el={"article"}
                                         />
                                     </p>
-                                </div>
+                                </section>
                             );
                         }
                     )}

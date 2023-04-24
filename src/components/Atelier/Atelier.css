@@ -5,7 +5,6 @@
 }
 .atelier-container,
 .residences-container {
-    overflow-x: hidden;
     height: 100vh;
     overflow: scroll;
     padding: 0 20px;
@@ -26,10 +25,11 @@ h3.atelier-item--title {
 .atelier-item,
 .residences-item {
     margin-bottom: 20px;
-    padding: 20px 0;
+    padding-bottom: 20px;
     border-bottom: solid 1px;
+    overflow-x: hidden;
 }
-section.atelier-header {
+.atelier-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -55,7 +55,7 @@ button.read-more-btn:hover {
 }
 
 @media screen and (max-width: 1000px) {
-    section.atelier-header {
+    .atelier-header {
         z-index: 0;
     }
     .atelier-section {
