@@ -7,8 +7,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCube, Pagination, Keyboard } from "swiper";
 
 export default function Slideshow({ images, title }) {
-    const minDelay = 2000; // 2 seconds
-    const maxDelay = 4000; // 5 seconds
+    const minDelay = 2000;
+    const maxDelay = 4000;
     const delay =
         Math.floor(Math.random() * (maxDelay - minDelay + 1)) + minDelay;
     return (

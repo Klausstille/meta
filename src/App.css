@@ -25,7 +25,7 @@
     --active-menu-color: rgba(255, 255, 255, 0.8);
 }
 ::selection {
-    background: none;
+    background-color: transparent;
 }
 .darkmode {
     --primary-color: #e2e2e2;
