@@ -3,16 +3,15 @@
     grid-template-columns: repeat(2, 1fr);
     padding-top: 45px;
 }
-.atelier-container {
+.atelier-container,
+.residences-container {
+    overflow-x: hidden;
     height: 100vh;
     overflow: scroll;
-    border-left: 1px solid var(--primary-color);
     padding: 0 20px;
 }
-.residences-container {
-    height: 100vh;
-    overflow: scroll;
-    padding: 0 20px;
+.atelier-container {
+    border-left: 1px solid var(--primary-color);
 }
 .published {
     opacity: 0.5;
@@ -34,11 +33,9 @@ section.atelier-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 1;
     background: var(--background-color);
     border-bottom: solid 1px;
+    z-index: 0;
 }
 .atelier-section h1 {
     padding-top: 10px;
@@ -46,11 +43,11 @@ section.atelier-header {
 }
 button.read-more-btn {
     border: none;
-    background-color: transparent;
     cursor: none;
+    background-color: transparent;
+    padding: 0 10px;
     font-size: 1rem;
     opacity: 0.5;
-    font-family: "Graphikmedium";
 }
 button.read-more-btn:hover {
     opacity: 1;

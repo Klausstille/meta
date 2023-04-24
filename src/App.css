@@ -18,16 +18,18 @@
 ::-webkit-scrollbar {
     display: none;
 }
-
 :root {
     --primary-color: #006eff;
-    --secondary-color: rgb(39, 39, 39);
+    --secondary-color: #006eff;
     --background-color: rgb(255, 255, 255);
     --active-menu-color: rgba(255, 255, 255, 0.8);
 }
+::selection {
+    background: none;
+}
 .darkmode {
     --primary-color: #e2e2e2;
-    --secondary-color: white;
+    --secondary-color: rgb(0, 0, 0);
     --background-color: rgb(39, 39, 39);
     --active-menu-color: rgba(39, 39, 39, 0.8);
 }

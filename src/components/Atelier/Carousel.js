@@ -1,28 +1,47 @@
-import { Carousel } from "react-bootstrap";
-import { useState } from "react";
-import { ReactComponent as CustomPrevIcon } from "../../assets/prev.svg";
-import { ReactComponent as CustomNextIcon } from "../../assets/next.svg";
 import "./Carousel.css";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/effect-cube";
+import { Autoplay } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectCube, Pagination, Keyboard } from "swiper";
 
 export default function Slideshow({ images, title }) {
-    const [index, setIndex] = useState(0);
-    const handleSelect = (selectedIndex, e) => {
-        setIndex(selectedIndex);
-    };
+    const minDelay = 2000; // 2 seconds
+    const maxDelay = 4000; // 5 seconds
+    const delay =
+        Math.floor(Math.random() * (maxDelay - minDelay + 1)) + minDelay;
     return (
-        <Carousel
-            prevIcon={<CustomPrevIcon />}
-            nextIcon={<CustomNextIcon />}
-            activeIndex={index}
-            onSelect={handleSelect}
-            className="carousel-container"
-            variant="dark"
-            fade
+        <Swiper
+            autoplay={{
+                delay,
+                disableOnInteraction: true,
+                duration: 1000,
+            }}
+            pagination={false}
+            loop={true}
+            effect={"cube"}
+            grabCursor={true}
+            keyboard={{
+                enabled: true,
+            }}
+            speed={1000}
+            cubeEffect={{
+                shadow: false,
+                slideShadows: false,
+                shadowOffset: 100,
+                shadowScale: 1,
+            }}
+            modules={[Pagination, Autoplay, EffectCube, Keyboard]}
+            className="mySwiper"
         >
             {images.items?.map((data, index) => {
                 return (
-                    <Carousel.Item interval={4000} key={`index-item-${index}`}>
-                        <div className="img-container">
+                    <SwiperSlide>
+                        <div
+                            className="carousel-container"
+                            key={`index-item-${index}`}
+                        >
                             {data.url.includes("mp4") ? (
                                 <video
                                     src={data.url}
@@ -39,14 +58,12 @@ export default function Slideshow({ images, title }) {
                                 />
                             )}
                         </div>
-                        <Carousel.Caption>
-                            <p>
-                                fig.{index + 1} - {data.description}
-                            </p>
-                        </Carousel.Caption>
-                    </Carousel.Item>
+                        <p className="carousel-caption">
+                            fig.{index + 1} - {data.description}
+                        </p>
+                    </SwiperSlide>
                 );
             })}
-        </Carousel>
+        </Swiper>
     );
 }
