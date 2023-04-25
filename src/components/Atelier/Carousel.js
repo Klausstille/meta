@@ -2,109 +2,28 @@ import "./Carousel.css";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-cube";
-import useMouse from "../helpers/mouseEvent/MouseMove";
-import GetWindowDimensions from "../helpers/mouseEvent/DocumentSize";
 import { Autoplay } from "swiper";
+import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCube, Keyboard } from "swiper";
-import { useState, useEffect } from "react";
+import { ImageModule } from "../helpers/ImageModule";
 
 export default function Slideshow({ images, title }) {
-    const { x, y } = useMouse();
-    const { width } = GetWindowDimensions();
-    const [preview, setPreview] = useState(null);
-    const [isShown, setIsShown] = useState(false);
     const [activeIndex, setActiveIndex] = useState(-1);
-
-    useEffect(() => {
-        isShown && width <= 1200 ? setPreview(false) : setPreview(true);
-    }, [isShown, width, setPreview]);
-
+    const [isShown, setIsShown] = useState(false);
     const minDelay = 2000;
     const maxDelay = 4000;
     const delay =
         Math.floor(Math.random() * (maxDelay - minDelay + 1)) + minDelay;
     return (
         <>
-            {isShown && (
-                <div
-                    className="img-module"
-                    onClick={() => {
-                        setIsShown(false);
-                        setActiveIndex(-1);
-                    }}
-                >
-                    <div
-                        className="image-container"
-                        style={
-                            preview
-                                ? {
-                                      width: `${width - x}px`,
-                                      height: `${y - 1}px`,
-                                  }
-                                : {
-                                      width: `100%`,
-                                      height: `100%`,
-                                  }
-                        }
-                    >
-                        {preview ? (
-                            images.items[activeIndex].url.includes("mp4") ? (
-                                <video
-                                    src={images.items[activeIndex].url}
-                                    className="fixed-image"
-                                    playsInline
-                                    autoPlay
-                                    loop
-                                    muted
-                                />
-                            ) : (
-                                <img
-                                    alt={images.items[activeIndex].description}
-                                    src={images.items[activeIndex].url}
-                                    className="fixed-image"
-                                />
-                            )
-                        ) : images.items[activeIndex].url.includes("mp4") ? (
-                            <>
-                                <video
-                                    src={images.items[activeIndex].url}
-                                    className="fixed-image"
-                                    playsInline
-                                    autoPlay
-                                    loop
-                                    muted
-                                />
-                                <video
-                                    src={images.items[activeIndex].url}
-                                    className="blurred-image"
-                                    playsInline
-                                    autoPlay
-                                    loop
-                                    muted
-                                />
-                            </>
-                        ) : (
-                            <>
-                                <img
-                                    alt={images.items[activeIndex].description}
-                                    src={images.items[activeIndex].url}
-                                    className="fixed-image"
-                                />
-                                <img
-                                    alt={images.items[activeIndex].description}
-                                    src={images.items[activeIndex].url}
-                                    className="blurred-image"
-                                />
-                            </>
-                        )}
-
-                        <h6 className="sticky-text">
-                            {images.items[activeIndex].description}
-                        </h6>
-                    </div>
-                </div>
-            )}
+            <ImageModule
+                data={images.items}
+                activeIndex={activeIndex}
+                setActiveIndex={setActiveIndex}
+                isShown={isShown}
+                setIsShown={setIsShown}
+            />
             <Swiper
                 autoplay={{
                     delay,
