@@ -17,7 +17,6 @@ export default function IndexItem({
 }) {
     const [isShown, setIsShown] = useState(null);
     const [activeIndex, setActiveIndex] = useState(-1);
-
     return (
         <>
             <ImageModule

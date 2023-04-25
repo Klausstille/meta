@@ -14,7 +14,7 @@ export const CommonImageModule = ({
             className="img-module"
             onClick={() => {
                 setIsShown(false);
-                setActiveIndex(-1);
+                setActiveIndex && setActiveIndex(-1);
             }}
         >
             <div

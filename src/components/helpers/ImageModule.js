@@ -57,7 +57,6 @@ export const ImageModule = ({
             altText = null;
             stickyText = null;
     }
-    console.log(srcUrl, altText, stickyText);
     return (
         <>
             {isShown && (

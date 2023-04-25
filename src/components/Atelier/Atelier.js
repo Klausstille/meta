@@ -100,33 +100,28 @@ export default function Atelier({ lang = "fr" }) {
                                         <div>
                                             {content?.map((item, index) => {
                                                 return (
-                                                    <>
-                                                        <h3
-                                                            key={`index-item-${index}`}
-                                                            className="read-more-text"
-                                                        >
-                                                            {
-                                                                item.content[0]
-                                                                    .value
-                                                            }
-                                                            {index ===
-                                                                content.length -
-                                                                    1 && (
-                                                                <button
-                                                                    className="read-more-btn"
-                                                                    onClick={() =>
-                                                                        readMoreResidences(
-                                                                            i
-                                                                        )
-                                                                    }
-                                                                >
-                                                                    {en
-                                                                        ? "Show less [...]"
-                                                                        : "Réduire [...]"}
-                                                                </button>
-                                                            )}
-                                                        </h3>
-                                                    </>
+                                                    <h3
+                                                        key={`index-item-${index}`}
+                                                        className="read-more-text"
+                                                    >
+                                                        {item.content[0].value}
+                                                        {index ===
+                                                            content.length -
+                                                                1 && (
+                                                            <button
+                                                                className="read-more-btn"
+                                                                onClick={() =>
+                                                                    readMoreResidences(
+                                                                        i
+                                                                    )
+                                                                }
+                                                            >
+                                                                {en
+                                                                    ? "Show less [...]"
+                                                                    : "Réduire [...]"}
+                                                            </button>
+                                                        )}
+                                                    </h3>
                                                 );
                                             })}
                                         </div>
