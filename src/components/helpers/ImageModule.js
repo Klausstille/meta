@@ -7,6 +7,7 @@ export const ImageModule = ({
     setActiveIndex,
     setIsShown,
     isShown,
+    page = null,
 }) => {
     const { x, y } = useMouse();
     const { width } = GetWindowDimensions();
@@ -16,7 +17,71 @@ export const ImageModule = ({
     }, [isShown, width, setPreview]);
     return (
         <>
-            {isShown && (
+            {page === "events" && isShown && (
+                <div
+                    className="img-module"
+                    onClick={() => {
+                        setIsShown(false);
+                        setActiveIndex(-1);
+                    }}
+                >
+                    <div
+                        className="image-container"
+                        style={
+                            preview
+                                ? {
+                                      width: `${width - x}px`,
+                                      height: `${y - 1}px`,
+                                  }
+                                : {
+                                      width: `100%`,
+                                      height: `100%`,
+                                  }
+                        }
+                    >
+                        {preview ? (
+                            <img
+                                alt={data[activeIndex].eventTitle}
+                                src={data[activeIndex].residencesPhotos.url}
+                                className="fixed-image"
+                            />
+                        ) : (
+                            <>
+                                <img
+                                    alt={data[activeIndex].eventTitle}
+                                    src={data[activeIndex].residencesPhotos.url}
+                                    className="fixed-image"
+                                />
+                                <img
+                                    alt={data[activeIndex].eventTitle}
+                                    src={data[activeIndex].residencesPhotos.url}
+                                    className="blurred-image"
+                                />
+                            </>
+                        )}
+
+                        <h6 className="sticky-text">
+                            {data[activeIndex].eventTitle} |{" "}
+                            {new Date(
+                                data[activeIndex].startDate
+                            ).toLocaleDateString("fr", {
+                                day: "2-digit",
+                                month: "2-digit",
+                                year: "numeric",
+                            })}{" "}
+                            -{" "}
+                            {new Date(
+                                data[activeIndex].endDate
+                            ).toLocaleDateString("fr", {
+                                day: "2-digit",
+                                month: "2-digit",
+                                year: "numeric",
+                            })}
+                        </h6>
+                    </div>
+                </div>
+            )}
+            {page === null && isShown && (
                 <div
                     className="img-module"
                     onClick={() => {
