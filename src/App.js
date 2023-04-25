@@ -57,7 +57,7 @@ function App() {
                     />
                     <Route path="/events" element={<Events lang={lang} />} />
                     <Route
-                        path="/events/:id"
+                        path="/events/:slug"
                         element={<EventItem lang={lang} />}
                     />
                     <Route path="/contact" element={<Contact lang={lang} />} />

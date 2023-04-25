@@ -12,7 +12,7 @@ const q = {
 };
 
 export default function EventItem({ lang = "fr" }) {
-    const { id } = useParams();
+    const { slug } = useParams();
     const [page, setPage] = useState(null);
     const [en, setEn] = useState(false);
     useEffect(() => {
@@ -22,7 +22,7 @@ export default function EventItem({ lang = "fr" }) {
                 const isEn = query === q["en-US"];
                 const fetchedData = await fetchData({ query });
                 const filtered = fetchedData.residencesCollection.items.filter(
-                    (item) => item.sys.id === id
+                    (item) => item.slug === slug
                 );
                 if (!filtered.length) {
                     window.location.href = "/events";
@@ -35,7 +35,7 @@ export default function EventItem({ lang = "fr" }) {
         };
 
         fetchEventData();
-    }, [id, lang]);
+    }, [slug, lang]);
 
     useEffect(() => {
         return () => {

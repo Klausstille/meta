@@ -83,6 +83,7 @@ export const events_engQuery = `
       sys {
         id
       }
+      slug
 			eventTitle(locale:"en-US") 
 			startDate
       endDate
@@ -104,6 +105,7 @@ export const events_freQuery = `
       sys {
         id
       }
+      slug
 			eventTitle(locale:"fr") 
 			startDate
       endDate

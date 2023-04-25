@@ -1,28 +1,16 @@
 import { Link } from "react-router-dom";
 import { CreateDate } from "../helpers/DateTime";
 
-export default function EventCard({
-    data,
-    setIsShown,
-    setActiveIndex,
-    index,
-    en,
-    id,
-}) {
+export default function EventCard({ data, en, slug }) {
     const content = data.eventText.json.content;
-
+    const title = data.eventTitle;
+    const srcUrl = data.residencesPhotos.url;
     return (
-        <section className="events-grid" key={id}>
-            <img
-                alt={data.eventTitle}
-                className="residences-pic"
-                src={data.residencesPhotos.url}
-                onClick={() => {
-                    setIsShown(true);
-                    setActiveIndex(index);
-                }}
-            />
-            <p className="title-text">{data.eventTitle}</p>
+        <section className="events-grid" key={slug}>
+            <Link to={`/events/${slug}`}>
+                <img alt={title} className="residences-pic" src={srcUrl} />
+            </Link>
+            <p className="title-text">{title}</p>
             <div className="description-text">
                 <CreateDate
                     start={data.startDate}
@@ -37,7 +25,7 @@ export default function EventCard({
                         .split(" ")
                         .slice(0, 17)
                         .join(" ")}
-                    <Link to={`/events/${id}`}>
+                    <Link to={`/events/${slug}`}>
                         <button className="read-more-btn">
                             {en ? "...Read more ↸" : "...Lire plus ↸"}
                         </button>

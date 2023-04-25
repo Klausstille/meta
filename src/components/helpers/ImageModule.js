@@ -32,11 +32,6 @@ export const ImageModule = ({
     let srcUrl;
     let stickyText;
     switch (page) {
-        case "events":
-            srcUrl = data[activeIndex]?.residencesPhotos.url;
-            altText = data[activeIndex]?.eventTitle;
-            stickyText = data[activeIndex]?.eventTitle;
-            break;
         case "contact":
             srcUrl = data[1]?.bioImage.url;
             altText = data[0]?.bioTitle;
@@ -47,15 +42,11 @@ export const ImageModule = ({
             altText = activeIndex?.name;
             stickyText = `${activeIndex?.name} | ${activeIndex?.project} | ${activeIndex?.year}`;
             break;
-        case "atelier":
+        default:
             srcUrl = data[activeIndex]?.url;
             altText = data[activeIndex]?.description;
             stickyText = data[activeIndex]?.description;
             break;
-        default:
-            srcUrl = null;
-            altText = null;
-            stickyText = null;
     }
     return (
         <>
