@@ -48,6 +48,7 @@ export default function Slideshow({ images, title }) {
                 className="mySwiper"
             >
                 {images.items?.map((data, index) => {
+                    const isVideo = data.url.includes("mp4");
                     return (
                         <SwiperSlide key={`index-item-${index}`}>
                             <div
@@ -57,7 +58,7 @@ export default function Slideshow({ images, title }) {
                                     setActiveIndex(index);
                                 }}
                             >
-                                {data.url.includes("mp4") ? (
+                                {isVideo ? (
                                     <video
                                         src={data.url}
                                         playsInline
