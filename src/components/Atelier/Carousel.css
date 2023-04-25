@@ -1,3 +1,6 @@
+.swiper-cube {
+    z-index: 0 !important;
+}
 .carousel-container {
     position: relative;
     width: 100%;

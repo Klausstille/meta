@@ -155,12 +155,12 @@ export default function Atelier({ lang = "fr" }) {
                                             </h3>
                                         </div>
                                     )}
-                                    <p>
+                                    <div>
                                         <CreateDate
                                             start={sys.firstPublishedAt}
                                             el={"article"}
                                         />
-                                    </p>
+                                    </div>
                                 </section>
                             );
                         }
@@ -252,12 +252,12 @@ export default function Atelier({ lang = "fr" }) {
                                             </h3>
                                         </div>
                                     )}
-                                    <p>
+                                    <div>
                                         <CreateDate
                                             start={sys.firstPublishedAt}
                                             el={"article"}
                                         />
-                                    </p>
+                                    </div>
                                 </section>
                             );
                         }

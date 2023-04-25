@@ -161,10 +161,14 @@ h6.sticky-text {
     right: 0;
     top: 0;
 }
-.image-container img {
+.image-container img,
+.image-container video {
     object-fit: cover;
     width: 100%;
     height: 100%;
+}
+.image-container video {
+    margin-top: -5px;
 }
 .LazyLoad {
     opacity: 0;
@@ -226,7 +230,8 @@ h6.sticky-text {
         align-items: center;
         justify-content: center;
     }
-    img.blurred-image {
+    img.blurred-image,
+    video.blurred-image {
         display: block;
         width: 200%;
         height: 100%;
@@ -234,7 +239,8 @@ h6.sticky-text {
         filter: blur(21px);
         z-index: -1;
     }
-    img.fixed-image {
+    img.fixed-image,
+    video.fixed-image {
         height: auto;
         width: 100%;
     }

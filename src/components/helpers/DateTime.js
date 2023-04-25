@@ -15,7 +15,6 @@ export function CreateDate({ start = null, end = null, el }) {
     const endDate = formatDate(new Date(end));
     const startTime = formatTime(new Date(start));
     const endTime = formatTime(new Date(end));
-    console.log(end);
     return (
         <>
             {el === "article" && (
