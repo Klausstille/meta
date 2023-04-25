@@ -28,6 +28,50 @@ export const ImageModule = ({
     }, [isShown, width, setPreview]);
     return (
         <>
+            {page === "contact" && isShown && (
+                <div
+                    className="img-module-contact"
+                    onClick={() => {
+                        setIsShown(false);
+                    }}
+                >
+                    <div
+                        className="image-container"
+                        style={
+                            preview
+                                ? {
+                                      width: `${width - x}px`,
+                                      height: `${y - 1}px`,
+                                  }
+                                : {
+                                      width: `100%`,
+                                      height: `100%`,
+                                  }
+                        }
+                    >
+                        {preview ? (
+                            <img
+                                alt={data[0].bioTitle}
+                                src={data[1].bioImage.url}
+                                className="fixed-image"
+                            />
+                        ) : (
+                            <>
+                                <img
+                                    alt={data[0].bioTitle}
+                                    src={data[1].bioImage.url}
+                                    className="fixed-image"
+                                />
+                                <img
+                                    alt={data[0].bioTitle}
+                                    src={data[1].bioImage.url}
+                                    className="blurred-image"
+                                />
+                            </>
+                        )}
+                    </div>
+                </div>
+            )}
             {page === "prod" && isShown && (
                 <section
                     className="img-module"

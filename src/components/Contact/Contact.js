@@ -1,23 +1,18 @@
 import { useState, useEffect } from "react";
-import useMouse from "../helpers/mouseEvent/MouseMove";
-import GetWindowDimensions from "../helpers/mouseEvent/DocumentSize";
 import "./Contact.css";
 import { contact_engQuery, contact_freQuery } from "../helpers/queries";
 import fetchData from "../helpers/Fetcher";
 import useSWR from "swr";
+import { ImageModule } from "../helpers/ImageModule";
 
 const q = {
     fr: contact_freQuery,
     "en-US": contact_engQuery,
 };
 
-function Contact({ lang = "fr" }) {
+export default function Contact({ lang = "fr" }) {
     const [page, setPage] = useState(null);
     const [isShown, setIsShown] = useState(null);
-    const { x, y } = useMouse();
-    const { width } = GetWindowDimensions();
-    const [preview, setPreview] = useState(null);
-
     const { data } = useSWR(["contact", lang], async () => {
         const query = q[lang];
         return await fetchData({ query });
@@ -26,8 +21,7 @@ function Contact({ lang = "fr" }) {
         if (data) {
             setPage(data.bioCollection.items);
         }
-        isShown && width <= 1200 ? setPreview(false) : setPreview(true);
-    }, [data, isShown, width, setPage, setPreview]);
+    }, [data, setPage]);
 
     if (!page) {
         return;
@@ -36,6 +30,14 @@ function Contact({ lang = "fr" }) {
     return (
         <>
             <section className="contact-section">
+                <ImageModule
+                    data={page}
+                    activeIndex={null}
+                    setActiveIndex={null}
+                    isShown={isShown}
+                    setIsShown={setIsShown}
+                    page={"contact"}
+                />
                 <section className="contact-grid">
                     <div>
                         <p style={{ textAlign: "left", paddingTop: "0" }}>
@@ -97,56 +99,8 @@ function Contact({ lang = "fr" }) {
                             </div>
                         );
                     })}
-
-                    {isShown && (
-                        <div
-                            key={page[1].bioImage.url}
-                            className="img-module-contact"
-                            onClick={() => {
-                                setIsShown(false);
-                            }}
-                        >
-                            <div
-                                className="image-container"
-                                style={
-                                    preview
-                                        ? {
-                                              width: `${width - x}px`,
-                                              height: `${y - 1}px`,
-                                          }
-                                        : {
-                                              width: `100%`,
-                                              height: `100%`,
-                                          }
-                                }
-                            >
-                                {preview ? (
-                                    <img
-                                        alt={page[0].bioTitle}
-                                        src={page[1].bioImage.url}
-                                        className="fixed-image"
-                                    />
-                                ) : (
-                                    <>
-                                        <img
-                                            alt={page[0].bioTitle}
-                                            src={page[1].bioImage.url}
-                                            className="fixed-image"
-                                        />
-                                        <img
-                                            alt={page[0].bioTitle}
-                                            src={page[1].bioImage.url}
-                                            className="blurred-image"
-                                        />
-                                    </>
-                                )}
-                            </div>
-                        </div>
-                    )}
                 </section>
             </section>
         </>
     );
 }
-
-export default Contact;
