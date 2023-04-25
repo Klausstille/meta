@@ -23,8 +23,6 @@ export default function Residences({ lang = "fr" }) {
         []
     );
     const [en, setEn] = useState(null);
-    const [preview, setPreview] = useState(null);
-
     const { data } = useSWR(["residences", lang], async () => {
         const query = q[lang];
         const isEn = query === q["en-US"];
@@ -129,8 +127,6 @@ export default function Residences({ lang = "fr" }) {
                     return (
                         <IndexItem
                             key={`index-item-${index}`}
-                            preview={preview}
-                            setPreview={setPreview}
                             name={data.artistName}
                             project={data.projectName}
                             year={data.year}

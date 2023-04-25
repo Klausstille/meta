@@ -1,14 +1,11 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Transition } from "@headlessui/react";
-import useMouse from "./mouseEvent/MouseMove";
-import GetWindowDimensions from "./mouseEvent/DocumentSize";
 import LazyLoad from "react-lazy-load";
+import { ImageModule } from "./ImageModule";
 import "../Residences/Residences.css";
 
 export default function IndexItem({
-    preview,
-    setPreview,
     name,
     project,
     year,
@@ -18,87 +15,19 @@ export default function IndexItem({
     showProject = false,
     onShow,
 }) {
-    const [isClicked, setIsClicked] = useState(null);
+    const [isShown, setIsShown] = useState(null);
     const [activeIndex, setActiveIndex] = useState(-1);
-    const { x, y } = useMouse();
-    const { width } = GetWindowDimensions();
-
-    const handleEscape = (event) => {
-        if (event.keyCode === 27) {
-            setIsClicked(false);
-        }
-    };
-
-    useEffect(() => {
-        document.addEventListener("keydown", handleEscape);
-        return () => {
-            document.removeEventListener("keydown", handleEscape);
-        };
-    }, []);
-
-    useEffect(() => {
-        isClicked && width <= 1200 ? setPreview(false) : setPreview(true);
-    }, [isClicked, setPreview, width]);
 
     return (
         <>
-            {isClicked && (
-                <section
-                    key={activeIndex.url}
-                    className="img-module"
-                    onClick={() => {
-                        setIsClicked(false);
-                        setActiveIndex(-1);
-                    }}
-                >
-                    <div
-                        className="image-container"
-                        style={
-                            preview
-                                ? {
-                                      width: `${width - x}px`,
-                                      height: `${y - 1}px`,
-                                  }
-                                : {
-                                      width: `100%`,
-                                      height: `100%`,
-                                  }
-                        }
-                    >
-                        {preview ? (
-                            <img
-                                alt={activeIndex.name}
-                                active={activeIndex.isActive}
-                                src={activeIndex.url}
-                                className="fixed-image"
-                            />
-                        ) : (
-                            <>
-                                <img
-                                    alt={activeIndex.name}
-                                    active={activeIndex.isActive}
-                                    src={activeIndex.url}
-                                    className="fixed-image"
-                                />
-                                <img
-                                    alt={activeIndex.name}
-                                    active={activeIndex.isActive}
-                                    src={activeIndex.url}
-                                    className="blurred-image"
-                                />
-                            </>
-                        )}
-
-                        <h6 className="sticky-text">
-                            {activeIndex.name}
-                            {" | "}
-                            {activeIndex.project}
-                            {" | "}
-                            {activeIndex.year}
-                        </h6>
-                    </div>
-                </section>
-            )}
+            <ImageModule
+                data={activeIndex}
+                activeIndex={activeIndex}
+                setActiveIndex={setActiveIndex}
+                isShown={isShown}
+                setIsShown={setIsShown}
+                page={"prod"}
+            />
             <section className="index" key={project}>
                 <div className="index-container">
                     <div className="index-wrapper">
@@ -159,7 +88,7 @@ export default function IndexItem({
                                                             alt={project}
                                                             src={data.url}
                                                             onClick={() => {
-                                                                setIsClicked(
+                                                                setIsShown(
                                                                     true
                                                                 );
                                                                 setActiveIndex({

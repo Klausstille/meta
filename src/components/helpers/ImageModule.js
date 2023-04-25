@@ -12,11 +12,78 @@ export const ImageModule = ({
     const { x, y } = useMouse();
     const { width } = GetWindowDimensions();
     const [preview, setPreview] = useState(null);
+    const handleEscape = (event) => {
+        if (event.keyCode === 27) {
+            setIsShown(false);
+        }
+    };
+    useEffect(() => {
+        document.addEventListener("keydown", handleEscape);
+        return () => {
+            document.removeEventListener("keydown", handleEscape);
+        };
+    });
     useEffect(() => {
         isShown && width <= 1200 ? setPreview(false) : setPreview(true);
     }, [isShown, width, setPreview]);
     return (
         <>
+            {page === "prod" && isShown && (
+                <section
+                    className="img-module"
+                    onClick={() => {
+                        setIsShown(false);
+                        setActiveIndex(-1);
+                    }}
+                >
+                    <div
+                        className="image-container"
+                        style={
+                            preview
+                                ? {
+                                      width: `${width - x}px`,
+                                      height: `${y - 1}px`,
+                                  }
+                                : {
+                                      width: `100%`,
+                                      height: `100%`,
+                                  }
+                        }
+                    >
+                        {preview ? (
+                            <img
+                                alt={activeIndex.name}
+                                active={activeIndex.isActive}
+                                src={activeIndex.url}
+                                className="fixed-image"
+                            />
+                        ) : (
+                            <>
+                                <img
+                                    alt={activeIndex.name}
+                                    active={activeIndex.isActive}
+                                    src={activeIndex.url}
+                                    className="fixed-image"
+                                />
+                                <img
+                                    alt={activeIndex.name}
+                                    active={activeIndex.isActive}
+                                    src={activeIndex.url}
+                                    className="blurred-image"
+                                />
+                            </>
+                        )}
+
+                        <h6 className="sticky-text">
+                            {activeIndex.name}
+                            {" | "}
+                            {activeIndex.project}
+                            {" | "}
+                            {activeIndex.year}
+                        </h6>
+                    </div>
+                </section>
+            )}
             {page === "events" && isShown && (
                 <div
                     className="img-module"
