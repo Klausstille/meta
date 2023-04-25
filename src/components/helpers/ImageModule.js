@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import useMouse from "../helpers/mouseEvent/MouseMove";
 import GetWindowDimensions from "../helpers/mouseEvent/DocumentSize";
+import { CommonImageModule } from "./CommonImageModule";
 export const ImageModule = ({
     data,
     activeIndex,
@@ -26,250 +27,51 @@ export const ImageModule = ({
     useEffect(() => {
         isShown && width <= 1200 ? setPreview(false) : setPreview(true);
     }, [isShown, width, setPreview]);
+
+    let altText;
+    let srcUrl;
+    let stickyText;
+    switch (page) {
+        case "events":
+            srcUrl = data[activeIndex]?.residencesPhotos.url;
+            altText = data[activeIndex]?.eventTitle;
+            stickyText = data[activeIndex]?.eventTitle;
+            break;
+        case "contact":
+            srcUrl = data[1]?.bioImage.url;
+            altText = data[0]?.bioTitle;
+            stickyText = null;
+            break;
+        case "prod":
+            srcUrl = activeIndex?.url;
+            altText = activeIndex?.name;
+            stickyText = `${activeIndex?.name} | ${activeIndex?.project} | ${activeIndex?.year}`;
+            break;
+        case "atelier":
+            srcUrl = data[activeIndex]?.url;
+            altText = data[activeIndex]?.description;
+            stickyText = data[activeIndex]?.description;
+            break;
+        default:
+            srcUrl = null;
+            altText = null;
+            stickyText = null;
+    }
+    console.log(srcUrl, altText, stickyText);
     return (
         <>
-            {page === "contact" && isShown && (
-                <div
-                    className="img-module-contact"
-                    onClick={() => {
-                        setIsShown(false);
-                    }}
-                >
-                    <div
-                        className="image-container"
-                        style={
-                            preview
-                                ? {
-                                      width: `${width - x}px`,
-                                      height: `${y - 1}px`,
-                                  }
-                                : {
-                                      width: `100%`,
-                                      height: `100%`,
-                                  }
-                        }
-                    >
-                        {preview ? (
-                            <img
-                                alt={data[0].bioTitle}
-                                src={data[1].bioImage.url}
-                                className="fixed-image"
-                            />
-                        ) : (
-                            <>
-                                <img
-                                    alt={data[0].bioTitle}
-                                    src={data[1].bioImage.url}
-                                    className="fixed-image"
-                                />
-                                <img
-                                    alt={data[0].bioTitle}
-                                    src={data[1].bioImage.url}
-                                    className="blurred-image"
-                                />
-                            </>
-                        )}
-                    </div>
-                </div>
-            )}
-            {page === "prod" && isShown && (
-                <section
-                    className="img-module"
-                    onClick={() => {
-                        setIsShown(false);
-                        setActiveIndex(-1);
-                    }}
-                >
-                    <div
-                        className="image-container"
-                        style={
-                            preview
-                                ? {
-                                      width: `${width - x}px`,
-                                      height: `${y - 1}px`,
-                                  }
-                                : {
-                                      width: `100%`,
-                                      height: `100%`,
-                                  }
-                        }
-                    >
-                        {preview ? (
-                            <img
-                                alt={activeIndex.name}
-                                active={activeIndex.isActive}
-                                src={activeIndex.url}
-                                className="fixed-image"
-                            />
-                        ) : (
-                            <>
-                                <img
-                                    alt={activeIndex.name}
-                                    active={activeIndex.isActive}
-                                    src={activeIndex.url}
-                                    className="fixed-image"
-                                />
-                                <img
-                                    alt={activeIndex.name}
-                                    active={activeIndex.isActive}
-                                    src={activeIndex.url}
-                                    className="blurred-image"
-                                />
-                            </>
-                        )}
-
-                        <h6 className="sticky-text">
-                            {activeIndex.name}
-                            {" | "}
-                            {activeIndex.project}
-                            {" | "}
-                            {activeIndex.year}
-                        </h6>
-                    </div>
-                </section>
-            )}
-            {page === "events" && isShown && (
-                <div
-                    className="img-module"
-                    onClick={() => {
-                        setIsShown(false);
-                        setActiveIndex(-1);
-                    }}
-                >
-                    <div
-                        className="image-container"
-                        style={
-                            preview
-                                ? {
-                                      width: `${width - x}px`,
-                                      height: `${y - 1}px`,
-                                  }
-                                : {
-                                      width: `100%`,
-                                      height: `100%`,
-                                  }
-                        }
-                    >
-                        {preview ? (
-                            <img
-                                alt={data[activeIndex].eventTitle}
-                                src={data[activeIndex].residencesPhotos.url}
-                                className="fixed-image"
-                            />
-                        ) : (
-                            <>
-                                <img
-                                    alt={data[activeIndex].eventTitle}
-                                    src={data[activeIndex].residencesPhotos.url}
-                                    className="fixed-image"
-                                />
-                                <img
-                                    alt={data[activeIndex].eventTitle}
-                                    src={data[activeIndex].residencesPhotos.url}
-                                    className="blurred-image"
-                                />
-                            </>
-                        )}
-
-                        <h6 className="sticky-text">
-                            {data[activeIndex].eventTitle} |{" "}
-                            {new Date(
-                                data[activeIndex].startDate
-                            ).toLocaleDateString("fr", {
-                                day: "2-digit",
-                                month: "2-digit",
-                                year: "numeric",
-                            })}{" "}
-                            -{" "}
-                            {new Date(
-                                data[activeIndex].endDate
-                            ).toLocaleDateString("fr", {
-                                day: "2-digit",
-                                month: "2-digit",
-                                year: "numeric",
-                            })}
-                        </h6>
-                    </div>
-                </div>
-            )}
-            {page === null && isShown && (
-                <div
-                    className="img-module"
-                    onClick={() => {
-                        setIsShown(false);
-                        setActiveIndex(-1);
-                    }}
-                >
-                    <div
-                        className="image-container"
-                        style={
-                            preview
-                                ? {
-                                      width: `${width - x}px`,
-                                      height: `${y - 1}px`,
-                                  }
-                                : {
-                                      width: `100%`,
-                                      height: `100%`,
-                                  }
-                        }
-                    >
-                        {preview ? (
-                            data[activeIndex].url.includes("mp4") ? (
-                                <video
-                                    src={data[activeIndex].url}
-                                    className="fixed-image"
-                                    playsInline
-                                    autoPlay
-                                    loop
-                                    muted
-                                />
-                            ) : (
-                                <img
-                                    alt={data[activeIndex].description}
-                                    src={data[activeIndex].url}
-                                    className="fixed-image"
-                                />
-                            )
-                        ) : data[activeIndex].url.includes("mp4") ? (
-                            <>
-                                <video
-                                    src={data[activeIndex].url}
-                                    className="fixed-image"
-                                    playsInline
-                                    autoPlay
-                                    loop
-                                    muted
-                                />
-                                <video
-                                    src={data[activeIndex].url}
-                                    className="blurred-image"
-                                    playsInline
-                                    autoPlay
-                                    loop
-                                    muted
-                                />
-                            </>
-                        ) : (
-                            <>
-                                <img
-                                    alt={data[activeIndex].description}
-                                    src={data[activeIndex].url}
-                                    className="fixed-image"
-                                />
-                                <img
-                                    alt={data[activeIndex].description}
-                                    src={data[activeIndex].url}
-                                    className="blurred-image"
-                                />
-                            </>
-                        )}
-
-                        <h6 className="sticky-text">
-                            {data[activeIndex].description}
-                        </h6>
-                    </div>
-                </div>
+            {isShown && (
+                <CommonImageModule
+                    altText={altText}
+                    srcUrl={srcUrl}
+                    stickyText={stickyText}
+                    preview={preview}
+                    setIsShown={setIsShown}
+                    setActiveIndex={setActiveIndex}
+                    width={width}
+                    x={x}
+                    y={y}
+                />
             )}
         </>
     );

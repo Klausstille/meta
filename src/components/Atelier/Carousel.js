@@ -23,6 +23,7 @@ export default function Slideshow({ images, title }) {
                 setActiveIndex={setActiveIndex}
                 isShown={isShown}
                 setIsShown={setIsShown}
+                page="atelier"
             />
             <Swiper
                 autoplay={{
