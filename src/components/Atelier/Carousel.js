@@ -3,61 +3,32 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-cube";
 import { Autoplay } from "swiper";
-import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCube, Keyboard } from "swiper";
-import { ImageModule } from "../helpers/ImageModule";
+import { Navigation, Keyboard } from "swiper";
 
 export default function Slideshow({ images, title }) {
-    const [activeIndex, setActiveIndex] = useState(-1);
-    const [isShown, setIsShown] = useState(false);
-    const minDelay = 2000;
-    const maxDelay = 4000;
-    const delay =
-        Math.floor(Math.random() * (maxDelay - minDelay + 1)) + minDelay;
     return (
         <>
-            <ImageModule
-                data={images.items}
-                activeIndex={activeIndex}
-                setActiveIndex={setActiveIndex}
-                isShown={isShown}
-                setIsShown={setIsShown}
-                page="atelier"
-            />
             <Swiper
+                navigation={true}
+                slidesPerView={1}
+                spaceBetween={30}
                 autoplay={{
-                    delay,
-                    disableOnInteraction: true,
-                    duration: 1000,
+                    delay: 5500,
+                    disableOnInteraction: false,
                 }}
-                speed={1000}
+                pagination={{
+                    type: "fraction",
+                }}
                 loop={true}
-                effect={"cube"}
-                grabCursor={true}
-                keyboard={{
-                    enabled: true,
-                }}
-                cubeEffect={{
-                    shadow: false,
-                    slideShadows: false,
-                    shadowOffset: 100,
-                    shadowScale: 1,
-                }}
-                modules={[Autoplay, EffectCube, Keyboard]}
+                modules={[Navigation, Autoplay, Keyboard]}
                 className="mySwiper"
             >
                 {images.items?.map((data, index) => {
                     const isVideo = data.url.includes("mp4");
                     return (
                         <SwiperSlide key={`index-item-${index}`}>
-                            <div
-                                className="carousel-container"
-                                onClick={() => {
-                                    setIsShown(true);
-                                    setActiveIndex(index);
-                                }}
-                            >
+                            <div className="carousel-container">
                                 {isVideo ? (
                                     <video
                                         src={data.url}
