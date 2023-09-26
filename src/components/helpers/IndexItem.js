@@ -74,7 +74,18 @@ export default function IndexItem({
                                 >
                                     <div className="text-image-grid active">
                                         <div className="text-grid">
-                                            <p>{des}</p>
+                                            {des.map((item) => {
+                                                return (
+                                                    <p
+                                                        style={{
+                                                            whiteSpace:
+                                                                "pre-line",
+                                                        }}
+                                                    >
+                                                        {item.content[0].value}
+                                                    </p>
+                                                );
+                                            })}
                                         </div>
                                         <div className="image-grid">
                                             {src.map((data, index) => {

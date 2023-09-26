@@ -130,10 +130,7 @@ export default function Residences({ lang = "fr" }) {
                             name={data.artistName}
                             project={data.projectName}
                             year={data.year}
-                            des={
-                                data.description.json.content[0].content[0]
-                                    .value
-                            }
+                            des={data.description.json.content}
                             src={data.galleryCollection.items}
                             onShow={handleShowOne}
                             showProject={data?.isShown}
