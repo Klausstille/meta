@@ -1,8 +1,17 @@
+a {
+    font-size: 0.8rem;
+}
+.content__gdprLegal,
+.content__gdprLegal a {
+    font-size: 0.5rem;
+    line-height: 1;
+    width: 270px;
+}
 .contact a {
     text-decoration: none;
 }
 .footer-container {
-    padding: 2rem 20px 1rem 20px;
+    padding: 1.5rem 20px 0.5rem 20px;
     display: flex;
     flex-direction: row;
     background-color: var(--background-color);
@@ -27,7 +36,7 @@ input {
     margin-right: 10px;
     outline: none;
     border: none;
-    font-size: 1rem;
+    font-size: 0.8rem;
     margin-bottom: 3px;
     border: 1px solid var(--primary-color);
     background-color: var(--background-color);
@@ -43,7 +52,7 @@ footer button {
     border: 1px solid var(--primary-color);
     transition: all 0.2s ease-out;
     padding: 2px 15px;
-    font-size: 1rem;
+    font-size: 0.8rem;
 }
 footer button:hover {
     color: var(--background-color);
@@ -69,7 +78,7 @@ footer button:hover {
 }
 p {
     color: var(--primary-color);
-    font-size: 1rem;
+    font-size: 0.8rem;
     margin-bottom: 0;
 }
 .footer-link-items a {
@@ -104,14 +113,14 @@ p {
     line-height: 1.5;
 }
 .logo-meta {
-    width: 100px;
+    width: 80px;
     margin-top: 5px;
-}
-.content__gdprLegal {
-    width: 300px;
 }
 
 @media screen and (max-width: 1200px) {
+    a {
+        font-size: 1rem;
+    }
     .contact-wrap {
         justify-content: center;
         width: 100%;

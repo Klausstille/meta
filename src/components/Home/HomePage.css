@@ -1,8 +1,8 @@
 .logo-container {
     position: absolute;
     right: 0;
-    top: 44px;
-    padding-bottom: 43px;
+    top: 39px;
+    padding-bottom: 38px;
 }
 .logo-container img {
     object-fit: contain;

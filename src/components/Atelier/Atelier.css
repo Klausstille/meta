@@ -1,7 +1,7 @@
 .atelier-section {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    padding-top: 45px;
+    padding-top: 40px;
 }
 .atelier-container,
 .residences-container {
@@ -46,7 +46,7 @@ button.read-more-btn {
     cursor: none;
     background-color: transparent;
     padding: 0 10px;
-    font-size: 1rem;
+    font-size: 0.8rem;
     opacity: 0.5;
 }
 button.read-more-btn:hover {

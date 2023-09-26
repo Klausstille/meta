@@ -47,7 +47,6 @@
 .index-item-year {
     display: grid;
     justify-items: end;
-    font-size: 1rem;
 }
 .index-items:has(.text-image-grid) img.index-preview-pic {
     filter: opacity(1);
@@ -108,6 +107,7 @@ ul.index-items {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    align-content: flex-start;
 }
 .img-module {
     margin-top: 80px;
@@ -209,9 +209,6 @@ h6.sticky-text {
         align-items: end;
         padding-top: 0;
     }
-    .index-params h3 {
-        font-size: 1rem;
-    }
     .index-item-pics {
         width: 140px;
         height: 80px;
@@ -251,7 +248,7 @@ h6.sticky-text {
     @media screen and (max-width: 800px) {
         .production-section,
         .residences-section {
-            padding-top: 44px;
+            padding-top: 39px;
         }
         .index-preview-container {
             position: absolute;
