@@ -17,6 +17,7 @@ export default function IndexItem({
 }) {
     const [isShown, setIsShown] = useState(null);
     const [activeIndex, setActiveIndex] = useState(-1);
+    const isVideo = src[1]?.url.includes("mp4");
     return (
         <>
             <ImageModule
@@ -44,11 +45,23 @@ export default function IndexItem({
                                 )}
                                 <div className="index-preview-container">
                                     <LazyLoad>
-                                        <img
-                                            className="index-preview-pic"
-                                            alt={project}
-                                            src={src[1]?.url}
-                                        />
+                                        {isVideo ? (
+                                            <video
+                                                className="index-preview-pic"
+                                                alt={project}
+                                                src={src[1]?.url}
+                                                playsInline
+                                                autoPlay
+                                                loop
+                                                muted
+                                            />
+                                        ) : (
+                                            <img
+                                                className="index-preview-pic"
+                                                alt={project}
+                                                src={src[1]?.url}
+                                            />
+                                        )}
                                     </LazyLoad>
                                 </div>
                                 <div className="index-item-info">
@@ -89,27 +102,61 @@ export default function IndexItem({
                                         </div>
                                         <div className="image-grid">
                                             {src.map((data, index) => {
+                                                console.log(
+                                                    "data.url",
+                                                    data?.url
+                                                );
+                                                const isVideo =
+                                                    data?.url.includes("mp4");
                                                 return (
                                                     <LazyLoad
                                                         key={`index-item-${index}`}
                                                     >
-                                                        <img
-                                                            className="index-item-pics"
-                                                            alt={project}
-                                                            src={data.url}
-                                                            onClick={() => {
-                                                                setIsShown(
-                                                                    true
-                                                                );
-                                                                setActiveIndex({
-                                                                    url: data.url,
-                                                                    name: name,
-                                                                    project:
-                                                                        project,
-                                                                    year: year,
-                                                                });
-                                                            }}
-                                                        />
+                                                        {isVideo ? (
+                                                            <video
+                                                                className="index-item-pics"
+                                                                alt={project}
+                                                                src={data?.url}
+                                                                playsInline
+                                                                autoPlay
+                                                                loop
+                                                                muted
+                                                                onClick={() => {
+                                                                    setIsShown(
+                                                                        true
+                                                                    );
+                                                                    setActiveIndex(
+                                                                        {
+                                                                            url: data.url,
+                                                                            name: name,
+                                                                            project:
+                                                                                project,
+                                                                            year: year,
+                                                                        }
+                                                                    );
+                                                                }}
+                                                            />
+                                                        ) : (
+                                                            <img
+                                                                className="index-item-pics"
+                                                                alt={project}
+                                                                src={data?.url}
+                                                                onClick={() => {
+                                                                    setIsShown(
+                                                                        true
+                                                                    );
+                                                                    setActiveIndex(
+                                                                        {
+                                                                            url: data.url,
+                                                                            name: name,
+                                                                            project:
+                                                                                project,
+                                                                            year: year,
+                                                                        }
+                                                                    );
+                                                                }}
+                                                            />
+                                                        )}
                                                     </LazyLoad>
                                                 );
                                             })}
