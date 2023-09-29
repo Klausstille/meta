@@ -142,7 +142,7 @@ ul.nav-menu {
         background-color: var(--active-menu-color);
         color: var(--primary-color);
         left: 0;
-        top: 38px;
+        top: 32px;
         height: 100vh;
     }
     .nav-links {
