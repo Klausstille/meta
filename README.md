@@ -1,31 +1,27 @@
 # Association Meta
 
-![Meta](public/logo.svg)
+![Main Page](public/readme/page-1.png)
+![The Location](public/readme/page-2.png)
+![Productions Page](public/readme/page-3.png)
+![Productions Page](public/readme/page-4.png)
+![Productions Page](public/readme/page-5.png)
+![Events Page](public/readme/page-6.png)
+![Events Page](public/readme/page-7.png)
 
-## Running the project
+Visit the website [here](https://www.atelier-meta.art).
 
-First, run the development server:
+## Introduction
 
-```bash
-npm run start
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-Or visit the page here:
-[https://www.atelier-meta.art](https://www.atelier-meta.art)
-
-## Overview
-
-This page was created for an association that provides a space for design, production, prototyping, aesthetic research and creation assistance. The goal of this artistic structure is to offer a decentralized space dedicated to visual and contemporary art. The association's visual identity was also designed by the developer in 2020 (before Facebook changed its company name to Meta...). This website represents a new milestone for the association, providing them with an online presence to showcase their work and reach a wider audience.
+The Association Meta is dedicated to design, production, prototyping, aesthetic research, and creation assistance. It offers a decentralized space for visual and contemporary art. Notably, the association's visual identity was developed by the creator in 2020, prior to Facebook's rebranding to Meta. The website marks a significant milestone for the association, allowing them to showcase their work and expand their reach online.
 
 ## Features
 
-The application has several features based on the association's identity and logotype. The Cartesian Coordinate System serves as a base for user interaction and as a container for previewing images.
+-   The website incorporates various features inspired by the association's identity and logo.
+-   It utilizes the Cartesian Coordinate System for user interaction and image previewing.
 
-## Technologies
+## Technologies Used
 
--   Javascript
+-   JavaScript
 -   CSS
 -   React
 -   GraphQL
@@ -33,22 +29,22 @@ The application has several features based on the association's identity and log
 -   SWR
 -   Netlify
 
-The application supports multilingual content and renders in both French and English. The project utilizes the Contentful API to manage and deliver content, and uses the SWR library to handle data fetching and caching. The application is hosted on Netlify.
+## Multilingual Support
 
-## Made by
+The website supports content in both French and English.
 
-This page was designed and developed by Klaus Stille in 2022.
+## Content Management
 
-## Preview
+Content is managed and delivered using the Contentful API.
 
-### Main
+## Data Handling
 
-![Main Page](public/readme/home.gif)
+The SWR library is used for data fetching and caching.
 
-### Atelier
+## Hosting
 
-![Atelier Page](public/readme/atelier.gif)
+The website is hosted on Netlify.
 
-### Productions
+## Creator
 
-![Atelier Page](public/readme/productions.gif)
+The website was designed and developed by Klaus Stille in 2022.
