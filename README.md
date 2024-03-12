@@ -4,10 +4,10 @@
 ![The Location](public/readme/page-2.png)
 ![Productions Page](public/readme/page-3.png)
 ![Productions Page](public/readme/page-4.png)
-![Productions Page](public/readme/page-5.png)
-![Productions Page](public/readme/page-6.png)
-![Events Page](public/readme/page-7.png)
-![Events Page](public/readme/page-8.png)
+![Productions Page](public/readme/page-5bis.png)
+![Productions Page](public/readme/page-6bis.png)
+![Events Page](public/readme/page-7bis.png)
+![Events Page](public/readme/page-8bis.png)
 
 Visit the website [here](https://www.atelier-meta.art).
 
