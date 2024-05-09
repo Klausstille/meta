@@ -34,7 +34,7 @@
     --active-menu-color: rgba(39, 39, 39, 0.8);
 }
 button#toggleMode {
-    top: 10px;
+    top: 8px;
     right: 10px;
     position: absolute;
     background: none;
