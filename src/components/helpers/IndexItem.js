@@ -87,18 +87,79 @@ export default function IndexItem({
                                 >
                                     <div className="text-image-grid active">
                                         <div className="text-grid">
-                                            {des.map((item) => {
-                                                return (
-                                                    <p
-                                                        style={{
-                                                            whiteSpace:
-                                                                "pre-line",
-                                                        }}
-                                                    >
-                                                        {item.content[0].value}
-                                                    </p>
-                                                );
-                                            })}
+                                            {des.map((block, blockIndex) => (
+                                                <p
+                                                    key={blockIndex}
+                                                    style={{
+                                                        whiteSpace: "pre-line",
+                                                    }}
+                                                >
+                                                    {block.content?.map(
+                                                        (node, nodeIndex) => {
+                                                            // Simple text node
+                                                            if (
+                                                                node.nodeType ===
+                                                                    "text" ||
+                                                                !node.nodeType
+                                                            ) {
+                                                                return (
+                                                                    <React.Fragment
+                                                                        key={
+                                                                            nodeIndex
+                                                                        }
+                                                                    >
+                                                                        {
+                                                                            node.value
+                                                                        }
+                                                                    </React.Fragment>
+                                                                );
+                                                            }
+
+                                                            // Hyperlink node
+                                                            if (
+                                                                node.nodeType ===
+                                                                    "hyperlink" &&
+                                                                node.data?.uri
+                                                            ) {
+                                                                const linkText =
+                                                                    node.content
+                                                                        ?.map(
+                                                                            (
+                                                                                c
+                                                                            ) =>
+                                                                                c.value
+                                                                        )
+                                                                        .join(
+                                                                            ""
+                                                                        ) ||
+                                                                    node.data
+                                                                        .uri;
+
+                                                                return (
+                                                                    <a
+                                                                        key={
+                                                                            nodeIndex
+                                                                        }
+                                                                        href={
+                                                                            node
+                                                                                .data
+                                                                                .uri
+                                                                        }
+                                                                        target="_blank"
+                                                                        rel="noreferrer"
+                                                                    >
+                                                                        {
+                                                                            linkText
+                                                                        }
+                                                                    </a>
+                                                                );
+                                                            }
+
+                                                            return null;
+                                                        }
+                                                    )}
+                                                </p>
+                                            ))}
                                         </div>
                                         <div className="image-grid">
                                             {src.map((data, index) => {
