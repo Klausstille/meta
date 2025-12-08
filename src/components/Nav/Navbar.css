@@ -91,7 +91,7 @@ ul.nav-menu {
 .hamburger__bar--bot {
     transform-origin: initial;
     stroke-width: 1px;
-    transition: all 1s ease-in-out;
+    transition: transform 1s ease-in-out;
 }
 .hamburger__bar--top {
     transform: translate(0, -8px);
@@ -128,25 +128,19 @@ ul.nav-menu {
         display: flex;
         flex-direction: column;
         width: 100vw;
-        height: 40vh;
         position: absolute;
-        right: 100%;
-        opacity: 1;
-        justify-content: flex-start;
-        gap: 1rem;
-        margin-left: 0;
-        opacity: 0;
-        transition: opacity 250ms ease;
-        backdrop-filter: blur(20px) !important;
-    }
-    .nav-menu.active {
-        opacity: 1;
-        background-color: var(--active-menu-color);
-        color: var(--primary-color);
         left: 0;
         top: 32px;
         height: 100vh;
         justify-content: center;
+        gap: 1rem;
+        margin-left: 0;
+        backdrop-filter: blur(20px) !important;
+        background-color: var(--active-menu-color);
+        color: var(--primary-color);
+    }
+    .nav-menu.active {
+        /* Styles handled by framer-motion */
     }
     .nav-links {
         justify-content: center;

@@ -63,6 +63,6 @@
         height: 100vh;
     }
     .hero-container video {
-        transform: translateY(-70px);
+        scale: 1.25;
     }
 }
