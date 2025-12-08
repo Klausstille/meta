@@ -233,12 +233,12 @@ p {
     input {
         font-size: 0.7rem;
         padding: 4px 12px;
-        margin-right: 10px !important;
+        margin-right: 5px !important;
     }
     footer button {
         font-size: 0.7rem;
         padding: 4px 12px;
-        margin-left: 10px !important;
+        margin-left: 0px !important;
     }
     .footer-subscription form input {
         margin-right: 10px !important;

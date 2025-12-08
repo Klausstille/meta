@@ -20,7 +20,7 @@
 }
 :root {
     --primary-color: #006eff;
-    --background-color: rgb(255, 255, 255);
+    --background-color: #ffffff;
     --active-menu-color: rgba(255, 255, 255, 0.8);
 }
 ::selection {
@@ -28,7 +28,7 @@
 }
 .darkmode {
     --primary-color: #e2e2e2;
-    --background-color: rgb(20, 20, 20);
+    --background-color: #141414;
     --active-menu-color: rgba(20, 20, 20, 0.9);
 }
 button#toggleMode {
@@ -45,6 +45,7 @@ button#toggleMode {
 
 * {
     font-feature-settings: "liga", "kern";
+    text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     scrollbar-width: none;

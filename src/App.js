@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { useEffect } from "react";
 import useMouse from "./components/helpers/mouseEvent/MouseMove";
 import getWindowDimensions from "./components/helpers/mouseEvent/DocumentSize";
 import Navbar from "./components/Nav/Navbar";
@@ -22,6 +23,17 @@ function App() {
         "isDarkMode",
         false
     );
+
+    useEffect(() => {
+        const themeColorMeta = document.getElementById("theme-color-meta");
+        if (themeColorMeta) {
+            themeColorMeta.setAttribute(
+                "content",
+                isDarkMode ? "#141414" : "#ffffff"
+            );
+        }
+    }, [isDarkMode]);
+
     window.addEventListener("beforeunload", () => {
         sessionStorage.clear();
     });
