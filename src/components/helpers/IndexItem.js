@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Transition } from "@headlessui/react";
 import LazyLoad from "react-lazy-load";
 import { ImageModule } from "./ImageModule";
@@ -17,7 +17,34 @@ export default function IndexItem({
 }) {
     const [isShown, setIsShown] = useState(null);
     const [activeIndex, setActiveIndex] = useState(-1);
+    const [loadedImages, setLoadedImages] = useState(new Set());
+    const [imagesLoaded, setImagesLoaded] = useState(false);
     const isVideo = src[1]?.url.includes("mp4");
+
+    // Preload all images when project is about to be shown
+    useEffect(() => {
+        if (showProject && !imagesLoaded && src) {
+            const imagePromises = src
+                .filter((item) => item?.url && !item.url.includes("mp4"))
+                .map((item) => {
+                    return new Promise((resolve, reject) => {
+                        const img = new Image();
+                        img.onload = resolve;
+                        img.onerror = reject;
+                        img.src = item.url;
+                    });
+                });
+
+            Promise.all(imagePromises)
+                .then(() => {
+                    setImagesLoaded(true);
+                })
+                .catch(() => {
+                    // Even if some fail, mark as loaded to show what we have
+                    setImagesLoaded(true);
+                });
+        }
+    }, [showProject, src, imagesLoaded]);
     return (
         <>
             <ImageModule
@@ -163,19 +190,16 @@ export default function IndexItem({
                                         </div>
                                         <div className="image-grid">
                                             {src.map((data, index) => {
-                                                console.log(
-                                                    "data.url",
-                                                    data?.url
-                                                );
                                                 const isVideo =
                                                     data?.url.includes("mp4");
                                                 return (
                                                     <LazyLoad
                                                         key={`index-item-${index}`}
+                                                        className="fade-wrapper"
                                                     >
                                                         {isVideo ? (
                                                             <video
-                                                                className="index-item-pics"
+                                                                className="index-item-pics img-fade loaded"
                                                                 alt={project}
                                                                 src={data?.url}
                                                                 playsInline
@@ -199,9 +223,32 @@ export default function IndexItem({
                                                             />
                                                         ) : (
                                                             <img
-                                                                className="index-item-pics"
+                                                                className={`index-item-pics img-fade ${
+                                                                    loadedImages.has(
+                                                                        index
+                                                                    )
+                                                                        ? "loaded"
+                                                                        : ""
+                                                                }`}
                                                                 alt={project}
                                                                 src={data?.url}
+                                                                loading="eager"
+                                                                onLoad={() => {
+                                                                    setLoadedImages(
+                                                                        (
+                                                                            prev
+                                                                        ) => {
+                                                                            const next =
+                                                                                new Set(
+                                                                                    prev
+                                                                                );
+                                                                            next.add(
+                                                                                index
+                                                                            );
+                                                                            return next;
+                                                                        }
+                                                                    );
+                                                                }}
                                                                 onClick={() => {
                                                                     setIsShown(
                                                                         true

@@ -103,6 +103,13 @@ ul.index-items {
     aspect-ratio: 16/9;
     object-fit: cover;
 }
+.img-fade {
+    opacity: 0;
+    transition: opacity 0.35s ease-in-out;
+}
+.img-fade.loaded {
+    opacity: 1;
+}
 .image-grid {
     display: flex;
     flex-wrap: wrap;

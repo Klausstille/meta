@@ -6,6 +6,20 @@ import fetchData from "../helpers/Fetcher";
 import useSWR from "swr";
 import useSessionStorageState from "use-session-storage-state";
 
+// Preload preview images for all projects
+const preloadPreviewImages = (items) => {
+    if (!items) return;
+    items.forEach((item) => {
+        if (item.galleryCollection?.items?.[1]?.url) {
+            const previewUrl = item.galleryCollection.items[1].url;
+            if (!previewUrl.includes("mp4")) {
+                const img = new Image();
+                img.src = previewUrl;
+            }
+        }
+    });
+};
+
 const q = {
     fr: residences_freQuery,
     "en-US": residences_engQuery,
@@ -53,16 +67,19 @@ export default function Productions({ lang = "fr" }) {
 
     useEffect(() => {
         if (data && isOpenProduction) {
-            setPage(
-                data.sorted.map((item, index) => ({
-                    ...item,
-                    isShown: isOpenProduction[index],
-                }))
-            );
+            const mapped = data.sorted.map((item, index) => ({
+                ...item,
+                isShown: isOpenProduction[index],
+            }));
+            setPage(mapped);
             setEn(data.isEn);
+            // Preload preview images
+            preloadPreviewImages(mapped);
         } else if (data) {
             setEn(data.isEn);
             setPage(data.sorted);
+            // Preload preview images
+            preloadPreviewImages(data.sorted);
         }
     }, [data, setPage, isOpenProduction]);
 
