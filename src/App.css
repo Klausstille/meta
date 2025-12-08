@@ -20,7 +20,6 @@
 }
 :root {
     --primary-color: #006eff;
-    --secondary-color: #006eff;
     --background-color: rgb(255, 255, 255);
     --active-menu-color: rgba(255, 255, 255, 0.8);
 }
@@ -29,7 +28,6 @@
 }
 .darkmode {
     --primary-color: #e2e2e2;
-    --secondary-color: rgb(0, 0, 0);
     --background-color: rgb(20, 20, 20);
     --active-menu-color: rgba(20, 20, 20, 0.9);
 }
@@ -55,10 +53,10 @@ button#toggleMode {
     margin: 0;
     padding: 0;
     cursor: none;
-    color: var(--primary-color);
 }
 body {
     background-color: var(--background-color);
+    color: var(--primary-color) !important;
 }
 main {
     font-family: "Graphik", Fallback, sans-serif;
@@ -120,6 +118,11 @@ footer {
     margin-top: auto;
     z-index: 0;
 }
+
+button {
+    color: var(--primary-color) !important;
+}
+
 @media screen and (max-width: 1200px) {
     h3 {
         font-family: "Graphikmedium";

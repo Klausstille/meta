@@ -153,6 +153,7 @@ ul.nav-menu {
         width: 100vw;
         padding-left: 0;
         border: none;
+        transform: translateY(-60px);
     }
     .nav-item:first-child .nav-links {
         border-left: none;

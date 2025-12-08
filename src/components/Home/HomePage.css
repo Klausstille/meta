@@ -35,6 +35,8 @@
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
     will-change: filter;
+    scale: 1.18;
+    transform: translateY(-20px);
 }
 .hero-container {
     height: 100vh;
@@ -62,6 +64,5 @@
     }
     .hero-container video {
         transform: translateY(-70px);
-        scale: 1.18;
     }
 }
