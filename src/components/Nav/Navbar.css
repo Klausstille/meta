@@ -5,7 +5,8 @@
     align-content: center;
     position: fixed;
     width: 100vw;
-    background-color: var(--background-color);
+    /* background-color: var(--background-color); */
+    backdrop-filter: blur(20px);
     z-index: 2;
     border-bottom: 1px solid var(--primary-color);
 }
