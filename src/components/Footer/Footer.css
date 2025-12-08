@@ -53,17 +53,24 @@ a {
     width: 100%;
     margin-bottom: 5px;
 }
+.footer-subscription > div > div {
+    color: var(--primary-color) !important;
+    opacity: 0.8;
+    font-size: 10px !important;
+    position: absolute;
+    top: 10px;
+}
 
 input {
     padding: 2px 15px;
-    border-radius: 2px;
+    border-radius: 12px;
     margin-right: 10px;
     margin-bottom: 0;
     outline: none;
-    border: none;
-    font-size: 0.8rem;
     border: 1px solid var(--primary-color);
+    font-size: 0.8rem;
     background-color: transparent;
+    color: var(--primary-color) !important;
     width: auto;
     flex: 1 1 220px;
     min-width: 0;
@@ -76,7 +83,7 @@ input::placeholder {
 }
 footer button {
     cursor: none !important;
-    border-radius: 2px;
+    border-radius: 12px;
     background-color: transparent;
     border: 1px solid var(--primary-color);
     transition: all 0.2s ease-out;
@@ -84,10 +91,12 @@ footer button {
     font-size: 0.8rem;
     white-space: nowrap;
     flex: 0 0 auto;
+    outline: none;
+    transition: none;
 }
 footer button:hover {
-    color: var(--background-color);
-    background-color: var(--primary-color);
+    color: var(--background-color) !important;
+    background-color: var(--primary-color) !important;
     border: 1px solid var(--primary-color);
 }
 .footer-links {
@@ -216,6 +225,10 @@ p {
         text-align: center;
         margin-right: 0;
     }
+    .footer-subscription > div > div {
+        width: 250px !important;
+        text-align: center !important;
+    }
 }
 
 @media screen and (max-width: 480px) {
@@ -234,11 +247,19 @@ p {
         font-size: 0.7rem;
         padding: 4px 12px;
         margin-right: 5px !important;
+        border-radius: 12px;
+        border: 1px solid var(--primary-color);
+        outline: none;
+        background-color: transparent;
     }
     footer button {
         font-size: 0.7rem;
         padding: 4px 12px;
         margin-left: 0px !important;
+        border-radius: 12px;
+        border: 1px solid var(--primary-color);
+        outline: none;
+        background-color: transparent;
     }
     .footer-subscription form input {
         margin-right: 10px !important;

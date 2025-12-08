@@ -22,6 +22,7 @@
     --primary-color: #006eff;
     --background-color: #ffffff;
     --active-menu-color: rgba(255, 255, 255, 0.8);
+    --input-bg-color: rgba(0, 110, 255, 0.08);
 }
 ::selection {
     background-color: transparent;
@@ -30,6 +31,7 @@
     --primary-color: #e2e2e2;
     --background-color: #141414;
     --active-menu-color: rgba(20, 20, 20, 0.9);
+    --input-bg-color: rgba(226, 226, 226, 0.08);
 }
 button#toggleMode {
     top: 8px;
