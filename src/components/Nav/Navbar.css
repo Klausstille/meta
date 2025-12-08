@@ -137,6 +137,7 @@ ul.nav-menu {
         margin-left: 0;
         opacity: 0;
         transition: opacity 250ms ease;
+        backdrop-filter: blur(20px) !important;
     }
     .nav-menu.active {
         opacity: 1;
@@ -145,6 +146,7 @@ ul.nav-menu {
         left: 0;
         top: 32px;
         height: 100vh;
+        justify-content: center;
     }
     .nav-links {
         justify-content: center;

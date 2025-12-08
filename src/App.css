@@ -31,7 +31,7 @@
     --primary-color: #e2e2e2;
     --secondary-color: rgb(0, 0, 0);
     --background-color: rgb(20, 20, 20);
-    --active-menu-color: rgba(39, 39, 39, 0.8);
+    --active-menu-color: rgba(20, 20, 20, 0.9);
 }
 button#toggleMode {
     top: 8px;

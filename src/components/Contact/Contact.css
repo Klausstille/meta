@@ -27,11 +27,13 @@
 .contact-section .img-module .image-container:hover video {
     filter: grayscale(0%);
 }
-.img-module .image-container img,
-.img-module .image-container video,
-.img-module .image-container .fixed-image,
-.img-module .image-container .blurred-image {
+.img-module .image-container img:not(.blurred-image),
+.img-module .image-container video:not(.blurred-image),
+.img-module .image-container .fixed-image {
     filter: grayscale(0%) !important;
+}
+.img-module .image-container .blurred-image {
+    filter: blur(21px) !important;
 }
 .contact-grid {
     display: grid;
