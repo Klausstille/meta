@@ -5,7 +5,11 @@ a {
 .content__gdprLegal a {
     font-size: 0.5rem;
     line-height: 1;
-    width: 270px;
+    max-width: 270px;
+    width: 100%;
+}
+.footer-subscription > div:last-child {
+    margin-top: 5px;
 }
 .contact a {
     text-decoration: none;
@@ -24,22 +28,46 @@ a {
     text-align: left;
     align-content: flex-start;
     color: var(--primary-color);
-    width: 50em;
+    width: 100%;
     max-width: 500px;
     gap: 2px;
     padding-top: 1px;
+    box-sizing: border-box;
+}
+.footer-subscription form {
+    display: flex !important;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 25px;
+}
+.footer-subscription form > * {
+    margin-right: 0;
+}
+.footer-subscription form input {
+    margin-right: 10px !important;
+}
+.footer-subscription-heading {
+    width: 100%;
+    margin-bottom: 5px;
 }
 
 input {
     padding: 2px 15px;
     border-radius: 2px;
     margin-right: 10px;
+    margin-bottom: 0;
     outline: none;
     border: none;
     font-size: 0.8rem;
-    margin-bottom: 3px;
     border: 1px solid var(--primary-color);
     background-color: var(--background-color);
+    width: auto;
+    flex: 1 1 220px;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 input::placeholder {
     color: var(--primary-color);
@@ -53,6 +81,8 @@ footer button {
     transition: all 0.2s ease-out;
     padding: 2px 15px;
     font-size: 0.8rem;
+    white-space: nowrap;
+    flex: 0 0 auto;
 }
 footer button:hover {
     color: var(--background-color);
@@ -138,6 +168,29 @@ p {
         flex-direction: column;
         align-content: space-around;
         width: 100%;
+        max-width: 310px;
+        padding: 0 20px;
+        margin: 0 auto;
+        align-items: center;
+    }
+    .footer-subscription form {
+        flex-wrap: nowrap;
+        justify-content: center;
+        width: 100%;
+        /* max-width: 500px; */
+        gap: 10px !important;
+        display: flex !important;
+    }
+    .footer-subscription-heading {
+        width: 100%;
+        text-align: center;
+    }
+    .content__gdprLegal,
+    .content__gdprLegal a {
+        max-width: 100%;
+        width: 100%;
+        text-align: center;
+        /* padding: 0 10px; */
     }
     .footer-links {
         display: none;
@@ -145,11 +198,48 @@ p {
     .footer-input {
         width: 100%;
     }
+    input {
+        max-width: 100%;
+        margin-bottom: 0;
+    }
+    .footer-subscription form input {
+        margin-right: 10px !important;
+    }
+    .footer-subscription form button {
+        margin-left: 10px !important;
+    }
     .footer-link-wrapper {
         display: none;
     }
     .website-rights {
         text-align: center;
         margin-right: 0;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .footer-subscription {
+        padding: 0 15px;
+    }
+    .footer-subscription form {
+        gap: 10px !important;
+    }
+    .content__gdprLegal,
+    .content__gdprLegal a {
+        font-size: 0.45rem;
+        padding: 0 5px;
+    }
+    input {
+        font-size: 0.7rem;
+        padding: 4px 12px;
+        margin-right: 10px !important;
+    }
+    footer button {
+        font-size: 0.7rem;
+        padding: 4px 12px;
+        margin-left: 10px !important;
+    }
+    .footer-subscription form input {
+        margin-right: 10px !important;
     }
 }
