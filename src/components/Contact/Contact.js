@@ -31,6 +31,7 @@ export default function Contact({ lang = "fr" }) {
         <>
             <section className="contact-section">
                 <ImageModule
+                    title="Florent Marvier & Baptiste Supan"
                     data={page}
                     activeIndex={null}
                     setActiveIndex={null}

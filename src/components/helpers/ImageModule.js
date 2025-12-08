@@ -3,6 +3,7 @@ import useMouse from "../helpers/mouseEvent/MouseMove";
 import GetWindowDimensions from "../helpers/mouseEvent/DocumentSize";
 import { CommonImageModule } from "./CommonImageModule";
 export const ImageModule = ({
+    title,
     data,
     activeIndex,
     setActiveIndex,
@@ -35,7 +36,7 @@ export const ImageModule = ({
         case "contact":
             srcUrl = data[1]?.bioImage.url;
             altText = data[0]?.bioTitle;
-            stickyText = null;
+            stickyText = title;
             break;
         case "prod":
             srcUrl = activeIndex?.url;
