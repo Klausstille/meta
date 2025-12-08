@@ -6,9 +6,11 @@ img.residences-pic {
     aspect-ratio: 16/9;
     opacity: 0.9;
     transition: all 0.2s ease-in-out;
+    filter: grayscale(100%);
 }
 img.residences-pic:hover {
     opacity: 1;
+    filter: grayscale(0%);
 }
 .events-container {
     display: grid;

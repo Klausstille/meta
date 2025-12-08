@@ -5,6 +5,7 @@
     object-position: center;
     opacity: 0.9;
     transition: all 0.2s ease-in-out;
+    filter: grayscale(100%);
 }
 
 .img-module-contact {
@@ -16,6 +17,21 @@
     height: 100vh;
     position: fixed;
     z-index: 1;
+}
+.contact-section .img-module .image-container img,
+.contact-section .img-module .image-container video {
+    filter: grayscale(100%);
+    transition: filter 0.3s ease-in-out;
+}
+.contact-section .img-module .image-container:hover img,
+.contact-section .img-module .image-container:hover video {
+    filter: grayscale(0%);
+}
+.img-module .image-container img,
+.img-module .image-container video,
+.img-module .image-container .fixed-image,
+.img-module .image-container .blurred-image {
+    filter: grayscale(0%) !important;
 }
 .contact-grid {
     display: grid;
@@ -39,6 +55,7 @@
 
 img.contact-pic:hover {
     opacity: 1;
+    filter: grayscale(0%);
 }
 
 @media screen and (max-width: 1200px) {
