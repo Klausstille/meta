@@ -1,69 +1,70 @@
 .logo-container {
-    position: absolute;
-    right: 0;
-    top: 39px;
-    padding-bottom: 38px;
+  position: absolute;
+  right: 0;
+  top: 39px;
+  padding-bottom: 38px;
 }
 .logo-container img {
-    object-fit: contain;
-    object-position: bottom left;
-    position: sticky;
-    font-size: 100vw;
-    width: 100%;
-    height: 100%;
-    opacity: 1;
+  object-fit: contain;
+  object-position: bottom left;
+  position: sticky;
+  font-size: 100vw;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
 }
 .home-module,
 .atelier-module {
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 1;
+  pointer-events: none;
+  mix-blend-mode: exclusion;
+}
+.hero-container video {
+  object-fit: cover;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0 !important;
+  /* filter: brightness(0.3) contrast(1.6) grayscale(100%) blur(0.5px); */
+  filter: grayscale(100%) blur(0.5px);
+  /* image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges; */
+  will-change: filter;
+  scale: 1.18;
+  transform: translateY(-20px);
+}
+.hero-container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  object-fit: contain;
+  z-index: 2;
+}
+@media screen and (max-width: 1200px) {
+  .logo-container img {
+    display: none;
+  }
+}
+@media screen and (max-width: 800px) {
+  .home {
+    top: 0;
     right: 0;
     bottom: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    position: fixed;
-    z-index: 1;
-    pointer-events: none;
-    mix-blend-mode: exclusion;
-}
-.hero-container video {
-    object-fit: cover;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0 !important;
-    filter: brightness(0.3) contrast(1.6) grayscale(100%) blur(0.5px);
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-    will-change: filter;
-    scale: 1.18;
-    transform: translateY(-20px);
-}
-.hero-container {
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    object-fit: contain;
-    z-index: 2;
-}
-@media screen and (max-width: 1200px) {
-    .logo-container img {
-        display: none;
-    }
-}
-@media screen and (max-width: 800px) {
-    .home {
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-    }
-    .hero-container video {
-        scale: 1.3;
-        transform: translateY(-70px);
-    }
+  }
+  .hero-container video {
+    scale: 1.3;
+    transform: translateY(-70px);
+  }
 }
